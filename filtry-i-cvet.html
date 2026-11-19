@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пакетная цветокоррекция фото онлайн — фильтры, яркость, контраст, Ч/Б на много фото | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатная пакетная обработка цвета и фильтры для фото онлайн прямо в браузере: осветлить темные фото, увеличить насыщенность и контраст, перевести пачку фото в черно-белое (Ч/Б) или сепию до 100 штук сразу.">
+    <meta name="keywords" content="пакетная цветокоррекция фото онлайн, осветлить фото онлайн сразу много, сделать фото черно белым пакетно, фильтры на много фото, повысить контрастность на фото, насыщенность фото пакетно, сепия онлайн">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/filtry-i-cvet.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пакетная цветокоррекция и фильтры для фото онлайн — BatchPhoto.ru">
+    <meta property="og:description" content="Улучшайте цвета, осветляйте темные кадры или применяйте Ч/Б фильтр сразу к 100 фото в браузере без потери качества.">
+    <meta property="og:url" content="https://batchphoto.ru/filtry-i-cvet.html">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пакетная цветокоррекция и фильтры для фото",
+      "url": "https://batchphoto.ru/filtry-i-cvet.html",
+      "description": "Онлайн сервис для пакетного улучшения цвета, осветления, изменения контрастности и наложения фотофильтров.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+
+    <style>
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            transition: all .2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .preset-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .preset-btn.active {
+            background: rgba(56,189,248,.12);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .preset-btn .p-title { font-size: 13px; font-weight: 700; }
+        .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
+        .preset-btn.active .p-sub { color: var(--primary); }
+
+        .filter-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .reset-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .reset-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Пакетная цветокоррекция и фильтры</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">🔒 Все фото обрабатываются на вашем компьютере без передачи на сервер</div>
+        <h1 id="pageH1">Пакетная цветокоррекция и <span>фильтры для фото онлайн</span></h1>
+        <p id="pageDesc">Пакетное осветление темных снимков, настройка контраста, насыщенности и художественные фильтры (Ч/Б, сепия) сразу для 100 изображений в один клик.</p>
+    </div>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
+    <div class="card">
+        
+        <!-- БЫСТРЫЕ ГОТОВЫЕ ФИЛЬТРЫ -->
+        <label>Готовые пресеты цветокоррекции:</label>
+        <div class="preset-grid">
+            <button class="preset-btn active" data-b="125" data-c="110" data-s="105" data-e="none" data-h1="Осветлить темные фото пакетом" data-desc="Увеличивает яркость на 25% и слегка поднимает контраст, вытягивая тени на недоэкспонированных кадрах.">
+                <span class="p-title">☀️ Осветлить тени</span>
+                <span class="p-sub">+25% яркости</span>
+            </button>
+
+            <button class="preset-btn" data-b="105" data-c="115" data-s="135" data-e="none" data-h1="Сочные цвета для каталога товаров" data-desc="Делает цвета более насыщенными и «вкусными». Отлично подходит для маркетплейсов, одежды и еды.">
+                <span class="p-title">🍓 Сочные цвета</span>
+                <span class="p-sub">+35% насыщенности</span>
+            </button>
+
+            <button class="preset-btn" data-b="100" data-c="120" data-s="0" data-e="grayscale" data-h1="Сделать фото черно-белыми онлайн" data-desc="Превращает всю пачку фотографий в стильное монохромное Ч/Б с глубоким контрастом.">
+                <span class="p-title">🖤 Черно-белое (Ч/Б)</span>
+                <span class="p-sub">Глубокий монохром</span>
+            </button>
+
+            <button class="preset-btn" data-b="100" data-c="105" data-s="90" data-e="sepia" data-h1="Винтажный фильтр сепия" data-desc="Придает снимкам теплый ретро-оттенок старинных фотокарточек.">
+                <span class="p-title">📜 Сепия (Ретро)</span>
+                <span class="p-sub">Теплый винтаж</span>
+            </button>
+
+            <button class="preset-btn" data-b="100" data-c="130" data-s="110" data-e="none" data-h1="Повысить контрастность фото" data-desc="Убирает блеклость и дымку, делает контуры объектов четкими и выразительными.">
+                <span class="p-title">🌓 Четкий контраст</span>
+                <span class="p-sub">+30% контраста</span>
+            </button>
+
+            <button class="preset-btn" data-b="100" data-c="100" data-s="100" data-e="none" data-h1="Ручная настройка цвета" data-desc="Оригинальные исходные параметры без изменений.">
+                <span class="p-title">🔄 Сброс (Оригинал)</span>
+                <span class="p-sub">Все по 100%</span>
+            </button>
+        </div>
+
+        <!-- ДРОПЗОНА -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">🎨</div>
+            <p><strong>Выберите фотографии</strong> или перетащите их сюда</p>
+            <small>JPG, PNG, WebP до 100 файлов одновременно (поддерживается вставка через Ctrl+V)</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
+        </div>
+
+        <!-- ТУЛБАР ФАЙЛОВ -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">Очистить список</button>
+        </div>
+
+        <!-- СЕТКА ФАЙЛОВ -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- ВКЛАДКИ НАСТРОЕК -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="color">🎨 Ползунки цвета</button>
+            <button class="tab-btn" data-tab="transform">🔄 Поворот и отражение</button>
+            <button class="tab-btn" data-tab="format">⚙️ Формат и качество</button>
+            <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
+        </div>
+
+        <!-- ПАНЕЛЬ 1: ЦВЕТ И ФИЛЬТРЫ -->
+        <div class="tab-panel active" id="panel-color">
+            <div class="filter-controls">
+                
+                <div class="form-group">
+                    <label for="brightness">Яркость (Свет): <span id="brightnessVal" class="range-val">125%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="brightness" min="50" max="180" value="125">
+                    </div>
+                    <div class="hint">100% — норма. Больше 100% — осветляет фото.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contrast">Контрастность: <span id="contrastVal" class="range-val">110%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="contrast" min="50" max="180" value="110">
+                    </div>
+                    <div class="hint">Усиливает разницу между светом и тенью.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="saturate">Насыщенность цвета: <span id="saturateVal" class="range-val">105%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="saturate" min="0" max="200" value="105">
+                    </div>
+                    <div class="hint">0% делает фото черно-белым, 150% — сверхочень ярким.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="effect">Спецэффект</label>
+                    <select id="effect">
+                        <option value="none" selected>Обычный (Без эффекта)</option>
+                        <option value="grayscale">Черно-белое (Grayscale)</option>
+                        <option value="sepia">Сепия (Винтажное фото)</option>
+                    </select>
+                    <div class="hint">Художественное тонирование снимка.</div>
+                </div>
+            </div>
+
+            <a class="reset-link" id="resetFiltersBtn">↺ Сбросить все ползунки на стандартные 100%</a>
+        </div>
+
+        <!-- ПАНЕЛЬ 2: ПОВОРОТ И ОТРАЖЕНИЕ -->
+        <div class="tab-panel" id="panel-transform">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="rotate">Поворот угла</label>
+                    <select id="rotate">
+                        <option value="0" selected>0° (Без поворота)</option>
+                        <option value="90">90° по часовой стрелке</option>
+                        <option value="180">180° (Вверх ногами)</option>
+                        <option value="270">270° (90° против часовой)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="flip">Зеркальное отражение</label>
+                    <select id="flip">
+                        <option value="none" selected>Без отражения</option>
+                        <option value="h">По горизонтали (Зеркало)</option>
+                        <option value="v">По вертикали</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 3: ФОРМАТ И КАЧЕСТВО -->
+        <div class="tab-panel" id="panel-format">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="format">Формат сохранения</label>
+                    <select id="format">
+                        <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
+                        <option value="image/webp">WebP (.webp)</option>
+                        <option value="image/png">PNG (.png)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="qualityGroup">
+                    <label for="quality">Качество: <span id="qualityVal" class="range-val">90%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="10" max="100" value="90">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 4: ИМЕНА ФАЙЛОВ -->
+        <div class="tab-panel" id="panel-rename">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон имени</label>
+                    <input type="text" id="renamePattern" value="{name}_color" placeholder="{name}_color">
+                    <div class="hint">Суффикс <code>_color</code> сохранит исходники в безопасности от перезаписи.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КНОПКИ ЗАПУСКА -->
+        <div class="btn-row">
+            <button class="btn" id="processBtn">⚡ Применить фильтры ко всем фото и скачать ZIP</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+        </div>
+
+        <!-- ПРОГРЕСС -->
+        <div class="progress-box" id="progressBox">
+            <div class="progress-info">
+                <span id="progressStatus">Коррекция цвета…</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- РЕЗУЛЬТАТ -->
+        <div class="result-box" id="resultBox">
+            <h3>🎉 Цветокоррекция успешно завершена!</h3>
+            <p id="resultStats"></p>
+            <div class="results-list" id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- ПОПУЛЯРНЫЕ СЦЕНАРИИ ОБРАБОТКИ -->
+    <section>
+        <h2 class="section-title">Где применяется пакетная цветокоррекция?</h2>
+        <p class="section-sub">Автоматизируйте рутинную обработку серийных съемок и каталогов без Photoshop.</p>
+        
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>🛍️ Фото товаров для WB и Ozon</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Товары, сфотографированные при плохом комнатном свете, выглядят блекло и серо. Добавление +15% яркости и +25% насыщенности делает карточки кликабельными.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Повышает CTR в поиске</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>🖤 Ч/Б стилизация для портфолио</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Быстрый перевод репортажных фотосессий, портретов или уличных съемок в стильную монохромную эстетику сразу всей папкой.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Классический монохром</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>🏢 Фото недвижимости и интерьеров</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Снимки комнат против окна часто получаются слишком темными. Пакетное осветление теней позволяет раскрыть детали интерьера для объявлений.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Осветление комнат и деталей</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📱 Архивы со смартфонов</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Исправление тусклых фото из отпуска или вечерних мероприятий за несколько секунд прямо в телефоне или на компьютере.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Без установки тяжелых программ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТАБЛИЦА ФИЛЬТРОВ -->
+    <section>
+        <h2 class="section-title">Параметры цветокоррекции и их эффект</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Инструмент</th>
+                        <th>Что изменяет?</th>
+                        <th>Когда увеличивать?</th>
+                        <th>Когда уменьшать?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Яркость (Brightness)</strong></td>
+                        <td>Общий уровень экспозиции и света</td>
+                        <td>Если фото темное, сделано в сумерках или помещении</td>
+                        <td>Если снимок засвечен или пересвечено белое небо</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Контраст (Contrast)</strong></td>
+                        <td>Разницу между черными и белыми тонами</td>
+                        <td>Чтобы убрать туман, дымку и добавить объема</td>
+                        <td>Чтобы сделать снимок мягче и сгладить жесткие тени</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Насыщенность (Saturate)</strong></td>
+                        <td>Интенсивность и «сочность» цветов</td>
+                        <td>Для еды, цветов, одежды, пейзажей и лета</td>
+                        <td>До 0% для перевода в благородный Ч/Б</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- SEO СТАТЬЯ -->
+    <section>
+        <div class="card" style="padding: 30px;">
+            <article>
+                <h3>Как быстро улучшить цвета на 50–100 фото сразу?</h3>
+                <p>Вместо того чтобы открывать каждый кадр по отдельности в громоздких графических пакетах, используйте пакетную цветовую оптимизацию в <strong>BatchPhoto.ru</strong>:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Перетащите папку со снимками в окно загрузки.</li>
+                    <li><strong>Шаг 2:</strong> Нажмите на нужный пресет (например, <em>«☀️ Осветлить тени»</em> или <em>«🍓 Сочные цвета»</em>) либо подстройте ползунки под свой вкус.</li>
+                    <li><strong>Шаг 3:</strong> Нажмите «Применить фильтры». Готовые обработанные фото соберутся в удобный ZIP-архив за считанные секунды.</li>
+                </ul>
+
+                <h3>Чистая обработка без артефактов</h3>
+                <p>Цветокоррекция выполняется через графический конвейер Canvas с аппаратным ускорением вашей видеокарты. Это обеспечивает плавные тональные переходы без лесенок, постеризации и потери резкости исходного изображения.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <details class="faq-item">
+            <summary>Можно ли сделать фото черно-белым, но сохранить контраст?</summary>
+            <div class="faq-body">
+                Да! Выберите пресет <strong>«🖤 Черно-белое (Ч/Б)»</strong>. Он не просто обесцвечивает снимок, а автоматически поднимает контрастность на +20%, делая кадр глубоким и кинематографичным, а не серым.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Ухудшится ли качество фото при осветлении?</summary>
+            <div class="faq-body">
+                Нет. В отличие от сжатия, регулировка яркости и контраста не снижает разрешение. Ваши фото сохранят оригинальную четкость и пиксели (если во вкладке «Качество» выставлено 90–95%).
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Сколько файлов можно обработать одновременно?</summary>
+            <div class="faq-body">
+                Вы можете загрузить до 100 фотографий за один сеанс. Сервис абсолютно бесплатен и работает полностью локально на вашем компьютере.
+            </div>
+        </details>
+    </section>
+
+    <!-- ТЕГИ ДРУГИХ РАЗДЕЛОВ -->
+    <section>
+        <h2 class="section-title">Другие полезные инструменты</h2>
+        <div class="tag-cloud">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Ресайз для Wildberries и Ozon</a>
+            <a href="szhatie-foto.html">🗜️ Сжать фото до нужного веса</a>
+            <a href="konverter-webp.html">🌐 Из WebP в JPG онлайн</a>
+            <a href="vodjanoj-znak.html">©️ Водяной знак на много фото</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF и геоданные с фото</a>
+        </div>
+    </section>
+</main>
+
+<!-- МОДАЛКА CTRL+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">
+            🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «яркость», «ч/б», «вайлдберриз»…">
+        </div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетная цветокоррекция и фильтры для изображений онлайн. Вся обработка выполняется на вашем устройстве.</p>
+    </div>
+</footer>
+
+<!-- Конфигурация для engine.js -->
+<script>
+window.BP_CONFIG = {
+    allowedTabs: ['color', 'transform', 'format', 'rename'],
+    defaultTab: 'color'
+};
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="js/engine.js"></script>
+
+<!-- Логика переключения пресетов цветокоррекции -->
+<script>
+function applyColorValues(b, c, s, e) {
+    const bEl = document.getElementById('brightness'), bVal = document.getElementById('brightnessVal');
+    const cEl = document.getElementById('contrast'), cVal = document.getElementById('contrastVal');
+    const sEl = document.getElementById('saturate'), sVal = document.getElementById('saturateVal');
+    const eEl = document.getElementById('effect');
+
+    if (bEl) { bEl.value = b; if (bVal) bVal.textContent = b + '%'; }
+    if (cEl) { cEl.value = c; if (cVal) cVal.textContent = c + '%'; }
+    if (sEl) { sEl.value = s; if (sVal) sVal.textContent = s + '%'; }
+    if (eEl) { eEl.value = e; }
+}
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const b = parseInt(btn.dataset.b) || 100;
+        const c = parseInt(btn.dataset.c) || 100;
+        const s = parseInt(btn.dataset.s) || 100;
+        const e = btn.dataset.e || 'none';
+
+        applyColorValues(b, c, s, e);
+
+        const h1 = btn.dataset.h1;
+        const desc = btn.dataset.desc;
+        const h1El = document.getElementById('pageH1');
+        const descEl = document.getElementById('pageDesc');
+
+        if (h1 && h1El) h1El.innerHTML = h1.replace('фото', '<span>фото</span>');
+        if (desc && descEl) descEl.textContent = desc;
+
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Кнопка сброса
+document.getElementById('resetFiltersBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    applyColorValues(100, 100, 100, 'none');
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+});
+
+/* Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Пакетная цветокоррекция и фильтры", c: "Цвет", u: "filtry-i-cvet.html", k: "яркость контраст цвет чб фильтры осветлить сепия" },
+    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+renderCmd('');
+</script>
+</body>
+</html>
