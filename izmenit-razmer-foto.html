@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменить размер фото онлайн — пакетный ресайз, обрезка и добавление фона | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатное пакетное изменение размера фото онлайн прямо в браузере: ресайз в пикселях (px) и процентах, обрезка по центру (Crop), добавление белого фона без обрезки до 100 фото одновременно.">
+    <meta name="keywords" content="изменить размер фото онлайн, пакетный ресайз фото, обрезать фото онлайн сразу много, вписать фото в квадрат с белым фоном, изменить разрешение фото, подогнать фото под размер в пикселях">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/izmenit-razmer-foto.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пакетный ресайз, обрезка и фон для фото онлайн — BatchPhoto.ru">
+    <meta property="og:description" content="Массовое изменение размера фотографий в браузере. Впишите фото в рамку с белым фоном или обрежьте под нужные пропорции без потери резкости.">
+    <meta property="og:url" content="https://batchphoto.ru/izmenit-razmer-foto.html">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пакетное изменение размера и обрезка фото",
+      "url": "https://batchphoto.ru/izmenit-razmer-foto.html",
+      "description": "Онлайн инструмент для пакетного изменения разрешения, кадрирования и добавления полей к изображениям.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+
+    <style>
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            transition: all .2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .preset-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .preset-btn.active {
+            background: rgba(56,189,248,.12);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .preset-btn .p-title { font-size: 13px; font-weight: 700; }
+        .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
+        .preset-btn.active .p-sub { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Изменить размер, обрезать и фон</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">🔒 Все файлы обрабатываются на вашем ПК и не уходят на сервер</div>
+        <h1 id="pageH1">Изменить размер, обрезать и <span>добавить фон к фото</span></h1>
+        <p id="pageDesc">Пакетный ресайз в пикселях или процентах, центрированная обрезка под квадрат и заливка фона нужным цветом для каталогов и соцсетей.</p>
+    </div>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
+    <div class="card">
+        
+        <!-- БЫСТРЫЕ ШАБЛОНЫ РАЗМЕРОВ -->
+        <label>Популярные форматы подгонки размера:</label>
+        <div class="preset-grid">
+            <button class="preset-btn active" data-mode="contain_bg" data-w="1200" data-h="1200" data-bg="#ffffff" data-h1="Вписать в квадрат 1:1 с белым фоном" data-desc="Фото помещается целиком без обрезки важных деталей, а по бокам добавляются аккуратные белые поля.">
+                <span class="p-title">📦 Квадрат с полями</span>
+                <span class="p-sub">1200×1200 (Белый фон)</span>
+            </button>
+
+            <button class="preset-btn" data-mode="cover" data-w="1080" data-h="1080" data-bg="#ffffff" data-h1="Обрезать фото в квадрат 1:1" data-desc="Кадрирование фото по центру под пропорции 1:1 без пустых полей. Отлично для постов и аватарок.">
+                <span class="p-title">✂️ Квадратная обрезка</span>
+                <span class="p-sub">1080×1080 (Cover)</span>
+            </button>
+
+            <button class="preset-btn" data-mode="width" data-w="1920" data-h="0" data-bg="#ffffff" data-h1="Подогнать ширину до 1920px (Full HD)" data-desc="Ширина становится ровно 1920px, а высота рассчитывается пропорционально без растяжений.">
+                <span class="p-title">🖥️ Full HD (По ширине)</span>
+                <span class="p-sub">1920 px (Автовысота)</span>
+            </button>
+
+            <button class="preset-btn" data-mode="cover" data-w="1080" data-h="1920" data-bg="#ffffff" data-h1="Формат Stories и Reels (9:16)" data-desc="Точная вертикальная обрезка под экраны современных смартфонов для историй и коротких видео.">
+                <span class="p-title">📱 Stories 9:16</span>
+                <span class="p-sub">1080×1920 (Вертикальный)</span>
+            </button>
+
+            <button class="preset-btn" data-mode="contain_bg" data-w="1200" data-h="1600" data-bg="#ffffff" data-h1="Вертикальный 3:4 с белым фоном" data-desc="Классический стандарт каталогов маркетплейсов Wildberries и Ozon с белой подложкой.">
+                <span class="p-title">🛍️ Каталог 3:4</span>
+                <span class="p-sub">1200×1600 (Вписать)</span>
+            </button>
+
+            <button class="preset-btn" data-mode="percent" data-pct="50" data-w="0" data-h="0" data-bg="#ffffff" data-h1="Уменьшить масштаб фото на 50%" data-desc="Пропорциональное уменьшение ширины и высоты кадра ровно в 2 раза.">
+                <span class="p-title">📉 Масштаб 50%</span>
+                <span class="p-sub">Уменьшить в 2 раза</span>
+            </button>
+        </div>
+
+        <!-- ДРОПЗОНА -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">📐</div>
+            <p><strong>Выберите фотографии</strong> или перетащите их сюда</p>
+            <small>JPG, PNG, WebP до 100 изображений одновременно (поддерживается вставка через Ctrl+V)</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
+        </div>
+
+        <!-- ТУЛБАР ФАЙЛОВ -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">Очистить список</button>
+        </div>
+
+        <!-- СЕТКА ФАЙЛОВ -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- ВКЛАДКИ НАСТРОЕК -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="resize">📐 Размер и режим</button>
+            <button class="tab-btn" data-tab="bg">🎨 Цвет фона</button>
+            <button class="tab-btn" data-tab="transform">🔄 Поворот / Отражение</button>
+            <button class="tab-btn" data-tab="format">⚙️ Формат и качество</button>
+            <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
+        </div>
+
+        <!-- ПАНЕЛЬ 1: РАЗМЕР -->
+        <div class="tab-panel active" id="panel-resize">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="resizeMode">Режим изменения размера</label>
+                    <select id="resizeMode">
+                        <option value="contain_bg" selected>Вписать целиком + залить фон полями</option>
+                        <option value="cover">Обрезать по центру (заполнить без полей)</option>
+                        <option value="width">Задать ширину (высота пропорционально)</option>
+                        <option value="height">Задать высоту (ширина пропорционально)</option>
+                        <option value="percent">Масштабировать в процентах (%)</option>
+                        <option value="none">Оставить оригинальные размеры</option>
+                    </select>
+                    <div class="hint">«Вписать целиком» сохраняет товар полностью и дорисовывает аккуратный фон.</div>
+                </div>
+
+                <div class="form-group" id="dimsGroup">
+                    <label>Разрешение (Ширина × Высота px)</label>
+                    <div class="inline">
+                        <input type="number" id="width" placeholder="Ширина" value="1200">
+                        <input type="number" id="height" placeholder="Высота" value="1200">
+                    </div>
+                </div>
+
+                <div class="form-group" id="percentGroup" style="display:none;">
+                    <label for="percent">Масштаб: <span id="percentVal" class="range-val">100%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="percent" min="5" max="100" value="100">
+                    </div>
+                </div>
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" id="noUpscale" checked>
+                Не растягивать изображения меньше заданного размера (защита от размытия)
+            </label>
+        </div>
+
+        <!-- ПАНЕЛЬ 2: ФОН ПОДЛОЖКИ -->
+        <div class="tab-panel" id="panel-bg">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="bgColor">Цвет полей фона</label>
+                    <input type="color" id="bgColor" value="#ffffff">
+                    <div class="hint">Фон отображается при выборе режима «Вписать целиком + залить фон полями» или при конвертации прозрачного PNG в JPG.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 3: ПОВОРОТ И ОТРАЖЕНИЕ -->
+        <div class="tab-panel" id="panel-transform">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="rotate">Поворот угла</label>
+                    <select id="rotate">
+                        <option value="0" selected>0° (Без поворота)</option>
+                        <option value="90">90° по часовой стрелке</option>
+                        <option value="180">180° (Вверх ногами)</option>
+                        <option value="270">270° (Против часовой)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="flip">Отразить зеркально</label>
+                    <select id="flip">
+                        <option value="none" selected>Без отражения</option>
+                        <option value="h">По горизонтали (Слева направо)</option>
+                        <option value="v">По вертикали</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 4: ФОРМАТ И КАЧЕСТВО -->
+        <div class="tab-panel" id="panel-format">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="format">Итоговый формат</label>
+                    <select id="format">
+                        <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
+                        <option value="image/webp">WebP (.webp)</option>
+                        <option value="image/png">PNG (.png)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="qualityGroup">
+                    <label for="quality">Качество сжатия: <span id="qualityVal" class="range-val">90%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="10" max="100" value="90">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 5: ИМЕНА ФАЙЛОВ -->
+        <div class="tab-panel" id="panel-rename">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон имени</label>
+                    <input type="text" id="renamePattern" value="{name}_{w}x{h}" placeholder="{name}_{w}x{h}">
+                    <div class="hint">Шаблоны: <code>{name}</code> — старое имя, <code>{w}</code>×<code>{h}</code> — размеры в пикселях, <code>{n}</code> — номер.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КНОПКИ ДЕЙСТВИЙ -->
+        <div class="btn-row">
+            <button class="btn" id="processBtn">⚡ Изменить размер всех фото и скачать ZIP</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+        </div>
+
+        <!-- ПРОГРЕСС -->
+        <div class="progress-box" id="progressBox">
+            <div class="progress-info">
+                <span id="progressStatus">Обработка изображений…</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- РЕЗУЛЬТАТ -->
+        <div class="result-box" id="resultBox">
+            <h3>🎉 Размер успешно изменен!</h3>
+            <p id="resultStats"></p>
+            <div class="results-list" id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- ПОПУЛЯРНЫЕ СЦЕНАРИИ РЕСАЙЗА -->
+    <section>
+        <h2 class="section-title">Разница между режимами подгонки размера</h2>
+        <p class="section-sub">Выберите подходящий алгоритм кадрирования под вашу задачу.</p>
+        
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>📦 Вписать с полями (Contain)</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Изображение уменьшается так, чтобы полностью поместиться в заданные рамки. Свободное пространство по краям аккуратно заливается выбранным цветом фона.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Без обрезки деталей товара</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>✂️ Обрезка по центру (Cover)</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Кадр масштабируется так, чтобы полностью закрыть всю площадь холста без полей. Лишние выступающие края сверху/снизу или по бокам ровно срезаются.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Без пустых полей по краям</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📐 Фиксированная ширина</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Вы задаете точную ширину (например, 1920 или 1200 px), а высота рассчитывается пропорционально для каждого файла индивидуально.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Сохраняет исходные пропорции</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📉 Масштаб в процентах (%)</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Позволяет уменьшить всю пачку фотографий разного разрешения ровно в 2, 3 или 4 раза одним общим ползунком.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Удобно для разнородных фото</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА СТАНДАРТНЫХ РАЗРЕШЕНИЙ -->
+    <section>
+        <h2 class="section-title">Таблица стандартных размеров для интернета</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Назначение</th>
+                        <th>Разрешение (px)</th>
+                        <th>Пропорции</th>
+                        <th>Рекомендуемый режим</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Wildberries / Ozon карточки</strong></td>
+                        <td>1200 × 1600 px</td>
+                        <td>3:4 (Вертикальный)</td>
+                        <td>Вписать с полями (белый фон)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Квадратный каталог / Авито</strong></td>
+                        <td>1200 × 1200 px</td>
+                        <td>1:1 (Квадрат)</td>
+                        <td>Вписать с полями или Cover</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Истории (Stories / Reels / Shorts)</strong></td>
+                        <td>1080 × 1920 px</td>
+                        <td>9:16 (Вертикальный)</td>
+                        <td>Обрезка по центру (Cover)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Иллюстрации для статей сайтов</strong></td>
+                        <td>1200 × 800 px или 1920 px</td>
+                        <td>16:9 / 3:2</td>
+                        <td>По ширине (пропорционально)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- SEO СТАТЬЯ -->
+    <section>
+        <div class="card" style="padding: 30px;">
+            <article>
+                <h3>Как пакетно изменить размер фото без потери резкости?</h3>
+                <p>При уменьшении разрешения фотографий в простых программах картинка часто теряет четкость и становится замыленной. Наш сервис использует встроенные высокоточные алгоритмы интерполяции браузера (Lanczos/Bicubic resampling), что сохраняет читаемость мелких надписей и контраст деталей:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Перетащите группу изображений (до 100 файлов) в окно конвертера.</li>
+                    <li><strong>Шаг 2:</strong> Выберите нужный режим: задайте точные пиксели или выберите готовый пресет (например, <em>«📦 Квадрат с полями»</em>).</li>
+                    <li><strong>Шаг 3:</strong> Нажмите «Изменить размер» — готовые файлы с нужными пикселями упакуются в ZIP-архив за считанные секунды.</li>
+                </ul>
+
+                <h3>Зачем нужна заливка фона полей?</h3>
+                <p>Если у вас есть прямоугольное фото товара (например, 1920×1080), а торговая площадка требует строгий квадрат 1:1, обычная обрезка срежет края товара. Режим <strong>«Вписать целиком + фон»</strong> оставит ваш товар на 100% нетронутым, аккуратно заполнив свободные зоны сверху и снизу чистым белым цветом.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <details class="faq-item">
+            <summary>Исказятся ли пропорции фото (растянется ли картинка)?</summary>
+            <div class="faq-body">
+                Нет! Сервис категорически не деформирует («не плющит») фотографии. В режиме «Вписать» фото пропорционально уменьшается с добавлением полей, а в режиме «Cover» — обрезается строго по центру.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Что делает галочка «Не растягивать изображения меньше заданного размера»?</summary>
+            <div class="faq-body">
+                Она защищает мелкие картинки от ухудшения качества. Если ваше фото имеет размер 800×600 px, а вы задали шаблон 1920×1080 px, сервис не станет искусственно раздувать файл пикселями, предотвращая размытие.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Сохраняются ли исходные фотографии на моем ПК?</summary>
+            <div class="faq-body">
+                Да. По умолчанию к именам готовых файлов добавляется суффикс с разрешением (например, <code>photo_1200x1200.jpg</code>), поэтому ваши оригиналы никогда не перезапишутся.
+            </div>
+        </details>
+    </section>
+
+    <!-- ТЕГИ СМЕЖНЫХ РАЗДЕЛОВ -->
+    <section>
+        <h2 class="section-title">Другие полезные инструменты</h2>
+        <div class="tag-cloud">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Ресайз для Wildberries и Ozon</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие фото до нужного веса</a>
+            <a href="konverter-webp.html">🌐 Из WebP в JPG онлайн</a>
+            <a href="vodjanoj-znak.html">©️ Водяной знак на много фото</a>
+            <a href="filtry-i-cvet.html">🎨 Осветлить и улучшить цвета фото</a>
+        </div>
+    </section>
+</main>
+
+<!-- МОДАЛКА CTRL+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">
+            🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «размер», «обрезать», «вайлдберриз»…">
+        </div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетное изменение размера, обрезка и фоны для фото онлайн. Все файлы обрабатываются на вашем устройстве.</p>
+    </div>
+</footer>
+
+<!-- Конфигурация для engine.js -->
+<script>
+window.BP_CONFIG = {
+    allowedTabs: ['resize', 'bg', 'transform', 'format', 'rename'],
+    defaultTab: 'resize'
+};
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="js/engine.js"></script>
+
+<!-- Логика переключения пресетов размера -->
+<script>
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const mode = btn.dataset.mode || 'contain_bg';
+        const w = parseInt(btn.dataset.w) || 0;
+        const h = parseInt(btn.dataset.h) || 0;
+        const pct = parseInt(btn.dataset.pct) || 100;
+        const bg = btn.dataset.bg || '#ffffff';
+        const h1 = btn.dataset.h1;
+        const desc = btn.dataset.desc;
+
+        // Режим
+        const rModeEl = document.getElementById('resizeMode');
+        if (rModeEl) {
+            rModeEl.value = mode;
+            rModeEl.dispatchEvent(new Event('change'));
+        }
+
+        // Размеры
+        const wEl = document.getElementById('width');
+        const hEl = document.getElementById('height');
+        if (wEl && w) wEl.value = w;
+        if (hEl && h) hEl.value = h;
+
+        // Проценты
+        const pctEl = document.getElementById('percent');
+        const pctVal = document.getElementById('percentVal');
+        if (pctEl && mode === 'percent') {
+            pctEl.value = pct;
+            if (pctVal) pctVal.textContent = pct + '%';
+        }
+
+        // Фон
+        const bgEl = document.getElementById('bgColor');
+        if (bgEl && bg) bgEl.value = bg;
+
+        // Заголовки
+        const h1El = document.getElementById('pageH1');
+        const descEl = document.getElementById('pageDesc');
+        if (h1 && h1El) h1El.innerHTML = h1.replace('фото', '<span>фото</span>');
+        if (desc && descEl) descEl.textContent = desc;
+
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+/* Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Изменить размер и обрезать фото онлайн", c: "Размер", u: "izmenit-razmer-foto.html", k: "размер ресайз обрезать фон белый пиксели пропорции" },
+    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+renderCmd('');
+</script>
+</body>
+</html>
