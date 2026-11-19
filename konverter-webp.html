@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер WebP в JPG онлайн — пакетный перевод WebP, PNG, JPG бесплатно | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатный онлайн-конвертер изображений: пакетный перевод из WebP в JPG, PNG в WebP, JPG в WebP пачкой до 100 файлов. Быстро, без потери качества и прямо в браузере.">
+    <meta name="keywords" content="из webp в jpg, конвертер webp в jpg онлайн, перевести webp в jpg, пакетная конвертация webp, конвертировать фото в webp, webp to jpg, png в webp">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/konverter-webp.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пакетный конвертер WebP в JPG онлайн — BatchPhoto.ru">
+    <meta property="og:description" content="Мгновенно конвертируйте файлы WebP, JPG, PNG прямо в браузере. Без ограничений и без отправки на сервер.">
+    <meta property="og:url" content="https://batchphoto.ru/konverter-webp.html">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пакетный конвертер WebP в JPG онлайн",
+      "url": "https://batchphoto.ru/konverter-webp.html",
+      "description": "Онлайн инструмент для пакетной конвертации картинок из WebP в JPG/PNG и обратно без потери качества.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html" class="active">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Пакетный конвертер форматов (WebP, JPG, PNG)</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">🔒 Все файлы конвертируются локально и не загружаются в сеть</div>
+        <h1>Пакетная конвертация <span>WebP в JPG, PNG и WebP</span></h1>
+        <p>Быстрый перевод файлов WebP в стандартный формат JPG для Photoshop и Windows, либо создание современного WebP для ускорения загрузки сайтов.</p>
+    </div>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 (Подготовка под РСЯ / AdSense) -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК ИНСТРУМЕНТА -->
+    <div class="card">
+        <!-- Зона загрузки -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">🔄</div>
+            <p><strong>Нажмите для выбора</strong> или перетащите WebP / JPG / PNG сюда</p>
+            <small>Поддерживается вставка из буфера обмена (Ctrl+V) до 100 файлов одновременно</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp,.heic" style="display: none;">
+        </div>
+
+        <!-- Тулбар списка файлов -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">Очистить список</button>
+        </div>
+
+        <!-- Сетка превьюшек -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- Настройки (Вкладки) -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="convert">🎯 Выбор формата</button>
+            <button class="tab-btn" data-tab="resize">📐 Размер и масштаб</button>
+            <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
+        </div>
+
+        <!-- ПАНЕЛЬ 1: Формат и качество -->
+        <div class="tab-panel active" id="panel-convert">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="format">Целевой формат файла</label>
+                    <select id="format">
+                        <option value="image/jpeg" selected>JPG / JPEG (Максимальная совместимость)</option>
+                        <option value="image/webp">WebP (Для сайтов и быстрой загрузки)</option>
+                        <option value="image/png">PNG (Без потерь / с поддержкой прозрачности)</option>
+                    </select>
+                    <div class="hint">Выберите JPG, если WebP не открывается в Photoshop или программах.</div>
+                </div>
+
+                <div class="form-group" id="qualityGroup">
+                    <label for="quality">Качество сжатия: <span id="qualityVal" class="range-val">90%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="10" max="100" value="90">
+                    </div>
+                    <div class="hint">85-90% дает идеальный баланс между весом и четкостью.</div>
+                </div>
+
+                <div class="form-group" id="bgGroup">
+                    <label for="bgColor">Цвет подложки прозрачности</label>
+                    <input type="color" id="bgColor" value="#ffffff">
+                    <div class="hint">При конвертации PNG/WebP с прозрачностью в JPG фон станет белым.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 2: Размер (опционально при конвертации) -->
+        <div class="tab-panel" id="panel-resize">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="resizeMode">Режим изменения размера</label>
+                    <select id="resizeMode">
+                        <option value="none" selected>Оставить оригинальный размер</option>
+                        <option value="width">Задать ширину (высота пропорционально)</option>
+                        <option value="height">Задать высоту (ширина пропорционально)</option>
+                        <option value="percent">Уменьшить в процентах (%)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="dimsGroup" style="display:none;">
+                    <label>Размеры (px)</label>
+                    <div class="inline">
+                        <input type="number" id="width" placeholder="Ширина" value="1920">
+                        <input type="number" id="height" placeholder="Высота" value="1080" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group" id="percentGroup" style="display:none;">
+                    <label for="percent">Масштаб: <span id="percentVal" class="range-val">100%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="percent" min="10" max="100" value="100">
+                    </div>
+                </div>
+            </div>
+            
+            <label class="checkbox-row">
+                <input type="checkbox" id="noUpscale" checked>
+                Не увеличивать маленькие фото (защита от размытия)
+            </label>
+        </div>
+
+        <!-- ПАНЕЛЬ 3: Переименование -->
+        <div class="tab-panel" id="panel-rename">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон имени итоговых файлов</label>
+                    <input type="text" id="renamePattern" value="{name}" placeholder="{name}">
+                    <div class="hint">Переменные: <code>{name}</code> — старое имя, <code>{n}</code> — порядковый номер, <code>{date}</code> — дата.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="btn-row">
+            <button class="btn" id="processBtn">⚡ Конвертировать все файлы и скачать ZIP</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить процесс">✕</button>
+        </div>
+
+        <!-- Прогресс -->
+        <div class="progress-box" id="progressBox">
+            <div class="progress-info">
+                <span id="progressStatus">Подготовка к конвертации…</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Результат -->
+        <div class="result-box" id="resultBox">
+            <h3>🎉 Конвертация успешно завершена!</h3>
+            <p id="resultStats"></p>
+            <div class="results-list" id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- БЫСТРЫЕ СЦЕНАРИИ КОНВЕРТАЦИИ -->
+    <section>
+        <h2 class="section-title">Популярные направления конвертации</h2>
+        <p class="section-sub">Наш сервис поддерживает любые комбинации форматов для фотографов, вебмастеров и дизайнеров.</p>
+        
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>🔄 Из WebP в JPG</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Самый частый сценарий: позволяет открыть скачанные из интернета картинки WebP в стандартных редакторах (Photoshop, Corel) или отправить на печать.</p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">✓ 100% совместимость</div>
+            </div>
+            <div class="workspace-card">
+                <h3>🌐 Из JPG/PNG в WebP</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Сжимает изображения для сайтов на 30–70% сильнее классического JPEG без видимой потери четкости. Улучшает показатели Google PageSpeed.</p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">✓ Ускорение сайтов</div>
+            </div>
+            <div class="workspace-card">
+                <h3>🖼️ Из WebP в PNG</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">Сохраняет прозрачные фоны и четкие векторные границы логотипов, графиков и иконок без артефактов сжатия.</p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">✓ Без потери прозрачности</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА ФОРМАТОВ -->
+    <section>
+        <h2 class="section-title">Сравнение WebP, JPG и PNG: какой формат выбрать?</h2>
+        <p class="section-sub">Таблица поможет определиться, в какой формат лучше конвертировать файлы под вашу задачу.</p>
+        
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Формат</th>
+                        <th>Степень сжатия</th>
+                        <th>Прозрачность</th>
+                        <th>Совместимость</th>
+                        <th>Лучшее применение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>WebP</strong></td>
+                        <td>Очень высокая (на 30% компактнее JPG)</td>
+                        <td>Да (альфа-канал)</td>
+                        <td>97% современных браузеров</td>
+                        <td>Оптимизация картинок сайтов, интернет-магазины</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JPG / JPEG</strong></td>
+                        <td>Высокая (настраиваемая)</td>
+                        <td>Нет (заливка фоном)</td>
+                        <td>100% устройств, программ и ОС</td>
+                        <td>Печать, маркетплейсы (WB, Ozon), фотоархивы</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PNG</strong></td>
+                        <td>Средняя (тяжелый вес)</td>
+                        <td>Да (полная прозрачность)</td>
+                        <td>100% поддержка</td>
+                        <td>Логотипы, схемы, скриншоты с текстом, иконки</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- SEO СТАТЬЯ И ИНСТРУКЦИЯ -->
+    <section>
+        <div class="card" style="padding: 30px;">
+            <article>
+                <h3>Как пакетно перевести WebP в JPG онлайн за 3 шага</h3>
+                <p>Формат <strong>WebP</strong> был разработан компанией Google для сжатия изображений в сети. Однако многие настольные программы, графические редакторы и маркетплейсы до сих пор не могут работать с WebP напрямую. С помощью нашего инструмента вы можете перевести целую папку файлов WebP в JPG всего в пару кликов:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Перетащите до 100 изображений WebP в область загрузки на этой странице.</li>
+                    <li><strong>Шаг 2:</strong> Убедитесь, что выбран целевой формат <code>JPG / JPEG</code> и желаемое качество (по умолчанию 90%).</li>
+                    <li><strong>Шаг 3:</strong> Нажмите синюю кнопку «Конвертировать» — готовые файлы мгновенно упакуются в ZIP-архив и начнут скачиваться на ваше устройство.</li>
+                </ul>
+
+                <h3>Почему конвертация на BatchPhoto.ru безопасна?</h3>
+                <p>В отличие от большинства других онлайн-конвертеров, <strong>BatchPhoto.ru не отправляет ваши фотографии на сторонние серверы</strong>. Вся обработка происходит исключительно за счет вычислительных мощностей вашего браузера (технология HTML5 Canvas). Ваши фотографии, сканы документов и коммерческие материалы не попадут в чужие руки.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ (ЧАСТЫЕ ВОПРОСЫ) -->
+    <section>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <p class="section-sub">Ответы на популярные вопросы о работе с форматом WebP.</p>
+
+        <details class="faq-item">
+            <summary>Почему WebP не открывается в Photoshop и как это исправить?</summary>
+            <div class="faq-body">
+                Старые версии Adobe Photoshop (до версии 23.2) не имели встроенной поддержки WebP без установки сторонних плагинов. Самое простое решение — за 2 секунды конвертировать файл WebP в стандартный JPG на этой странице.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Теряется ли качество при конвертации из WebP в JPG?</summary>
+            <div class="faq-body">
+                При качестве 90–95% разница визуально неотличима от оригинала. Наш алгоритм выполняет декомпрессию без внесения цветовых искажений или цветовых сдвигов.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Что произойдет с прозрачным фоном при переводе WebP в JPG?</summary>
+            <div class="faq-body">
+                Так как стандартный JPG не поддерживает прозрачность, все прозрачные области автоматически заливаются белым цветом (вы можете изменить цвет подложки в настройках во вкладке «Выбор формата»). Если прозрачность нужно сохранить — выбирайте формат PNG.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Есть ли лимит на количество файлов?</summary>
+            <div class="faq-body">
+                Вы можете конвертировать до 100 файлов за один проход. Инструмент полностью бесплатен и не требует регистрации.
+            </div>
+        </details>
+    </section>
+
+    <!-- ТЕГИ И ДРУГИЕ ИНСТРУМЕНТЫ -->
+    <section>
+        <h2 class="section-title">Другие полезные инструменты</h2>
+        <div class="tag-cloud">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Ресайз для Wildberries и Ozon</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие фото до нужного веса</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF и геоданные</a>
+            <a href="vodjanoj-znak.html">©️ Водяной знак на много фото</a>
+            <a href="szhatie-foto.html">📉 Сжать картинку без потери качества</a>
+        </div>
+    </section>
+</main>
+
+<!-- МОДАЛЬНОЕ ОКНО ПОИСКА (CTRL+K) -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">
+            🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «вайлдберриз», «webp», «exif»…">
+        </div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетная конвертация и обработка изображений онлайн. Все файлы обрабатываются локально на вашем компьютере.</p>
+    </div>
+</footer>
+
+<!-- КОНФИГУРАЦИЯ СТРАНИЦЫ ДЛЯ ДВИЖКА -->
+<script>
+window.BP_CONFIG = {
+    allowedTabs: ['convert', 'resize', 'rename'],
+    defaultTab: 'convert',
+    defaultPreset: 'web'
+};
+</script>
+
+<!-- Библиотеки для сборки ZIP на стороне клиента -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<!-- Основной движок BatchPhoto -->
+<script src="js/engine.js"></script>
+
+<!-- Скрипт поиска Ctrl+K -->
+<script>
+const TOOLS = [
+    { t: "Пакетная обработка фото для Wildberries (1200×1600)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб карточка 3:4" },
+    { t: "Подгонка фото для Ozon (1200×1600 и 1500×1500)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "озон ozon зум 1:1" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic png" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+renderCmd('');
+</script>
+</body>
+</html>

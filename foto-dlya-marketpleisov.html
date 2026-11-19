@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Пакетная обработка фото для Wildberries, Ozon и Авито онлайн — BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатная пакетная обработка фото для Wildberries (1200×1600, 3:4), Ozon (1200×1600 / 1500×1500) и Авито. Центрирование на белом фоне, улучшение цвета и нумерация карточек товаров. Без загрузки на сервер.">
+    <meta name="keywords" content="пакетная обработка фото для wildberries, пакетная обработка фото ozon, ресайз 3:4 онлайн, белый фон карточки товара, размер фото 1200х1600">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://batchphoto.ru/foto-dlya-marketpleisov.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Главная","item":"https://batchphoto.ru/"},
+        {"@type":"ListItem","position":2,"name":"Пакетная обработка фото для маркетплейсов","item":"https://batchphoto.ru/foto-dlya-marketpleisov.html"}]}
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="logo">🛍️ Batch<span>Photo</span>.ru</a>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html" class="active">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
+            <a href="konverter-webp.html">🌐 Конвертер WebP</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="/">Главная</a> → <span>Пакетная обработка фото для маркетплейсов</span>
+        </nav>
+    </div>
+
+    <!-- ТОЧНЫЙ КРАСИВЫЙ ЗАГОЛОВОК -->
+    <div class="hero">
+        <div class="badge">🔒 Файлы обрабатываются в браузере и не уходят на сервер</div>
+        <h1>Пакетная обработка фото для <span>Wildberries, Ozon и Авито</span></h1>
+        <p>Быстрая подгонка под стандарт 3:4 (1200×1600 px), центрирование на белом фоне, улучшение яркости и понятная нумерация карточек товаров.</p>
+    </div>
+
+    <div class="container" id="tool">
+        <div class="card">
+
+            <!-- Дропзона -->
+            <div class="dropzone" id="dropzone" role="button" tabindex="0">
+                <div class="icon">📦</div>
+                <p><strong>Перетащите фото товаров сюда</strong> или нажмите для выбора</p>
+                <small>JPG, PNG, WebP • до 100 файлов за раз • вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
+                <input type="file" id="fileInput" multiple accept="image/*" hidden>
+            </div>
+
+            <div class="files-toolbar" id="filesToolbar">
+                <span class="files-count" id="filesCount"></span>
+                <button class="clear-btn" id="clearBtn">✕ Очистить всё</button>
+            </div>
+            <div class="files-grid" id="filesGrid"></div>
+
+            <!-- Вкладки только под задачи селлера -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="size">📐 1. Размер и пропорции</button>
+                <button class="tab-btn" data-tab="adjust">🎨 2. Яркость и поворот</button>
+                <button class="tab-btn" data-tab="rename">✏️ 3. Нумерация карточек</button>
+            </div>
+
+            <!-- ВКЛАДКА 1: РАЗМЕР -->
+            <div class="tab-panel active" id="panel-size">
+                <div class="grid">
+                    <div class="form-group">
+                        <label for="preset">Пресет площадки</label>
+                        <select id="preset">
+                            <option value="wb" selected>🟣 Wildberries HD — 1200×1600 (3:4)</option>
+                            <option value="wb_std">🟣 Wildberries Стандарт — 900×1200 (3:4)</option>
+                            <option value="ozon">🔵 Ozon Одежда — 1200×1600 (3:4)</option>
+                            <option value="ozon_zoom">🔵 Ozon Электроника (с зумом) — 1500×1500 (1:1)</option>
+                            <option value="ymarket">🟡 Яндекс Маркет — 900×1200 (3:4)</option>
+                            <option value="avito">🟢 Авито — 1200×900 (4:3)</option>
+                            <option value="custom">⚙️ Свои размеры</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resizeMode">Режим подгонки</label>
+                        <select id="resizeMode">
+                            <option value="contain_bg">Вписать + поля (товар ровно по центру)</option>
+                            <option value="contain">Вписать пропорционально (без полей)</option>
+                            <option value="cover">Обрезать под точный кадр</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="dimsGroup">
+                        <label>Ширина × Высота (px)</label>
+                        <div class="inline">
+                            <input type="number" id="width" value="1200">
+                            <input type="number" id="height" value="1600">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="bgGroup">
+                        <label for="bgColor">Цвет фона / полей</label>
+                        <input type="color" id="bgColor" value="#ffffff">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="format">Выходной формат</label>
+                        <select id="format">
+                            <option value="image/jpeg" selected>JPEG (стандарт для личного кабинета)</option>
+                            <option value="image/png">PNG (высокая четкость)</option>
+                            <option value="image/webp">WebP (для сайта магазина)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="qualityGroup">
+                        <label for="quality">Качество картинки</label>
+                        <div class="range-row">
+                            <input type="range" id="quality" min="10" max="100" value="88">
+                            <span class="range-val" id="qualityVal">88%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" id="noUpscale" checked>
+                    Не растягивать маленькие фото (защищает картинку от размытия и «мыла»)
+                </label>
+            </div>
+
+            <!-- ВКЛАДКА 2: ЦВЕТ И ПОВОРОТ -->
+            <div class="tab-panel" id="panel-adjust">
+                <div class="grid">
+                    <div class="form-group">
+                        <label for="brightness">Яркость фото</label>
+                        <div class="range-row">
+                            <input type="range" id="brightness" min="50" max="170" value="100">
+                            <span class="range-val" id="brightnessVal">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contrast">Контрастность</label>
+                        <div class="range-row">
+                            <input type="range" id="contrast" min="50" max="170" value="100">
+                            <span class="range-val" id="contrastVal">100%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rotate">Повернуть фото</label>
+                        <select id="rotate">
+                            <option value="0">Без поворота</option>
+                            <option value="90">90° по часовой</option>
+                            <option value="180">180°</option>
+                            <option value="270">90° против часовой</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flip">Отразить (Зеркало)</label>
+                        <select id="flip">
+                            <option value="none">Нет</option>
+                            <option value="h">По горизонтали</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ВКЛАДКА 3: НУМЕРАЦИЯ -->
+            <div class="tab-panel" id="panel-rename">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон наименования файлов</label>
+                    <input type="text" id="renamePattern" value="tovar-{nnn}">
+                    <span class="hint" style="margin-top:6px; font-size:12px; color:var(--muted);">
+                        Шаблон <kbd>tovar-{nnn}</kbd> автоматически создаст порядок для загрузки в личный кабинет:
+                        <em>tovar-001.jpg, tovar-002.jpg, tovar-003.jpg…</em>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Кнопка запуска -->
+            <button class="btn" id="processBtn">⚡ Подготовить фото и скачать ZIP-архив</button>
+
+            <!-- Прогресс -->
+            <div class="progress-box" id="progressBox">
+                <div class="progress-info">
+                    <span id="progressStatus">Подготовка…</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+                <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
+            </div>
+
+            <!-- Результат -->
+            <div class="result-box" id="resultBox">
+                <h3>✅ Карточки успешно подготовлены!</h3>
+                <p id="resultStats"></p>
+                <div class="results-list" id="resultsList"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Таблица требований -->
+    <section id="table-sec">
+        <div class="container">
+            <h2 class="section-title">Стандарты фотографий маркетплейсов в 2025 году</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Площадка</th>
+                            <th>Рекомендуемый размер</th>
+                            <th>Пропорции</th>
+                            <th>Главное фото</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🟣 Wildberries</strong></td>
+                            <td>1200×1600 px (HD)</td>
+                            <td><strong>3:4</strong> (вертикальное)</td>
+                            <td>Товар 70–80% кадра, светлый фон, без водяных знаков и цен.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔵 Ozon</strong></td>
+                            <td>1200×1600 px / 1500×1500 px</td>
+                            <td><strong>3:4</strong> или 1:1</td>
+                            <td>1500×1500 px включает функцию оптической лупы (зума) для покупателя.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🟡 Яндекс Маркет</strong></td>
+                            <td>900×1200 px</td>
+                            <td><strong>3:4</strong></td>
+                            <td>Чёткий фокус на предмете, отсутствие рамок.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🟢 Авито</strong></td>
+                            <td>1200×900 px</td>
+                            <td><strong>4:3</strong> (горизонтальное)</td>
+                            <td>Хорошее естественное освещение.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие JPG</a>
+            <a href="konverter-webp.html">Конвертер WebP</a>
+            <a href="udalit-exif.html">Удаление EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетная обработка изображений онлайн.<br>Все файлы обрабатываются в вашем браузере.</p>
+    </div>
+</footer>
+
+<script>
+    window.BP_CONFIG = {
+        defaultPreset: 'wb',
+        allowedTabs: ['size', 'adjust', 'rename']
+    };
+</script>
+<script src="js/engine.js"></script>
+
+</body>
+</html>
