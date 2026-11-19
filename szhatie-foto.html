@@ -1,14 +1,536 @@
-<!-- 1. HEAD: свои title/description/canonical -->
-<title>Сжать фото онлайн без потери качества — пакетное сжатие JPG до 100 файлов | BatchPhoto.ru</title>
-<meta name="description" content="Пакетное сжатие фото онлайн: уменьшите вес JPG и WebP в 3–10 раз без видимой потери качества. До 100 файлов за раз, ZIP-архив, без загрузки на сервер.">
-<link rel="canonical" href="https://batchphoto.ru/szhatie-foto.html">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сжать фото онлайн — пакетное сжатие JPG, PNG, WebP без потери качества до нужного веса | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатное пакетное сжатие фото онлайн прямо в браузере: уменьшение веса файлов JPG, PNG и WebP до 80% без потери качества. Пачкой до 100 штук до нужного размера КБ для сайтов, анкет и Госуслуг.">
+    <meta name="keywords" content="сжать фото онлайн, пакетное сжатие фото, уменьшить вес картинки, сжать jpg без потери качества, сжать фото до 500 кб, уменьшить размер фото в 2 раза, оптимизация изображений, сжать фото для сайта">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/szhatie-foto.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пакетное сжатие фото онлайн без потери качества — BatchPhoto.ru">
+    <meta property="og:description" content="Уменьшите вес картинок пачкой до 100 штук прямо в браузере. Быстро, бесплатно и безопасно.">
+    <meta property="og:url" content="https://batchphoto.ru/szhatie-foto.html">
+    <meta property="og:locale" content="ru_RU">
 
-<!-- 2. HERO: свой H1 и подзаголовок -->
-<h1>Сжать фото онлайн — <span>без потери качества</span></h1>
-<p>Уменьшите вес до 100 изображений за раз...</p>
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пакетное сжатие фото онлайн",
+      "url": "https://batchphoto.ru/szhatie-foto.html",
+      "description": "Онлайн инструмент для пакетного уменьшения веса и оптимизации картинок JPG, PNG, WebP без видимой потери качества.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
 
-<!-- 3. SEO-контент: своя таблица/FAQ/статья про сжатие, вес файлов, PageSpeed -->
+    <style>
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            transition: all .2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .preset-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .preset-btn.active {
+            background: rgba(56,189,248,.12);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .preset-btn .p-title { font-size: 13px; font-weight: 700; }
+        .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
+        .preset-btn.active .p-sub { color: var(--primary); }
+    </style>
+</head>
+<body>
 
-<!-- 4. КОНФИГ внизу страницы: какой пресет и вкладка открыты -->
-<script>window.BP_CONFIG = { defaultPreset: 'compress', defaultTab: 'size' };</script>
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html" class="active">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Пакетное сжатие фото</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">🔒 Все файлы сжимаются на вашем ПК и не отправляются в интернет</div>
+        <h1 id="pageH1">Пакетное сжатие фото <span>до нужного веса и размера</span></h1>
+        <p id="pageDesc">Уменьшайте размер файлов JPG, PNG и WebP до 80% без потери визуальной четкости. Идеально для сайтов, маркетплейсов, почты и загрузки на Госуслуги.</p>
+    </div>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
+    <div class="card">
+        
+        <!-- БЫСТРЫЙ ВЫБОР СТЕПЕНИ СЖАТИЯ -->
+        <label>Выберите желаемый режим сжатия:</label>
+        <div class="preset-grid">
+            <button class="preset-btn active" data-q="80" data-mode="none" data-fmt="image/jpeg" data-h1="Оптимальное сжатие фото" data-desc="Лучший баланс между четкостью и весом. Экономит до 60% размера без видимой разницы на глаз.">
+                <span class="p-title">⚡ Оптимальное</span>
+                <span class="p-sub">-60% веса (Качество 80%)</span>
+            </button>
+
+            <button class="preset-btn" data-q="65" data-mode="none" data-fmt="image/jpeg" data-h1="Максимальное сжатие фото" data-desc="Экстремальное сжатие для почтовых рассылок, медленного интернета или экономии диска.">
+                <span class="p-title">🗜️ Максимальное</span>
+                <span class="p-sub">-80% веса (Качество 65%)</span>
+            </button>
+
+            <button class="preset-btn" data-q="85" data-mode="percent" data-percent="50" data-fmt="image/jpeg" data-h1="Уменьшить фото в 2 раза" data-desc="Уменьшает ширину и высоту ровно наполовину (50%), что сокращает объем файла в 4–5 раз.">
+                <span class="p-title">✂️ В 2 раза меньше</span>
+                <span class="p-sub">Масштаб 50%</span>
+            </button>
+
+            <button class="preset-btn" data-q="82" data-mode="none" data-fmt="image/webp" data-h1="Сжать фото в формат WebP" data-desc="Идеальная оптимизация под Google PageSpeed и современные интернет-магазины.">
+                <span class="p-title">🌐 Сжатие в WebP</span>
+                <span class="p-sub">Формат для сайтов</span>
+            </button>
+
+            <button class="preset-btn" data-q="75" data-mode="width" data-w="1400" data-fmt="image/jpeg" data-h1="Сжать фото для Госуслуг и анкет" data-desc="Подгонка под лимиты до 300–500 КБ для сайтов с жесткими ограничениями по размеру.">
+                <span class="p-title">🏛️ До 300–500 КБ</span>
+                <span class="p-sub">Для Госуслуг и анкет</span>
+            </button>
+        </div>
+
+        <!-- ЗОНА ЗАГРУЗКИ -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">🗜️</div>
+            <p><strong>Выберите файлы для сжатия</strong> или перетащите их сюда</p>
+            <small>JPG, PNG, WebP до 100 изображений одновременно (поддерживается Ctrl+V)</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
+        </div>
+
+        <!-- ТУЛБАР ФАЙЛОВ -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">Очистить список</button>
+        </div>
+
+        <!-- СЕТКА ФАЙЛОВ -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- ВКЛАДКИ НАСТРОЕК -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="compress">🗜️ Степень сжатия</button>
+            <button class="tab-btn" data-tab="resize">📐 Разрешение (px)</button>
+            <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
+        </div>
+
+        <!-- ПАНЕЛЬ 1: КАЧЕСТВО И СЖАТИЕ -->
+        <div class="tab-panel active" id="panel-compress">
+            <div class="grid">
+                <div class="form-group" id="qualityGroup">
+                    <label for="quality">Степень сжатия (Качество): <span id="qualityVal" class="range-val">80%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="10" max="100" value="80">
+                    </div>
+                    <div class="hint">Чем ниже процент, тем легче файл. 75–85% дает отличную картинку без «мыла».</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="format">Итоговый формат</label>
+                    <select id="format">
+                        <option value="image/jpeg" selected>JPG / JPEG (Стандарт)</option>
+                        <option value="image/webp">WebP (Максимально компактный)</option>
+                        <option value="image/png">PNG (Без сжатия качества)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="bgGroup" style="display:none;">
+                    <label for="bgColor">Фон для прозрачных зон</label>
+                    <input type="color" id="bgColor" value="#ffffff">
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 2: РЕСАЙЗ РАЗРЕШЕНИЯ -->
+        <div class="tab-panel" id="panel-resize">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="resizeMode">Уменьшение разрешения</label>
+                    <select id="resizeMode">
+                        <option value="none" selected>Оставить оригинальные пиксели</option>
+                        <option value="percent">Уменьшить в процентах (%)</option>
+                        <option value="width">Ограничить по ширине (px)</option>
+                        <option value="height">Ограничить по высоте (px)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="percentGroup" style="display:none;">
+                    <label for="percent">Масштаб фото: <span id="percentVal" class="range-val">100%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="percent" min="10" max="100" value="100">
+                    </div>
+                </div>
+
+                <div class="form-group" id="dimsGroup" style="display:none;">
+                    <label>Размеры (px)</label>
+                    <div class="inline">
+                        <input type="number" id="width" placeholder="Ширина" value="1400">
+                        <input type="number" id="height" placeholder="Высота" value="900" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" id="noUpscale" checked>
+                Не растягивать файлы, которые меньше указанных размеров
+            </label>
+        </div>
+
+        <!-- ПАНЕЛЬ 3: ПЕРЕИМЕНОВАНИЕ -->
+        <div class="tab-panel" id="panel-rename">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон имени сжатых файлов</label>
+                    <input type="text" id="renamePattern" value="{name}_min" placeholder="{name}_min">
+                    <div class="hint">Постфикс <code>_min</code> защитит ваши исходные фотографии от случайной перезаписи.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КНОПКИ ЗАПУСКА -->
+        <div class="btn-row">
+            <button class="btn" id="processBtn">⚡ Сжать все файлы и скачать архив ZIP</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+        </div>
+
+        <!-- ПРОГРЕСС -->
+        <div class="progress-box" id="progressBox">
+            <div class="progress-info">
+                <span id="progressStatus">Сжатие файлов…</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- РЕЗУЛЬТАТ -->
+        <div class="result-box" id="resultBox">
+            <h3>🎉 Сжатие завершено!</h3>
+            <p id="resultStats"></p>
+            <div class="results-list" id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- ТАБЛИЦА РЕАЛЬНОЙ ЭКОНОМИИ ВЕСА -->
+    <section>
+        <h2 class="section-title">Сколько веса можно сэкономить при сжатии?</h2>
+        <p class="section-sub">Ориентировочные данные экономии трафика и места на диске при различных настройках:</p>
+        
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Исходный файл</th>
+                        <th>Исходный вес</th>
+                        <th>После сжатия (JPG 80%)</th>
+                        <th>В формате WebP (80%)</th>
+                        <th>Экономия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Фото с iPhone / смартфона</strong> (4032×3024)</td>
+                        <td>4.5 – 6.0 МБ</td>
+                        <td>850 КБ – 1.1 МБ</td>
+                        <td>550 – 750 КБ</td>
+                        <td><span style="color:var(--accent); font-weight:700;">до -85%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Скриншот экрана / баннер</strong> (1920×1080)</td>
+                        <td>2.2 МБ (PNG)</td>
+                        <td>320 КБ (JPG)</td>
+                        <td>190 КБ (WebP)</td>
+                        <td><span style="color:var(--accent); font-weight:700;">до -90%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Карточка для маркетплейса</strong> (1200×1600)</td>
+                        <td>1.8 МБ</td>
+                        <td>280 КБ</td>
+                        <td>180 КБ</td>
+                        <td><span style="color:var(--accent); font-weight:700;">до -84%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Скан документа / паспорт</strong></td>
+                        <td>3.5 МБ</td>
+                        <td>420 КБ</td>
+                        <td>290 КБ</td>
+                        <td><span style="color:var(--accent); font-weight:700;">до -88%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- СЦЕНАРИИ ИСПОЛЬЗОВАНИЯ -->
+    <section>
+        <h2 class="section-title">Для чего нужно сжимать фотографии?</h2>
+        <p class="section-sub">Главные ситуации, когда уменьшение размера файлов решает проблему за пару кликов.</p>
+        
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>🚀 Ускорение загрузки сайтов</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Тяжелые картинки «убивают» скорость сайта и понижают позиции в выдаче Google и Яндекса. Сжатие в WebP ускоряет открытие страниц в 2–3 раза.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Идеально для SEO и PageSpeed</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>🏛️ Лимиты до 300–500 КБ</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Порталы Госуслуг, визовые центры, сайты вузов и анкеты на работу часто запрещают загрузку фото тяжелее 300 КБ или 2 МБ.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Точная подгонка под ограничения</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>✉️ Отправка почтой и мессенджерами</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Почтовые сервисы не пропускают письма объемом более 20–25 МБ. Сжав 30 фотографий пачкой, вы легко уместите их в одно письмо.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Быстрая передача в Telegram / Email</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>💾 Экономия места на диске</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Хранение гигабайтов несжатых дублей забивает облачные хранилища Яндекс Диск и Google Drive. Сжатие освобождает до 80% гигабайт.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Экономия платных гигабайтов</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- SEO ТЕКСТ / ИНСТРУКЦИЯ -->
+    <section>
+        <div class="card" style="padding: 30px;">
+            <article>
+                <h3>Как сжать фото до 500 КБ или в 2 раза онлайн?</h3>
+                <p>Современные камеры смартфонов делают снимки с разрешением от 12 до 48 мегапикселей. Вес такого кадра часто превышает 5–10 МБ. Чтобы уменьшить размер фото без потери резкости, достаточно выполнить три действия:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Перетащите до 100 изображений в окно нашего оптимизатора.</li>
+                    <li><strong>Шаг 2:</strong> Выберите готовый пресет (например, <em>«⚡ Оптимальное»</em> или <em>«✂️ В 2 раза меньше»</em>), либо выставьте качество вручную.</li>
+                    <li><strong>Шаг 3:</strong> Нажмите кнопку «Сжать все файлы». Браузер выполнит обработку на вашем компьютере и мгновенно отдаст готовый архив.</li>
+                </ul>
+
+                <h3>За счет чего происходит уменьшение веса без потери качества?</h3>
+                <p>Человеческий глаз практически не способен уловить тонкие микроградации цветовых шумов на фотографиях. Алгоритмы оптимизации аккуратно удаляют избыточную цветовую субдискретизацию, служебные заголовки и скрытые метаданные, сохраняя при этом четкие контуры объектов и естественные оттенки.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <details class="faq-item">
+            <summary>Как уменьшить размер фото ровно в 2 раза?</summary>
+            <div class="faq-body">
+                Нажмите на верхнюю кнопку пресета <strong>«✂️ В 2 раза меньше»</strong>. Сервис установит масштаб 50% и качество 85%. Это уменьшит геометрические размеры кадра вдвое, а итоговый вес в КБ упадет в 3–5 раз.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Как сжать картинку до нужного веса (например, 300 КБ для Госуслуг)?</summary>
+            <div class="faq-body">
+                Если исходное фото очень большое (4000×3000 px), одного снижения качества может быть недостаточно. Перейдите во вкладку «Разрешение», выберите «Ограничить по ширине» и задайте <code>1400</code> или <code>1600</code> пикселей при качестве 75–80%. Это гарантированно уложит файл в диапазон 200–400 КБ.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Безопасно ли сжимать сканы документов и паспортов?</summary>
+            <div class="faq-body">
+                Да, абсолютно безопасно. BatchPhoto.ru не использует серверные мощности — вся обработка происходит внутри вашего браузера. Ваши персональные данные физически не покидают ваше устройство.
+            </div>
+        </details>
+    </section>
+
+    <!-- ТЕГИ И СМЕЖНЫЕ ИНСТРУМЕНТЫ -->
+    <section>
+        <h2 class="section-title">Другие полезные инструменты</h2>
+        <div class="tag-cloud">
+            <a href="konverter-webp.html">🔄 Из WebP в JPG онлайн</a>
+            <a href="foto-dlya-marketpleisov.html">🛍️ Ресайз 3:4 для Wildberries</a>
+            <a href="vodjanoj-znak.html">©️ Водяной знак на много фото</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF и геоданные</a>
+            <a href="konverter-webp.html">🌐 Из JPG в WebP онлайн</a>
+        </div>
+    </section>
+</main>
+
+<!-- МОДАЛКА CTRL+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">
+            🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «сжать», «вайлдберриз», «webp»…">
+        </div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетное сжатие и оптимизация фото онлайн без отправки файлов на сервер.</p>
+    </div>
+</footer>
+
+<!-- Конфигурация для engine.js -->
+<script>
+window.BP_CONFIG = {
+    allowedTabs: ['compress', 'resize', 'rename'],
+    defaultTab: 'compress',
+    defaultPreset: 'compress'
+};
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script src="js/engine.js"></script>
+
+<!-- Логика переключения пресетов сжатия -->
+<script>
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const q = parseInt(btn.dataset.q) || 80;
+        const mode = btn.dataset.mode || 'none';
+        const fmt = btn.dataset.fmt || 'image/jpeg';
+        const pct = btn.dataset.percent ? parseInt(btn.dataset.percent) : 100;
+        const w = btn.dataset.w ? parseInt(btn.dataset.w) : 1400;
+        const h1 = btn.dataset.h1;
+        const desc = btn.dataset.desc;
+
+        // Обновление качества
+        const qEl = document.getElementById('quality');
+        const qVal = document.getElementById('qualityVal');
+        if (qEl) {
+            qEl.value = q;
+            if (qVal) qVal.textContent = q + '%';
+        }
+
+        // Обновление формата
+        const fmtEl = document.getElementById('format');
+        if (fmtEl) {
+            fmtEl.value = fmt;
+            fmtEl.dispatchEvent(new Event('change'));
+        }
+
+        // Обновление режима ресайза
+        const rModeEl = document.getElementById('resizeMode');
+        if (rModeEl) {
+            rModeEl.value = mode;
+            rModeEl.dispatchEvent(new Event('change'));
+        }
+
+        // Проценты
+        const pctEl = document.getElementById('percent');
+        const pctVal = document.getElementById('percentVal');
+        if (pctEl && mode === 'percent') {
+            pctEl.value = pct;
+            if (pctVal) pctVal.textContent = pct + '%';
+        }
+
+        // Ширина
+        const wEl = document.getElementById('width');
+        if (wEl && mode === 'width') {
+            wEl.value = w;
+        }
+
+        // Динамический заголовок
+        const h1El = document.getElementById('pageH1');
+        const descEl = document.getElementById('pageDesc');
+        if (h1 && h1El) h1El.innerHTML = h1.replace('фото', '<span>фото</span>');
+        if (desc && descEl) descEl.textContent = desc;
+
+        // Автоскролл к рабочей области
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+/* Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Сжать фото без потери качества онлайн", c: "Сжатие", u: "szhatie-foto.html", k: "сжать сжатие уменьшить вес кб мегабайт" },
+    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+renderCmd('');
+</script>
+</body>
+</html>
