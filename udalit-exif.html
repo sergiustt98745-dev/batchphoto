@@ -3,387 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Удаление EXIF и GPS из фото онлайн — Стереть метаданные без загрузки на сервер | BatchPhoto.ru</title>
-    <meta name="description" content="Бесплатный онлайн-сервис для удаления EXIF, GPS-координат, даты и модели камеры из изображений. 100% приватность: файлы обрабатываются прямо в вашем браузере.">
-    <meta name="keywords" content="удалить exif, стереть gps с фото, очистить метаданные jpeg, удалить геопозицию, анонимизация фото, просмотр exif онлайн">
+    <title>Удаление EXIF и GPS из фото онлайн — BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатная очистка EXIF, GPS-координат, даты и метаданных камеры с фотографий онлайн. 100% приватность: файлы обрабатываются прямо в браузере.">
+    <meta name="keywords" content="удалить exif, стереть gps с фото, очистить метаданные jpeg, удалить геопозицию, просмотр exif онлайн">
     <link rel="canonical" href="https://batchphoto.ru/udalit-exif.html">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Удаление EXIF и GPS-координат из фото онлайн">
-    <meta property="og:description" content="Мгновенно очистите снимки от скрытых метаданных, геолокации и сведений о камере. 100% анонимно и локально.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://batchphoto.ru/udalit-exif.html">
-    <meta property="og:image" content="https://batchphoto.ru/img/og-exif.jpg">
-
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
 </head>
 <body>
 
-    <!-- Шапка сайта -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="index.html" class="logo-link" title="На главную BatchPhoto.ru">
-                <span class="logo-icon">📸</span>
-                <span class="logo-text">Batch<strong>Photo</strong>.ru</span>
-            </a>
+<!-- Единая шапка сайта как в index.html -->
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html" style="color:var(--accent,#3b82f6)">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
 
-            <nav class="main-nav">
-                <a href="foto-dlya-marketpleisov.html" class="nav-link">Маркетплейсы</a>
-                <a href="szhatie-foto.html" class="nav-link">Сжатие</a>
-                <a href="konverter-webp.html" class="nav-link">WebP Конвертер</a>
-                <a href="udalit-exif.html" class="nav-link active">Удаление EXIF</a>
-                <a href="vodjanoj-znak.html" class="nav-link">Водяной знак</a>
-            </nav>
-
-            <div class="header-actions">
-                <button type="button" class="btn-search-trigger" id="openSearchBtn" title="Быстрый поиск (Ctrl + K)">
-                    <span class="search-icon">🔍</span>
-                    <span class="search-hint">Ctrl + K</span>
-                </button>
-                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Сменить тему">
-                    <span class="theme-icon">🌙</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Основной контент -->
-    <main class="main-content">
-        <div class="container">
-
-            <!-- Заголовок страницы -->
-            <section class="page-intro">
-                <h1 class="page-title">Удаление EXIF, GPS и метаданных из фото онлайн</h1>
-                <p class="page-subtitle">
-                    Защитите вашу приватность: удаляйте скрытые координаты, точную дату съемки, серийные номера и модель устройства перед публикацией в сети. Обработка выполняется <strong>100% в вашем браузере</strong> без отправки файлов на сервер.
-                </p>
-            </section>
-
-            <!-- Основной рабочий инструмент (Workspace) -->
-            <section class="workspace-section" id="appWorkspace">
-                <!-- Dropzone -->
-                <div class="dropzone" id="dropzone">
-                    <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/heic" class="file-input-hidden">
-                    <div class="dropzone-content">
-                        <div class="dropzone-icon">🛡️</div>
-                        <h3>Перетащите сюда фото для очистки EXIF</h3>
-                        <p>Или нажмите для выбора файлов с компьютера или смартфона</p>
-                        <span class="btn btn-primary dropzone-btn">Выбрать изображения</span>
-                        <div class="dropzone-privacy-badge">
-                            🔒 100% конфиденциально: ваши фото <strong>не загружаются</strong> на внешние серверы
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Панель управления (активируется после выбора файлов) -->
-                <div class="editor-panel" id="editorPanel" style="display: none;">
-                    
-                    <!-- Переключатели вкладок (разрешенные вкладки берутся из BP_CONFIG) -->
-                    <div class="tabs-header" id="tabsHeader">
-                        <button class="tab-btn active" data-tab="exif">🛡️ Приватность и EXIF</button>
-                        <button class="tab-btn" data-tab="adjust">🎨 Цветокоррекция</button>
-                        <button class="tab-btn" data-tab="rename">✏️ Переименование</button>
-                    </div>
-
-                    <!-- Содержимое вкладок -->
-                    <div class="tabs-body">
-                        
-                        <!-- Вкладка EXIF / Приватность -->
-                        <div class="tab-content active" id="tab-exif">
-                            <div class="controls-grid">
-                                <div class="control-group full-width">
-                                    <label class="checkbox-label highlight-checkbox">
-                                        <input type="checkbox" id="stripAllExif" checked>
-                                        <span><strong>Полное удаление EXIF и геолокации (Рекомендуется)</strong> — стирает GPS, имя камеры, серийный номер, дату и время.</span>
-                                    </label>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="stripGpsOnly">
-                                        <span>Удалить только GPS-координаты</span>
-                                    </label>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="stripCameraInfo">
-                                        <span>Удалить данные об устройстве и объективе</span>
-                                    </label>
-                                </div>
-
-                                <div class="control-group">
-                                    <label for="outputFormat">Формат сохранения:</label>
-                                    <select id="outputFormat" class="form-control">
-                                        <option value="jpeg" selected>JPEG (Очищенный от метатегов)</option>
-                                        <option value="webp">WebP (Максимальное сжатие и анонимность)</option>
-                                        <option value="png">PNG (Без потерь качества)</option>
-                                    </select>
-                                </div>
-
-                                <div class="control-group">
-                                    <label for="jpegQuality">Качество изображения: <span id="qualityVal">90%</span></label>
-                                    <input type="range" id="jpegQuality" min="30" max="100" value="90" class="range-input">
-                                </div>
-                            </div>
-
-                            <!-- Инспекционная панель EXIF -->
-                            <div class="exif-inspector-box">
-                                <h4>🔍 Инспектор метаданных первого файла:</h4>
-                                <div id="exifDataPreview" class="exif-preview-info">
-                                    <p class="text-muted">Загрузите фото для просмотра встроенных EXIF-тегов (GPS, камера, ISO, выдержка).</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Вкладка Цветокоррекция -->
-                        <div class="tab-content" id="tab-adjust">
-                            <div class="controls-grid">
-                                <div class="control-group">
-                                    <label for="adjustBrightness">Яркость: <span id="brightnessVal">0</span></label>
-                                    <input type="range" id="adjustBrightness" min="-100" max="100" value="0" class="range-input">
-                                </div>
-
-                                <div class="control-group">
-                                    <label for="adjustContrast">Контраст: <span id="contrastVal">0</span></label>
-                                    <input type="range" id="adjustContrast" min="-100" max="100" value="0" class="range-input">
-                                </div>
-
-                                <div class="control-group">
-                                    <label>Поворот и Отражение:</label>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-secondary" id="rotateLeftBtn">↺ 90°</button>
-                                        <button type="button" class="btn btn-secondary" id="rotateRightBtn">↻ 90°</button>
-                                        <button type="button" class="btn btn-secondary" id="flipHBtn">↔ Отразить</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Вкладка Переименование -->
-                        <div class="tab-content" id="tab-rename">
-                            <div class="controls-grid">
-                                <div class="control-group">
-                                    <label for="renamePattern">Шаблон имени файла:</label>
-                                    <input type="text" id="renamePattern" value="safe-photo-{nnn}" class="form-control" placeholder="safe-photo-{nnn}">
-                                    <small class="form-hint">Используйте <code>{nnn}</code> для счетчика (например, safe-photo-001.jpg)</small>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Нижняя панель действия -->
-                    <div class="action-bar">
-                        <div class="files-summary">
-                            Выбрано файлов: <strong id="selectedCount">0</strong>
-                        </div>
-                        <button type="button" class="btn btn-success btn-large" id="processBtn">
-                            🛡️ Очистить EXIF и Скачать (ZIP)
-                        </button>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- БЛОК "ПРИВАТНОСТЬ И EXIF: ПОПУЛЯРНЫЕ ЗАДАЧИ" С ПОЛНОСТЬЮ КЛИКАБЕЛЬНЫМИ КАРТОЧКАМИ И ССЫЛКАМИ -->
-            <section class="seo-tasks-section">
-                <div class="section-header">
-                    <h2 class="section-title">Приватность и EXIF: Популярные задачи</h2>
-                    <p class="section-description">
-                        Быстрые решения для защиты личных данных, стирания точной геолокации и подготовки снимков к безопасной публикации в сети.
-                    </p>
-                </div>
-
-                <!-- Сетка кликабельных карточек задач -->
-                <div class="tasks-grid">
-                    
-                    <!-- Карточка 1: Удаление GPS -->
-                    <a href="udalit-exif.html#strip-gps" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge badge-danger">Безопасность</div>
-                            <div class="card-icon">📍</div>
-                            <h3 class="card-title">Удаление GPS и геолокации</h3>
-                            <p class="card-text">
-                                Стрите точные географические координаты (широту и долготу) места съемки, чтобы никто не смог вычислить ваш домашний адрес или локацию.
-                            </p>
-                            <span class="card-action-link">Очистить координаты →</span>
-                        </article>
-                    </a>
-
-                    <!-- Карточка 2: Полное стирание EXIF -->
-                    <a href="udalit-exif.html#strip-all" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge badge-primary">100% Анонимность</div>
-                            <div class="card-icon">🧹</div>
-                            <h3 class="card-title">Очистка всех метаданных</h3>
-                            <p class="card-text">
-                                Полное удаление структуры EXIF, TIFF, IPTC и XMP. Удаляются марка камеры, серийный номер, программное обеспечение и дата создания.
-                            </p>
-                            <span class="card-action-link">Стереть все теги →</span>
-                        </article>
-                    </a>
-
-                    <!-- Карточка 3: Просмотр EXIF онлайн -->
-                    <a href="udalit-exif.html#view-exif" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge badge-info">Инспекция</div>
-                            <div class="card-icon">🔍</div>
-                            <h3 class="card-title">Просмотр EXIF-тегов онлайн</h3>
-                            <p class="card-text">
-                                Проверьте, какую скрытую информацию содержит ваше фото перед отправкой: выдержка, диафрагма, модель телефона, ISO и дата.
-                            </p>
-                            <span class="card-action-link">Проверить фото →</span>
-                        </article>
-                    </a>
-
-                    <!-- Карточка 4: Удаление даты съемки -->
-                    <a href="udalit-exif.html#strip-date" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge">Анонимизация</div>
-                            <div class="card-icon">📅</div>
-                            <h3 class="card-title">Удаление даты и времени</h3>
-                            <p class="card-text">
-                                Скройте исходные временные метки создания файла (DateTimeOriginal), чтобы сохранить приватность личных архивов.
-                            </p>
-                            <span class="card-action-link">Удалить дату →</span>
-                        </article>
-                    </a>
-
-                    <!-- Карточка 5: Очистка модели камеры -->
-                    <a href="udalit-exif.html#strip-camera" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge">Защита устройств</div>
-                            <div class="card-icon">📷</div>
-                            <h3 class="card-title">Удаление модели устройства</h3>
-                            <p class="card-text">
-                                Стрите информацию об iPhone, Samsung или объективе цифровой камеры, включая серийные номера и настройки съемки.
-                            </p>
-                            <span class="card-action-link">Скрыть камеру →</span>
-                        </article>
-                    </a>
-
-                    <!-- Карточка 6: Подготовка фото к публикации -->
-                    <a href="szhatie-foto.html" class="workspace-card-link">
-                        <article class="workspace-card">
-                            <div class="card-badge badge-success">Веб-оптимизация</div>
-                            <div class="card-icon">🌐</div>
-                            <h3 class="card-title">Подготовка для соцсетей и сайтов</h3>
-                            <p class="card-text">
-                                Сочетайте очистку метаданных с оптимизацией размера файла для мгновенной загрузки на сайты и блоги без потери качества.
-                            </p>
-                            <span class="card-action-link">Сжать и очистить →</span>
-                        </article>
-                    </a>
-
-                </div>
-
-                <!-- Облако низкочастотных запросов / SEO-тегов по EXIF и приватности -->
-                <div class="seo-tags-block">
-                    <h3 class="seo-tags-title">Часто ищут в категории «Приватность и EXIF»:</h3>
-                    <div class="tag-cloud">
-                        <a href="udalit-exif.html" class="tag-link">просмотр exif онлайн</a>
-                        <a href="udalit-exif.html" class="tag-link">удалить геопозицию с фото</a>
-                        <a href="udalit-exif.html" class="tag-link">стереть gps из jpeg</a>
-                        <a href="udalit-exif.html" class="tag-link">очистить метаданные анонимно</a>
-                        <a href="udalit-exif.html" class="tag-link">удалить дату съемки</a>
-                        <a href="udalit-exif.html" class="tag-link">скрыть модель телефона на фото</a>
-                        <a href="udalit-exif.html" class="tag-link">удалить авторские права exif</a>
-                        <a href="udalit-exif.html" class="tag-link">безопасная отправка фото</a>
-                        <a href="udalit-exif.html" class="tag-link">очистка exif без загрузки на сервер</a>
-                        <a href="konverter-webp.html" class="tag-link">конвертировать в webp без exif</a>
-                        <a href="foto-dlya-marketpleisov.html" class="tag-link">удалить exif для wildberries</a>
-                        <a href="vodjanoj-znak.html" class="tag-link">защита фото водяным знаком</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Информационный блок: Почему важна очистка EXIF -->
-            <section class="info-article-section">
-                <h2>Зачем удалять EXIF-метаданные из фотографий?</h2>
-                <div class="article-content">
-                    <p>
-                        Каждый современный смартфон (iPhone, Android) и цифровой фотоаппарат автоматически сохраняют скрытые технические данные внутри файла изображения (EXIF-заголовки).
-                    </p>
-                    <div class="danger-box">
-                        <strong>⚠️ Чем опасны оставленные метаданные:</strong>
-                        <ul>
-                            <li><strong>GPS-координаты:</strong> Любой человек может узнать точную точку на карте, где был сделан снимок (вплоть до квартиры или рабочего места).</li>
-                            <li><strong>Уникальные идентификаторы:</strong> Серийный номер камеры и устройства связывает разные снимки в сети с одним владельцем.</li>
-                            <li><strong>Временные метки:</strong> Точное время съемки раскрывает ваш распорядок дня и историю перемещений.</li>
-                        </ul>
-                    </div>
-                    <h3>Как BatchPhoto гарантирует 100% приватность?</h3>
-                    <p>
-                        В отличие от большинства сервисов, <strong>BatchPhoto.ru не отправляет ваши файлы на сервер</strong>. Вся обработка выполняется с помощью HTML5 Canvas API непосредственно в браузере вашего устройства. Ваши личные фотографии не покидают ваш компьютер или телефон.
-                    </p>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Подвал сайта -->
-    <footer class="site-footer">
-        <div class="container footer-container">
-            <div class="footer-col">
-                <a href="index.html" class="logo-link footer-logo">
-                    <span class="logo-icon">📸</span>
-                    <span class="logo-text">Batch<strong>Photo</strong>.ru</span>
-                </a>
-                <p class="footer-desc">
-                    Бесплатный пакетный редактор фото онлайн. Все операции выполняются локально в вашем браузере.
-                </p>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-title">Инструменты</h4>
-                <ul class="footer-links">
-                    <li><a href="foto-dlya-marketpleisov.html">Пакетная обработка для Wildberries и Ozon</a></li>
-                    <li><a href="szhatie-foto.html">Сжатие JPG и PNG</a></li>
-                    <li><a href="konverter-webp.html">Конвертер в WebP</a></li>
-                    <li><a href="udalit-exif.html">Удаление EXIF и GPS</a></li>
-                    <li><a href="vodjanoj-znak.html">Наложение водяного знака</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-title">Приватность</h4>
-                <p class="privacy-note">
-                    🔒 Без загрузки на сервер хостинга. 100% безопасность ваших снимков и персональных данных.
-                </p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2025 BatchPhoto.ru — Пакетная обработка фото онлайн.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Модальное окно быстрого поиска (Command Palette Ctrl + K) -->
-    <div class="cmd-modal" id="searchModal" style="display: none;">
-        <div class="cmd-modal-backdrop" id="cmdBackdrop"></div>
-        <div class="cmd-modal-content">
-            <div class="cmd-search-input-wrap">
-                <span class="cmd-icon">🔍</span>
-                <input type="text" id="cmdInput" placeholder="Введите задачу (например: GPS, EXIF, сжать, WebP, WB)..." autocomplete="off">
-                <kbd class="cmd-esc">ESC</kbd>
-            </div>
-            <div class="cmd-results" id="cmdResults">
-                <!-- Заполняется динамически через js/engine.js -->
-            </div>
-        </div>
+<main>
+    <!-- HERO БЛОК -->
+    <div class="hero">
+        <div class="badge">🔒 100% Приватно — фото обрабатываются локально без отправки на сервер</div>
+        <h1>Удаление EXIF, GPS <span>и метаданных с фото</span></h1>
+        <p>Стирайте координаты съемки, дату, модель смартфона или камеры и серийные номера перед публикацией в сети или отправкой клиентам.</p>
     </div>
 
-    <!-- Конфигурация конкретно для страницы EXIF (ограничиваем табы только нужными) -->
-    <script>
-        window.BP_CONFIG = {
-            defaultPreset: 'compress',
-            defaultTab: 'exif',
-            allowedTabs: ['exif', 'adjust', 'rename'] // Только EXIF, цветокоррекция и переименование
-        };
-    </script>
-    <script src="js/engine.js"></script>
+    <!-- РАБОЧАЯ ОБЛАСТЬ (DROPZONE И НАСТРОЙКИ) -->
+    <div class="container">
+        <section class="workspace-section" style="max-width:850px; margin:0 auto 50px auto;">
+            
+            <!-- Дропзона: input строго скрыт через inline style -->
+            <div class="dropzone" id="dropzone" style="cursor:pointer; text-align:center; padding:45px 20px; border:2px dashed var(--border,#cbd5e1); border-radius:16px; background:var(--card-bg,#ffffff); transition:border-color .2s;">
+                <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/heic" style="display:none !important;">
+                <div style="font-size:48px; margin-bottom:12px;">🛡️</div>
+                <h3 style="margin:0 0 8px 0; font-size:20px;">Перетащите сюда фото для очистки EXIF</h3>
+                <p style="margin:0 0 18px 0; color:var(--muted,#64748b); font-size:14px;">Или нажмите кнопку для выбора файлов с компьютера или телефона</p>
+                <button type="button" class="btn" style="background:#0284c7; color:#fff; padding:12px 28px; font-weight:600; border-radius:10px; border:none; cursor:pointer; font-size:15px; box-shadow:0 4px 12px rgba(2,132,199,0.25);">
+                    Выбрать изображения
+                </button>
+                <div style="margin-top:16px; font-size:12px; color:var(--muted,#64748b);">
+                    🔒 Файлы не уходят в интернет — мгновенная обработка в оперативной памяти браузера
+                </div>
+            </div>
+
+            <!-- ПАНЕЛЬ РЕДАКТОРА (ПОЯВЛЯЕТСЯ ПРИ ВЫБОРЕ ФАЙЛОВ) -->
+            <div class="editor-panel" id="editorPanel" style="display:none; margin-top:24px; padding:24px; background:var(--card-bg,#fff); border-radius:16px; border:1px solid var(--border,#e2e8f0);">
+                
+                <h3 style="margin-top:0; margin-bottom:16px; font-size:18px;">Параметры очистки:</h3>
+                
+                <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
+                    <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+                        <input type="checkbox" id="stripAllExif" checked style="width:18px; height:18px; margin-top:2px;">
+                        <span><strong>Полная анонимизация (Рекомендуется)</strong><br><small style="color:var(--muted,#64748b)">Удаляет GPS-координаты, дату, модель камеры, объектив, настройки выдержки и серийные номера.</small></span>
+                    </label>
+
+                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+                        <input type="checkbox" id="stripGpsOnly" style="width:18px; height:18px;">
+                        <span>Стереть только геолокацию (GPS)</span>
+                    </label>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:10px;">
+                        <div>
+                            <label style="display:block; font-size:13px; margin-bottom:6px; font-weight:600;">Формат на выходе:</label>
+                            <select id="outputFormat" style="width:100%; padding:9px 12px; border-radius:8px; border:1px solid var(--border,#cbd5e1); background:var(--bg,#fff); color:inherit;">
+                                <option value="jpeg" selected>JPEG (Очищенный)</option>
+                                <option value="webp">WebP (Макс. сжатие)</option>
+                                <option value="png">PNG (Без потерь)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:13px; margin-bottom:6px; font-weight:600;">Качество: <span id="qualityVal">90%</span></label>
+                            <input type="range" id="jpegQuality" min="40" max="100" value="90" style="width:100%; height:8px; margin-top:10px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопка запуска -->
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--border,#e2e8f0);">
+                    <div>Выбрано фото: <strong id="selectedCount">0</strong></div>
+                    <button type="button" id="processBtn" style="background:#16a34a; color:#fff; border:none; padding:12px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:15px;">
+                        🛡️ Очистить EXIF и Скачать ZIP
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- БЛОК "ПРИВАТНОСТЬ И EXIF: ПОПУЛЯРНЫЕ ЗАДАЧИ" (ИСПОЛЬЗУЕТ РОДНОЙ СТИЛЬ WORKSPACES-GRID) -->
+    <section id="catalog">
+        <div class="container">
+            <h2 class="section-title">Приватность и EXIF: Популярные задачи</h2>
+            <p class="section-sub">Быстрые сценарии для защиты персональных данных и подготовки снимков к безопасной публикации.</p>
+
+            <div class="workspaces-grid">
+                
+                <!-- Карточка 1 -->
+                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
+                    <div class="workspace-card">
+                        <h3>📍 Удаление GPS и геопозиции <span>→</span></h3>
+                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
+                            Сотрите точные координаты места съемки (широту и долготу), чтобы скрыть домашний адрес и локацию.
+                        </p>
+                        <ul class="tool-list">
+                            <li>Очистка широты и долготы <span>GPS</span></li>
+                            <li>Удаление высоты над уровнем моря <span>ALT</span></li>
+                        </ul>
+                    </div>
+                </a>
+
+                <!-- Карточка 2 -->
+                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
+                    <div class="workspace-card">
+                        <h3>🧹 Полная очистка метаданных <span>→</span></h3>
+                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
+                            Удаление блоков EXIF, IPTC и XMP: удаляются серийные номера техники, имя фотографа и софт.
+                        </p>
+                        <ul class="tool-list">
+                            <li>Стереть серийный номер <span>100%</span></li>
+                            <li>Удалить теги Photoshop / редакторов <span>XMP</span></li>
+                        </ul>
+                    </div>
+                </a>
+
+                <!-- Карточка 3 -->
+                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
+                    <div class="workspace-card">
+                        <h3>📅 Скрытие даты съемки <span>→</span></h3>
+                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
+                            Устранение исходных временных меток файла (DateTimeOriginal), сохраняя приватность архивов.
+                        </p>
+                        <ul class="tool-list">
+                            <li>Очистить дату и время <span>DATE</span></li>
+                            <li>Сброс меток создания <span>TIME</span></li>
+                        </ul>
+                    </div>
+                </a>
+
+                <!-- Карточка 4 -->
+                <a href="szhatie-foto.html" class="workspace-card-link">
+                    <div class="workspace-card">
+                        <h3>🌐 Очистить и Сжать для сайта <span>→</span></h3>
+                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
+                            Совместите удаление метаданных с уменьшением веса для ускорения открытия интернет-страниц.
+                        </p>
+                        <ul class="tool-list">
+                            <li>Сжатие без потери качества <span>-70%</span></li>
+                            <li>Пакетная конвертация <span>ZIP</span></li>
+                        </ul>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ТЕГИ ПО ТЕМЕ EXIF -->
+    <section id="popular" style="padding-top:20px;">
+        <div class="container">
+            <h2 class="section-title">Часто ищут по теме метаданных</h2>
+            <div class="tag-cloud">
+                <a href="udalit-exif.html">🛡️ стереть геопозицию с фото</a>
+                <a href="udalit-exif.html">📍 удалить GPS из JPEG</a>
+                <a href="udalit-exif.html">🧹 очистить метаданные онлайн</a>
+                <a href="udalit-exif.html">📅 скрыть дату съемки на фото</a>
+                <a href="udalit-exif.html">📷 удалить модель телефона из фото</a>
+                <a href="szhatie-foto.html">🗜️ сжать фото без exif</a>
+                <a href="konverter-webp.html">🌐 конвертер в webp без метаданных</a>
+                <a href="foto-dlya-marketpleisov.html">🛍️ фото для вайлдберриз без exif</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Поиск Ctrl+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «вайлдберриз», «webp», «exif», «цвет», «размер»…"></div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+            <a href="filtry-i-cvet.html">Цветокоррекция</a>
+            <a href="izmenit-razmer-foto.html">Ресайз</a>
+        </div>
+        <p>© 2026 BatchPhoto.ru — Пакетная очистка метаданных онлайн. Все файлы обрабатываются в вашем браузере.</p>
+    </div>
+</footer>
+
+<script>
+/* Переключение темы */
+(function(){
+    const s = localStorage.getItem('bp-theme');
+    if(s) document.documentElement.dataset.theme = s;
+    const b = document.getElementById('themeBtn');
+    if(b) {
+        b.textContent = s === 'light' ? '☀️' : '🌙';
+        b.addEventListener('click', () => {
+            const n = document.documentElement.dataset.theme === 'light' ? '' : 'light';
+            document.documentElement.dataset.theme = n;
+            localStorage.setItem('bp-theme', n);
+            b.textContent = n === 'light' ? '☀️' : '🌙';
+        });
+    }
+})();
+
+/* Клик по дропзоне открывает выбор файлов */
+const dz = document.getElementById('dropzone');
+const fi = document.getElementById('fileInput');
+if(dz && fi) {
+    dz.addEventListener('click', (e) => {
+        if(e.target !== fi) fi.click();
+    });
+}
+
+/* Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps геолокация" },
+    { t: "Пакетная обработка фото для Wildberries (1200×1600)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб карточка 3:4" },
+    { t: "Подгонка фото для Ozon (1200×1600 и 1500×1500)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "озон ozon зум 1:1" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; render(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => render(input.value.toLowerCase()));
+function render(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+render('');
+</script>
+
+<script>
+    window.BP_CONFIG = {
+        defaultPreset: 'compress',
+        defaultTab: 'exif',
+        allowedTabs: ['exif']
+    };
+</script>
+<script src="js/engine.js"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
 </html>
