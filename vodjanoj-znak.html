@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Водяной знак на много фото онлайн — пакетное нанесение текста, логотипа и даты | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатное пакетное нанесение водяных знаков на фото онлайн: добавление копирайта ©, даты, водяного знака плиткой (сеткой) или ссылки на магазин. До 100 фото пачкой без загрузки на сервер.">
+    <meta name="keywords" content="водяной знак на много фото, наложить водяной знак онлайн, ватермарк пакетно, добавить дату на фото, поставить копирайт на фото, водяной знак плиткой, защита фото от кражи маркетплейс">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/vodjanoj-znak.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>©️</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пакетное нанесение водяных знаков на фото онлайн — BatchPhoto.ru">
+    <meta property="og:description" content="Защитите свои фотографии и карточки товаров за пару секунд. Нанесение копирайта, дат и водяных знаков сразу на 100 фото прямо в браузере.">
+    <meta property="og:url" content="https://batchphoto.ru/vodjanoj-znak.html">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пакетный генератор водяных знаков на фото",
+      "url": "https://batchphoto.ru/vodjanoj-znak.html",
+      "description": "Онлайн сервис для пакетного наложения текста, водяных знаков, копирайта и даты на партии изображений.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+
+    <style>
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .preset-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            transition: all .2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .preset-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .preset-btn.active {
+            background: rgba(56,189,248,.12);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .preset-btn .p-title { font-size: 13px; font-weight: 700; }
+        .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
+        .preset-btn.active .p-sub { color: var(--primary); }
+
+        .quick-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .quick-tag-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .quick-tag-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html" class="active">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Водяной знак на много фото сразу</span>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">🔒 Все фото обрабатываются на вашем устройстве и не сохраняются на серверах</div>
+        <h1 id="pageH1">Водяной знак на много <span>фото сразу онлайн</span></h1>
+        <p id="pageDesc">Пакетная защита каталога, карточек товаров и авторских фото. Наложите копирайт, никнейм, дату или диагональную защитную сетку пачкой до 100 штук.</p>
+    </div>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
+    <div class="card">
+        
+        <!-- БЫСТРЫЕ ШАБЛОНЫ ВОДЯНОГО ЗНАКА -->
+        <label>Готовые пресеты защиты:</label>
+        <div class="preset-grid">
+            <button class="preset-btn active" data-text="© Мой Бренд" data-pos="br" data-size="4" data-op="50" data-color="#ffffff">
+                <span class="p-title">© Копирайт в угол</span>
+                <span class="p-sub">Справа внизу, 50%</span>
+            </button>
+
+            <button class="preset-btn" data-text="ОБРАЗЕЦ / PROTECTED" data-pos="tile" data-size="3" data-op="25" data-color="#ffffff">
+                <span class="p-title">🛡️ Защитная сетка</span>
+                <span class="p-sub">Плиткой по диагонали</span>
+            </button>
+
+            <button class="preset-btn" data-text="DATE_AUTO" data-pos="br" data-size="3" data-op="70" data-color="#f59e0b">
+                <span class="p-title">📅 Штамп даты</span>
+                <span class="p-sub">Желтая дата в угол</span>
+            </button>
+
+            <button class="preset-btn" data-text="@my_channel" data-pos="center" data-size="6" data-op="40" data-color="#ffffff">
+                <span class="p-title">✈️ Ник / Соцсети</span>
+                <span class="p-sub">По центру крупно</span>
+            </button>
+
+            <button class="preset-btn" data-text="НЕ ДЛЯ КОПИРОВАНИЯ" data-pos="tile" data-size="4" data-op="20" data-color="#ef4444">
+                <span class="p-title">🚫 Защита для Авито</span>
+                <span class="p-sub">Красная сетка</span>
+            </button>
+        </div>
+
+        <!-- ДРОПЗОНА -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">©️</div>
+            <p><strong>Выберите фотографии</strong> или перетащите их сюда</p>
+            <small>JPG, PNG, WebP до 100 файлов за один раз (работает Ctrl+V из буфера)</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
+        </div>
+
+        <!-- Тулбар файлов -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">Очистить список</button>
+        </div>
+
+        <!-- Сетка загруженных изображений -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- ВКЛАДКИ НАСТРОЕК -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="watermark">✍️ Настройки знака</button>
+            <button class="tab-btn" data-tab="format">⚙️ Формат и сжатие</button>
+            <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
+        </div>
+
+        <!-- ПАНЕЛЬ 1: ВОДЯНОЙ ЗНАК -->
+        <div class="tab-panel active" id="panel-watermark">
+            <div class="grid">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="wmText">Текст водяного знака</label>
+                    <input type="text" id="wmText" value="© Мой Бренд" placeholder="Введите ваш текст, бренд или сайт">
+                    <div class="quick-tags">
+                        <span style="font-size:11px; color:var(--muted); align-self:center;">Вставить:</span>
+                        <button type="button" class="quick-tag-btn" onclick="insertSymbol('© ')">+ © Копирайт</button>
+                        <button type="button" class="quick-tag-btn" onclick="insertSymbol('® ')">+ ® Защищено</button>
+                        <button type="button" class="quick-tag-btn" onclick="insertSymbol('™ ')">+ ™ Трейдмарк</button>
+                        <button type="button" class="quick-tag-btn" onclick="insertDate()">+ Текущая дата</button>
+                        <button type="button" class="quick-tag-btn" onclick="insertSymbol('@')">+ @</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="wmPos">Расположение на фото</label>
+                    <select id="wmPos">
+                        <option value="br" selected>Справа внизу (Классика)</option>
+                        <option value="bl">Слева внизу</option>
+                        <option value="tr">Справа вверху</option>
+                        <option value="tl">Слева вверху</option>
+                        <option value="center">По центру (Максимальная защита)</option>
+                        <option value="tile">Сетка плиткой (Диагональный узор)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="wmColor">Цвет надписи</label>
+                    <input type="color" id="wmColor" value="#ffffff">
+                </div>
+
+                <div class="form-group">
+                    <label for="wmOpacity">Прозрачность: <span id="wmOpacityVal" class="range-val">50%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="wmOpacity" min="5" max="100" value="50">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="wmSize">Размер шрифта: <span id="wmSizeVal" class="range-val">4</span></label>
+                    <div class="range-row">
+                        <input type="range" id="wmSize" min="1" max="10" value="4">
+                    </div>
+                    <div class="hint">Размер адаптируется под реальное разрешение каждого фото.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 2: ФОРМАТ И КАЧЕСТВО -->
+        <div class="tab-panel" id="panel-format">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="format">Формат сохранения</label>
+                    <select id="format">
+                        <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
+                        <option value="image/webp">WebP (.webp)</option>
+                        <option value="image/png">PNG (.png)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="qualityGroup">
+                    <label for="quality">Качество: <span id="qualityVal" class="range-val">88%</span></label>
+                    <div class="range-row">
+                        <input type="range" id="quality" min="10" max="100" value="88">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПАНЕЛЬ 3: ИМЕНА ФАЙЛОВ -->
+        <div class="tab-panel" id="panel-rename">
+            <div class="grid">
+                <div class="form-group">
+                    <label for="renamePattern">Шаблон имени</label>
+                    <input type="text" id="renamePattern" value="{name}_wm" placeholder="{name}_wm">
+                    <div class="hint"><code>{name}</code> — старое имя, <code>{n}</code> — порядковый номер. Префикс <code>_wm</code> защитит оригиналы от перезаписи.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- КНОПКИ ЗАПУСКА -->
+        <div class="btn-row">
+            <button class="btn" id="processBtn">⚡ Наложить водяной знак и скачать ZIP</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+        </div>
+
+        <!-- ПРОГРЕСС -->
+        <div class="progress-box" id="progressBox">
+            <div class="progress-info">
+                <span id="progressStatus">Обработка изображений…</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- РЕЗУЛЬТАТ -->
+        <div class="result-box" id="resultBox">
+            <h3>🎉 Водяной знак успешно наложен!</h3>
+            <p id="resultStats"></p>
+            <div class="results-list" id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- КАТАЛОГ СЦЕНАРИЕВ ЗАЩИТЫ -->
+    <section>
+        <h2 class="section-title">Для чего используют водяные знаки?</h2>
+        <p class="section-sub">Наш сервис решает любые задачи брендирования и юридической защиты контента.</p>
+        
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>🛍️ Фото для Wildberries и Ozon</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Конкуренты часто копируют карточки успешных селлеров. Ненавязчивый водяной знак с названием бренда защитит ваши уникальные инфографики и живые съемки.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Рекомендуется: правый нижний угол, 40-50%</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📢 Объявления на Авито и Юле</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Мошенники воруют реальные фотографии квартир, автомобилей и товаров для создания фейковых объявлений. Сетка «Только для Авито» исключит нецелевое использование.
+                </p>
+                <div style="font-size:12px; color:var(--accent); font-weight:700;">Рекомендуется: сетка плиткой (Tile), 25%</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📷 Фотографы и авторы</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Отправка превью клиентам на отбор. Нанесение слова «ПРЕВЬЮ» или крупного копирайта по центру защитит от публикации неоплаченных исходников.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Рекомендуется: по центру, размер 6-8</div>
+            </div>
+
+            <div class="workspace-card">
+                <h3>📅 Штамп даты и времени</h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
+                    Необходимо для строительного контроля, отчетов о выполненных работах, фиксации страховых случаев и юридической документации.
+                </p>
+                <div style="font-size:12px; color:var(--primary); font-weight:700;">Рекомендуется: желтый цвет, правый угол</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА ВИДОВ ЗАЩИТЫ -->
+    <section>
+        <h2 class="section-title">Сравнение типов размещения водяного знака</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Тип размещения</th>
+                        <th>Степень защиты</th>
+                        <th>Влияние на просмотр</th>
+                        <th>Где применяется</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Справа / слева внизу</strong></td>
+                        <td>Средняя (можно обрезать кадрированием)</td>
+                        <td>Минимальное (не отвлекает от товара)</td>
+                        <td>Маркетплейсы, интернет-магазины, портфолио</td>
+                    </tr>
+                    <tr>
+                        <td><strong>По центру полупрозрачный</strong></td>
+                        <td>Высокая (нельзя убрать без повреждения объекта)</td>
+                        <td>Умеренное</td>
+                        <td>Клиентские превью, авторские арты, стоковые фото</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Сетка плиткой по диагонали</strong></td>
+                        <td>100% Абсолютная (невозможно стереть или обрезать)</td>
+                        <td>Высокое</td>
+                        <td>Защита от мошенников на досках объявлений, сканы документов</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
+
+    <!-- SEO СТАТЬЯ -->
+    <section>
+        <div class="card" style="padding: 30px;">
+            <article>
+                <h3>Как поставить водяной знак сразу на 100 фото за 1 минуту</h3>
+                <p>Ручное наложение водяных знаков в фоторедакторах отнимает часы времени, особенно если у вас большая партия снимков для интернет-магазина или соцсетей. <strong>BatchPhoto.ru</strong> автоматизирует этот процесс полностью в браузере:</p>
+                <ul>
+                    <li><strong>Шаг 1:</strong> Перетащите группу фотографий любого разрешения в окно конвертера.</li>
+                    <li><strong>Шаг 2:</strong> Введите нужный текст (бренд, сайт, номер телефона или вставьте знак ©).</li>
+                    <li><strong>Шаг 3:</strong> Настройте прозрачность и размер — надпись автоматически подгонит свой масштаб под каждое фото пропорционально его ширине.</li>
+                    <li><strong>Шаг 4:</strong> Нажмите «Наложить водяной знак» — готовые файлы с вашим штампом автоматически загрузятся в удобном архиве.</li>
+                </ul>
+
+                <h3>Преимущества локальной браузерной обработки</h3>
+                <p>Все операции выполняются встроенным движком Canvas вашего браузера. Исходники ваших снимков высокого разрешения не передаются на сторонние сервера, не сжимаются сторонними алгоритмами и не могут быть перехвачены злоумышленниками.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <details class="faq-item">
+            <summary>Можно ли сделать водяной знак полупрозрачным?</summary>
+            <div class="faq-body">
+                Да, для этого используйте ползунок «Прозрачность». Значение 30–50% делает знак хорошо заметным, но при этом оставляет видимыми все детали под ним.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Будет ли размер текста одинаковым на фото разного разрешения?</summary>
+            <div class="faq-body">
+                Да, алгоритм сервиса автоматически рассчитывает размер шрифта относительно ширины каждого отдельного изображения. Водяной знак будет выглядеть гармонично и на снимке 800×600, и на фото 4000×3000 пикселей.
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Как защитить фото, чтобы знак нельзя было стереть?</summary>
+            <div class="faq-body">
+                Выберите вариант размещения <strong>«Сетка плиткой (Диагональный узор)»</strong> и поставьте прозрачность около 20–25%. Такая сетка покрывает всё изображение целиком, и её невозможно удалить автозаполнением или кадрированием.
+            </div>
+        </details>
+    </section>
+
+    <!-- ТЕГИ ДРУГИХ РАЗДЕЛОВ -->
+    <section>
+        <h2 class="section-title">Другие полезные инструменты</h2>
+        <div class="tag-cloud">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Фото для Wildberries и Ozon</a>
+            <a href="szhatie-foto.html">🗜️ Сжать фото до нужного веса</a>
+            <a href="konverter-webp.html">🌐 Из WebP в JPG онлайн</a>
+            <a href="udalit-exif.html">🛡️ Удалить геоданные и EXIF с фото</a>
+            <a href="konverter-webp.html">🚀 Конвертер PNG в WebP</a>
+        </div>
+    </section>
+</main>
+
+<!-- МОДАЛКА CTRL+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">
+            🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «водяной знак», «вайлдберриз», «webp»…">
+        </div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Пакетное нанесение водяных знаков и защита фото онлайн. Все операции выполняются локально на вашем устройстве.</p>
+    </div>
+</footer>
+
+<!-- Конфигурация для engine.js -->
+<script>
+window.BP_CONFIG = {
+    allowedTabs: ['watermark', 'format', 'rename'],
+    defaultTab: 'watermark'
+};
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="js/engine.js"></script>
+
+<!-- Логика работы шаблонов и быстрой вставки символов -->
+<script>
+function getTodayDateStr() {
+    const d = new Date();
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}.${month}.${year}`;
+}
+
+function insertSymbol(sym) {
+    const el = document.getElementById('wmText');
+    if (!el) return;
+    el.value = sym + el.value;
+    el.focus();
+}
+
+function insertDate() {
+    const el = document.getElementById('wmText');
+    if (!el) return;
+    el.value = getTodayDateStr();
+    el.focus();
+}
+
+// Переключение готовых пресетов
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        let text = btn.dataset.text;
+        if (text === 'DATE_AUTO') text = getTodayDateStr();
+
+        const pos = btn.dataset.pos;
+        const size = btn.dataset.size;
+        const op = btn.dataset.op;
+        const col = btn.dataset.color;
+
+        const wmText = document.getElementById('wmText');
+        const wmPos = document.getElementById('wmPos');
+        const wmSize = document.getElementById('wmSize');
+        const wmSizeVal = document.getElementById('wmSizeVal');
+        const wmOpacity = document.getElementById('wmOpacity');
+        const wmOpacityVal = document.getElementById('wmOpacityVal');
+        const wmColor = document.getElementById('wmColor');
+
+        if (wmText) wmText.value = text;
+        if (wmPos) wmPos.value = pos;
+        if (wmColor) wmColor.value = col;
+        
+        if (wmSize) {
+            wmSize.value = size;
+            if (wmSizeVal) wmSizeVal.textContent = size;
+        }
+        if (wmOpacity) {
+            wmOpacity.value = op;
+            if (wmOpacityVal) wmOpacityVal.textContent = op + '%';
+        }
+
+        // Автоскролл к форме
+        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+/* Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark копирайт дата знак автора" },
+    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
+    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic png в webp" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" }
+];
+const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
+function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
+function closeCmd(){ modal.classList.remove('active'); }
+document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+    if (e.key==='Escape') closeCmd();
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
+}
+renderCmd('');
+</script>
+</body>
+</html>
