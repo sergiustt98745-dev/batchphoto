@@ -2,12 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Запускается мгновенно до показа сайта:
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
+    <link rel="stylesheet" href="css/style.css?v=2">
     <title>Пакетная цветокоррекция фото онлайн — фильтры, яркость, контраст, Ч/Б на много фото | BatchPhoto.ru</title>
     <meta name="description" content="Бесплатная пакетная обработка цвета и фильтры для фото онлайн прямо в браузере: осветлить темные фото, увеличить насыщенность и контраст, перевести пачку фото в черно-белое (Ч/Б) или сепию до 100 штук сразу.">
     <meta name="keywords" content="пакетная цветокоррекция фото онлайн, осветлить фото онлайн сразу много, сделать фото черно белым пакетно, фильтры на много фото, повысить контрастность на фото, насыщенность фото пакетно, сепия онлайн">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://batchphoto.ru/filtry-i-cvet.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
     
@@ -550,7 +557,7 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
-    <!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

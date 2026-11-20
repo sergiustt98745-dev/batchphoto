@@ -2,29 +2,36 @@
 /* ============================================================
    BatchPhoto.ru — универсальный движок
    ============================================================ */
-
 const $ = id => document.getElementById(id);
 const BP = { files: [], processing: false, cancelled: false };
 const MAX_FILES = 100;
 const CFG = window.BP_CONFIG || {};
 
-/* ---------- Тема ---------- */
-(function initTheme() {
-    const saved = localStorage.getItem('bp-theme');
-    if (saved) document.documentElement.dataset.theme = saved;
+/* ---------- Управление темой (Светлая по умолчанию) ---------- */
+function syncTheme() {
+    // По умолчанию всегда светлая! 'dark' включится ТОЛЬКО если человек сам нажмет кнопку
+    const isDark = localStorage.getItem('bp_theme_v2') === 'dark';
+    if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
     const btn = $('themeBtn');
-    if (btn) btn.textContent = document.documentElement.dataset.theme === 'light' ? '☀️' : '🌙';
-})();
+    if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+}
+
+window.addEventListener('pageshow', syncTheme);
+syncTheme();
 
 document.addEventListener('DOMContentLoaded', () => {
+    syncTheme();
     const themeBtn = $('themeBtn');
     if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const next = document.documentElement.dataset.theme === 'light' ? '' : 'light';
-            document.documentElement.dataset.theme = next;
-            localStorage.setItem('bp-theme', next);
-            themeBtn.textContent = next === 'light' ? '☀️' : '🌙';
-        });
+        themeBtn.onclick = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+            syncTheme();
+        };
     }
 
     // Фильтрация вкладок под конкретную страницу
@@ -39,21 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Установка пресета по умолчанию
-    if (CFG.defaultPreset && PRESETS[CFG.defaultPreset]) {
-        const pInput = $('preset');
-        if (pInput) {
-            pInput.value = CFG.defaultPreset;
-            pInput.dispatchEvent(new Event('change'));
-        }
-    }
-
     // Установка вкладки по умолчанию
     if (CFG.defaultTab) {
         const b = document.querySelector(`.tab-btn[data-tab="${CFG.defaultTab}"]`);
         if (b && b.style.display !== 'none') b.click();
     }
 });
+
 
 /* ---------- Переключение активных вкладок ---------- */
 document.querySelectorAll('.tab-btn').forEach(btn => {

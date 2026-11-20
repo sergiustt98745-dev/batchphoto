@@ -2,12 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Запускается мгновенно до показа сайта:
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
+    <link rel="stylesheet" href="css/style.css?v=2">
     <title>Сжать фото онлайн — пакетное сжатие JPG, PNG, WebP без потери качества до нужного веса | BatchPhoto.ru</title>
     <meta name="description" content="Бесплатное пакетное сжатие фото онлайн прямо в браузере: уменьшение веса файлов JPG, PNG и WebP до 80% без потери качества. Пачкой до 100 штук до нужного размера КБ для сайтов, анкет и Госуслуг.">
     <meta name="keywords" content="сжать фото онлайн, пакетное сжатие фото, уменьшить вес картинки, сжать jpg без потери качества, сжать фото до 500 кб, уменьшить размер фото в 2 раза, оптимизация изображений, сжать фото для сайта">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://batchphoto.ru/szhatie-foto.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
     
@@ -532,7 +539,7 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
-    <!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

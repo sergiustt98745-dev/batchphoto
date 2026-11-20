@@ -2,12 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Запускается мгновенно до показа сайта:
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
+    <link rel="stylesheet" href="css/style.css?v=2">
     <title>Водяной знак на много фото онлайн — пакетное нанесение текста, логотипа и даты | BatchPhoto.ru</title>
     <meta name="description" content="Бесплатное пакетное нанесение водяных знаков на фото онлайн: добавление копирайта ©, даты, водяного знака плиткой (сеткой) или ссылки на магазин. До 100 фото пачкой без загрузки на сервер.">
     <meta name="keywords" content="водяной знак на много фото, наложить водяной знак онлайн, ватермарк пакетно, добавить дату на фото, поставить копирайт на фото, водяной знак плиткой, защита фото от кражи маркетплейс">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://batchphoto.ru/vodjanoj-znak.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>©️</text></svg>">
     
@@ -551,7 +558,7 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
-    <!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

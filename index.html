@@ -8,7 +8,7 @@
     <meta name="description" content="Бесплатная пакетная обработка файлов онлайн прямо в браузере: ресайз для Wildberries и Ozon, конвертация из WebP и HEIC в JPG, сжатие фото и PDF до нужного веса, удаление EXIF и нанесение водяных знаков.">
     <meta name="keywords" content="пакетная обработка фото, фото для маркетплейсов, из webp в jpg, сжать фото до нужного веса, водяной знак на много фото, удалить метаданные с фото">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="yandex-verification" content="ee9038da353930c8" />
+	<meta name="yandex-verification" content="ee9038da353930c8" />
     <link rel="canonical" href="https://batchphoto.ru/">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
@@ -16,7 +16,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="BatchPhoto.ru — Пакетная обработка фото в браузере">
     <meta property="og:description" content="Ресайз 3:4 для маркетплейсов, сжатие, WebP, EXIF, водяные знаки. Бесплатно и 100% конфиденциально.">
-    <meta property="og:url" content="https://batchphoto.ru/">
     <meta property="og:locale" content="ru_RU">
 
     <script type="application/ld+json">
@@ -275,24 +274,34 @@
             <a href="udalit-exif.html">EXIF</a>
             <a href="vodjanoj-znak.html">Водяной знак</a>
         </div>
-        <p>© 2026 BatchPhoto.ru — Пакетная обработка изображений онлайн.<br>Все файлы обрабатываются локально в вашем браузере.</p>
+        <p>© 2025 BatchPhoto.ru — Пакетная обработка изображений онлайн.<br>Все файлы обрабатываются локально в вашем браузере.</p>
     </div>
 </footer>
 
 <script>
-/* Переключение темы */
-(function(){
-    const s = localStorage.getItem('bp-theme');
-    if(s) document.documentElement.dataset.theme = s;
+/* Переключение темы на главной */
+(function() {
+    function syncMain() {
+        const isDark = localStorage.getItem('bp_theme_v2') === 'dark';
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        const b = document.getElementById('themeBtn');
+        if (b) b.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    window.addEventListener('pageshow', syncMain);
+    syncMain();
+
     const b = document.getElementById('themeBtn');
-    if(b) {
-        b.textContent = s === 'light' ? '☀️' : '🌙';
-        b.addEventListener('click', () => {
-            const n = document.documentElement.dataset.theme === 'light' ? '' : 'light';
-            document.documentElement.dataset.theme = n;
-            localStorage.setItem('bp-theme', n);
-            b.textContent = n === 'light' ? '☀️' : '🌙';
-        });
+    if (b) {
+        b.onclick = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+            syncMain();
+        };
     }
 })();
 

@@ -2,6 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Запускается мгновенно до показа сайта:
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Удаление EXIF и GPS из фото онлайн — BatchPhoto.ru</title>
     <meta name="description" content="Бесплатная очистка EXIF, GPS-координат, даты и метаданных камеры с фотографий онлайн. 100% приватность: файлы обрабатываются прямо в браузере.">

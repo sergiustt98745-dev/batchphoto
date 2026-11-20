@@ -2,13 +2,19 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        // Запускается мгновенно до показа сайта:
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
+    <link rel="stylesheet" href="css/style.css?v=2">
     <title>Пакетная обработка фото для Wildberries, Ozon и Авито онлайн — BatchPhoto.ru</title>
     <meta name="description" content="Бесплатная пакетная обработка фото для Wildberries (1200×1600, 3:4), Ozon (1200×1600 / 1500×1500) и Авито. Центрирование на белом фоне, улучшение цвета и нумерация карточек товаров. Без загрузки на сервер.">
     <meta name="keywords" content="пакетная обработка фото для wildberries, пакетная обработка фото ozon, ресайз 3:4 онлайн, белый фон карточки товара, размер фото 1200х1600">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://batchphoto.ru/foto-dlya-marketpleisov.html">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
 
@@ -214,7 +220,7 @@
     <!-- Таблица требований -->
     <section id="table-sec">
         <div class="container">
-            <h2 class="section-title">Стандарты фотографий маркетплейсов в 2026 году</h2>
+            <h2 class="section-title">Стандарты фотографий маркетплейсов в 2025 году</h2>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -266,7 +272,7 @@
             <a href="udalit-exif.html">Удаление EXIF</a>
             <a href="vodjanoj-znak.html">Водяной знак</a>
         </div>
-        <p>© 2026 BatchPhoto.ru — Пакетная обработка изображений онлайн.<br>Все файлы обрабатываются в вашем браузере.</p>
+        <p>© 2025 BatchPhoto.ru — Пакетная обработка изображений онлайн.<br>Все файлы обрабатываются в вашем браузере.</p>
     </div>
 </footer>
 
