@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пипетка онлайн — узнать цвет по фото (HEX, RGB, HSL, CMYK) | BatchPhoto</title>
+    <meta name="description" content="Бесплатная онлайн пипетка для определения цвета на фото. Загрузите картинку и кликните на любой пиксель, чтобы получить код цвета в HEX, RGB, HSL или CMYK. Удобная лупа для точного выбора.">
+    <meta name="keywords" content="пипетка онлайн, узнать цвет по фото, определить цвет по картинке, hex код цвета, rgb из фото, color picker online, определить цвет пикселя">
+    <link rel="canonical" href="https://batchphoto.ru/pipetka-cvet-po-foto.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Пипетка онлайн — узнать код цвета по фотографии">
+    <meta property="og:description" content="Инструмент для дизайнеров и разработчиков: извлечение кода цвета из любого изображения онлайн. Быстро, точно и бесплатно.">
+    <meta property="og:url" content="https://batchphoto.ru/pipetka-cvet-po-foto.html">
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <!-- Стили в стиле BatchPhoto -->
+    <style>
+        :root {
+            --primary: #0088cc;
+            --primary-hover: #0077b5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка */
+        .site-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .logo-area .logo-domain {
+            color: var(--primary);
+        }
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .search-trigger kbd {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 0.75rem;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-item {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-item:hover { color: var(--primary); }
+        .theme-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        .breadcrumbs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+
+        .security-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 0 auto 16px;
+        }
+        [data-theme="dark"] .security-pill {
+            background: #1e3a8a33; color: #93c5fd; border-color: #1e40af;
+        }
+
+        .main-heading { text-align: center; margin-bottom: 28px; }
+        .main-title { font-size: 2.2rem; font-weight: 800; margin: 0 0 10px 0; }
+        .main-title span { color: var(--primary); }
+        .main-desc { color: var(--text-muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
+
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        /* Инструмент: Пипетка */
+        .eyedropper-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .eyedropper-layout { grid-template-columns: 1fr; }
+        }
+
+        .canvas-area {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: crosshair;
+        }
+        #imageCanvas { max-width: 100%; max-height: 70vh; display: block; }
+
+        /* Лупа (Magnifier) */
+        #magnifier {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            pointer-events: none;
+            display: none;
+            overflow: hidden;
+            background: #000;
+            z-index: 10;
+        }
+        #magnifier canvas { image-rendering: pixelated; }
+
+        /* Панель кодов */
+        .color-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .current-color-box {
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .color-code-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .color-code-row label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .btn-copy {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .btn-copy:hover { background: var(--primary-hover); }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .history-item {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .custom-dropzone {
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        [data-theme="dark"] .custom-dropzone { background: #0f172a50; }
+
+        @media (max-width: 860px) {
+            .header-nav { display: none; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🖼️</span>
+                <span>BatchPhoto<span class="logo-domain">.ru</span></span>
+            </a>
+            <div class="header-center">
+                <a href="index.html" class="search-trigger">
+                    <span>🔍</span> <span>Поиск инструмента</span> <kbd>Ctrl K</kbd>
+                </a>
+            </div>
+            <nav class="header-nav">
+                <a href="foto-dlya-marketpleisov.html" class="nav-item">🛍️ Маркетплейсы</a>
+                <a href="szhat-foto.html" class="nav-item">🗜️ Сжатие</a>
+                <a href="konvertirovat-v-webp.html" class="nav-item">🌐 WebP</a>
+                <a href="udalit-exif.html" class="nav-item">🛡️ EXIF</a>
+                <a href="vodyanoj-znak-na-foto.html" class="nav-item">©️ Водяной знак</a>
+            </nav>
+            <button class="theme-btn" id="themeToggle">🌙</button>
+        </div>
+    </header>
+
+    <div class="page-wrap">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Пипетка онлайн</span>
+        </div>
+
+        <div class="main-heading">
+            <div class="security-pill">
+                <span>🔒</span> Все фото обрабатываются на вашем компьютере без отправки на сервер
+            </div>
+            <h1 class="main-title">Пипетка онлайн: <span>узнать цвет по фото</span></h1>
+            <p class="main-desc">Кликните на любую область изображения, чтобы мгновенно получить код цвета в HEX, RGB или HSL. Профессиональный инструмент для дизайнеров.</p>
+        </div>
+
+        <div class="main-card">
+            <!-- Дропзона -->
+            <div id="dropzone" class="custom-dropzone">
+                <input type="file" id="fileInput" accept="image/*" style="display:none">
+                <div style="font-size:3rem; margin-bottom:15px;">🎨</div>
+                <div style="font-weight:600; font-size:1.1rem; margin-bottom:5px;">Загрузите фото для определения цвета</div>
+                <div style="color:var(--text-muted); font-size:0.9rem;">Перетащите файл сюда или нажмите для выбора</div>
+            </div>
+
+            <!-- Редактор -->
+            <div id="workspace" style="display:none" class="eyedropper-layout">
+                <div class="canvas-area" id="canvasContainer">
+                    <canvas id="imageCanvas"></canvas>
+                    <div id="magnifier">
+                        <canvas id="magCanvas" width="120" height="120"></canvas>
+                    </div>
+                </div>
+
+                <div class="color-sidebar">
+                    <div class="current-color-box" id="colorPreview">
+                        <span id="colorHexLabel" style="font-weight:800; filter: invert(1) grayscale(1); mix-blend-mode: difference;">#FFFFFF</span>
+                    </div>
+
+                    <div class="color-code-row">
+                        <label>HEX код</label>
+                        <div class="input-group">
+                            <input type="text" id="hexInput" readonly>
+                            <button class="btn-copy" onclick="copyValue('hexInput')">Копировать</button>
+                        </div>
+                    </div>
+
+                    <div class="color-code-row">
+                        <label>RGB код</label>
+                        <div class="input-group">
+                            <input type="text" id="rgbInput" readonly>
+                            <button class="btn-copy" onclick="copyValue('rgbInput')">Копировать</button>
+                        </div>
+                    </div>
+
+                    <div class="color-code-row">
+                        <label>HSL код</label>
+                        <div class="input-group">
+                            <input type="text" id="hslInput" readonly>
+                            <button class="btn-copy" onclick="copyValue('hslInput')">Копировать</button>
+                        </div>
+                    </div>
+
+                    <div class="color-code-row">
+                        <label>История цветов</label>
+                        <div class="history-grid" id="historyGrid"></div>
+                    </div>
+
+                    <button class="btn-action" style="background:none; border:1px solid var(--border-color); color:var(--text-muted); margin-top:10px;" onclick="location.reload()">Загрузить другое фото</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Текст -->
+        <div class="main-card" style="line-height:1.7;">
+            <h2 style="font-size:1.4rem; margin-top:0;">Как работает онлайн пипетка цвета?</h2>
+            <p>Наш инструмент позволяет извлечь цветовой код любого пикселя на фотографии. Это незаменимо, когда нужно подобрать шрифт под цвет логотипа, узнать основной оттенок фона или создать гармоничную палитру для сайта.</p>
+            <ul>
+                <li><strong>Точность до пикселя:</strong> Специальная цифровая лупа увеличивает область под курсором в 10 раз.</li>
+                <li><strong>Мгновенная конвертация:</strong> Получайте коды сразу в нескольких форматах (HEX для веб, RGB для дизайна, HSL для CSS).</li>
+                <li><strong>Приватность:</strong> Изображения не загружаются на сервер. Вся магия происходит в оперативной памяти вашего браузера.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+            themeBtn.textContent = isDark ? '🌙' : '☀️';
+        });
+        if(localStorage.getItem('bp_theme_v2') === 'dark') themeBtn.textContent = '☀️';
+
+        const fileInput = document.getElementById('fileInput');
+        const dropzone = document.getElementById('dropzone');
+        const workspace = document.getElementById('workspace');
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        const magnifier = document.getElementById('magnifier');
+        const magCanvas = document.getElementById('magCanvas');
+        const magCtx = magCanvas.getContext('2d');
+
+        let img = new Image();
+        let history = [];
+
+        dropzone.onclick = () => fileInput.click();
+        fileInput.onchange = (e) => handleFile(e.target.files[0]);
+
+        function handleFile(file) {
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    dropzone.style.display = 'none';
+                    workspace.style.display = 'grid';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        canvas.onmousemove = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) * (canvas.width / rect.width));
+            const y = Math.floor((e.clientY - rect.top) * (canvas.height / rect.height));
+            
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            updateUI(pixel);
+            showMagnifier(x, y, e.clientX - rect.left, e.clientY - rect.top);
+        };
+
+        canvas.onmouseleave = () => magnifier.style.display = 'none';
+
+        canvas.onclick = (e) => {
+            const hex = document.getElementById('hexInput').value;
+            if(!history.includes(hex)) {
+                history.unshift(hex);
+                if(history.length > 14) history.pop();
+                renderHistory();
+            }
+        };
+
+        function showMagnifier(ix, iy, mouseX, mouseY) {
+            magnifier.style.display = 'block';
+            magnifier.style.left = `${mouseX - 60}px`;
+            magnifier.style.top = `${mouseY - 60}px`;
+
+            magCtx.fillStyle = "#000";
+            magCtx.fillRect(0,0,120,120);
+            
+            const zoom = 10;
+            const size = 12; // 12x12 пикселей в лупе
+            magCtx.drawImage(canvas, ix - 6, iy - 6, size, size, 0, 0, 120, 120);
+
+            // Перекрестие в лупе
+            magCtx.strokeStyle = "white";
+            magCtx.lineWidth = 1;
+            magCtx.strokeRect(55, 55, 10, 10);
+        }
+
+        function updateUI(p) {
+            const r = p[0], g = p[1], b = p[2];
+            const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+            
+            document.getElementById('colorPreview').style.backgroundColor = hex;
+            document.getElementById('colorHexLabel').textContent = hex;
+            document.getElementById('hexInput').value = hex;
+            document.getElementById('rgbInput').value = `rgb(${r}, ${g}, ${b})`;
+            
+            // Простейший HSL
+            let rNorm = r/255, gNorm = g/255, bNorm = b/255;
+            let max = Math.max(rNorm, gNorm, bNorm), min = Math.min(rNorm, gNorm, bNorm);
+            let h, s, l = (max + min) / 2;
+            if(max == min) h = s = 0;
+            else {
+                let d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch(max){
+                    case rNorm: h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0); break;
+                    case gNorm: h = (bNorm - rNorm) / d + 2; break;
+                    case bNorm: h = (rNorm - gNorm) / d + 4; break;
+                }
+                h /= 6;
+            }
+            document.getElementById('hslInput').value = `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+        }
+
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
+            grid.innerHTML = '';
+            history.forEach(color => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.style.backgroundColor = color;
+                div.onclick = () => {
+                    document.getElementById('hexInput').value = color;
+                    document.getElementById('colorPreview').style.backgroundColor = color;
+                    document.getElementById('colorHexLabel').textContent = color;
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        function copyValue(id) {
+            const input = document.getElementById(id);
+            input.select();
+            document.execCommand('copy');
+            const btn = input.nextElementSibling;
+            const originalText = btn.textContent;
+            btn.textContent = 'Готово!';
+            setTimeout(() => btn.textContent = originalText, 1000);
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Пипетка онлайн — цвет по фото",
+      "url": "https://batchphoto.ru/pipetka-cvet-po-foto.html",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "All",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
+    }
+    </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

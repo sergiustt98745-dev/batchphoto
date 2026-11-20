@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разрезать фото на части онлайн бесплатно — на 2, 3, 9 частей (сетка) | BatchPhoto</title>
+    <meta name="description" content="Бесплатный инструмент для нарезки фото на части онлайн. Разрежьте изображение на 2, 3 части для карусели или на 9 частей (сетка 3x3) для Инстаграм без потери качества.">
+    <meta name="keywords" content="разрезать фото на части, разделить фото онлайн, сетка 3х3 инстаграм, разрезать фото для карусели, нарезка картинки на части">
+    <link rel="canonical" href="https://batchphoto.ru/razdelit-foto.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Разрезать фото на части онлайн — нарезка на 2, 3 или 9 частей">
+    <meta property="og:description" content="Разделите фото на равные фрагменты для каруселей соцсетей или инста-сетки. Бесплатно и без отправки на сервер.">
+    <meta property="og:url" content="https://batchphoto.ru/razdelit-foto.html">
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <!-- Стили шапки, плашек и компонентов 1-в-1 с эталоном -->
+    <style>
+        :root {
+            --primary: #0088cc;
+            --primary-hover: #0077b5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка 1-в-1 */
+        .site-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .logo-area .logo-domain {
+            color: var(--primary);
+        }
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .search-trigger kbd {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 0.75rem;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-item {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+        .nav-item:hover {
+            color: var(--primary);
+        }
+        .theme-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            color: inherit;
+        }
+
+        /* Контейнер страницы */
+        .page-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .breadcrumbs a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+
+        /* Бейдж безопасности */
+        .security-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 0 auto 16px;
+        }
+        [data-theme="dark"] .security-pill {
+            background: #1e3a8a33;
+            color: #93c5fd;
+            border-color: #1e40af;
+        }
+
+        /* Заголовок страницы */
+        .main-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        .main-title span {
+            color: var(--primary);
+        }
+        .main-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Главная карточка */
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        /* Дропзона */
+        .custom-dropzone {
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        [data-theme="dark"] .custom-dropzone {
+            background: #0f172a50;
+            border-color: #334155;
+        }
+        .custom-dropzone:hover, .custom-dropzone.dragover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+        [data-theme="dark"] .custom-dropzone:hover {
+            background: #0f172a;
+        }
+        .custom-dropzone .icon-wrap {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .custom-dropzone .drop-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .custom-dropzone .drop-hint {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        /* Поля настроек */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .form-group select:focus, .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Большая синяя кнопка */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.15s ease;
+        }
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+        .btn-action:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Нижние информационные карточки */
+        .section-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 860px) {
+            .header-nav { display: none; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+
+    <!-- Проверка темы ДО рендера -->
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <!-- Разметка Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Разрезать фото на части онлайн",
+      "url": "https://batchphoto.ru/razdelit-foto.html",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "RUB"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Шапка точно как в obedinit-foto.html -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🖼️</span>
+                <span>BatchPhoto<span class="logo-domain">.ru</span></span>
+            </a>
+
+            <div class="header-center">
+                <a href="index.html" class="search-trigger">
+                    <span>🔍</span>
+                    <span>Поиск инструмента</span>
+                    <kbd>Ctrl K</kbd>
+                </a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="foto-dlya-marketpleisov.html" class="nav-item">🛍️ Маркетплейсы</a>
+                <a href="szhat-foto.html" class="nav-item">🗜️ Сжатие</a>
+                <a href="konvertirovat-v-webp.html" class="nav-item">🌐 WebP</a>
+                <a href="udalit-exif.html" class="nav-item">🛡️ EXIF</a>
+                <a href="vodyanoj-znak-na-foto.html" class="nav-item">©️ Водяной знак</a>
+            </nav>
+
+            <button class="theme-btn" id="themeToggle" title="Сменить тему">🌙</button>
+        </div>
+    </header>
+
+    <div class="page-wrap">
+
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Разрезать фото на части</span>
+        </div>
+
+        <!-- Центральный заголовок с плашкой -->
+        <div class="main-heading">
+            <div class="security-pill">
+                <span>🔒</span> Все фото обрабатываются на вашем компьютере без отправки на сервер
+            </div>
+            <h1 class="main-title">Разрезать фото на части <span>онлайн</span></h1>
+            <p class="main-desc">Разделите снимок на равные части: горизонтальная карусель для соцсетей, сетка 3×3 для профиля или нарезка для широкоформатной печати на листах А4.</p>
+        </div>
+
+        <!-- Главный блок инструмента -->
+        <div class="main-card">
+            
+            <!-- Дропзона -->
+            <div class="custom-dropzone" id="dropzone">
+                <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                <div class="icon-wrap">🖼️</div>
+                <div class="drop-title">Перетащите фотографию для нарезки или нажмите для выбора</div>
+                <div class="drop-hint">JPG, PNG, WebP • Файл любого разрешения</div>
+            </div>
+
+            <!-- Область после выбора файла -->
+            <div id="workspace" style="display: none;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                    <div>
+                        <strong id="fileNameDisplay" style="font-size: 0.95rem;">photo.jpg</strong>
+                        <span id="fileSizeDisplay" style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;"></span>
+                    </div>
+                    <button type="button" id="changePhotoBtn" style="background: none; border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem; cursor: pointer;">Выбрать другой файл</button>
+                </div>
+
+                <!-- Строка настроек как на эталоне -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="presetSelect">Шаблон нарезки</label>
+                        <select id="presetSelect">
+                            <option value="3x1">➡️ Карусель: 3 части в ряд (3×1)</option>
+                            <option value="2x1">➡️ Карусель: 2 части в ряд (2×1)</option>
+                            <option value="3x3">🔲 Сетка Инстаграм: 9 частей (3×3)</option>
+                            <option value="3x2">🔲 Сетка: 6 частей (3×2)</option>
+                            <option value="1x2">⬇️ Вертикально: 2 части (1×2)</option>
+                            <option value="1x3">⬇️ Вертикально: 3 части (1×3)</option>
+                            <option value="custom">⚙️ Свой размер сетки...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group custom-grid-field" style="display: none;">
+                        <label for="customCols">Колонок (по ширине)</label>
+                        <input type="number" id="customCols" min="1" max="10" value="3">
+                    </div>
+
+                    <div class="form-group custom-grid-field" style="display: none;">
+                        <label for="customRows">Строк (по высоте)</label>
+                        <input type="number" id="customRows" min="1" max="10" value="3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formatSelect">Формат сохранения</label>
+                        <select id="formatSelect">
+                            <option value="image/jpeg">JPG / JPEG (.jpg)</option>
+                            <option value="image/png">PNG (.png, без потерь)</option>
+                            <option value="image/webp">WEBP (.webp)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="qualityBox">
+                        <label for="qualityInput">Качество сжатия: <span id="qualityLabel">92%</span></label>
+                        <input type="range" id="qualityInput" min="50" max="100" value="92" style="padding: 0; height: 32px;">
+                    </div>
+                </div>
+
+                <!-- Интерактивное превью с сеткой -->
+                <div style="margin-top: 20px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; text-align: center;">
+                    <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; color: var(--text-muted);">ПРЕДПРОСМОТР ЛИНИЙ РАЗРЕЗА:</div>
+                    <div style="display: inline-block; max-width: 100%; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <canvas id="previewCanvas" style="max-width: 100%; height: auto; display: block;"></canvas>
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+                        Каждый фрагмент: <strong id="partDimensions" style="color: var(--text-color);">0 × 0 px</strong>
+                    </div>
+                </div>
+
+                <!-- Кнопка действия -->
+                <button type="button" class="btn-action" id="sliceBtn">
+                    ⚡ Разрезать изображение и скачать ZIP (<span id="partsCount">3</span> фото)
+                </button>
+
+                <!-- Прогресс бар -->
+                <div id="progressWrap" style="display: none; margin-top: 16px; text-align: center;">
+                    <div style="font-size: 0.85rem; margin-bottom: 6px; font-weight: 500;">Обработка фрагментов...</div>
+                    <div style="height: 6px; background: var(--border-color); border-radius: 3px; max-width: 300px; margin: 0 auto; overflow: hidden;">
+                        <div id="progressBar" style="height: 100%; width: 0%; background: var(--primary); transition: width 0.2s;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Варианты нарезки (как на эталоне) -->
+        <h2 class="section-title">Варианты нарезки изображений</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">➡️</span> Горизонтальная нарезка (Карусель)
+                </div>
+                <p class="feature-desc">Разрезайте широкие панорамные снимки на 2 или 3 равные вертикальные части. Идеально подходит для создания бесшовных свайп-галерей в Инстаграм и ВКонтакте.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">🔲</span> Сетка 3×3 (Инста-пазл)
+                </div>
+                <p class="feature-desc">Разделите картинку на 9 равных квадратов. Опубликуйте их в обратном порядке (с 9 по 1), чтобы превратить ленту вашего аккаунта в единую масштабную фотокартину.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">🖨️</span> Нарезка для печати постеров
+                </div>
+                <p class="feature-desc">Разбейте изображение сверхвысокого разрешения на несколько фрагментов, распечатайте каждый на стандартном офисном принтере формата А4 и соберите постер любого размера.</p>
+            </div>
+        </div>
+
+        <!-- SEO Текст -->
+        <div class="main-card" style="line-height: 1.7; font-size: 0.95rem;">
+            <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 14px;">Как разрезать изображение на равные части онлайн?</h2>
+            <p>Онлайн-сервис BatchPhoto позволяет быстро разбить любое фото или картинку на несколько фрагментов прямо в браузере. Вам не потребуется устанавливать Photoshop или сторонние мобильные приложения.</p>
+            
+            <h3 style="font-size: 1.15rem; margin-top: 20px; margin-bottom: 10px;">Простая инструкция:</h3>
+            <ol style="padding-left: 20px; margin: 0 0 16px 0;">
+                <li>Перетащите фото в область загрузки или нажмите на нее для выбора файла.</li>
+                <li>Выберите нужный шаблон нарезки (карусель 2x1, 3x1, сетка 3x3) либо задайте число колонок и строк вручную.</li>
+                <li>Нажмите синюю кнопку <strong>«Разрезать изображение и скачать ZIP»</strong>.</li>
+                <li>Браузер моментально сгенерирует архив с пронумерованными частями изображения (part_01, part_02...).</li>
+            </ol>
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.88rem;">Все вычисления выполняются через движок HTML5 Canvas на мощности вашего процессора. Ваши фотографии не загружаются на сервер и остаются строго конфиденциальными.</p>
+        </div>
+
+    </div>
+
+    <!-- Логика работы страницы -->
+    <script>
+        // Инициализация темы 🌙 / ☀️
+        const themeBtn = document.getElementById('themeToggle');
+        function syncThemeIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('bp_theme_v2', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('bp_theme_v2', 'dark');
+            }
+            syncThemeIcon();
+        });
+        syncThemeIcon();
+
+        // Поиск по Ctrl+K
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Элементы
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const workspace = document.getElementById('workspace');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const fileSizeDisplay = document.getElementById('fileSizeDisplay');
+        const changePhotoBtn = document.getElementById('changePhotoBtn');
+
+        const presetSelect = document.getElementById('presetSelect');
+        const customFields = document.querySelectorAll('.custom-grid-field');
+        const customCols = document.getElementById('customCols');
+        const customRows = document.getElementById('customRows');
+        const formatSelect = document.getElementById('formatSelect');
+        const qualityBox = document.getElementById('qualityBox');
+        const qualityInput = document.getElementById('qualityInput');
+        const qualityLabel = document.getElementById('qualityLabel');
+
+        const previewCanvas = document.getElementById('previewCanvas');
+        const previewCtx = previewCanvas.getContext('2d');
+        const partDimensions = document.getElementById('partDimensions');
+        const partsCount = document.getElementById('partsCount');
+        const sliceBtn = document.getElementById('sliceBtn');
+        const progressWrap = document.getElementById('progressWrap');
+        const progressBar = document.getElementById('progressBar');
+
+        let loadedImage = null;
+        let baseFileName = 'photo';
+
+        // Загрузка
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+        });
+        changePhotoBtn.addEventListener('click', () => fileInput.click());
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Пожалуйста, выберите файл изображения (JPG, PNG, WebP).');
+                return;
+            }
+            baseFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'photo';
+            fileNameDisplay.textContent = file.name;
+            fileSizeDisplay.textContent = `(${(file.size / (1024 * 1024)).toFixed(2)} МБ)`;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImage = img;
+                    dropzone.style.display = 'none';
+                    workspace.style.display = 'block';
+                    updateGridPreview();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Параметры
+        presetSelect.addEventListener('change', () => {
+            const isCustom = presetSelect.value === 'custom';
+            customFields.forEach(f => f.style.display = isCustom ? 'block' : 'none');
+            updateGridPreview();
+        });
+        customCols.addEventListener('input', updateGridPreview);
+        customRows.addEventListener('input', updateGridPreview);
+
+        formatSelect.addEventListener('change', () => {
+            qualityBox.style.display = formatSelect.value === 'image/png' ? 'none' : 'block';
+        });
+        qualityInput.addEventListener('input', () => {
+            qualityLabel.textContent = qualityInput.value + '%';
+        });
+
+        function getGrid() {
+            const val = presetSelect.value;
+            if (val === '3x1') return { cols: 3, rows: 1 };
+            if (val === '2x1') return { cols: 2, rows: 1 };
+            if (val === '3x3') return { cols: 3, rows: 3 };
+            if (val === '3x2') return { cols: 3, rows: 2 };
+            if (val === '1x2') return { cols: 1, rows: 2 };
+            if (val === '1x3') return { cols: 1, rows: 3 };
+            return {
+                cols: Math.max(1, parseInt(customCols.value) || 1),
+                rows: Math.max(1, parseInt(customRows.value) || 1)
+            };
+        }
+
+        // Отрисовка превью сетки
+        function updateGridPreview() {
+            if (!loadedImage) return;
+            const { cols, rows } = getGrid();
+            const total = cols * rows;
+            partsCount.textContent = total;
+
+            const pw = Math.floor(loadedImage.width / cols);
+            const ph = Math.floor(loadedImage.height / rows);
+            partDimensions.textContent = `${pw} × ${ph} px (всего ${total} шт.)`;
+
+            const maxW = 750;
+            const scale = Math.min(1, maxW / loadedImage.width);
+            previewCanvas.width = loadedImage.width * scale;
+            previewCanvas.height = loadedImage.height * scale;
+
+            previewCtx.drawImage(loadedImage, 0, 0, previewCanvas.width, previewCanvas.height);
+
+            // Линии
+            previewCtx.strokeStyle = '#0088cc';
+            previewCtx.lineWidth = 2;
+            previewCtx.setLineDash([5, 5]);
+
+            const stepX = previewCanvas.width / cols;
+            const stepY = previewCanvas.height / rows;
+
+            for (let c = 1; c < cols; c++) {
+                previewCtx.beginPath();
+                previewCtx.moveTo(c * stepX, 0);
+                previewCtx.lineTo(c * stepX, previewCanvas.height);
+                previewCtx.stroke();
+            }
+            for (let r = 1; r < rows; r++) {
+                previewCtx.beginPath();
+                previewCtx.moveTo(0, r * stepY);
+                previewCtx.lineTo(previewCanvas.width, r * stepY);
+                previewCtx.stroke();
+            }
+
+            // Номера кружочками
+            previewCtx.setLineDash([]);
+            previewCtx.font = 'bold 13px sans-serif';
+            previewCtx.textAlign = 'center';
+            previewCtx.textBaseline = 'middle';
+
+            let idx = 1;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const cx = c * stepX + stepX / 2;
+                    const cy = r * stepY + stepY / 2;
+
+                    previewCtx.fillStyle = 'rgba(0,0,0,0.7)';
+                    previewCtx.beginPath();
+                    previewCtx.arc(cx, cy, 13, 0, Math.PI * 2);
+                    previewCtx.fill();
+
+                    previewCtx.fillStyle = '#ffffff';
+                    previewCtx.fillText(idx.toString(), cx, cy);
+                    idx++;
+                }
+            }
+        }
+
+        // Нарезка и сохранение в ZIP
+        sliceBtn.addEventListener('click', async () => {
+            if (!loadedImage) return;
+
+            const { cols, rows } = getGrid();
+            const format = formatSelect.value;
+            const quality = parseInt(qualityInput.value, 10) / 100;
+            const ext = format === 'image/jpeg' ? 'jpg' : (format === 'image/webp' ? 'webp' : 'png');
+
+            sliceBtn.disabled = true;
+            progressWrap.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            const zip = new JSZip();
+            const total = cols * rows;
+
+            const pw = Math.floor(loadedImage.width / cols);
+            const ph = Math.floor(loadedImage.height / rows);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = pw;
+            canvas.height = ph;
+            const ctx = canvas.getContext('2d');
+
+            let num = 0;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    num++;
+                    ctx.clearRect(0, 0, pw, ph);
+                    ctx.drawImage(loadedImage, c * pw, r * ph, pw, ph, 0, 0, pw, ph);
+
+                    const blob = await new Promise(res => canvas.toBlob(res, format, quality));
+                    const pad = num.toString().padStart(2, '0');
+                    zip.file(`${baseFileName}_part_${pad}.${ext}`, blob);
+
+                    progressBar.style.width = `${Math.round((num / total) * 85)}%`;
+                }
+            }
+
+            const zipBlob = await zip.generateAsync({ type: 'blob' }, (meta) => {
+                progressBar.style.width = `${85 + Math.round(meta.percent * 0.15)}%`;
+            });
+
+            saveAs(zipBlob, `${baseFileName}_parts.zip`);
+
+            setTimeout(() => {
+                sliceBtn.disabled = false;
+                progressWrap.style.display = 'none';
+                progressBar.style.width = '0%';
+            }, 600);
+        });
+    </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

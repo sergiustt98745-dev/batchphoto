@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объединить фото в одно онлайн — склейка фото по горизонтали, вертикали или в сетку | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатное объединение нескольких фото в одно изображение онлайн: склейка по горизонтали (в ряд), по вертикали (лента) или в виде коллажа. 100% конфиденциально в браузере.">
+    <meta name="keywords" content="объединить фото в одно, склеить фото онлайн, соединить две фотографии, коллаж из фото онлайн, вертикальная склейка фото, соединить картинки в ряд">
+    <link rel="canonical" href="https://batchphoto.ru/obedinit-foto.html">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+    
+    <style>
+        .preview-result-wrap {
+            margin-top: 20px;
+            text-align: center;
+            background: var(--bg-soft);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        .preview-result-wrap img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+        }
+        .order-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
+        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие</a>
+            <a href="konverter-webp.html">🌐 WebP</a>
+            <a href="udalit-exif.html">🛡️ EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="breadcrumbs">
+        <a href="index.html">Главная</a> / <span>Объединить фото в одно</span>
+    </div>
+
+    <div class="hero">
+        <div class="badge">🔒 Все фото обрабатываются на вашем компьютере без отправки на сервер</div>
+        <h1>Объединить фото в одно <span>онлайн</span></h1>
+        <p>Склейте несколько снимков в единое изображение: горизонтально в один ряд, вертикально в длинную ленту или сеткой (коллажем).</p>
+    </div>
+
+    <div class="card">
+        <!-- ДРОПЗОНА -->
+        <div class="dropzone" id="dropzone" tabindex="0">
+            <div class="icon">🖼️</div>
+            <p><strong>Перетащите фотографии для склейки</strong> или нажмите для выбора</p>
+            <small>JPG, PNG, WebP • Выберите 2 или более картинок</small>
+            <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+        </div>
+
+        <!-- ТУЛБАР ФАЙЛОВ -->
+        <div class="files-toolbar" id="filesToolbar">
+            <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <button class="clear-btn" id="clearBtn">✕ Очистить всё</button>
+        </div>
+
+        <!-- СПИСОК ФАЙЛОВ -->
+        <div class="files-grid" id="filesGrid"></div>
+
+        <!-- НАСТРОЙКИ СКЛЕЙКИ -->
+        <div class="grid" style="margin-top: 22px;">
+            <div class="form-group">
+                <label for="stitchDirection">Направление склейки</label>
+                <select id="stitchDirection">
+                    <option value="horizontal" selected>➡️ Горизонтально (в ряд)</option>
+                    <option value="vertical">⬇️ Вертикально (лента / друг под другом)</option>
+                    <option value="grid">▦ Сетка (коллаж по колонкам)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="colsGroup" style="display: none;">
+                <label for="gridCols">Количество колонок в сетке</label>
+                <input type="number" id="gridCols" min="2" max="10" value="2">
+            </div>
+
+            <div class="form-group">
+                <label for="gapSize">Отступ между фото (px)</label>
+                <input type="number" id="gapSize" min="0" max="100" value="0" placeholder="0">
+            </div>
+
+            <div class="form-group">
+                <label for="bgColor">Цвет фона / отступов</label>
+                <input type="color" id="bgColor" value="#ffffff">
+            </div>
+
+            <div class="form-group">
+                <label for="outFormat">Формат сохранения</label>
+                <select id="outFormat">
+                    <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
+                    <option value="image/png">PNG (.png)</option>
+                    <option value="image/webp">WebP (.webp)</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn" id="mergeBtn">⚡ Склеить изображения и скачать результат</button>
+
+        <!-- ПРЕВЬЮ РЕЗУЛЬТАТА -->
+        <div id="resultBlock" style="display: none; margin-top: 20px;">
+            <div class="result-box visible">
+                <h3>🎉 Изображение успешно склеено!</h3>
+                <p id="resultInfo"></p>
+                <div class="preview-result-wrap">
+                    <img id="mergedPreview" alt="Результат">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO ИНФОРМАЦИЯ -->
+    <section>
+        <h2 class="section-title">Варианты соединения фотографий</h2>
+        <div class="workspaces-grid">
+            <div class="workspace-card">
+                <h3>➡️ Горизонтальная склейка (До / После)</h3>
+                <p style="font-size:13px; color:var(--muted)">Идеально подходит для наглядных сравнений результатов работы, товаров разных цветов или создания панорам для сайтов.</p>
+            </div>
+            <div class="workspace-card">
+                <h3>⬇️ Вертикальная склейка (Лента)</h3>
+                <p style="font-size:13px; color:var(--muted)">Сборка длинных скриншотов переписок, страниц сайтов или чек-листов в единую сплошную картинку.</p>
+            </div>
+            <div class="workspace-card">
+                <h3>▦ Сетка (Коллаж)</h3>
+                <p style="font-size:13px; color:var(--muted)">Расположение товаров или фото сетов компактной плиткой 2×2, 3×2 или 3×3 для карточек маркетплейсов и каталогов.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие</a>
+            <a href="konverter-webp.html">WebP</a>
+            <a href="udalit-exif.html">EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+        </div>
+        <p>© 2025 BatchPhoto.ru — Онлайн склейка и объединение фото. Все операции выполняются локально на вашем устройстве.</p>
+    </div>
+</footer>
+
+<!-- Поиск Ctrl+K -->
+<div class="modal-overlay" id="cmdModal">
+    <div class="cmd-modal">
+        <div class="cmd-input-box">🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «вайлдберриз», «webp», «exif»…"></div>
+        <div class="cmd-results" id="cmdResults"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+/* 1. Управление темой */
+(function() {
+    function syncTheme() {
+        const isDark = localStorage.getItem('bp_theme_v2') === 'dark';
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+        else document.documentElement.removeAttribute('data-theme');
+        const b = document.getElementById('themeBtn');
+        if (b) b.textContent = isDark ? '☀️' : '🌙';
+    }
+    syncTheme();
+    const b = document.getElementById('themeBtn');
+    if (b) {
+        b.onclick = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+            syncTheme();
+        };
+    }
+})();
+
+/* 2. Логика загрузки и списка фото */
+const $ = id => document.getElementById(id);
+let filesList = [];
+
+$('dropzone').addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', e => { addFiles(e.target.files); $('fileInput').value = ''; });
+
+['dragenter','dragover'].forEach(ev => $('dropzone').addEventListener(ev, e => { e.preventDefault(); $('dropzone').classList.add('dragover'); }));
+['dragleave','drop'].forEach(ev => $('dropzone').addEventListener(ev, e => { e.preventDefault(); $('dropzone').classList.remove('dragover'); }));
+$('dropzone').addEventListener('drop', e => { e.preventDefault(); addFiles(e.dataTransfer.files); });
+
+function addFiles(files) {
+    const incoming = [...files].filter(f => f.type.startsWith('image/'));
+    incoming.forEach(f => {
+        filesList.push({ id: Math.random().toString(36).slice(2), file: f, url: URL.createObjectURL(f) });
+    });
+    renderFiles();
+}
+
+$('clearBtn').addEventListener('click', () => {
+    filesList.forEach(f => URL.revokeObjectURL(f.url));
+    filesList = [];
+    renderFiles();
+    $('resultBlock').style.display = 'none';
+});
+
+function removeFile(id) {
+    const idx = filesList.findIndex(f => f.id === id);
+    if (idx > -1) {
+        URL.revokeObjectURL(filesList[idx].url);
+        filesList.splice(idx, 1);
+    }
+    renderFiles();
+}
+
+function renderFiles() {
+    const grid = $('filesGrid');
+    grid.innerHTML = '';
+    filesList.forEach((f, idx) => {
+        const el = document.createElement('div');
+        el.className = 'file-card';
+        el.innerHTML = `
+            <span class="order-badge">${idx + 1}</span>
+            <img src="${f.url}">
+            <button class="remove" title="Удалить">✕</button>
+            <span class="fname">${f.file.name}</span>
+        `;
+        el.querySelector('.remove').addEventListener('click', () => removeFile(f.id));
+        grid.appendChild(el);
+    });
+    $('filesToolbar').classList.toggle('visible', filesList.length > 0);
+    $('filesCount').textContent = `Выбрано фото для склейки: ${filesList.length}`;
+}
+
+// Показывать колонки только для сетки
+$('stitchDirection').addEventListener('change', function() {
+    $('colsGroup').style.display = this.value === 'grid' ? '' : 'none';
+});
+
+/* 3. СКЛЕЙКА ФОТО НА HTML5 CANVAS */
+$('mergeBtn').addEventListener('click', async () => {
+    if (filesList.length < 2) {
+        alert('Пожалуйста, выберите минимум 2 фотографии для объединения!');
+        return;
+    }
+
+    // Загружаем объекты картинок
+    const loadedImgs = await Promise.all(filesList.map(item => {
+        return new Promise(resolve => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.src = item.url;
+        });
+    }));
+
+    const dir = $('stitchDirection').value;
+    const gap = parseInt($('gapSize').value) || 0;
+    const bgColor = $('bgColor').value;
+    const format = $('outFormat').value;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let totalWidth = 0, totalHeight = 0;
+
+    if (dir === 'horizontal') {
+        // Выравниваем по максимальной высоте
+        const maxHeight = Math.max(...loadedImgs.map(i => i.naturalHeight));
+        const scaled = loadedImgs.map(img => {
+            const ratio = maxHeight / img.naturalHeight;
+            return { img, w: Math.round(img.naturalWidth * ratio), h: maxHeight };
+        });
+        totalWidth = scaled.reduce((sum, i) => sum + i.w, 0) + (gap * (scaled.length - 1));
+        totalHeight = maxHeight;
+
+        canvas.width = totalWidth;
+        canvas.height = totalHeight;
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, totalWidth, totalHeight);
+
+        let currentX = 0;
+        scaled.forEach(item => {
+            ctx.drawImage(item.img, currentX, 0, item.w, item.h);
+            currentX += item.w + gap;
+        });
+
+    } else if (dir === 'vertical') {
+        // Выравниваем по максимальной ширине
+        const maxWidth = Math.max(...loadedImgs.map(i => i.naturalWidth));
+        const scaled = loadedImgs.map(img => {
+            const ratio = maxWidth / img.naturalWidth;
+            return { img, w: maxWidth, h: Math.round(img.naturalHeight * ratio) };
+        });
+        totalWidth = maxWidth;
+        totalHeight = scaled.reduce((sum, i) => sum + i.h, 0) + (gap * (scaled.length - 1));
+
+        canvas.width = totalWidth;
+        canvas.height = totalHeight;
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, totalWidth, totalHeight);
+
+        let currentY = 0;
+        scaled.forEach(item => {
+            ctx.drawImage(item.img, 0, currentY, item.w, item.h);
+            currentY += item.h + gap;
+        });
+
+    } else if (dir === 'grid') {
+        const cols = parseInt($('gridCols').value) || 2;
+        const rows = Math.ceil(loadedImgs.length / cols);
+        
+        // Берем базовый размер ячейки
+        const cellWidth = Math.max(...loadedImgs.map(i => i.naturalWidth));
+        const cellHeight = Math.max(...loadedImgs.map(i => i.naturalHeight));
+
+        totalWidth = (cellWidth * cols) + (gap * (cols - 1));
+        totalHeight = (cellHeight * rows) + (gap * (rows - 1));
+
+        canvas.width = totalWidth;
+        canvas.height = totalHeight;
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, totalWidth, totalHeight);
+
+        loadedImgs.forEach((img, idx) => {
+            const r = Math.floor(idx / cols);
+            const c = idx % cols;
+            const x = c * (cellWidth + gap);
+            const y = r * (cellHeight + gap);
+
+            // Вписываем с сохранением пропорций по центру ячейки
+            const ratio = Math.min(cellWidth / img.naturalWidth, cellHeight / img.naturalHeight);
+            const dw = Math.round(img.naturalWidth * ratio);
+            const dh = Math.round(img.naturalHeight * ratio);
+            const dx = x + Math.round((cellWidth - dw) / 2);
+            const dy = y + Math.round((cellHeight - dh) / 2);
+
+            ctx.drawImage(img, dx, dy, dw, dh);
+        });
+    }
+
+    // Сохранение и вывод превью
+    canvas.toBlob(blob => {
+        const ext = format === 'image/png' ? 'png' : format === 'image/webp' ? 'webp' : 'jpg';
+        const fileName = `merged-${Date.now()}.${ext}`;
+        
+        // Скачиваем файл
+        saveAs(blob, fileName);
+
+        // Показываем в блоке результатов
+        $('mergedPreview').src = URL.createObjectURL(blob);
+        $('resultInfo').textContent = `Разрешение итогового кадра: ${totalWidth} × ${totalHeight} px. Файл сохранен на ваше устройство!`;
+        $('resultBlock').style.display = 'block';
+        $('resultBlock').scrollIntoView({ behavior: 'smooth' });
+    }, format, 0.92);
+});
+
+/* 4. Поиск Ctrl+K */
+const TOOLS = [
+    { t: "Объединить фото в одно онлайн", c: "Склейка", u: "obedinit-foto.html", k: "склеить объединить коллаж соединить" },
+    { t: "Пакетная обработка для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb 3:4" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать вес" }
+];
+const modal = $('cmdModal'), input = $('cmdInput'), res = $('cmdResults');
+$('cmdTrigger').addEventListener('click', () => { modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); });
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); modal.classList.add('active'); input.focus(); }
+    if (e.key==='Escape') modal.classList.remove('active');
+});
+input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
+function renderCmd(q){
+    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" onclick="location.href='${t.u}'"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
+}
+renderCmd('');
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

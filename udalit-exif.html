@@ -2,278 +2,990 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить EXIF и метаданные с фото онлайн бесплатно — очистить GPS и инфо о камере | BatchPhoto</title>
+    <meta name="description" content="Бесплатный онлайн сервис для полного удаления EXIF метаданных, геопозиции (GPS) и информации об устройстве со снимков. Пакетная очистка фото без потери качества и без загрузки на сервер.">
+    <meta name="keywords" content="удалить exif онлайн, очистить метаданные фото, убрать gps с фото, стереть данные камеры, очистить метаданные онлайн, удалить геопозицию с картинки, batch photo exif cleaner">
+    <link rel="canonical" href="https://batchphoto.ru/udalit-exif.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Удалить EXIF и метаданные с фото онлайн — очистка GPS и приватность">
+    <meta property="og:description" content="Удалите геолокацию, модель телефона и дату съёмки перед публикацией в сети или на Авито. 100% конфиденциально.">
+    <meta property="og:url" content="https://batchphoto.ru/udalit-exif.html">
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <!-- Стили 1-в-1 с эталоном сайта -->
+    <style>
+        :root {
+            --primary: #0088cc;
+            --primary-hover: #0077b5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        [data-theme="dark"] {
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --danger: #f87171;
+            --success: #34d399;
+            --warning: #fbbf24;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка сайта */
+        .site-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .logo-area .logo-domain {
+            color: var(--primary);
+        }
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .search-trigger kbd {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 0.75rem;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-item {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+        }
+        .theme-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            color: inherit;
+        }
+
+        /* Контейнер страницы */
+        .page-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        .breadcrumbs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .breadcrumbs a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+
+        .security-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            border-radius: 9999px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 0 auto 16px;
+        }
+        [data-theme="dark"] .security-pill {
+            background: #1e3a8a33;
+            color: #93c5fd;
+            border-color: #1e40af;
+        }
+
+        .main-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        .main-title span {
+            color: var(--primary);
+        }
+        .main-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        .custom-dropzone {
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        [data-theme="dark"] .custom-dropzone {
+            background: #0f172a50;
+            border-color: #334155;
+        }
+        .custom-dropzone:hover, .custom-dropzone.dragover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+        [data-theme="dark"] .custom-dropzone:hover {
+            background: #0f172a;
+        }
+        .custom-dropzone .icon-wrap {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .custom-dropzone .drop-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .custom-dropzone .drop-hint {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        /* Список файлов */
+        .files-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .files-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+        }
+        .files-table th {
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .files-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        .badge-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-warning {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        [data-theme="dark"] .badge-warning {
+            background: #78350f44;
+            color: #fde68a;
+        }
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        [data-theme="dark"] .badge-success {
+            background: #064e3b44;
+            color: #a7f3d0;
+        }
+
+        /* Строка настроек */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .form-group select:focus, .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            user-select: none;
+            margin-top: 26px;
+        }
+        .checkbox-label input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Кнопка действия */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.15s ease;
+        }
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+        .btn-action:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Карточки преимуществ */
+        .section-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 860px) {
+            .header-nav { display: none; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+
+    <!-- Проверка темы ДО рендера страницы -->
     <script>
-        // Запускается мгновенно до показа сайта:
         if (localStorage.getItem('bp_theme_v2') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Удаление EXIF и GPS из фото онлайн — BatchPhoto.ru</title>
-    <meta name="description" content="Бесплатная очистка EXIF, GPS-координат, даты и метаданных камеры с фотографий онлайн. 100% приватность: файлы обрабатываются прямо в браузере.">
-    <meta name="keywords" content="удалить exif, стереть gps с фото, очистить метаданные jpeg, удалить геопозицию, просмотр exif онлайн">
-    <link rel="canonical" href="https://batchphoto.ru/udalit-exif.html">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+
+    <!-- Сторонние библиотеки для пакетного архивирования на клиенте -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <!-- Schema.org Microdata -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Удаление EXIF и метаданных с фото онлайн",
+          "url": "https://batchphoto.ru/udalit-exif.html",
+          "applicationCategory": "SecurityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "RUB"
+          },
+          "featureList": [
+            "Полное стирание геолокации GPS (широта, долгота, высота)",
+            "Удаление модели смартфона/камеры, серийного номера и объектива",
+            "Стирание даты и точного времени съёмки",
+            "Очистка IPTC, XMP и истории редактирования в Adobe Photoshop",
+            "Пакетная очистка до 100 фотографий за раз",
+            "100% конфиденциальность без передачи файлов на сервер"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://batchphoto.ru/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Удалить EXIF и метаданные",
+              "item": "https://batchphoto.ru/udalit-exif.html"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Что такое EXIF и почему опасно публиковать фото с ним?",
+              "answer": {
+                "@type": "Answer",
+                "text": "EXIF — это служебные данные, которые камера или смартфон скрыто записывают в каждый файл. Они включают точные GPS-координаты вашего дома или работы, модель устройства, дату съемки и серийный номер. Публикуя такие фото на досках объявлений (Авито) или форумах, вы раскрываете своё точное местоположение."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Удаляют ли Telegram, WhatsApp или VK метаданные автоматически?",
+              "answer": {
+                "@type": "Answer",
+                "text": "При отправке фото в сжатом виде (обычное сообщение) мессенджеры часто стирают EXIF. Однако при отправке фото 'Файлом / Документом' (без сжатия) метаданные и координаты GPS передаются получателю полностью! Наш сервис позволяет заранее очистить файлы перед любой отправкой."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Ухудшается ли качество фотографии после удаления EXIF?",
+              "answer": {
+                "@type": "Answer",
+                "text": "Нет. Наш инструмент перезаписывает чистое пиксельное полотно с высоким качеством сжатия (95–100%) либо в формат PNG без сжатия. Визуально картинка остается абсолютно идентичной оригиналу."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
-<!-- Единая шапка сайта как в index.html -->
-<header class="site-header">
-    <div class="container">
-        <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
-        <button class="search-trigger" id="cmdTrigger">🔍 Поиск инструмента <kbd>Ctrl K</kbd></button>
-        <nav class="nav">
-            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
-            <a href="szhatie-foto.html">🗜️ Сжатие</a>
-            <a href="konverter-webp.html">🌐 WebP</a>
-            <a href="udalit-exif.html" style="color:var(--accent,#3b82f6)">🛡️ EXIF</a>
-            <a href="vodjanoj-znak.html">© Водяной знак</a>
-            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
-        </nav>
-    </div>
-</header>
+    <!-- Шапка точно как в obedinit-foto.html -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🖼️</span>
+                <span>BatchPhoto<span class="logo-domain">.ru</span></span>
+            </a>
 
-<main>
-    <!-- HERO БЛОК -->
-    <div class="hero">
-        <div class="badge">🔒 100% Приватно — фото обрабатываются локально без отправки на сервер</div>
-        <h1>Удаление EXIF, GPS <span>и метаданных с фото</span></h1>
-        <p>Стирайте координаты съемки, дату, модель смартфона или камеры и серийные номера перед публикацией в сети или отправкой клиентам.</p>
-    </div>
+            <div class="header-center">
+                <a href="index.html" class="search-trigger">
+                    <span>🔍</span>
+                    <span>Поиск инструмента</span>
+                    <kbd>Ctrl K</kbd>
+                </a>
+            </div>
 
-    <!-- РАБОЧАЯ ОБЛАСТЬ (DROPZONE И НАСТРОЙКИ) -->
-    <div class="container">
-        <section class="workspace-section" style="max-width:850px; margin:0 auto 50px auto;">
-            
-            <!-- Дропзона: input строго скрыт через inline style -->
-            <div class="dropzone" id="dropzone" style="cursor:pointer; text-align:center; padding:45px 20px; border:2px dashed var(--border,#cbd5e1); border-radius:16px; background:var(--card-bg,#ffffff); transition:border-color .2s;">
-                <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/heic" style="display:none !important;">
-                <div style="font-size:48px; margin-bottom:12px;">🛡️</div>
-                <h3 style="margin:0 0 8px 0; font-size:20px;">Перетащите сюда фото для очистки EXIF</h3>
-                <p style="margin:0 0 18px 0; color:var(--muted,#64748b); font-size:14px;">Или нажмите кнопку для выбора файлов с компьютера или телефона</p>
-                <button type="button" class="btn" style="background:#0284c7; color:#fff; padding:12px 28px; font-weight:600; border-radius:10px; border:none; cursor:pointer; font-size:15px; box-shadow:0 4px 12px rgba(2,132,199,0.25);">
-                    Выбрать изображения
+            <nav class="header-nav">
+                <a href="foto-dlya-marketpleisov.html" class="nav-item">🛍️ Маркетплейсы</a>
+                <a href="szhat-foto.html" class="nav-item">🗜️ Сжатие</a>
+                <a href="konvertirovat-v-webp.html" class="nav-item">🌐 WebP</a>
+                <a href="udalit-exif.html" class="nav-item active">🛡️ EXIF</a>
+                <a href="vodyanoj-znak-na-foto.html" class="nav-item">©️ Водяной знак</a>
+            </nav>
+
+            <button class="theme-btn" id="themeToggle" title="Сменить тему">🌙</button>
+        </div>
+    </header>
+
+    <div class="page-wrap">
+
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Приватность и EXIF</span>
+        </div>
+
+        <!-- Центральный заголовок -->
+        <div class="main-heading">
+            <div class="security-pill">
+                <span>🔒</span> Все фото обрабатываются на вашем компьютере без отправки на сервер
+            </div>
+            <h1 class="main-title">Удалить EXIF и метаданные <span>онлайн</span></h1>
+            <p class="main-desc">Очистите геолокацию (GPS), модель смартфона, точное время съемки и историю Photoshop со своих снимков перед отправкой клиентам или публикацией в сети.</p>
+        </div>
+
+        <!-- Главная карточка инструмента -->
+        <div class="main-card">
+
+            <!-- Дропзона загрузки -->
+            <div class="custom-dropzone" id="dropzone">
+                <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple style="display: none;">
+                <div class="icon-wrap">🛡️</div>
+                <div class="drop-title">Перетащите фотографии для очистки метаданных</div>
+                <div class="drop-hint">JPG, PNG, WebP • Поддерживается пакетная загрузка нескольких файлов</div>
+            </div>
+
+            <!-- Рабочая область после выбора файлов -->
+            <div id="workspace" style="display: none;">
+                
+                <div class="files-header">
+                    <div>
+                        <strong>Загружено файлов: <span id="filesCount">0</span></strong>
+                        <span id="totalSizeText" style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;"></span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" id="addMoreBtn" style="background: none; border: 1px solid var(--border-color); color: var(--text-color); border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; cursor: pointer;">+ Добавить ещё</button>
+                        <button type="button" id="clearBtn" style="background: none; border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; cursor: pointer;">Очистить всё</button>
+                    </div>
+                </div>
+
+                <!-- Таблица со списком фото и детектором EXIF -->
+                <div style="max-height: 260px; overflow-y: auto; margin-bottom: 16px;">
+                    <table class="files-table">
+                        <thead>
+                            <tr>
+                                <th>Имя файла</th>
+                                <th>Размер</th>
+                                <th>Статус метаданных</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filesTableBody">
+                            <!-- Заполняется динамически через JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Настройки очистки -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formatSelect">Формат сохранения</label>
+                        <select id="formatSelect">
+                            <option value="original">Сохранить исходный формат</option>
+                            <option value="image/jpeg">JPG / JPEG (.jpg)</option>
+                            <option value="image/webp">WEBP (.webp, легче на 30%)</option>
+                            <option value="image/png">PNG (.png, без потерь)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="qualityBox">
+                        <label for="qualityInput">Качество сжатия: <span id="qualityLabel">95%</span></label>
+                        <input type="range" id="qualityInput" min="70" max="100" value="95" style="padding: 0; height: 32px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="anonRenameCheckbox" checked>
+                            <span>Анонимизировать имена файлов</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Кнопка действия -->
+                <button type="button" class="btn-action" id="cleanBtn">
+                    ⚡ Удалить метаданные и скачать (<span id="btnFilesCount">0</span> фото)
                 </button>
-                <div style="margin-top:16px; font-size:12px; color:var(--muted,#64748b);">
-                    🔒 Файлы не уходят в интернет — мгновенная обработка в оперативной памяти браузера
-                </div>
-            </div>
 
-            <!-- ПАНЕЛЬ РЕДАКТОРА (ПОЯВЛЯЕТСЯ ПРИ ВЫБОРЕ ФАЙЛОВ) -->
-            <div class="editor-panel" id="editorPanel" style="display:none; margin-top:24px; padding:24px; background:var(--card-bg,#fff); border-radius:16px; border:1px solid var(--border,#e2e8f0);">
-                
-                <h3 style="margin-top:0; margin-bottom:16px; font-size:18px;">Параметры очистки:</h3>
-                
-                <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
-                    <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
-                        <input type="checkbox" id="stripAllExif" checked style="width:18px; height:18px; margin-top:2px;">
-                        <span><strong>Полная анонимизация (Рекомендуется)</strong><br><small style="color:var(--muted,#64748b)">Удаляет GPS-координаты, дату, модель камеры, объектив, настройки выдержки и серийные номера.</small></span>
-                    </label>
-
-                    <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
-                        <input type="checkbox" id="stripGpsOnly" style="width:18px; height:18px;">
-                        <span>Стереть только геолокацию (GPS)</span>
-                    </label>
-
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:10px;">
-                        <div>
-                            <label style="display:block; font-size:13px; margin-bottom:6px; font-weight:600;">Формат на выходе:</label>
-                            <select id="outputFormat" style="width:100%; padding:9px 12px; border-radius:8px; border:1px solid var(--border,#cbd5e1); background:var(--bg,#fff); color:inherit;">
-                                <option value="jpeg" selected>JPEG (Очищенный)</option>
-                                <option value="webp">WebP (Макс. сжатие)</option>
-                                <option value="png">PNG (Без потерь)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="display:block; font-size:13px; margin-bottom:6px; font-weight:600;">Качество: <span id="qualityVal">90%</span></label>
-                            <input type="range" id="jpegQuality" min="40" max="100" value="90" style="width:100%; height:8px; margin-top:10px;">
-                        </div>
+                <!-- Прогресс бар -->
+                <div id="progressWrap" style="display: none; margin-top: 16px; text-align: center;">
+                    <div style="font-size: 0.85rem; margin-bottom: 6px; font-weight: 500;" id="progressText">Очистка метаданных...</div>
+                    <div style="height: 6px; background: var(--border-color); border-radius: 3px; max-width: 300px; margin: 0 auto; overflow: hidden;">
+                        <div id="progressBar" style="height: 100%; width: 0%; background: var(--primary); transition: width 0.2s;"></div>
                     </div>
                 </div>
 
-                <!-- Кнопка запуска -->
-                <div style="display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--border,#e2e8f0);">
-                    <div>Выбрано фото: <strong id="selectedCount">0</strong></div>
-                    <button type="button" id="processBtn" style="background:#16a34a; color:#fff; border:none; padding:12px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:15px;">
-                        🛡️ Очистить EXIF и Скачать ZIP
-                    </button>
+            </div>
+
+        </div>
+
+        <!-- Преимущества и объяснение работы -->
+        <h2 class="section-title">Какую информацию мы стираем с ваших фото</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--danger);">📍</span> Геолокация и GPS-координаты
                 </div>
-
+                <p class="feature-desc">Удаляются точная широта, долгота и высота над уровнем моря. Никто не сможет выяснить по снимку адрес вашей квартиры, дачи или школы ребенка.</p>
             </div>
-        </section>
-    </div>
 
-    <!-- БЛОК "ПРИВАТНОСТЬ И EXIF: ПОПУЛЯРНЫЕ ЗАДАЧИ" (ИСПОЛЬЗУЕТ РОДНОЙ СТИЛЬ WORKSPACES-GRID) -->
-    <section id="catalog">
-        <div class="container">
-            <h2 class="section-title">Приватность и EXIF: Популярные задачи</h2>
-            <p class="section-sub">Быстрые сценарии для защиты персональных данных и подготовки снимков к безопасной публикации.</p>
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">📱</span> Модель устройства и серийный номер
+                </div>
+                <p class="feature-desc">Стираются название смартфона (например, iPhone 15 Pro, Samsung S24), версия прошивки, уникальный серийный номер матрицы и параметры объектива.</p>
+            </div>
 
-            <div class="workspaces-grid">
-                
-                <!-- Карточка 1 -->
-                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
-                    <div class="workspace-card">
-                        <h3>📍 Удаление GPS и геопозиции <span>→</span></h3>
-                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
-                            Сотрите точные координаты места съемки (широту и долготу), чтобы скрыть домашний адрес и локацию.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Очистка широты и долготы <span>GPS</span></li>
-                            <li>Удаление высоты над уровнем моря <span>ALT</span></li>
-                        </ul>
-                    </div>
-                </a>
-
-                <!-- Карточка 2 -->
-                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
-                    <div class="workspace-card">
-                        <h3>🧹 Полная очистка метаданных <span>→</span></h3>
-                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
-                            Удаление блоков EXIF, IPTC и XMP: удаляются серийные номера техники, имя фотографа и софт.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Стереть серийный номер <span>100%</span></li>
-                            <li>Удалить теги Photoshop / редакторов <span>XMP</span></li>
-                        </ul>
-                    </div>
-                </a>
-
-                <!-- Карточка 3 -->
-                <a href="#dropzone" class="workspace-card-link" onclick="document.getElementById('fileInput').click()">
-                    <div class="workspace-card">
-                        <h3>📅 Скрытие даты съемки <span>→</span></h3>
-                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
-                            Устранение исходных временных меток файла (DateTimeOriginal), сохраняя приватность архивов.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Очистить дату и время <span>DATE</span></li>
-                            <li>Сброс меток создания <span>TIME</span></li>
-                        </ul>
-                    </div>
-                </a>
-
-                <!-- Карточка 4 -->
-                <a href="szhatie-foto.html" class="workspace-card-link">
-                    <div class="workspace-card">
-                        <h3>🌐 Очистить и Сжать для сайта <span>→</span></h3>
-                        <p style="font-size:13px; color:var(--muted,#64748b); line-height:1.5; margin:8px 0 12px 0;">
-                            Совместите удаление метаданных с уменьшением веса для ускорения открытия интернет-страниц.
-                        </p>
-                        <ul class="tool-list">
-                            <li>Сжатие без потери качества <span>-70%</span></li>
-                            <li>Пакетная конвертация <span>ZIP</span></li>
-                        </ul>
-                    </div>
-                </a>
-
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--warning);">🕒</span> Точная дата и история правок
+                </div>
+                <p class="feature-desc">Уничтожаются дата и время создания кадра, превью-миниатюры (thumbnails), а также XMP-теги графических редакторов с историей слоев Photoshop.</p>
             </div>
         </div>
-    </section>
 
-    <!-- ТЕГИ ПО ТЕМЕ EXIF -->
-    <section id="popular" style="padding-top:20px;">
-        <div class="container">
-            <h2 class="section-title">Часто ищут по теме метаданных</h2>
-            <div class="tag-cloud">
-                <a href="udalit-exif.html">🛡️ стереть геопозицию с фото</a>
-                <a href="udalit-exif.html">📍 удалить GPS из JPEG</a>
-                <a href="udalit-exif.html">🧹 очистить метаданные онлайн</a>
-                <a href="udalit-exif.html">📅 скрыть дату съемки на фото</a>
-                <a href="udalit-exif.html">📷 удалить модель телефона из фото</a>
-                <a href="szhatie-foto.html">🗜️ сжать фото без exif</a>
-                <a href="konverter-webp.html">🌐 конвертер в webp без метаданных</a>
-                <a href="foto-dlya-marketpleisov.html">🛍️ фото для вайлдберриз без exif</a>
+        <!-- Пошаговое руководство -->
+        <div class="main-card" style="line-height: 1.7; font-size: 0.95rem;">
+            <h2 style="font-size: 1.35rem; margin-top: 0; margin-bottom: 14px;">Зачем удалять EXIF данные перед публикацией?</h2>
+            <p>Когда вы делаете фотографию на современный смартфон или зеркальную камеру, в файл помимо изображения незаметно вшивается блок технических метаданных формата <strong>EXIF (Exchangeable Image File Format)</strong>. Это полезно для фотографов, но представляет прямую угрозу конфиденциальности в обычной жизни:</p>
+            
+            <ul style="margin: 12px 0 16px 20px;">
+                <li><strong>Продажа вещей на Авито и Юле:</strong> фото товара, сделанное дома, содержит координаты вашей квартиры с точностью до 1–2 метров.</li>
+                <li><strong>Отправка фото документов:</strong> скрытые данные содержат дату создания и уникальный ID камеры.</li>
+                <li><strong>Публикация в блогах и на сайтах:</strong> очистка от метаданных уменьшает вес файла на 15–80 КБ, ускоряя загрузку страниц.</li>
+            </ul>
+
+            <h3 style="font-size: 1.15rem; margin-top: 20px; margin-bottom: 10px;">Как работает гарантированная очистка?</h3>
+            <p style="margin: 0;">Наш сервис использует надежный аппаратный метод: изображение декодируется и заново перерисовывается в изолированном контейнере HTML5 Canvas. При этом сохраняются только визуальные пиксели снимка, а все текстовые заголовки, координаты и скрытые блоки данных безвозвратно отсекаются.</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="main-card">
+            <h2 style="font-size: 1.35rem; margin-top: 0; margin-bottom: 20px;">Часто задаваемые вопросы</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                    <h3 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Безопасно ли очищать конфиденциальные снимки?</h3>
+                    <p class="feature-desc">Абсолютно. Вся обработка выполняется исключительно силами вашего браузера на вашем процессоре. Фотографии не отправляются на удаленный сервер, гарантируя 100% приватность.</p>
+                </div>
+                <div style="border-top: 1px solid var(--border-color); padding-top: 14px;">
+                    <h3 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Удаляют ли мессенджеры метаданные автоматически?</h3>
+                    <p class="feature-desc">Telegram и WhatsApp сжимают фото и удаляют EXIF только при обычной отправке. Если вы отправите фото «как файл» (документом), все геоданные и модель камеры останутся внутри. Наш сервис позволяет удалить EXIF заблаговременно.</p>
+                </div>
+                <div style="border-top: 1px solid var(--border-color); padding-top: 14px;">
+                    <h3 style="font-size: 1.05rem; margin-bottom: 6px; font-weight: 600;">Ухудшится ли качество снимка?</h3>
+                    <p class="feature-desc">Нет, если в настройках выбрано качество 95–100% или формат PNG. Визуально вы не заметите никакой разницы с исходником.</p>
+                </div>
             </div>
         </div>
-    </section>
-</main>
 
-<!-- Поиск Ctrl+K -->
-<div class="modal-overlay" id="cmdModal">
-    <div class="cmd-modal">
-        <div class="cmd-input-box">🔍 <input type="text" id="cmdInput" placeholder="Введите задачу: «вайлдберриз», «webp», «exif», «цвет», «размер»…"></div>
-        <div class="cmd-results" id="cmdResults"></div>
     </div>
-</div>
 
-<footer>
-    <div class="container">
-        <div class="footer-links">
-            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
-            <a href="szhatie-foto.html">Сжатие</a>
-            <a href="konverter-webp.html">WebP</a>
-            <a href="udalit-exif.html">EXIF</a>
-            <a href="vodjanoj-znak.html">Водяной знак</a>
-            <a href="filtry-i-cvet.html">Цветокоррекция</a>
-            <a href="izmenit-razmer-foto.html">Ресайз</a>
+    <!-- Подвал сайта -->
+    <footer style="padding: 24px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+        <div class="header-container" style="justify-content: center;">
+            <p>&copy; 2025 BatchPhoto.ru — Пакетная очистка метаданных и защита приватности онлайн. Все операции выполняются локально в браузере.</p>
         </div>
-        <p>© 2026 BatchPhoto.ru — Пакетная очистка метаданных онлайн. Все файлы обрабатываются в вашем браузере.</p>
-    </div>
-</footer>
+    </footer>
 
-<script>
-/* Переключение темы */
-(function(){
-    const s = localStorage.getItem('bp-theme');
-    if(s) document.documentElement.dataset.theme = s;
-    const b = document.getElementById('themeBtn');
-    if(b) {
-        b.textContent = s === 'light' ? '☀️' : '🌙';
-        b.addEventListener('click', () => {
-            const n = document.documentElement.dataset.theme === 'light' ? '' : 'light';
-            document.documentElement.dataset.theme = n;
-            localStorage.setItem('bp-theme', n);
-            b.textContent = n === 'light' ? '☀️' : '🌙';
+    <!-- Скрипт очистки метаданных -->
+    <script>
+        // Инициализация темы 🌙 / ☀️
+        const themeBtn = document.getElementById('themeToggle');
+        function syncThemeIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('bp_theme_v2', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('bp_theme_v2', 'dark');
+            }
+            syncThemeIcon();
         });
-    }
-})();
+        syncThemeIcon();
 
-/* Клик по дропзоне открывает выбор файлов */
-const dz = document.getElementById('dropzone');
-const fi = document.getElementById('fileInput');
-if(dz && fi) {
-    dz.addEventListener('click', (e) => {
-        if(e.target !== fi) fi.click();
-    });
-}
+        // Поиск по сайту по Ctrl+K
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
 
-/* Поиск Ctrl+K */
-const TOOLS = [
-    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps геолокация" },
-    { t: "Пакетная обработка фото для Wildberries (1200×1600)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб карточка 3:4" },
-    { t: "Подгонка фото для Ozon (1200×1600 и 1500×1500)", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "озон ozon зум 1:1" },
-    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg" },
-    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес" }
-];
-const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
-function openCmd(){ modal.classList.add('active'); input.value=''; render(''); input.focus(); }
-function closeCmd(){ modal.classList.remove('active'); }
-document.getElementById('cmdTrigger').addEventListener('click', openCmd);
-modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
-document.addEventListener('keydown', e => {
-    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
-    if (e.key==='Escape') closeCmd();
-});
-input.addEventListener('input', () => render(input.value.toLowerCase()));
-function render(q){
-    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
-    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
-    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
-}
-render('');
-</script>
+        // DOM элементы
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const workspace = document.getElementById('workspace');
+        const filesTableBody = document.getElementById('filesTableBody');
+        const filesCount = document.getElementById('filesCount');
+        const totalSizeText = document.getElementById('totalSizeText');
+        const btnFilesCount = document.getElementById('btnFilesCount');
+        const addMoreBtn = document.getElementById('addMoreBtn');
+        const clearBtn = document.getElementById('clearBtn');
 
-<script>
-    window.BP_CONFIG = {
-        defaultPreset: 'compress',
-        defaultTab: 'exif',
-        allowedTabs: ['exif']
-    };
-</script>
-<script src="js/engine.js"></script>
+        const formatSelect = document.getElementById('formatSelect');
+        const qualityBox = document.getElementById('qualityBox');
+        const qualityInput = document.getElementById('qualityInput');
+        const qualityLabel = document.getElementById('qualityLabel');
+        const anonRenameCheckbox = document.getElementById('anonRenameCheckbox');
 
+        const cleanBtn = document.getElementById('cleanBtn');
+        const progressWrap = document.getElementById('progressWrap');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+
+        // Хранилище загруженных файлов
+        let fileQueue = [];
+
+        // Drag & Drop
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files.length) {
+                addFiles(Array.from(e.dataTransfer.files));
+            }
+        });
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length) {
+                addFiles(Array.from(e.target.files));
+            }
+            fileInput.value = ''; // сброс для повторного выбора
+        });
+        addMoreBtn.addEventListener('click', () => fileInput.click());
+        clearBtn.addEventListener('click', () => {
+            fileQueue = [];
+            renderTable();
+            workspace.style.display = 'none';
+            dropzone.style.display = 'block';
+        });
+
+        // Проверка заголовков JPEG на наличие маркера APP1 (EXIF / GPS)
+        async function checkExifPresence(file) {
+            return new Promise((resolve) => {
+                if (!file.type.includes('jpeg') && !file.type.includes('jpg')) {
+                    resolve(false);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onloadend = function(e) {
+                    const arr = new Uint8Array(e.target.result);
+                    // Проверяем JPEG SOI маркер 0xFFD8
+                    if (arr.length > 4 && arr[0] === 0xFF && arr[1] === 0xD8) {
+                        for (let i = 2; i < arr.length - 4; i++) {
+                            // Маркер APP1 (0xFFE1) указывает на наличие EXIF
+                            if (arr[i] === 0xFF && arr[i+1] === 0xE1) {
+                                resolve(true);
+                                return;
+                            }
+                        }
+                    }
+                    resolve(false);
+                };
+                // Читаем только первые 64 КБ заголовка файла
+                reader.readAsArrayBuffer(file.slice(0, 65536));
+            });
+        }
+
+        async function addFiles(newFiles) {
+            const validImages = newFiles.filter(f => f.type.startsWith('image/'));
+            if (!validImages.length) {
+                alert('Пожалуйста, выберите файлы изображений (JPG, PNG, WebP).');
+                return;
+            }
+
+            for (const f of validImages) {
+                const hasExif = await checkExifPresence(f);
+                fileQueue.push({
+                    file: f,
+                    name: f.name,
+                    size: f.size,
+                    hasExif: hasExif,
+                    status: 'ready'
+                });
+            }
+
+            dropzone.style.display = 'none';
+            workspace.style.display = 'block';
+            renderTable();
+        }
+
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' Б';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' КБ';
+            return (bytes / 1048576).toFixed(2) + ' МБ';
+        }
+
+        function renderTable() {
+            filesTableBody.innerHTML = '';
+            let totalBytes = 0;
+
+            fileQueue.forEach((item, idx) => {
+                totalBytes += item.size;
+                const tr = document.createElement('tr');
+
+                const nameTd = document.createElement('td');
+                nameTd.innerHTML = `<span style="font-weight: 500;">${item.name}</span>`;
+
+                const sizeTd = document.createElement('td');
+                sizeTd.style.color = 'var(--text-muted)';
+                sizeTd.textContent = formatBytes(item.size);
+
+                const statusTd = document.createElement('td');
+                if (item.status === 'done') {
+                    statusTd.innerHTML = `<span class="badge-status badge-success">✓ Метаданные стёрты</span>`;
+                } else if (item.hasExif) {
+                    statusTd.innerHTML = `<span class="badge-status badge-warning">⚠️ Обнаружен EXIF / GPS</span>`;
+                } else {
+                    statusTd.innerHTML = `<span class="badge-status" style="background: var(--bg-color); color: var(--text-muted); border: 1px solid var(--border-color);">Готов к очистке</span>`;
+                }
+
+                tr.appendChild(nameTd);
+                tr.appendChild(sizeTd);
+                tr.appendChild(statusTd);
+                filesTableBody.appendChild(tr);
+            });
+
+            filesCount.textContent = fileQueue.length;
+            btnFilesCount.textContent = fileQueue.length;
+            totalSizeText.textContent = `(${formatBytes(totalBytes)})`;
+        }
+
+        // Управление качеством
+        formatSelect.addEventListener('change', () => {
+            qualityBox.style.display = formatSelect.value === 'image/png' ? 'none' : 'block';
+        });
+        qualityInput.addEventListener('input', () => {
+            qualityLabel.textContent = qualityInput.value + '%';
+        });
+
+        // Функция гарантированной очистки через перерисовку на Canvas
+        function cleanImageCanvas(file, targetFormat, targetQuality) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth || img.width;
+                    canvas.height = img.naturalHeight || img.height;
+                    const ctx = canvas.getContext('2d');
+
+                    // Заливаем белым фоном для прозрачных PNG при конвертации в JPG
+                    if (targetFormat === 'image/jpeg') {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+
+                    // Перерисовываем чистое пиксельное полотно (EXIF отсекается на 100%)
+                    ctx.drawImage(img, 0, 0);
+
+                    canvas.toBlob((blob) => {
+                        URL.revokeObjectURL(img.src);
+                        if (blob) resolve(blob);
+                        else reject(new Error('Canvas toBlob failed'));
+                    }, targetFormat, targetQuality);
+                };
+                img.onerror = () => {
+                    URL.revokeObjectURL(img.src);
+                    reject(new Error('Ошибка загрузки изображения'));
+                };
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        // Кнопка очистки и скачивания
+        cleanBtn.addEventListener('click', async () => {
+            if (!fileQueue.length) return;
+
+            cleanBtn.disabled = true;
+            progressWrap.style.display = 'block';
+            progressBar.style.width = '0%';
+
+            const isAnonRename = anonRenameCheckbox.checked;
+            const quality = parseInt(qualityInput.value, 10) / 100;
+
+            const isBatch = fileQueue.length > 1;
+            const zip = isBatch ? new JSZip() : null;
+
+            let processedCount = 0;
+
+            for (let i = 0; i < fileQueue.length; i++) {
+                const item = fileQueue[i];
+                progressText.textContent = `Очистка ${i + 1} из ${fileQueue.length}: ${item.name}...`;
+
+                // Определение формата
+                let outFormat = formatSelect.value;
+                if (outFormat === 'original') {
+                    outFormat = item.file.type || 'image/jpeg';
+                }
+
+                let ext = 'jpg';
+                if (outFormat === 'image/png') ext = 'png';
+                if (outFormat === 'image/webp') ext = 'webp';
+
+                try {
+                    const cleanedBlob = await cleanImageCanvas(item.file, outFormat, quality);
+                    item.status = 'done';
+
+                    // Генерация имени файла
+                    let finalName = '';
+                    if (isAnonRename) {
+                        const pad = (i + 1).toString().padStart(2, '0');
+                        finalName = `clean_photo_${pad}.${ext}`;
+                    } else {
+                        const rawName = item.name.substring(0, item.name.lastIndexOf('.')) || item.name;
+                        finalName = `${rawName}_noexif.${ext}`;
+                    }
+
+                    if (isBatch) {
+                        zip.file(finalName, cleanedBlob);
+                    } else {
+                        // Одиночное скачивание
+                        saveAs(cleanedBlob, finalName);
+                    }
+                } catch (err) {
+                    console.error('Ошибка при обработке:', item.name, err);
+                }
+
+                processedCount++;
+                progressBar.style.width = `${Math.round((processedCount / fileQueue.length) * 85)}%`;
+            }
+
+            renderTable();
+
+            // Если пакет — скачиваем общий ZIP
+            if (isBatch && zip) {
+                progressText.textContent = 'Упаковка файлов в ZIP-архив...';
+                const zipBlob = await zip.generateAsync({ type: 'blob' }, (metadata) => {
+                    progressBar.style.width = `${85 + Math.round(metadata.percent * 0.15)}%`;
+                });
+                saveAs(zipBlob, `BatchPhoto_no_exif_${Date.now()}.zip`);
+            }
+
+            progressText.textContent = 'Готово! Метаданные успешно стёрты.';
+            progressBar.style.width = '100%';
+
+            setTimeout(() => {
+                cleanBtn.disabled = false;
+                progressWrap.style.display = 'none';
+            }, 1200);
+        });
+    </script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -282,8 +994,10 @@ render('');
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
     ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 </html>

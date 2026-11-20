@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сжать PDF онлайн бесплатно — уменьшить размер файла ПДФ без потери качества</title>
+    <meta name="description" content="Бесплатное сжатие PDF файлов онлайн прямо в браузере. Уменьшите вес сканов и документов для Госуслуг, почты или налоговой. 100% конфиденциально без отправки на сервер.">
+    <meta name="keywords" content="сжать pdf онлайн, уменьшить размер pdf, сжатие pdf для госуслуг, уменьшить вес пдф, сжать скан pdf, оптимизировать pdf бесплатно">
+    <link rel="canonical" href="https://batchphoto.ru/szhat-pdf.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Сжать PDF онлайн бесплатно — уменьшить размер файла ПДФ">
+    <meta property="og:description" content="Быстрое и безопасное сжатие PDF документов. Оптимизация размера для отправки по e-mail и загрузки на госпорталы без потери читаемости.">
+    <meta property="og:url" content="https://batchphoto.ru/szhat-pdf.html">
+    <meta property="og:type" content="website">
+
+    <!-- PDF.js and PDF-Lib CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebApplication",
+                "name": "Сжать PDF онлайн — BatchPhoto",
+                "url": "https://batchphoto.ru/szhat-pdf.html",
+                "applicationCategory": "MultimediaApplication",
+                "operatingSystem": "All",
+                "description": "Бесплатный веб-инструмент для сжатия и уменьшения веса PDF документов без отправки на внешние серверы.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "RUB"
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Главная",
+                        "item": "https://batchphoto.ru/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Сжать PDF онлайн",
+                        "item": "https://batchphoto.ru/szhat-pdf.html"
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Как сильно можно уменьшить размер файла PDF?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Для сканированных документов и PDF с иллюстрациями размер файла обычно уменьшается на 40–80%. Включение опции «Оттенки серого» позволяет уменьшить размер скана в 3-5 раз."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Подойдет ли сжатый PDF для загрузки на Госуслуги или в суд?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Да. Инструмент создает стандартные файлы PDF 1.7, которые полностью соответствуют требованиям портала Госуслуг (до 5 или 10 МБ), ФНС и системы «Мой Арбитр»."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Безопасно ли сжимать конфиденциальные договоры?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Абсолютно безопасно. Все вычисления производятся в оперативной памяти вашего браузера. Файлы физически не покидают ваше устройство и не передаются по сети."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-hover: #374fe0;
+            --primary-light: #eef2ff;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-sm: 6px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 24px -4px rgba(0,0,0,0.08);
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0b0f19;
+            --card-bg: #151d30;
+            --card-border: #263352;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary-light: #1e293b;
+            --shadow-md: 0 8px 24px -4px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* HEADER */
+        .site-header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .logo-domain {
+            color: var(--primary);
+        }
+
+        .header-center {
+            flex: 1;
+            max-width: 320px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-color);
+            border: 1px solid var(--card-border);
+            padding: 0.45rem 0.85rem;
+            border-radius: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-trigger:hover {
+            border-color: var(--primary);
+            color: var(--text-main);
+        }
+
+        .search-trigger kbd {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.75rem;
+            font-family: inherit;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.4rem 0.7rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* MAIN WRAPPER */
+        .page-container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* BREADCRUMBS */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            list-style: none;
+        }
+
+        .breadcrumbs a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumbs span.divider {
+            opacity: 0.5;
+        }
+
+        /* HERO */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .security-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(16, 185, 129, 0.12);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.825rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+
+        [data-theme="dark"] .security-pill {
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.18);
+        }
+
+        .main-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-title span {
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* MAIN CARD */
+        .main-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2.5rem;
+        }
+
+        /* DROPZONE */
+        .custom-dropzone {
+            border: 2px dashed var(--primary);
+            background-color: var(--primary-light);
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .custom-dropzone:hover, .custom-dropzone.drag-over {
+            border-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+        }
+
+        .dropzone-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .dropzone-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .dropzone-sub {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-select {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-select:hover {
+            background: var(--primary-hover);
+        }
+
+        /* WORKSPACE */
+        .workspace {
+            display: none;
+        }
+
+        .file-info-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .file-meta-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .file-meta-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .file-meta-sub {
+            color: var(--text-muted);
+            font-size: 0.825rem;
+        }
+
+        .btn-change-file {
+            background: none;
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-change-file:hover {
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        /* PRESET TILES */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .level-card {
+            background: var(--bg-color);
+            border: 2px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .level-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .level-card.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .level-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-green);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        .level-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .level-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .level-desc {
+            font-size: 0.775rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* GRAYSCALE OPTION */
+        .extra-options {
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 0.9rem 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .extra-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .extra-options input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .tag-pill {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            font-size: 0.725rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* ACTION BUTTON */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-action:disabled {
+            background: var(--card-border);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* PROGRESS & RESULTS */
+        .status-box {
+            display: none;
+            margin-top: 1.25rem;
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .status-box.show {
+            display: block;
+        }
+
+        .progress-bar-wrap {
+            height: 8px;
+            background: var(--card-border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.6rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        /* RESULT SUMMARY */
+        .result-summary {
+            display: none;
+            margin-top: 1.5rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 2px solid var(--accent-green);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .result-summary.show {
+            display: block;
+        }
+
+        .result-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-chips {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .chip.saved {
+            background: var(--accent-green);
+            color: #ffffff;
+            border-color: var(--accent-green);
+        }
+
+        /* FEATURES 3-GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* SEO CONTENT */
+        .seo-content {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .seo-content h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .seo-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 1.25rem 0 0.5rem;
+            color: var(--text-main);
+        }
+
+        .seo-content p, .seo-content ul {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .seo-content ul {
+            padding-left: 1.5rem;
+        }
+
+        .seo-content li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+
+        .faq-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--card-border);
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 860px) {
+            .header-nav {
+                display: none;
+            }
+            .levels-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🖼️</span>
+                <span>BatchPhoto<span class="logo-domain">.ru</span></span>
+            </a>
+            <div class="header-center">
+                <a href="index.html" class="search-trigger">
+                    <span>🔍</span>
+                    <span>Поиск инструмента</span>
+                    <kbd>Ctrl K</kbd>
+                </a>
+            </div>
+            <nav class="header-nav">
+                <a href="foto-dlya-marketpleisov.html" class="nav-item">🛍️ Маркетплейсы</a>
+                <a href="szhat-foto.html" class="nav-item">🗜️ Сжатие</a>
+                <a href="konvertirovat-v-webp.html" class="nav-item">🌐 WebP</a>
+                <a href="udalit-exif.html" class="nav-item">🛡️ EXIF</a>
+                <a href="vodyanoj-znak-na-foto.html" class="nav-item">©️ Водяной знак</a>
+            </nav>
+            <button class="theme-btn" id="themeToggle" title="Сменить тему">🌙</button>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <!-- BREADCRUMBS -->
+        <ul class="breadcrumbs">
+            <li><a href="index.html">Главная</a></li>
+            <li><span class="divider">/</span></li>
+            <li>PDF инструменты</li>
+            <li><span class="divider">/</span></li>
+            <li>Сжать PDF онлайн</li>
+        </ul>
+
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="security-pill">
+                <span>🔒</span> Все PDF обрабатываются на вашем компьютере без отправки на сервер
+            </div>
+            <h1 class="main-title">Сжать PDF <span>онлайн</span></h1>
+            <p class="subtitle">Уменьшите размер многостраничного PDF для отправки по электронной почте, загрузки на Госуслуги, в налоговую или арбитражный суд.</p>
+        </section>
+
+        <!-- MAIN CARD -->
+        <div class="main-card">
+            <!-- DROPZONE -->
+            <div class="custom-dropzone" id="dropzone">
+                <input type="file" id="fileInput" accept="application/pdf" style="display: none;">
+                <span class="dropzone-icon">🗜️</span>
+                <div class="dropzone-title">Перетащите PDF файл сюда или выберите на диске</div>
+                <div class="dropzone-sub">Поддерживаются любые сканы, документы и выписки без ограничений</div>
+                <button type="button" class="btn-select" onclick="document.getElementById('fileInput').click()">
+                    <span>📁</span> Выбрать PDF файл
+                </button>
+            </div>
+
+            <!-- WORKSPACE -->
+            <div class="workspace" id="workspace">
+                <div class="file-info-header">
+                    <div class="file-meta-box">
+                        <span class="file-meta-title" id="fileNameLabel">document.pdf</span>
+                        <span class="file-meta-sub" id="fileSizeLabel">Исходный размер: 0 МБ • 0 страниц</span>
+                    </div>
+                    <button type="button" class="btn-change-file" id="btnChangeFile">Сменить файл</button>
+                </div>
+
+                <!-- COMPRESSION PRESETS -->
+                <div class="levels-grid">
+                    <div class="level-card" data-level="extreme">
+                        <span class="level-icon">⚡</span>
+                        <div class="level-title">Экстремальное</div>
+                        <div class="level-desc">Для лимитов до 2–5 МБ (Госуслуги, e-mail). 100 DPI.</div>
+                    </div>
+
+                    <div class="level-card active" data-level="balanced">
+                        <div class="level-badge">Рекомендуется</div>
+                        <span class="level-icon">⚖️</span>
+                        <div class="level-title">Оптимальное</div>
+                        <div class="level-desc">Идеальный баланс резкости текста и компактного веса. 140 DPI.</div>
+                    </div>
+
+                    <div class="level-card" data-level="light">
+                        <span class="level-icon">📖</span>
+                        <div class="level-title">Мягкое</div>
+                        <div class="level-desc">Высокая детализация для печати и презентаций. 200 DPI.</div>
+                    </div>
+                </div>
+
+                <!-- GRAYSCALE FILTER -->
+                <div class="extra-options">
+                    <label>
+                        <input type="checkbox" id="chkGrayscale">
+                        <span>Перевести в оттенки серого (Черно-белый скан)</span>
+                    </label>
+                    <span class="tag-pill">-40% дополнительно</span>
+                </div>
+
+                <!-- ACTION BUTTON -->
+                <button type="button" class="btn-action" id="btnStartCompress">
+                    <span>⚡</span> Сжать PDF и скачать
+                </button>
+
+                <!-- PROGRESS BAR -->
+                <div class="status-box" id="statusBox">
+                    <div id="statusText">Подготовка документа к обработке...</div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- SUCCESS SUMMARY -->
+                <div class="result-summary" id="resultSummary">
+                    <div class="result-title">🎉 Документ успешно сжат!</div>
+                    <div class="comparison-chips">
+                        <div class="chip" id="lblOldSize">Было: 0 МБ</div>
+                        <div class="chip" id="lblNewSize">Стало: 0 МБ</div>
+                        <div class="chip saved" id="lblSavedPercent">Экономия: 0%</div>
+                    </div>
+                    <button type="button" class="btn-action" id="btnDownloadAgain" style="max-width: 320px; margin: 0 auto;">
+                        <span>📥</span> Скачать повторно
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEATURES 3-GRID -->
+        <section class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🛡️</span>
+                <h3>Конфиденциальность 100%</h3>
+                <p>Все страницы обрабатываются локально во встроенном движке браузера. Ваши персональные данные, печати и подписи никогда не покинут компьютер.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏛️</span>
+                <h3>Идеально для Госуслуг</h3>
+                <p>Удобно сжимает тяжелые многостраничные сканы договоров под лимиты госпорталов (до 2 МБ, 5 МБ или 10 МБ) с сохранением читаемости подписей.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Без очередей и рекламы</h3>
+                <p>Никаких ограничений на количество файлов, ожидания в очереди конвертации или водяных знаков. Быстро, бесплатно и без регистрации.</p>
+            </div>
+        </section>
+
+        <!-- DETAILED SEO CONTENT -->
+        <article class="seo-content">
+            <h2>Как уменьшить размер файла PDF онлайн без потери резкости текста</h2>
+            <p>Практически каждый пользователь сталкивался с ситуацией, когда отсканированный документ, трудовой договор или бухгалтерский отчет весит 25–40 мегабайт, а форма отправки на сайте разрешает прикрепить файл размером не более 5 или 10 МБ. Онлайн-инструмент <strong>BatchPhoto</strong> решает эту задачу всего за пару кликов прямо в вашем веб-обозревателе.</p>
+
+            <h3>Почему PDF-файлы весят так много?</h3>
+            <p>В большинстве случаев избыточный размер PDF возникает из-за неоптимизированных растровых сканов. Офисные МФУ и сканеры по умолчанию сохраняют страницы с разрешением 300–600 DPI в формате несжатого изображения. Наш алгоритм производит интеллектуальную перекодировку графического слоя:</p>
+            <ul>
+                <li><strong>Интеллектуальный даунскейлинг:</strong> Избыточная плотность точек пересчитывается до стандартных офисных 140–150 DPI, что снижает вес в 3–4 раза без визуального размытия.</li>
+                <li><strong>Умное JPEG-сжатие:</strong> Алгоритм удаляет незаметный глазу цифровой шум со сканированной бумаги.</li>
+                <li><strong>Черно-белая оптимизация (Grayscale):</strong> Перевод цветного скана документа в градацию серого устраняет лишние цветовые каналы и уменьшает итоговый файл дополнительно на 30–50%.</li>
+            </ul>
+        </article>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section">
+            <h2 class="faq-title">Часто задаваемые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">❓ Не станет ли текст в документе размытым и нечитаемым?</div>
+                <div class="faq-answer">При использовании режима «Оптимальное» качество остается достаточным для комфортного чтения с экрана и печати на обычном принтере. Если вам важно сохранить микрошрифты в сносках, выберите режим «Мягкое».</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Почему чисто текстовый PDF сжался незначительно?</div>
+                <div class="faq-answer">Если ваш PDF был сгенерирован напрямую из Word или Excel и содержит только векторные шрифты, он уже предельно оптимизирован и весит несколько десятков килобайт. Основной эффект сжатия достигается на документах, содержащих фотографии, сканы, печати или схемы.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Передаются ли файлы третьим лицам?</div>
+                <div class="faq-answer">Нет. В отличие от других сайтов, BatchPhoto выполняет скрипты исключительно на процессоре вашего ПК (Client-Side Processing). Ни один файл не передается через интернет.</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>© 2026 BatchPhoto.ru — Быстрая пакетная обработка изображений и документов в браузере без серверов.</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- THEME SYNC ---
+        const themeBtn = document.getElementById('themeToggle');
+        function syncThemeIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('bp_theme_v2', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('bp_theme_v2', 'dark');
+            }
+            syncThemeIcon();
+        });
+        syncThemeIcon();
+
+        // --- SHORTCUT (CTRL+K) ---
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+
+        // --- STATE ---
+        let currentRawBuffer = null;
+        let originalFileName = 'document.pdf';
+        let originalFileSize = 0;
+        let selectedLevel = 'balanced';
+        let compressedBlob = null;
+
+        // --- DOM REFS ---
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const workspace = document.getElementById('workspace');
+        const fileNameLabel = document.getElementById('fileNameLabel');
+        const fileSizeLabel = document.getElementById('fileSizeLabel');
+        const btnChangeFile = document.getElementById('btnChangeFile');
+        const btnStartCompress = document.getElementById('btnStartCompress');
+        const chkGrayscale = document.getElementById('chkGrayscale');
+        const statusBox = document.getElementById('statusBox');
+        const statusText = document.getElementById('statusText');
+        const progressFill = document.getElementById('progressFill');
+        const resultSummary = document.getElementById('resultSummary');
+        const lblOldSize = document.getElementById('lblOldSize');
+        const lblNewSize = document.getElementById('lblNewSize');
+        const lblSavedPercent = document.getElementById('lblSavedPercent');
+        const btnDownloadAgain = document.getElementById('btnDownloadAgain');
+
+        // Preset cards selection
+        document.querySelectorAll('.level-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                selectedLevel = card.getAttribute('data-level');
+            });
+        });
+
+        // File drop & select
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('drag-over');
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                loadFile(e.dataTransfer.files[0]);
+            }
+        });
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                loadFile(e.target.files[0]);
+            }
+        });
+
+        btnChangeFile.addEventListener('click', () => {
+            workspace.style.display = 'none';
+            dropzone.style.display = 'block';
+            resultSummary.classList.remove('show');
+            statusBox.classList.remove('show');
+            fileInput.value = '';
+            currentRawBuffer = null;
+        });
+
+        async function loadFile(file) {
+            if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+                alert('Пожалуйста, выберите файл формата PDF.');
+                return;
+            }
+
+            originalFileName = file.name;
+            originalFileSize = file.size;
+
+            fileNameLabel.textContent = originalFileName;
+            fileSizeLabel.textContent = `Исходный размер: ${(originalFileSize / (1024 * 1024)).toFixed(2)} МБ • Анализ страниц...`;
+
+            dropzone.style.display = 'none';
+            workspace.style.display = 'block';
+            resultSummary.classList.remove('show');
+
+            try {
+                currentRawBuffer = await file.arrayBuffer();
+                // Read page count
+                const docCopy = currentRawBuffer.slice(0);
+                const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(docCopy) }).promise;
+                fileSizeLabel.textContent = `Исходный размер: ${(originalFileSize / (1024 * 1024)).toFixed(2)} МБ • Страниц: ${pdf.numPages}`;
+            } catch (err) {
+                console.error(err);
+                fileSizeLabel.textContent = `Исходный размер: ${(originalFileSize / (1024 * 1024)).toFixed(2)} МБ`;
+            }
+        }
+
+        // --- COMPRESSION PIPELINE ---
+        btnStartCompress.addEventListener('click', async () => {
+            if (!currentRawBuffer) return;
+
+            btnStartCompress.disabled = true;
+            resultSummary.classList.remove('show');
+            statusBox.classList.add('show');
+            progressFill.style.width = '0%';
+            statusText.textContent = 'Инициализация оптимизатора...';
+
+            // Config based on level
+            const configs = {
+                extreme: { scale: 1.25, quality: 0.52 }, // ~90-100 DPI
+                balanced: { scale: 1.8, quality: 0.72 },  // ~130-140 DPI
+                light: { scale: 2.4, quality: 0.84 }      // ~180-200 DPI
+            };
+            const cfg = configs[selectedLevel] || configs.balanced;
+            const isGrayscale = chkGrayscale.checked;
+
+            try {
+                // 1. Load source PDF with PDF.js
+                const bufferClone = currentRawBuffer.slice(0);
+                const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(bufferClone) }).promise;
+                const totalPages = pdf.numPages;
+
+                // 2. Create new target PDF with PDF-Lib
+                const { PDFDocument } = window.PDFLib;
+                const outPdf = await PDFDocument.create();
+
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d', { willReadFrequently: isGrayscale });
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const percent = Math.round((i / totalPages) * 100);
+                    statusText.textContent = `Сжатие: обработка страницы ${i} из ${totalPages} (${percent}%)...`;
+                    progressFill.style.width = percent + '%';
+
+                    const page = await pdf.getPage(i);
+                    const viewport = page.getViewport({ scale: cfg.scale });
+
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+                    // Apply Grayscale Filter if checked
+                    if (isGrayscale) {
+                        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const d = imgData.data;
+                        for (let j = 0; j < d.length; j += 4) {
+                            const gray = 0.299 * d[j] + 0.587 * d[j + 1] + 0.114 * d[j + 2];
+                            d[j] = gray;
+                            d[j + 1] = gray;
+                            d[j + 2] = gray;
+                        }
+                        ctx.putImageData(imgData, 0, 0);
+                    }
+
+                    // Convert to compressed JPEG data
+                    const jpegBase64 = canvas.toDataURL('image/jpeg', cfg.quality);
+                    const embeddedImage = await outPdf.embedJpg(jpegBase64);
+
+                    // Add page with original point-size ratio
+                    const unscaled = page.getViewport({ scale: 1.0 });
+                    const newPage = outPdf.addPage([unscaled.width, unscaled.height]);
+                    newPage.drawImage(embeddedImage, {
+                        x: 0,
+                        y: 0,
+                        width: unscaled.width,
+                        height: unscaled.height
+                    });
+                }
+
+                // Free canvas memory
+                canvas.width = 0;
+                canvas.height = 0;
+
+                statusText.textContent = 'Финализация и упаковка PDF...';
+
+                const compressedBytes = await outPdf.save();
+                compressedBlob = new Blob([compressedBytes], { type: 'application/pdf' });
+                const newSize = compressedBlob.size;
+
+                // Trigger automatic download
+                downloadCurrentResult();
+
+                // Compute summary
+                const oldMb = (originalFileSize / (1024 * 1024)).toFixed(2);
+                const newMb = (newSize / (1024 * 1024)).toFixed(2);
+                const savedPercent = Math.max(0, Math.round(((originalFileSize - newSize) / originalFileSize) * 100));
+
+                lblOldSize.textContent = `Было: ${oldMb} МБ`;
+                lblNewSize.textContent = `Стало: ${newMb} МБ`;
+                lblSavedPercent.textContent = `Экономия: -${savedPercent}%`;
+
+                statusBox.classList.remove('show');
+                resultSummary.classList.add('show');
+            } catch (err) {
+                console.error(err);
+                statusText.textContent = 'Ошибка при сжатии: ' + err.message;
+            } finally {
+                btnStartCompress.disabled = false;
+            }
+        });
+
+        function downloadCurrentResult() {
+            if (!compressedBlob) return;
+            const url = URL.createObjectURL(compressedBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = originalFileName.replace(/\.pdf$/i, '') + '_compressed.pdf';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, 200);
+        }
+
+        btnDownloadAgain.addEventListener('click', downloadCurrentResult);
+    </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

@@ -24,7 +24,6 @@
     <meta property="og:description" content="Защитите свои фотографии и карточки товаров за пару секунд. Нанесение копирайта, дат и водяных знаков сразу на 100 фото прямо в браузере.">
     <meta property="og:url" content="https://batchphoto.ru/vodjanoj-znak.html">
     <meta property="og:locale" content="ru_RU">
-
     <!-- Schema.org -->
     <script type="application/ld+json">
     {
@@ -42,7 +41,6 @@
       }
     }
     </script>
-
     <style>
         .preset-grid {
             display: grid;
@@ -78,7 +76,6 @@
         .preset-btn .p-title { font-size: 13px; font-weight: 700; }
         .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
         .preset-btn.active .p-sub { color: var(--primary); }
-
         .quick-tags {
             display: flex;
             gap: 6px;
@@ -102,7 +99,6 @@
     </style>
 </head>
 <body>
-
 <header class="site-header">
     <div class="container">
         <a href="index.html" class="logo">🖼️ Batch<span>Photo</span>.ru</a>
@@ -117,23 +113,18 @@
         </nav>
     </div>
 </header>
-
 <main class="container">
     <!-- ХЛЕБНЫЕ КРОШКИ -->
     <div class="breadcrumbs">
         <a href="index.html">Главная</a> / <span>Водяной знак на много фото сразу</span>
     </div>
-
     <!-- HERO -->
     <div class="hero">
         <div class="badge">🔒 Все фото обрабатываются на вашем устройстве и не сохраняются на серверах</div>
         <h1 id="pageH1">Водяной знак на много <span>фото сразу онлайн</span></h1>
         <p id="pageDesc">Пакетная защита каталога, карточек товаров и авторских фото. Наложите копирайт, никнейм, дату или диагональную защитную сетку пачкой до 100 штук.</p>
     </div>
-
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
-    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
-
+    
     <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
     <div class="card">
         
@@ -144,28 +135,23 @@
                 <span class="p-title">© Копирайт в угол</span>
                 <span class="p-sub">Справа внизу, 50%</span>
             </button>
-
             <button class="preset-btn" data-text="ОБРАЗЕЦ / PROTECTED" data-pos="tile" data-size="3" data-op="25" data-color="#ffffff">
                 <span class="p-title">🛡️ Защитная сетка</span>
                 <span class="p-sub">Плиткой по диагонали</span>
             </button>
-
             <button class="preset-btn" data-text="DATE_AUTO" data-pos="br" data-size="3" data-op="70" data-color="#f59e0b">
                 <span class="p-title">📅 Штамп даты</span>
                 <span class="p-sub">Желтая дата в угол</span>
             </button>
-
             <button class="preset-btn" data-text="@my_channel" data-pos="center" data-size="6" data-op="40" data-color="#ffffff">
                 <span class="p-title">✈️ Ник / Соцсети</span>
                 <span class="p-sub">По центру крупно</span>
             </button>
-
             <button class="preset-btn" data-text="НЕ ДЛЯ КОПИРОВАНИЯ" data-pos="tile" data-size="4" data-op="20" data-color="#ef4444">
                 <span class="p-title">🚫 Защита для Авито</span>
                 <span class="p-sub">Красная сетка</span>
             </button>
         </div>
-
         <!-- ДРОПЗОНА -->
         <div class="dropzone" id="dropzone" tabindex="0">
             <div class="icon">©️</div>
@@ -173,23 +159,19 @@
             <small>JPG, PNG, WebP до 100 файлов за один раз (работает Ctrl+V из буфера)</small>
             <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
         </div>
-
         <!-- Тулбар файлов -->
-        <div class="files-toolbar" id="filesToolbar">
+        <div class="files-toolbar" id="filesToolbar" style="display:none;">
             <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
             <button class="clear-btn" id="clearBtn">Очистить список</button>
         </div>
-
         <!-- Сетка загруженных изображений -->
         <div class="files-grid" id="filesGrid"></div>
-
         <!-- ВКЛАДКИ НАСТРОЕК -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="watermark">✍️ Настройки знака</button>
             <button class="tab-btn" data-tab="format">⚙️ Формат и сжатие</button>
             <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
         </div>
-
         <!-- ПАНЕЛЬ 1: ВОДЯНОЙ ЗНАК -->
         <div class="tab-panel active" id="panel-watermark">
             <div class="grid">
@@ -205,7 +187,6 @@
                         <button type="button" class="quick-tag-btn" onclick="insertSymbol('@')">+ @</button>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="wmPos">Расположение на фото</label>
                     <select id="wmPos">
@@ -217,19 +198,16 @@
                         <option value="tile">Сетка плиткой (Диагональный узор)</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="wmColor">Цвет надписи</label>
                     <input type="color" id="wmColor" value="#ffffff">
                 </div>
-
                 <div class="form-group">
                     <label for="wmOpacity">Прозрачность: <span id="wmOpacityVal" class="range-val">50%</span></label>
                     <div class="range-row">
                         <input type="range" id="wmOpacity" min="5" max="100" value="50">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label for="wmSize">Размер шрифта: <span id="wmSizeVal" class="range-val">4</span></label>
                     <div class="range-row">
@@ -239,9 +217,8 @@
                 </div>
             </div>
         </div>
-
         <!-- ПАНЕЛЬ 2: ФОРМАТ И КАЧЕСТВО -->
-        <div class="tab-panel" id="panel-format">
+        <div class="tab-panel" id="panel-format" style="display:none;">
             <div class="grid">
                 <div class="form-group">
                     <label for="format">Формат сохранения</label>
@@ -251,7 +228,6 @@
                         <option value="image/png">PNG (.png)</option>
                     </select>
                 </div>
-
                 <div class="form-group" id="qualityGroup">
                     <label for="quality">Качество: <span id="qualityVal" class="range-val">88%</span></label>
                     <div class="range-row">
@@ -260,9 +236,8 @@
                 </div>
             </div>
         </div>
-
         <!-- ПАНЕЛЬ 3: ИМЕНА ФАЙЛОВ -->
-        <div class="tab-panel" id="panel-rename">
+        <div class="tab-panel" id="panel-rename" style="display:none;">
             <div class="grid">
                 <div class="form-group">
                     <label for="renamePattern">Шаблон имени</label>
@@ -271,26 +246,23 @@
                 </div>
             </div>
         </div>
-
         <!-- КНОПКИ ЗАПУСКА -->
         <div class="btn-row">
             <button class="btn" id="processBtn">⚡ Наложить водяной знак и скачать ZIP</button>
-            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px; display:none;" title="Остановить">✕</button>
         </div>
-
         <!-- ПРОГРЕСС -->
-        <div class="progress-box" id="progressBox">
+        <div class="progress-box" id="progressBox" style="display:none;">
             <div class="progress-info">
                 <span id="progressStatus">Обработка изображений…</span>
                 <span id="progressPercent">0%</span>
             </div>
             <div class="progress-bar-bg">
-                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
             </div>
         </div>
-
         <!-- РЕЗУЛЬТАТ -->
-        <div class="result-box" id="resultBox">
+        <div class="result-box" id="resultBox" style="display:none;">
             <h3>🎉 Водяной знак успешно наложен!</h3>
             <p id="resultStats"></p>
             <div class="results-list" id="resultsList"></div>
@@ -310,7 +282,6 @@
                 </p>
                 <div style="font-size:12px; color:var(--primary); font-weight:700;">Рекомендуется: правый нижний угол, 40-50%</div>
             </div>
-
             <div class="workspace-card">
                 <h3>📢 Объявления на Авито и Юле</h3>
                 <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
@@ -318,7 +289,6 @@
                 </p>
                 <div style="font-size:12px; color:var(--accent); font-weight:700;">Рекомендуется: сетка плиткой (Tile), 25%</div>
             </div>
-
             <div class="workspace-card">
                 <h3>📷 Фотографы и авторы</h3>
                 <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
@@ -326,7 +296,6 @@
                 </p>
                 <div style="font-size:12px; color:var(--primary); font-weight:700;">Рекомендуется: по центру, размер 6-8</div>
             </div>
-
             <div class="workspace-card">
                 <h3>📅 Штамп даты и времени</h3>
                 <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
@@ -374,9 +343,6 @@
         </div>
     </section>
 
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
-    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
-
     <!-- SEO СТАТЬЯ -->
     <section>
         <div class="card" style="padding: 30px;">
@@ -389,7 +355,6 @@
                     <li><strong>Шаг 3:</strong> Настройте прозрачность и размер — надпись автоматически подгонит свой масштаб под каждое фото пропорционально его ширине.</li>
                     <li><strong>Шаг 4:</strong> Нажмите «Наложить водяной знак» — готовые файлы с вашим штампом автоматически загрузятся в удобном архиве.</li>
                 </ul>
-
                 <h3>Преимущества локальной браузерной обработки</h3>
                 <p>Все операции выполняются встроенным движком Canvas вашего браузера. Исходники ваших снимков высокого разрешения не передаются на сторонние сервера, не сжимаются сторонними алгоритмами и не могут быть перехвачены злоумышленниками.</p>
             </article>
@@ -405,14 +370,12 @@
                 Да, для этого используйте ползунок «Прозрачность». Значение 30–50% делает знак хорошо заметным, но при этом оставляет видимыми все детали под ним.
             </div>
         </details>
-
         <details class="faq-item">
             <summary>Будет ли размер текста одинаковым на фото разного разрешения?</summary>
             <div class="faq-body">
                 Да, алгоритм сервиса автоматически рассчитывает размер шрифта относительно ширины каждого отдельного изображения. Водяной знак будет выглядеть гармонично и на снимке 800×600, и на фото 4000×3000 пикселей.
             </div>
         </details>
-
         <details class="faq-item">
             <summary>Как защитить фото, чтобы знак нельзя было стереть?</summary>
             <div class="faq-body">
@@ -457,80 +420,282 @@
     </div>
 </footer>
 
-<!-- Конфигурация для engine.js -->
-<script>
-window.BP_CONFIG = {
-    allowedTabs: ['watermark', 'format', 'rename'],
-    defaultTab: 'watermark'
-};
-</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-<script src="js/engine.js"></script>
 
-<!-- Логика работы шаблонов и быстрой вставки символов -->
+<!-- ТОЧНЫЙ АЛГОРИТМ ОБРАБОТКИ ФОТО БЕЗ ИЗМЕНЕНИЯ РАЗМЕРА И БЕЗ БЕЛЫХ ПОЛЕЙ -->
 <script>
+let uploadedFiles = [];
+
+// Вспомогательные функции даты и символов
 function getTodayDateStr() {
     const d = new Date();
     const day = String(d.getDate()).padStart(2, '0');
     const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    return `${day}.${month}.${year}`;
+    return `${day}.${month}.${d.getFullYear()}`;
 }
-
 function insertSymbol(sym) {
     const el = document.getElementById('wmText');
-    if (!el) return;
-    el.value = sym + el.value;
-    el.focus();
+    if (el) { el.value = sym + el.value; el.focus(); }
 }
-
 function insertDate() {
     const el = document.getElementById('wmText');
-    if (!el) return;
-    el.value = getTodayDateStr();
-    el.focus();
+    if (el) { el.value = getTodayDateStr(); el.focus(); }
 }
 
-// Переключение готовых пресетов
+// Переключение ползунков и их значений
+document.getElementById('wmOpacity').addEventListener('input', e => {
+    document.getElementById('wmOpacityVal').textContent = e.target.value + '%';
+});
+document.getElementById('wmSize').addEventListener('input', e => {
+    document.getElementById('wmSizeVal').textContent = e.target.value;
+});
+document.getElementById('quality').addEventListener('input', e => {
+    document.getElementById('qualityVal').textContent = e.target.value + '%';
+});
+
+// Переключение вкладок
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+        btn.classList.add('active');
+        const target = document.getElementById('panel-' + btn.dataset.tab);
+        if (target) target.style.display = 'block';
+    });
+});
+
+// Работа с файлами и Дропзоной
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', e => {
+    if (e.target.files.length) addFiles(e.target.files);
+});
+document.addEventListener('paste', e => {
+    if (e.clipboardData.files.length) addFiles(e.clipboardData.files);
+});
+
+function addFiles(files) {
+    for (let file of files) {
+        if (file.type.startsWith('image/')) {
+            uploadedFiles.push(file);
+        }
+    }
+    updateFilesGrid();
+}
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+    uploadedFiles = [];
+    updateFilesGrid();
+});
+
+function updateFilesGrid() {
+    const grid = document.getElementById('filesGrid');
+    const toolbar = document.getElementById('filesToolbar');
+    const countSpan = document.getElementById('filesCount');
+    
+    grid.innerHTML = '';
+    if (uploadedFiles.length === 0) {
+        toolbar.style.display = 'none';
+        return;
+    }
+    
+    toolbar.style.display = 'flex';
+    countSpan.textContent = `Выбрано файлов: ${uploadedFiles.length}`;
+
+    uploadedFiles.forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'file-card';
+        item.style.cssText = 'position:relative; background:var(--bg-soft); border-radius:8px; padding:6px; font-size:11px; text-align:center;';
+        
+        const img = document.createElement('img');
+        img.style.cssText = 'width:100%; height:80px; object-fit:cover; border-radius:6px; display:block;';
+        img.src = URL.createObjectURL(file);
+
+        const name = document.createElement('div');
+        name.style.cssText = 'margin-top:4px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; color:var(--text);';
+        name.textContent = file.name;
+
+        item.appendChild(img);
+        item.appendChild(name);
+        grid.appendChild(item);
+    });
+}
+
+// Пресеты
 document.querySelectorAll('.preset-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         let text = btn.dataset.text;
         if (text === 'DATE_AUTO') text = getTodayDateStr();
-
-        const pos = btn.dataset.pos;
-        const size = btn.dataset.size;
-        const op = btn.dataset.op;
-        const col = btn.dataset.color;
-
-        const wmText = document.getElementById('wmText');
-        const wmPos = document.getElementById('wmPos');
-        const wmSize = document.getElementById('wmSize');
-        const wmSizeVal = document.getElementById('wmSizeVal');
-        const wmOpacity = document.getElementById('wmOpacity');
-        const wmOpacityVal = document.getElementById('wmOpacityVal');
-        const wmColor = document.getElementById('wmColor');
-
-        if (wmText) wmText.value = text;
-        if (wmPos) wmPos.value = pos;
-        if (wmColor) wmColor.value = col;
         
-        if (wmSize) {
-            wmSize.value = size;
-            if (wmSizeVal) wmSizeVal.textContent = size;
-        }
-        if (wmOpacity) {
-            wmOpacity.value = op;
-            if (wmOpacityVal) wmOpacityVal.textContent = op + '%';
-        }
-
-        // Автоскролл к форме
-        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('wmText').value = text;
+        document.getElementById('wmPos').value = btn.dataset.pos;
+        document.getElementById('wmColor').value = btn.dataset.color;
+        
+        document.getElementById('wmSize').value = btn.dataset.size;
+        document.getElementById('wmSizeVal').textContent = btn.dataset.size;
+        
+        document.getElementById('wmOpacity').value = btn.dataset.op;
+        document.getElementById('wmOpacityVal').textContent = btn.dataset.op + '%';
     });
+});
+
+// КЛЮЧЕВАЯ ФУНКЦИЯ: Отрисовка без искажения размеров и без белых рамок
+function processImage(file, settings) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            // СТРОГО оригинал 1:1 без лишних полей
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Если сохраняем в JPG, заполняем подложку белым ТОЛЬКО для прозрачных PNG источников
+            if (settings.format === 'image/jpeg') {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // Отрисовка оригинального фото без масштабирования
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            // Наложение водяного знака
+            if (settings.text) {
+                ctx.save();
+                ctx.globalAlpha = settings.opacity / 100;
+                ctx.fillStyle = settings.color;
+
+                // Пропорциональный размер шрифта от длины большей стороны
+                const maxDim = Math.max(canvas.width, canvas.height);
+                const fontSize = Math.max(14, Math.round(maxDim * (settings.size * 0.007 + 0.01)));
+                
+                ctx.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+                ctx.textBaseline = 'middle';
+
+                const textWidth = ctx.measureText(settings.text).width;
+                const margin = Math.round(fontSize * 0.8);
+
+                if (settings.pos === 'tile') {
+                    // Диагональная защитная сетка
+                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                    ctx.rotate(-Math.PI / 6);
+                    ctx.textAlign = 'center';
+
+                    const stepX = textWidth + fontSize * 2.5;
+                    const stepY = fontSize * 3.5;
+                    const diag = Math.sqrt(canvas.width * canvas.width + canvas.height * canvas.height);
+
+                    for (let y = -diag; y < diag; y += stepY) {
+                        for (let x = -diag; x < diag; x += stepX) {
+                            ctx.fillText(settings.text, x, y);
+                        }
+                    }
+                } else {
+                    let x = 0, y = 0;
+                    if (settings.pos === 'br') {
+                        ctx.textAlign = 'right';
+                        x = canvas.width - margin;
+                        y = canvas.height - margin - fontSize / 2;
+                    } else if (settings.pos === 'bl') {
+                        ctx.textAlign = 'left';
+                        x = margin;
+                        y = canvas.height - margin - fontSize / 2;
+                    } else if (settings.pos === 'tr') {
+                        ctx.textAlign = 'right';
+                        x = canvas.width - margin;
+                        y = margin + fontSize / 2;
+                    } else if (settings.pos === 'tl') {
+                        ctx.textAlign = 'left';
+                        x = margin;
+                        y = margin + fontSize / 2;
+                    } else if (settings.pos === 'center') {
+                        ctx.textAlign = 'center';
+                        x = canvas.width / 2;
+                        y = canvas.height / 2;
+                    }
+                    ctx.fillText(settings.text, x, y);
+                }
+                ctx.restore();
+            }
+
+            canvas.toBlob((blob) => {
+                URL.revokeObjectURL(url);
+                resolve(blob);
+            }, settings.format, settings.quality / 100);
+        };
+
+        img.src = url;
+    });
+}
+
+// Запуск обработки пачкой
+document.getElementById('processBtn').addEventListener('click', async () => {
+    if (!uploadedFiles.length) {
+        alert('Пожалуйста, добавьте хотя бы одно изображение.');
+        return;
+    }
+
+    const settings = {
+        text: document.getElementById('wmText').value.trim(),
+        pos: document.getElementById('wmPos').value,
+        color: document.getElementById('wmColor').value,
+        opacity: parseInt(document.getElementById('wmOpacity').value),
+        size: parseInt(document.getElementById('wmSize').value),
+        format: document.getElementById('format').value,
+        quality: parseInt(document.getElementById('quality').value),
+        pattern: document.getElementById('renamePattern').value || '{name}_wm'
+    };
+
+    const progressBox = document.getElementById('progressBox');
+    const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progressPercent');
+    const resultBox = document.getElementById('resultBox');
+
+    progressBox.style.display = 'block';
+    resultBox.style.display = 'none';
+
+    const zip = new JSZip();
+    const extMap = { 'image/jpeg': '.jpg', 'image/webp': '.webp', 'image/png': '.png' };
+    const ext = extMap[settings.format] || '.jpg';
+
+    for (let i = 0; i < uploadedFiles.length; i++) {
+        const file = uploadedFiles[i];
+        const blob = await processImage(file, settings);
+
+        // Именование файла
+        const rawName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+        let outName = settings.pattern.replace('{name}', rawName).replace('{n}', i + 1) + ext;
+
+        zip.file(outName, blob);
+
+        const pct = Math.round(((i + 1) / uploadedFiles.length) * 100);
+        progressBar.style.width = pct + '%';
+        progressPercent.textContent = pct + '%';
+    }
+
+    // Скачивание
+    const zipContent = await zip.generateAsync({ type: 'blob' });
+    saveAs(zipContent, 'watermarked_photos.zip');
+
+    progressBox.style.display = 'none';
+    resultBox.style.display = 'block';
+    document.getElementById('resultStats').textContent = `Успешно обработано фото: ${uploadedFiles.length}. Архив загружен.`;
 });
 
 /* Поиск Ctrl+K */
@@ -558,6 +723,7 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -566,7 +732,6 @@ renderCmd('');
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
-
     ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>

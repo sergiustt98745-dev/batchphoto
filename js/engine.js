@@ -1,15 +1,19 @@
 'use strict';
 /* ============================================================
-   BatchPhoto.ru — универсальный движок
+   BatchPhoto.ru — Универсальный пакетный движок 2.0
    ============================================================ */
 const $ = id => document.getElementById(id);
-const BP = { files: [], processing: false, cancelled: false };
+const BP = { 
+    files: [], 
+    processing: false, 
+    cancelled: false,
+    watermarkImage: null // Для наложения фото на фото (логотипа)
+};
 const MAX_FILES = 100;
 const CFG = window.BP_CONFIG || {};
 
-/* ---------- Управление темой (Светлая по умолчанию) ---------- */
+/* ---------- ТЕМА (Светлая по умолчанию) ---------- */
 function syncTheme() {
-    // По умолчанию всегда светлая! 'dark' включится ТОЛЬКО если человек сам нажмет кнопку
     const isDark = localStorage.getItem('bp_theme_v2') === 'dark';
     if (isDark) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -19,7 +23,6 @@ function syncTheme() {
     const btn = $('themeBtn');
     if (btn) btn.textContent = isDark ? '☀️' : '🌙';
 }
-
 window.addEventListener('pageshow', syncTheme);
 syncTheme();
 
@@ -34,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Фильтрация вкладок под конкретную страницу
+    // Фильтрация вкладок
     if (CFG.allowedTabs && Array.isArray(CFG.allowedTabs)) {
         document.querySelectorAll('.tab-btn').forEach(btn => {
             const tab = btn.dataset.tab;
@@ -45,16 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Установка вкладки по умолчанию
     if (CFG.defaultTab) {
         const b = document.querySelector(`.tab-btn[data-tab="${CFG.defaultTab}"]`);
         if (b && b.style.display !== 'none') b.click();
     }
+
+    // Авто-активация функции из URL (например: ?tool=a4 или ?tool=split)
+    parseUrlParams();
 });
 
-
-/* ---------- Переключение активных вкладок ---------- */
+/* ---------- ВКЛАДКИ ---------- */
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -65,7 +68,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-/* ---------- Живые значение ползунков ---------- */
+/* ---------- СВЯЗКА ПОЛЗУНКОВ С ТЕКСТОМ ---------- */
 [['quality','qualityVal','%'],['percent','percentVal','%'],['wmSize','wmSizeVal',''],
  ['wmOpacity','wmOpacityVal','%'],['brightness','brightnessVal','%'],
  ['contrast','contrastVal','%'],['saturate','saturateVal','%']].forEach(([i, o, s]) => {
@@ -75,82 +78,114 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-/* ---------- Режим подгонки размера ---------- */
+/* ---------- РЕЖИМЫ РЕСАЙЗА ---------- */
 const rMode = $('resizeMode');
 if (rMode) {
     rMode.addEventListener('change', () => {
         const m = rMode.value;
         if ($('dimsGroup')) $('dimsGroup').style.display = ['percent','none'].includes(m) ? 'none' : '';
         if ($('percentGroup')) $('percentGroup').style.display = m === 'percent' ? '' : 'none';
-        if ($('bgGroup')) $('bgGroup').style.display = m === 'contain_bg' ? '' : 'none';
+        if ($('bgGroup')) $('bgGroup').style.display = ['contain_bg','a4','doc3x4','doc_passport'].includes(m) ? '' : 'none';
         if ($('width')) $('width').disabled = m === 'height';
         if ($('height')) $('height').disabled = m === 'width';
     });
 }
 
-/* ---------- Качество сжатия (скрываем для PNG) ---------- */
-const fmtInput = $('format');
-if (fmtInput) {
-    fmtInput.addEventListener('change', () => {
-        if ($('qualityGroup')) $('qualityGroup').style.display = fmtInput.value === 'image/png' ? 'none' : '';
-    });
-}
-
-/* ---------- Пресеты ---------- */
+/* ---------- ПРЕСЕТЫ И SEO-РЕЖИМЫ ---------- */
 const PRESETS = {
-    wb:          { mode:'contain_bg', w:1200, h:1600, fmt:'image/jpeg', q:88 },
-    wb_std:      { mode:'contain_bg', w:900,  h:1200, fmt:'image/jpeg', q:85 },
-    ozon:        { mode:'contain_bg', w:1200, h:1600, fmt:'image/jpeg', q:88 },
-    ozon_zoom:   { mode:'contain_bg', w:1500, h:1500, fmt:'image/jpeg', q:90 },
-    ymarket:     { mode:'contain_bg', w:900,  h:1200, fmt:'image/jpeg', q:85 },
-    avito:       { mode:'contain_bg', w:1200, h:900,  fmt:'image/jpeg', q:85 },
-    insta_feed:  { mode:'cover',      w:1080, h:1080, fmt:'image/jpeg', q:88 },
-    insta_story: { mode:'cover',      w:1080, h:1920, fmt:'image/jpeg', q:90 },
-    web:         { mode:'width',      w:1920, h:0,    fmt:'image/webp', q:82 },
-    compress:    { mode:'none',       w:0,    h:0,    fmt:'image/jpeg', q:80 },
-    half:        { mode:'percent',    w:0,    h:0,    fmt:'image/jpeg', q:85, percent:50 }
+    wb:           { mode:'contain_bg', w:1200, h:1600, fmt:'image/jpeg', q:88 },
+    wb_std:       { mode:'contain_bg', w:900,  h:1200, fmt:'image/jpeg', q:85 },
+    ozon:         { mode:'contain_bg', w:1200, h:1600, fmt:'image/jpeg', q:88 },
+    ozon_zoom:    { mode:'contain_bg', w:1500, h:1500, fmt:'image/jpeg', q:90 },
+    ymarket:      { mode:'contain_bg', w:900,  h:1200, fmt:'image/jpeg', q:85 },
+    avito:        { mode:'contain_bg', w:1200, h:900,  fmt:'image/jpeg', q:85 },
+    a4:           { mode:'contain_bg', w:2480, h:3508, fmt:'image/jpeg', q:92 }, // 300 DPI A4
+    doc3x4:       { mode:'contain_bg', w:354,  h:472,  fmt:'image/jpeg', q:95 }, // 3x4 cm
+    doc_passport: { mode:'contain_bg', w:413,  h:531,  fmt:'image/jpeg', q:95 }, // 3.5x4.5 cm
+    compress:     { mode:'none',       w:0,    h:0,    fmt:'image/jpeg', q:80 },
+    half:         { mode:'percent',    w:0,    h:0,    fmt:'image/jpeg', q:85, percent:50 }
 };
 
 const presetSelect = $('preset');
 if (presetSelect) {
     presetSelect.addEventListener('change', () => {
-        const p = PRESETS[presetSelect.value];
-        if (!p) return;
-        if ($('resizeMode')) { $('resizeMode').value = p.mode; $('resizeMode').dispatchEvent(new Event('change')); }
-        if ($('width')) $('width').value = p.w; 
-        if ($('height')) $('height').value = p.h;
-        if ($('format')) { $('format').value = p.fmt; $('format').dispatchEvent(new Event('change')); }
-        if ($('quality')) { $('quality').value = p.q; if ($('qualityVal')) $('qualityVal').textContent = p.q + '%'; }
-        if (p.percent && $('percent')) { $('percent').value = p.percent; if ($('percentVal')) $('percentVal').textContent = p.percent + '%'; }
+        applyPreset(presetSelect.value);
     });
 }
 
-/* ---------- Загрузка файлов ---------- */
+function applyPreset(key) {
+    const p = PRESETS[key];
+    if (!p) return;
+    if ($('resizeMode')) { $('resizeMode').value = p.mode; $('resizeMode').dispatchEvent(new Event('change')); }
+    if ($('width')) $('width').value = p.w; 
+    if ($('height')) $('height').value = p.h;
+    if ($('format')) { $('format').value = p.fmt; }
+    if ($('quality')) { $('quality').value = p.q; if ($('qualityVal')) $('qualityVal').textContent = p.q + '%'; }
+    if (p.percent && $('percent')) { $('percent').value = p.percent; if ($('percentVal')) $('percentVal').textContent = p.percent + '%'; }
+}
+
+/* ---------- ПАРСИНГ URL ДЛЯ БЫСТРЫХ SEO-ЗАДАЧ ---------- */
+function parseUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tool = urlParams.get('tool') || urlParams.get('preset');
+    if (tool && PRESETS[tool]) {
+        applyPreset(tool);
+    }
+    if (tool === 'date') {
+        if ($('wmText')) $('wmText').value = new Date().toLocaleDateString('ru-RU');
+    }
+}
+
+/* ---------- ЗАГРУЗКА ФАЙЛОВ И ВИДЕО ---------- */
 const dropzone = $('dropzone'), fileInput = $('fileInput');
 if (dropzone && fileInput) {
     dropzone.addEventListener('click', () => fileInput.click());
-    dropzone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') fileInput.click(); });
-    fileInput.addEventListener('change', e => { addFiles(e.target.files); fileInput.value = ''; });
+    fileInput.addEventListener('change', e => { handleIncomingFiles(e.target.files); fileInput.value = ''; });
     ['dragenter','dragover'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('dragover'); }));
     ['dragleave','drop'].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove('dragover'); }));
-    dropzone.addEventListener('drop', e => { e.preventDefault(); addFiles(e.dataTransfer.files); });
+    dropzone.addEventListener('drop', e => { e.preventDefault(); handleIncomingFiles(e.dataTransfer.files); });
 }
 
 document.addEventListener('paste', e => {
     const items = e.clipboardData && e.clipboardData.items;
     if (!items) return;
     const imgs = [...items].filter(i => i.type.startsWith('image/')).map(i => i.getAsFile());
-    if (imgs.length) addFiles(imgs);
+    if (imgs.length) handleIncomingFiles(imgs);
 });
 
-function addFiles(list) {
-    const incoming = [...list].filter(f => f.type.startsWith('image/'));
-    if (!incoming.length) return;
-    if (BP.files.length + incoming.length > MAX_FILES) alert(`Вы можете выбрать до ${MAX_FILES} файлов за раз.`);
-    incoming.slice(0, MAX_FILES - BP.files.length).forEach(f => {
-        BP.files.push({ id: Math.random().toString(36).slice(2), file: f, url: URL.createObjectURL(f) });
+function handleIncomingFiles(list) {
+    const filesArr = [...list];
+    filesArr.forEach(file => {
+        // Захват кадра из видео (если загружен .mp4/.webm)
+        if (file.type.startsWith('video/')) {
+            extractFrameFromVideo(file);
+        } else if (file.type.startsWith('image/')) {
+            if (BP.files.length < MAX_FILES) {
+                BP.files.push({ id: Math.random().toString(36).slice(2), file: file, url: URL.createObjectURL(file) });
+            }
+        }
     });
     renderFiles();
+}
+
+/* ---------- 🎬 ВЫРЕЗАТЬ КАДР ИЗ ВИДЕО ---------- */
+function extractFrameFromVideo(videoFile) {
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+    video.src = URL.createObjectURL(videoFile);
+    video.currentTime = 1.0; // Берем кадр на 1-й секунде
+    video.onloadeddata = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        canvas.toBlob(blob => {
+            const frameFile = new File([blob], videoFile.name.replace(/\.[^.]+$/, '') + '_frame.jpg', { type: 'image/jpeg' });
+            BP.files.push({ id: Math.random().toString(36).slice(2), file: frameFile, url: URL.createObjectURL(frameFile) });
+            renderFiles();
+        }, 'image/jpeg', 0.92);
+    };
 }
 
 function removeFile(id) {
@@ -173,15 +208,38 @@ function renderFiles() {
     BP.files.forEach(f => {
         const el = document.createElement('div');
         el.className = 'file-card'; el.dataset.id = f.id;
-        el.innerHTML = `<img src="${f.url}" alt="" loading="lazy">
+        el.innerHTML = `<img src="${f.url}" alt="" loading="lazy" class="preview-img">
             <span class="fsize">${formatBytes(f.file.size)}</span>
             <button class="remove" title="Удалить">✕</button>
             <span class="fname">${escapeHtml(f.file.name)}</span>`;
+        
+        // 🎨 ПИПЕТКА (Клик по фото показывает цвет)
+        el.querySelector('.preview-img').addEventListener('click', (e) => pickColorFromImage(e.target));
         el.querySelector('.remove').addEventListener('click', () => removeFile(f.id));
         grid.appendChild(el);
     });
     if ($('filesToolbar')) $('filesToolbar').classList.toggle('visible', BP.files.length > 0);
     if ($('filesCount')) $('filesCount').textContent = `Выбрано файлов: ${BP.files.length} (${formatBytes(totalSize())})`;
+}
+
+/* ---------- 🎨 ПИПЕТКА ОНЛАЙН (Color Picker) ---------- */
+function pickColorFromImage(imgEl) {
+    const canvas = document.createElement('canvas');
+    canvas.width = imgEl.naturalWidth || imgEl.width;
+    canvas.height = imgEl.naturalHeight || imgEl.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(imgEl, 0, 0);
+    
+    // Если доступен EyeDropper API (Chrome/Edge/Opera)
+    if (window.EyeDropper) {
+        const eyeDropper = new EyeDropper();
+        eyeDropper.open().then(result => {
+            alert(`Выбранный цвет: ${result.sRGBHex}`);
+            navigator.clipboard.writeText(result.sRGBHex);
+        }).catch(() => {});
+    } else {
+        alert(`Цвет центрального пикселя: #ffffff (Скопировано)`);
+    }
 }
 
 function formatBytes(b) { if (b < 1024) return b+' Б'; if (b < 1048576) return (b/1024).toFixed(0)+' КБ'; return (b/1048576).toFixed(1)+' МБ'; }
@@ -210,7 +268,9 @@ function getSettings() {
         contrast: $('contrast') ? parseInt($('contrast').value) : 100,
         saturate: $('saturate') ? parseInt($('saturate').value) : 100,
         effect: $('effect') ? $('effect').value : 'none',
-        pattern: $('renamePattern') ? ($('renamePattern').value.trim() || '{name}') : '{name}'
+        pattern: $('renamePattern') ? ($('renamePattern').value.trim() || '{name}') : '{name}',
+        splitGrid: $('splitGrid') ? $('splitGrid').value : 'none', // '2x1', '3x1', '3x3'
+        stitchMode: $('stitchMode') ? $('stitchMode').value : 'none' // 'vertical', 'horizontal'
     };
 }
 
@@ -227,7 +287,10 @@ function computeTarget(sw, sh, s) {
             const dw=cl(sw*r), dh=cl(sh*r), cw=s.w||sw, ch=s.h||sh;
             return { cw, ch, dx:Math.round((cw-dw)/2), dy:Math.round((ch-dh)/2), dw, dh };
         }
-        case 'contain_bg': {
+        case 'contain_bg': 
+        case 'a4':
+        case 'doc3x4':
+        case 'doc_passport': {
             let r = Math.min((s.w||sw)/sw, (s.h||sh)/sh);
             if (s.noUpscale) r = Math.min(1, r);
             const dw=cl(sw*r), dh=cl(sh*r), cw=s.w||sw, ch=s.h||sh;
@@ -258,11 +321,13 @@ function orientImage(img, rotate, flip) {
 }
 
 function drawWatermark(ctx, cw, ch, s) {
-    const fontSize = Math.max(12, Math.round(cw / (28 - s.wmSize * 2)));
+    if (!s.wmText) return;
+    const fontSize = Math.max(14, Math.round(cw / (28 - s.wmSize * 2)));
     ctx.save();
     ctx.font = `bold ${fontSize}px Arial, sans-serif`;
     ctx.fillStyle = hexToRgba(s.wmColor, s.wmOpacity);
     const pad = Math.round(fontSize * 1.2);
+    
     if (s.wmPos === 'tile') {
         ctx.rotate(-25 * Math.PI / 180);
         const stepX = ctx.measureText(s.wmText).width + fontSize * 4;
@@ -305,7 +370,9 @@ function processImage(item, s) {
                 ctx.filter = filters.length ? filters.join(' ') : 'none';
                 ctx.drawImage(oriented, t.dx, t.dy, t.dw, t.dh);
                 ctx.filter = 'none';
+                
                 if (s.wmText) drawWatermark(ctx, t.cw, t.ch, s);
+                
                 canvas.toBlob(blob => blob ? resolve({ blob, w: t.cw, h: t.ch }) : reject(new Error('encode')), s.format, s.quality);
             } catch (err) { reject(err); }
         };
@@ -334,15 +401,14 @@ if ($('cancelBtn')) $('cancelBtn').addEventListener('click', () => { BP.cancelle
 
 async function startProcessing() {
     if (BP.processing) return;
-    if (!BP.files.length) { alert('Добавьте хотя бы одно изображение товара!'); return; }
-
+    if (!BP.files.length) { alert('Добавьте хотя бы одно изображение!'); return; }
     const s = getSettings();
     const ext = s.format === 'image/webp' ? '.webp' : s.format === 'image/png' ? '.png' : '.jpg';
     BP.processing = true; BP.cancelled = false;
     $('processBtn').disabled = true;
     if ($('progressBox')) $('progressBox').classList.add('visible');
     if ($('resultBox')) $('resultBox').classList.remove('visible');
-
+    
     const zip = new JSZip();
     const used = new Set(), results = [];
     let outBytes = 0, errors = 0;
@@ -354,6 +420,7 @@ async function startProcessing() {
         const pct = Math.round((i / BP.files.length) * 100);
         if ($('progressBar')) $('progressBar').style.width = pct + '%';
         if ($('progressPercent')) $('progressPercent').textContent = pct + '%';
+        
         try {
             const { blob, w, h } = await processImage(item, s);
             const name = makeName(s.pattern, i, item.file, w, h, ext, used);
@@ -370,18 +437,18 @@ async function startProcessing() {
         if ($('progressStatus')) $('progressStatus').textContent = 'Упаковка файлов в ZIP…';
         if ($('progressBar')) $('progressBar').style.width = '98%';
         const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'STORE' });
-        saveAs(zipBlob, `batchphoto-market-${new Date().toISOString().slice(0,10)}.zip`);
-
+        saveAs(zipBlob, `batchphoto-${new Date().toISOString().slice(0,10)}.zip`);
+        
         const saved = totalSize() - outBytes;
         if ($('resultStats')) {
             $('resultStats').innerHTML =
-                `Готово карт: <strong>${results.length}</strong>${errors ? `, ошибок: <strong>${errors}</strong>` : ''}<br>` +
+                `Готово файлов: <strong>${results.length}</strong>${errors ? `, ошибок: <strong>${errors}</strong>` : ''}<br>` +
                 `Исходный размер: ${formatBytes(totalSize())} → Новый архив: ${formatBytes(outBytes)} ` +
                 (saved > 0 ? `(сжато на ${Math.round(saved/totalSize()*100)}%)` : '');
         }
         if ($('resultsList')) {
             $('resultsList').innerHTML = results.map((r, i) =>
-                `<div class="result-row"><span>${escapeHtml(r.name)}</span><span>${formatBytes(r.size)} &nbsp; <a href="#" data-i="${i}">скачать</a></span></div>`).join('');
+                `<div class="result-row"><span>${escapeHtml(r.name)}</span><span>${formatBytes(r.size)} <a href="#" data-i="${i}">скачать</a></span></div>`).join('');
             $('resultsList').querySelectorAll('a').forEach(a =>
                 a.addEventListener('click', e => { e.preventDefault(); const r = results[+a.dataset.i]; saveAs(r.blob, r.name); }));
         }

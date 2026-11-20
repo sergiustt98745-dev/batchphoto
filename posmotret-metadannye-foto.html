@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посмотреть метаданные фото онлайн бесплатно — EXIF Viewer (камера, дата, GPS на карте) | BatchPhoto</title>
+    <meta name="description" content="Бесплатный просмотр EXIF метаданных фото онлайн. Узнайте точные GPS-координаты на интерактивной карте, модель фотоаппарата или телефона, дату съёмки, объектив, ISO и выдержку без отправки фото на сервер.">
+    <meta name="keywords" content="посмотреть метаданные фото онлайн, exif viewer online, узнать где сделано фото, узнать дату съемки фото, посмотреть gps фото на карте, свойства фото онлайн">
+    <link rel="canonical" href="https://batchphoto.ru/posmotret-metadannye-foto.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Посмотреть метаданные фото онлайн — EXIF Viewer и карта съёмки">
+    <meta property="og:description" content="Инспектор скрытых параметров фото: просмотр геолокации на карте, параметров камеры и даты создания кадра.">
+    <meta property="og:url" content="https://batchphoto.ru/posmotret-metadannye-foto.html">
+
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <!-- Стили интерактивной карты Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Стили 1-в-1 с эталоном сайта -->
+    <style>
+        :root {
+            --primary: #0088cc;
+            --primary-hover: #0077b5;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --badge-bg: #eff6ff;
+            --badge-text: #1d4ed8;
+        }
+
+        [data-theme="dark"] {
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --badge-bg: #1e3a8a33;
+            --badge-text: #93c5fd;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка сайта */
+        .site-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .logo-area .logo-domain {
+            color: var(--primary);
+        }
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .search-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .search-trigger kbd {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: 0.75rem;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .nav-item {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+        }
+        .theme-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            color: inherit;
+        }
+
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+        }
+
+        .breadcrumbs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .breadcrumbs a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+
+        .security-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin: 0 auto 16px;
+        }
+
+        .main-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.02em;
+        }
+        .main-title span {
+            color: var(--primary);
+        }
+        .main-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        .custom-dropzone {
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        [data-theme="dark"] .custom-dropzone {
+            background: #0f172a50;
+            border-color: #334155;
+        }
+        .custom-dropzone:hover, .custom-dropzone.dragover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+        [data-theme="dark"] .custom-dropzone:hover {
+            background: #0f172a;
+        }
+        .custom-dropzone .icon-wrap {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .custom-dropzone .drop-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .custom-dropzone .drop-hint {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        /* Макет инспектора EXIF */
+        .inspector-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+        @media (max-width: 850px) {
+            .inspector-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Превью фото слева */
+        .photo-preview-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+        .photo-preview-card img {
+            max-width: 100%;
+            max-height: 280px;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: block;
+            margin: 0 auto 12px;
+        }
+
+        /* Плашки экспозиции */
+        .exposure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .exposure-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .exposure-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .exposure-val {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        /* Таблица метаданных */
+        .meta-section-header {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 18px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-bottom: 14px;
+        }
+        .meta-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .meta-table td:first-child {
+            width: 38%;
+            color: var(--text-muted);
+        }
+        .meta-table td:last-child {
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* Интерактивная карта GPS */
+        #gpsMapContainer {
+            height: 250px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-top: 12px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Поле поиска по тегам */
+        .tag-search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .tag-search-input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Кнопки */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s ease;
+        }
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+        .btn-action.secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+        .btn-action.secondary:hover {
+            color: var(--text-color);
+            border-color: var(--text-muted);
+        }
+
+        /* Информационные карточки снизу */
+        .section-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 860px) {
+            .header-nav { display: none; }
+            .main-title { font-size: 1.7rem; }
+        }
+    </style>
+
+    <!-- Проверка темы ДО загрузки страницы -->
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
+    <!-- Библиотека EXIF.js для чтения метаданных -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+    <!-- Библиотека Leaflet для отрисовки интерактивной карты -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Просмотр метаданных EXIF фото онлайн",
+          "url": "https://batchphoto.ru/posmotret-metadannye-foto.html",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "All",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/" },
+            { "@type": "ListItem", "position": 2, "name": "Посмотреть метаданные фото", "item": "https://batchphoto.ru/posmotret-metadannye-foto.html" }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Шапка сайта 1-в-1 -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🖼️</span>
+                <span>BatchPhoto<span class="logo-domain">.ru</span></span>
+            </a>
+
+            <div class="header-center">
+                <a href="index.html" class="search-trigger">
+                    <span>🔍</span>
+                    <span>Поиск инструмента</span>
+                    <kbd>Ctrl K</kbd>
+                </a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="foto-dlya-marketpleisov.html" class="nav-item">🛍️ Маркетплейсы</a>
+                <a href="szhat-foto.html" class="nav-item">🗜️ Сжатие</a>
+                <a href="konvertirovat-v-webp.html" class="nav-item">🌐 WebP</a>
+                <a href="udalit-exif.html" class="nav-item">🛡️ EXIF</a>
+                <a href="vodyanoj-znak-na-foto.html" class="nav-item">©️ Водяной знак</a>
+            </nav>
+
+            <button class="theme-btn" id="themeToggle" title="Сменить тему">🌙</button>
+        </div>
+    </header>
+
+    <div class="page-wrap">
+
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Посмотреть метаданные фото</span>
+        </div>
+
+        <!-- Центральный заголовок -->
+        <div class="main-heading">
+            <div class="security-pill">
+                <span>🔒</span> Все фото обрабатываются на вашем компьютере без отправки на сервер
+            </div>
+            <h1 class="main-title">Посмотреть метаданные фото <span>онлайн</span></h1>
+            <p class="main-desc">Инспектор скрытых параметров EXIF: просмотр точки съёмки на карте (GPS), модели смартфона или фотоаппарата, даты, параметров объектива и выдержки.</p>
+        </div>
+
+        <!-- Главная карточка инспектора -->
+        <div class="main-card">
+
+            <!-- Дропзона загрузки -->
+            <div class="custom-dropzone" id="dropzone">
+                <input type="file" id="fileInput" accept="image/jpeg,image/tiff,image/png,image/webp" style="display: none;">
+                <div class="icon-wrap">🔍</div>
+                <div class="drop-title">Перетащите фотографию для чтения метаданных или кликните</div>
+                <div class="drop-hint">JPG, JPEG, TIFF • Поддерживаются оригинальные кадры с фотоаппаратов и смартфонов</div>
+            </div>
+
+            <!-- Область результатов инспектора -->
+            <div id="workspace" style="display: none;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <strong id="fileNameDisplay" style="font-size: 1rem;">photo.jpg</strong>
+                        <span id="fileSizeDisplay" style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;"></span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" id="changePhotoBtn" class="btn-action secondary">Выбрать другой снимок</button>
+                    </div>
+                </div>
+
+                <div class="inspector-layout">
+                    
+                    <!-- Колонка 1: Превью фото и базовые параметры файла -->
+                    <div>
+                        <div class="photo-preview-card">
+                            <img id="imagePreview" src="" alt="Превью изображения">
+                            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 4px;" id="previewRes">0 × 0 px</div>
+                            <div style="font-size: 0.82rem; color: var(--text-muted);" id="previewMp">0.0 Мп</div>
+                        </div>
+
+                        <!-- Блок если метаданных нет -->
+                        <div id="noExifMsg" style="display: none; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 14px; margin-top: 14px; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+                            ⚠️ В этом файле отсутствуют теги EXIF. Скорее всего, снимок был сохранен через мессенджер со сжатием.
+                        </div>
+                    </div>
+
+                    <!-- Колонка 2: Все метаданные, карта и параметры -->
+                    <div>
+
+                        <!-- Плашки настроек съемки (ISO, выдержка и т.д.) -->
+                        <div class="exposure-grid" id="exposureGrid">
+                            <div class="exposure-item">
+                                <div class="exposure-label">Диафрагма</div>
+                                <div class="exposure-val" id="expAperture">—</div>
+                            </div>
+                            <div class="exposure-item">
+                                <div class="exposure-label">Выдержка</div>
+                                <div class="exposure-val" id="expShutter">—</div>
+                            </div>
+                            <div class="exposure-item">
+                                <div class="exposure-label">ISO</div>
+                                <div class="exposure-val" id="expIso">—</div>
+                            </div>
+                            <div class="exposure-item">
+                                <div class="exposure-label">Фокус</div>
+                                <div class="exposure-val" id="expFocal">—</div>
+                            </div>
+                        </div>
+
+                        <!-- Блок интерактивной карты GPS -->
+                        <div id="gpsCard" style="display: none; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                                <div>
+                                    <strong style="font-size: 0.95rem;">📍 Место съёмки на карте (GPS):</strong>
+                                    <div style="font-size: 0.85rem; color: var(--text-muted);" id="gpsCoordsLabel">0.000, 0.000</div>
+                                </div>
+                                <div style="display: flex; gap: 6px;">
+                                    <a href="#" id="linkYandex" target="_blank" rel="noopener" class="btn-action" style="background: #fc3f1d; padding: 5px 10px; font-size: 0.78rem;">Яндекс Карты ↗</a>
+                                    <a href="#" id="linkGoogle" target="_blank" rel="noopener" class="btn-action" style="background: #1a73e8; padding: 5px 10px; font-size: 0.78rem;">Google Maps ↗</a>
+                                </div>
+                            </div>
+                            <div id="gpsMapContainer"></div>
+                        </div>
+
+                        <!-- Камера и объектив -->
+                        <div class="meta-section-header">📷 Камера и оборудование</div>
+                        <table class="meta-table" id="tableCamera">
+                            <tbody></tbody>
+                        </table>
+
+                        <!-- Дата и время -->
+                        <div class="meta-section-header">🕒 Время создания кадра</div>
+                        <table class="meta-table" id="tableTime">
+                            <tbody></tbody>
+                        </table>
+
+                        <!-- Полный список всех RAW тегов с поиском -->
+                        <div style="margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                            <div class="meta-section-header">🔍 Все теги EXIF (Raw)</div>
+                            <input type="text" id="tagSearchInput" class="tag-search-input" placeholder="Поиск по названию параметра (например, Flash, Make, Software)...">
+                            <div style="max-height: 220px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 8px;">
+                                <table class="meta-table" id="tableAllTags" style="margin: 0;">
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Преимущества и объяснения -->
+        <h2 class="section-title">Что можно узнать по фотографии</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">📍</span> Точные GPS-координаты
+                </div>
+                <p class="feature-desc">Если камера сохранила данные спутников, вы увидите на встроенной интерактивной карте точную улицу, город и координаты места съемки.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">📷</span> Модель телефона и камеры
+                </div>
+                <p class="feature-desc">Узнайте, на какую именно технику был сделан снимок: Apple iPhone, Samsung Galaxy, Xiaomi, Canon, Nikon или Sony, а также версию прошивки.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-header">
+                    <span style="color: var(--primary);">⚙️</span> Настройки съёмки фотографа
+                </div>
+                <p class="feature-desc">Изучайте приемы съемки: выдержку, диафрагму (f-число), ISO, фокусное расстояние и статус срабатывания вспышки.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Подвал сайта -->
+    <footer style="padding: 24px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+        <div class="header-container" style="justify-content: center;">
+            <p>&copy; 2025 BatchPhoto.ru — Онлайн просмотр и инспекция метаданных фото. Все операции выполняются локально в браузере.</p>
+        </div>
+    </footer>
+
+    <!-- Логика инспектора метаданных -->
+    <script>
+        // Переключение темы 🌙 / ☀️
+        const themeBtn = document.getElementById('themeToggle');
+        function syncThemeIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('bp_theme_v2', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('bp_theme_v2', 'dark');
+            }
+            syncThemeIcon();
+        });
+        syncThemeIcon();
+
+        // Поиск по Ctrl+K
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+
+        // DOM элементы
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const workspace = document.getElementById('workspace');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const fileSizeDisplay = document.getElementById('fileSizeDisplay');
+        const changePhotoBtn = document.getElementById('changePhotoBtn');
+
+        const imagePreview = document.getElementById('imagePreview');
+        const previewRes = document.getElementById('previewRes');
+        const previewMp = document.getElementById('previewMp');
+        const noExifMsg = document.getElementById('noExifMsg');
+
+        const expAperture = document.getElementById('expAperture');
+        const expShutter = document.getElementById('expShutter');
+        const expIso = document.getElementById('expIso');
+        const expFocal = document.getElementById('expFocal');
+
+        const gpsCard = document.getElementById('gpsCard');
+        const gpsCoordsLabel = document.getElementById('gpsCoordsLabel');
+        const linkYandex = document.getElementById('linkYandex');
+        const linkGoogle = document.getElementById('linkGoogle');
+
+        const tableCamera = document.getElementById('tableCamera').querySelector('tbody');
+        const tableTime = document.getElementById('tableTime').querySelector('tbody');
+        const tableAllTags = document.getElementById('tableAllTags').querySelector('tbody');
+        const tagSearchInput = document.getElementById('tagSearchInput');
+
+        let leafletMap = null;
+        let leafletMarker = null;
+        let allFoundTags = {};
+
+        // Загрузка файла
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) inspectFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) inspectFile(e.target.files[0]);
+        });
+        changePhotoBtn.addEventListener('click', () => fileInput.click());
+
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' Б';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' КБ';
+            return (bytes / 1048576).toFixed(2) + ' МБ';
+        }
+
+        function convertDMSToDD(dms, ref) {
+            if (!dms || dms.length < 3) return null;
+            let deg = dms[0].numerator / dms[0].denominator;
+            let min = dms[1].numerator / dms[1].denominator;
+            let sec = dms[2].numerator / dms[2].denominator;
+            let dd = deg + (min / 60) + (sec / 3600);
+            if (ref === 'S' || ref === 'W') dd = -dd;
+            return dd;
+        }
+
+        function formatExposureTime(val) {
+            if (!val) return null;
+            if (typeof val === 'number') {
+                return val < 1 ? `1/${Math.round(1 / val)} сек` : `${val} сек`;
+            }
+            if (val.numerator && val.denominator) {
+                if (val.numerator === 1) return `1/${val.denominator} сек`;
+                const dec = val.numerator / val.denominator;
+                return dec < 1 ? `1/${Math.round(1 / dec)} сек` : `${dec} сек`;
+            }
+            return String(val);
+        }
+
+        function addTableRow(tbody, label, val) {
+            if (val === undefined || val === null || val === '') return;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${label}</td><td>${val}</td>`;
+            tbody.appendChild(tr);
+        }
+
+        function inspectFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Пожалуйста, выберите файл изображения (JPG, TIFF).');
+                return;
+            }
+
+            fileNameDisplay.textContent = file.name;
+            fileSizeDisplay.textContent = `(${formatBytes(file.size)})`;
+
+            // Превью изображения
+            const objectUrl = URL.createObjectURL(file);
+            imagePreview.src = objectUrl;
+
+            const img = new Image();
+            img.onload = () => {
+                const w = img.naturalWidth || img.width;
+                const h = img.naturalHeight || img.height;
+                previewRes.textContent = `${w} × ${h} px`;
+                previewMp.textContent = `${((w * h) / 1000000).toFixed(1)} Мп`;
+
+                // Чтение EXIF
+                EXIF.getData(file, function() {
+                    const tags = EXIF.getAllTags(this);
+                    allFoundTags = tags || {};
+
+                    dropzone.style.display = 'none';
+                    workspace.style.display = 'block';
+
+                    renderInspector(tags, file);
+                });
+            };
+            img.src = objectUrl;
+        }
+
+        function renderInspector(tags, file) {
+            tableCamera.innerHTML = '';
+            tableTime.innerHTML = '';
+            tableAllTags.innerHTML = '';
+
+            const hasTags = tags && Object.keys(tags).length > 0;
+
+            if (!hasTags) {
+                noExifMsg.style.display = 'block';
+                gpsCard.style.display = 'none';
+                expAperture.textContent = '—';
+                expShutter.textContent = '—';
+                expIso.textContent = '—';
+                expFocal.textContent = '—';
+                return;
+            }
+
+            noExifMsg.style.display = 'none';
+
+            // 1. Плашки настроек
+            const fNum = tags.FNumber ? `f/${tags.FNumber}` : '—';
+            const shutter = formatExposureTime(tags.ExposureTime) || '—';
+            const iso = tags.ISOSpeedRatings ? `ISO ${tags.ISOSpeedRatings}` : '—';
+            const focal = tags.FocalLength ? `${tags.FocalLength} мм` : '—';
+
+            expAperture.textContent = fNum;
+            expShutter.textContent = shutter;
+            expIso.textContent = iso;
+            expFocal.textContent = focal;
+
+            // 2. Блок камеры
+            addTableRow(tableCamera, 'Производитель', tags.Make);
+            addTableRow(tableCamera, 'Модель камеры / телефона', tags.Model);
+            addTableRow(tableCamera, 'Модель объектива', tags.LensModel || tags.UndefinedTag_0xA434);
+            addTableRow(tableCamera, 'Программное обеспечение', tags.Software);
+            addTableRow(tableCamera, 'Серийный номер', tags.BodySerialNumber || tags.SerialNumber);
+
+            // 3. Блок времени
+            addTableRow(tableTime, 'Дата и время съёмки', tags.DateTimeOriginal || tags.DateTimeDigitized || tags.DateTime);
+            addTableRow(tableTime, 'Дата изменения файла', new Date(file.lastModified).toLocaleString('ru-RU'));
+
+            // 4. GPS и Карта
+            const lat = convertDMSToDD(tags.GPSLatitude, tags.GPSLatitudeRef);
+            const lon = convertDMSToDD(tags.GPSLongitude, tags.GPSLongitudeRef);
+
+            if (lat !== null && lon !== null) {
+                gpsCard.style.display = 'block';
+                gpsCoordsLabel.textContent = `${lat.toFixed(6)}°, ${lon.toFixed(6)}°`;
+                linkYandex.href = `https://yandex.ru/maps/?pt=${lon.toFixed(6)},${lat.toFixed(6)}&z=16&l=map`;
+                linkGoogle.href = `https://www.google.com/maps?q=${lat.toFixed(6)},${lon.toFixed(6)}`;
+
+                // Инициализируем карту Leaflet
+                setTimeout(() => {
+                    if (!leafletMap) {
+                        leafletMap = L.map('gpsMapContainer').setView([lat, lon], 14);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '© OpenStreetMap'
+                        }).addTo(leafletMap);
+                        leafletMarker = L.marker([lat, lon]).addTo(leafletMap);
+                    } else {
+                        leafletMap.setView([lat, lon], 14);
+                        leafletMarker.setLatLng([lat, lon]);
+                        leafletMap.invalidateSize();
+                    }
+                }, 200);
+            } else {
+                gpsCard.style.display = 'none';
+            }
+
+            // 5. Все теги (Raw)
+            renderAllTagsTable('');
+        }
+
+        function renderAllTagsTable(searchFilter) {
+            tableAllTags.innerHTML = '';
+            const query = searchFilter.toLowerCase();
+
+            for (const [key, val] of Object.entries(allFoundTags)) {
+                if (typeof val === 'function') continue;
+                let displayVal = typeof val === 'object' ? JSON.stringify(val) : String(val);
+
+                if (!query || key.toLowerCase().includes(query) || displayVal.toLowerCase().includes(query)) {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td style="font-family: monospace; font-size: 0.82rem;">${key}</td><td style="font-family: monospace; font-size: 0.82rem;">${displayVal}</td>`;
+                    tableAllTags.appendChild(tr);
+                }
+            }
+        }
+
+        tagSearchInput.addEventListener('input', (e) => {
+            renderAllTagsTable(e.target.value);
+        });
+    </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>
