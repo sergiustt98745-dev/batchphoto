@@ -82,6 +82,53 @@
         .cross-tool-link:hover { transform: translateY(-2px); border-color: #6366f1; }
         .cross-tool-link strong { display: block; margin-bottom: 4px; font-size: 15px; }
         .cross-tool-link span { font-size: 13px; color: var(--muted, #666); }
+/* ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== */
+.pv-panel { margin-top: 14px; border: 1px solid rgba(128,128,128,0.18); border-radius: 12px; padding: 12px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
+.pv-empty { color: var(--muted, #666); text-align: center; padding: 4px 0; }
+.pv-body   { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.pv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.pv-label  { font-weight: 700; font-size: 13px; }
+.pv-name   { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
+.pv-meta   { margin-top: 2px; font-size: 12px; color: var(--muted, #666); }
+.pv-warn   { color: #ef4444; font-weight: 700; }
+
+.cmp-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+.cmp-pane {
+    position: relative;
+    flex: 0 0 auto;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(128,128,128,0.25);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+.cmp-pane img,
+.cmp-pane canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.cmp-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(0,0,0,.72);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    z-index: 2;
+}
+
     </style>
 
     <!-- Расширенная Schema.org: Хлебные крошки + Веб-приложение + FAQ для расширенных сниппетов -->
@@ -191,33 +238,201 @@
 
     <!-- РАБОЧИЙ ИНСТРУМЕНТ -->
     <div class="container" id="tool">
-        <div class="card">
-            <!-- Дропзона -->
-            <div class="dropzone" id="dropzone" role="button" tabindex="0">
-                <div class="icon">📦</div>
-                <p><strong>Перетащите фото товаров сюда</strong> или нажмите для выбора</p>
-                <small>JPG, PNG, WebP, HEIC (в современных браузерах) • до 100 файлов • вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
-                <input type="file" id="fileInput" multiple accept="image/*" hidden>
-            </div>
+<div class="card">
+    <!-- Дропзона -->
+    <div class="dropzone" id="dropzone" role="button" tabindex="0">
+        <div class="icon">📦</div>
+        <p><strong>Перетащите фото товаров сюда</strong> или нажмите для выбора</p>
+        <small>JPG, PNG, WebP, HEIC (в современных браузерах) • до 100 файлов • вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
+        <input type="file" id="fileInput" multiple accept="image/*" hidden>
+    </div>
 
-            <div class="files-toolbar" id="filesToolbar">
-                <span class="files-count" id="filesCount"></span>
-                <button class="clear-btn" id="clearBtn">✕ Очистить всё</button>
-            </div>
-            <div class="files-grid" id="filesGrid"></div>
+    <div class="files-toolbar" id="filesToolbar">
+        <span class="files-count" id="filesCount"></span>
+        <button class="clear-btn" id="clearBtn">✕ Очистить всё</button>
+    </div>
+    <div class="files-grid" id="filesGrid"></div>
 
-            <!-- ===== КОМПАКТНЫЙ ПРЕДПРОСМОТР ===== -->
-            <div class="pv-panel" id="previewPanel">
-                <div class="pv-empty" id="previewEmpty">👁️ Здесь появится предпросмотр первого загруженного фото — сразу с учётом всех настроек ниже</div>
-                <div class="pv-body" id="previewBody" style="display:none;">
-                    <div class="pv-thumb"><canvas id="previewCanvas"></canvas></div>
-                    <div class="pv-info">
-                        <div class="pv-label">Предпросмотр результата</div>
-                        <div class="pv-name" id="pvName"></div>
-                        <div class="pv-meta" id="pvMeta"></div>
-                    </div>
+    <!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== -->
+    <div class="pv-panel" id="previewPanel">
+        <div class="pv-empty" id="previewEmpty">👁️ Здесь появится предпросмотр первого загруженного фото — слева «До», справа «После»</div>
+        <div class="pv-body" id="previewBody" style="display:none;">
+            <div class="pv-header">
+                <span class="pv-label">Сравнение «До / После»</span>
+                <span class="pv-name" id="pvName"></span>
+            </div>
+            <div class="cmp-grid" id="cmpGrid">
+                <div class="cmp-pane" id="paneBefore">
+                    <img id="imgBefore" alt="До">
+                    <span class="cmp-badge">До</span>
+                </div>
+                <div class="cmp-pane" id="paneAfter">
+                    <canvas id="canvasAfter"></canvas>
+                    <span class="cmp-badge">После</span>
                 </div>
             </div>
+            <div class="pv-meta" id="pvMeta"></div>
+        </div>
+    </div>
+
+    <!-- Вкладки -->
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="size">📐 1. Размер и пропорции (3:4)</button>
+        <button class="tab-btn" data-tab="adjust">🎨 2. Свет, контраст и поворот</button>
+        <button class="tab-btn" data-tab="rename">✏️ 3. Артикул и нумерация</button>
+    </div>
+
+    <!-- ВКЛАДКА 1: РАЗМЕР -->
+    <div class="tab-panel active" id="panel-size">
+        <div class="grid">
+            <div class="form-group">
+                <label for="preset">Пресет площадки (стандарты 2026)</label>
+                <select id="preset">
+                    <option value="wb" selected>🟣🔵 Wildberries + Ozon (HD, с зумом) — 1200×1600 (3:4)</option>
+                    <option value="wb_std">🟣🟡 WB минимум / Яндекс Маркет — 900×1200 (3:4)</option>
+                    <option value="ozon_zoom">🔵 Ozon квадрат (макс. зум) — 1500×1500 (1:1)</option>
+                    <option value="avito">🟢 Авито — 1200×900 (4:3)</option>
+                    <option value="custom">⚙️ Свои размеры (от 200 до 8000 px)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="resizeMode">Режим подгонки кадра</label>
+                <select id="resizeMode">
+                    <option value="contain_bg">Вписать + поля (товар по центру, без обрезки)</option>
+                    <option value="contain">Вписать пропорционально (без добавления полей)</option>
+                    <option value="cover">Заполнить весь кадр (обрезать лишнее по краям)</option>
+                </select>
+            </div>
+            <div class="form-group" id="dimsGroup">
+                <label>Ширина × Высота (px)</label>
+                <div class="inline">
+                    <input type="number" id="width" value="1200" min="200" max="8000" title="От 200 до 8000 пикселей">
+                    <input type="number" id="height" value="1600" min="200" max="8000" title="От 200 до 8000 пикселей">
+                </div>
+            </div>
+            <div class="form-group" id="bgGroup">
+                <label for="bgColor">Цвет фона / полей (рекомендуется светлый)</label>
+                <input type="color" id="bgColor" value="#ffffff">
+            </div>
+            <div class="form-group">
+                <label for="format">Выходной формат (в профиле sRGB)</label>
+                <select id="format">
+                    <option value="image/jpeg" selected>JPG (рекомендуется для WB, Ozon и Авито)</option>
+                    <option value="image/png">PNG (максимальная чёткость деталей)</option>
+                    <option value="image/webp">WebP (также поддерживается площадками)</option>
+                </select>
+            </div>
+            <div class="form-group" id="qualityGroup">
+                <label for="quality">Баланс качества и веса (лимит до 10 МБ)</label>
+                <div class="range-row">
+                    <input type="range" id="quality" min="10" max="100" value="88">
+                    <span class="range-val" id="qualityVal">88%</span>
+                </div>
+            </div>
+        </div>
+        <label class="checkbox-row">
+            <input type="checkbox" id="noUpscale" checked>
+            Не растягивать маленькие фото (защищает карточку от размытия и «мыла» при зуме)
+        </label>
+    </div>
+
+    <!-- ВКЛАДКА 2: СВЕТ -->
+    <div class="tab-panel" id="panel-adjust">
+        <div class="grid">
+            <div class="form-group">
+                <label for="brightness">Яркость (осветление тёмного фона)</label>
+                <div class="range-row">
+                    <input type="range" id="brightness" min="50" max="170" value="100">
+                    <span class="range-val" id="brightnessVal">100%</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contrast">Контрастность (отделение товара от фона)</label>
+                <div class="range-row">
+                    <input type="range" id="contrast" min="50" max="170" value="100">
+                    <span class="range-val" id="contrastVal">100%</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rotate">Повернуть фото</label>
+                <select id="rotate">
+                    <option value="0">Без поворота</option>
+                    <option value="90">90° по часовой</option>
+                    <option value="180">180°</option>
+                    <option value="270">90° против часовой</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="flip">Отразить (Зеркало)</label>
+                <select id="flip">
+                    <option value="none">Нет</option>
+                    <option value="h">По горизонтали</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВКЛАДКА 3: НУМЕРАЦИЯ -->
+    <div class="tab-panel" id="panel-rename">
+        <div class="form-group">
+            <label for="renamePattern">Шаблон наименования файлов для быстрой загрузки в ЛК</label>
+            <input type="text" id="renamePattern" value="tovar-{nnn}">
+            <div class="preset-tags">
+                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='tovar-{nnn}'">tovar-{nnn}</button>
+                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='artikul-{n}'">artikul-{n}</button>
+                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='wb-card-{nnn}'">wb-card-{nnn}</button>
+                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='ozon-sku-{nnn}'">ozon-sku-{nnn}</button>
+            </div>
+            <span class="hint" style="margin-top:8px; display:block; font-size:12px; color:var(--muted);">
+                Шаблон <kbd>tovar-{nnn}</kbd> автоматически создаст правильный порядок слайдов:
+                <em>tovar-001.jpg, tovar-002.jpg, tovar-003.jpg…</em>
+            </span>
+        </div>
+    </div>
+
+    <!-- Кнопка запуска -->
+    <button class="btn" id="processBtn">⚡ Подготовить фото и скачать ZIP-архив</button>
+
+    <!-- Прогресс -->
+    <div class="progress-box" id="progressBox">
+        <div class="progress-info">
+            <span id="progressStatus">Подготовка…</span>
+            <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
+    </div>
+
+    <!-- Результат -->
+    <div class="result-box" id="resultBox">
+        <h3>✅ Карточки успешно подготовлены к загрузке!</h3>
+        <p id="resultStats"></p>
+        <div class="results-list" id="resultsList"></div>
+    </div>
+
+    <div class="tool-footer-note">
+        <span>🎨 Цветовой профиль на выходе: <strong>sRGB (без искажения цветов)</strong></span>
+        <span>🛡️ Метаданные и лишние профили (CMYK) очищаются автоматически</span>
+    </div>
+</div>
+
+<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» ===== -->
+<div class="pv-body" id="previewBody" style="display:none;">
+    <div class="pv-header">
+        <span class="pv-label">Сравнение «До / После»</span>
+        <span class="pv-name" id="pvName"></span>
+    </div>
+
+    <div class="cmp-grid" id="cmpGrid">
+        <div class="cmp-pane" id="paneBefore">
+            <img id="imgBefore" alt="До">
+            <span class="cmp-badge">До</span>
+        </div>
+        <div class="cmp-pane" id="paneAfter">
+            <canvas id="canvasAfter"></canvas>
+            <span class="cmp-badge">После</span>
+        </div>
+    </div>>
 
             <!-- Вкладки под задачи селлера -->
             <div class="tabs">
@@ -567,18 +782,26 @@
 </script>
 <script src="js/engine.js"></script>
 
-<!-- ===== КОМПАКТНЫЙ ЖИВОЙ ПРЕДПРОСМОТР (берёт первое фото из списка загруженных) ===== -->
+<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== -->
 <script>
 (function () {
     'use strict';
     var $ = function (id) { return document.getElementById(id); };
     var panel = $('previewPanel'); if (!panel) return;
-    var empty = $('previewEmpty'), body = $('previewBody'),
-        cvs = $('previewCanvas'), nameEl = $('pvName'), metaEl = $('pvMeta'),
-        grid = $('filesGrid'), clearBtn = $('clearBtn');
-    if (!cvs) return;
-    var ctx = cvs.getContext('2d');
-    var MAX = 150;
+
+    var empty       = $('previewEmpty'),
+        body        = $('previewBody'),
+        imgBefore   = $('imgBefore'),
+        canvasAfter = $('canvasAfter'),
+        cmpGrid     = $('cmpGrid'),
+        nameEl      = $('pvName'),
+        metaEl      = $('pvMeta'),
+        grid        = $('filesGrid'),
+        clearBtn    = $('clearBtn');
+
+    if (!cmpGrid || !imgBefore || !canvasAfter) return;
+    var ctx = canvasAfter.getContext('2d');
+
     var img = null, currentSrc = null, timer = null, grabTimer = null;
 
     function show() { empty.style.display = 'none'; body.style.display = 'flex'; }
@@ -587,15 +810,14 @@
     function setSource(src) {
         if (!src || src === currentSrc) return;
         currentSrc = src;
+        imgBefore.src = src;
         var im = new Image();
         im.onload = function () { img = im; show(); render(); };
-        im.onerror = function () { if (currentSrc === src) currentSrc = null; };
+        im.onerror = function () { if (currentSrc === src) { currentSrc = null; img = null; } };
         im.src = src;
     }
     function reset() { img = null; currentSrc = null; hide(); }
 
-    /* Источник №1 (основной): миниатюры, которые engine.js выводит в #filesGrid.
-       Срабатывает всегда — независимо от того, как движок обрабатывает файлы. */
     function grabFromGrid() {
         if (!grid) return;
         var first = grid.querySelector('img, canvas');
@@ -605,7 +827,6 @@
             return;
         }
         if (first.complete && first.naturalWidth > 0) { setSource(first.src); return; }
-        // миниатюра ещё догружается — проверим чуть позже
         clearTimeout(grabTimer);
         grabTimer = setTimeout(grabFromGrid, 120);
     }
@@ -613,7 +834,6 @@
         new MutationObserver(grabFromGrid).observe(grid, { childList: true });
     }
 
-    /* Источник №2 (резервный): прямой перехват файлов — drop в capture-фазе и Ctrl+V */
     function setFile(f) {
         if (img || !f) return;
         if (f.type && f.type.indexOf('image/') !== 0) return;
@@ -623,7 +843,9 @@
     }
     var dz = $('dropzone');
     if (dz) dz.addEventListener('drop', function (e) {
-        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+            setFile(e.dataTransfer.files[0]);
+        }
     }, true);
     document.addEventListener('paste', function (e) {
         if (img) return;
@@ -634,7 +856,6 @@
     });
     if (clearBtn) clearBtn.addEventListener('click', reset);
 
-    /* Перерисовка при изменении любых настроек */
     ['preset','resizeMode','width','height','bgColor','format','quality','noUpscale','brightness','contrast','rotate','flip']
         .forEach(function (id) {
             var el = $(id); if (!el) return;
@@ -644,55 +865,99 @@
     function schedule() { if (!img) return; clearTimeout(timer); timer = setTimeout(render, 120); }
     function num(v, d) { v = parseInt(v, 10); return (isNaN(v) || v <= 0) ? d : v; }
 
+    var lastRatio = null;
+    window.addEventListener('resize', function () { if (lastRatio) sizePanes(lastRatio); });
+
+    function sizePanes(ratio) {
+        lastRatio = ratio;
+        var paneH = window.innerWidth < 520 ? 200 : 300;
+        var paneW = Math.round(paneH * ratio);
+        var panes = cmpGrid.querySelectorAll('.cmp-pane');
+        var total = paneW * 2 + 10;
+        var avail = cmpGrid.clientWidth || cmpGrid.parentNode.clientWidth || total;
+        if (total > avail) {
+            var k = (avail - 10) / (paneW * 2);
+            paneH = Math.round(paneH * k);
+            paneW = Math.round(paneW * k);
+        }
+        for (var i = 0; i < panes.length; i++) {
+            panes[i].style.height = paneH + 'px';
+            panes[i].style.width  = paneW + 'px';
+        }
+    }
+
     function render() {
         if (!img) return;
-        var deg = num($('rotate').value, 0), flip = $('flip').value === 'h',
-            W = Math.min(8000, num($('width').value, 1200)),
-            H = Math.min(8000, num($('height').value, 1600)),
-            mode = $('resizeMode').value, noUp = $('noUpscale').checked,
-            fmt = $('format').value, q = num($('quality').value, 88) / 100;
+        var deg   = num($('rotate').value, 0),
+            flip  = $('flip').value === 'h',
+            W     = Math.min(8000, num($('width').value, 1200)),
+            H     = Math.min(8000, num($('height').value, 1600)),
+            mode  = $('resizeMode').value,
+            noUp  = $('noUpscale').checked,
+            fmt   = $('format').value,
+            q     = num($('quality').value, 88) / 100;
 
-        // 1. Поворот + зеркало
-        var rot = (deg === 90 || deg === 270), sw = rot ? img.height : img.width, sh = rot ? img.width : img.height;
-        var t = document.createElement('canvas'); t.width = sw; t.height = sh;
+        var rot = (deg === 90 || deg === 270),
+            sw = rot ? img.height : img.width,
+            sh = rot ? img.width  : img.height;
+        var t = document.createElement('canvas');
+        t.width = sw; t.height = sh;
         var tc = t.getContext('2d');
-        tc.translate(sw / 2, sh / 2); tc.rotate(deg * Math.PI / 180); if (flip) tc.scale(-1, 1);
+        tc.translate(sw / 2, sh / 2);
+        tc.rotate(deg * Math.PI / 180);
+        if (flip) tc.scale(-1, 1);
         tc.drawImage(img, -img.width / 2, -img.height / 2);
 
-        // 2. Раскладка по режиму подгонки
         var ow, oh, dw, dh, dx = 0, dy = 0, s;
         if (mode === 'contain') {
             s = Math.min(W / sw, H / sh); if (noUp) s = Math.min(s, 1);
-            ow = Math.max(1, Math.round(sw * s)); oh = Math.max(1, Math.round(sh * s)); dw = ow; dh = oh;
+            ow = Math.max(1, Math.round(sw * s));
+            oh = Math.max(1, Math.round(sh * s));
+            dw = ow; dh = oh;
         } else {
             ow = W; oh = H;
             s = (mode === 'cover') ? Math.max(W / sw, H / sh) : Math.min(W / sw, H / sh);
             if (noUp) s = Math.min(s, 1);
-            dw = sw * s; dh = sh * s; dx = (W - dw) / 2; dy = (H - dh) / 2;
+            dw = sw * s; dh = sh * s;
+            dx = (W - dw) / 2; dy = (H - dh) / 2;
         }
 
-        // 3. Итоговый кадр (служит и для оценки веса файла)
-        var out = document.createElement('canvas'); out.width = ow; out.height = oh;
+        var out = document.createElement('canvas');
+        out.width = ow; out.height = oh;
         var oc = out.getContext('2d');
-        if (mode !== 'contain') { oc.fillStyle = $('bgColor').value; oc.fillRect(0, 0, ow, oh); }
-        if ('filter' in oc) oc.filter = 'brightness(' + $('brightness').value + '%) contrast(' + $('contrast').value + '%)';
-        oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = 'high';
+        if (mode !== 'contain') {
+            oc.fillStyle = $('bgColor').value;
+            oc.fillRect(0, 0, ow, oh);
+        }
+        if ('filter' in oc) {
+            oc.filter = 'brightness(' + $('brightness').value + '%) contrast(' + $('contrast').value + '%)';
+        }
+        oc.imageSmoothingEnabled = true;
+        oc.imageSmoothingQuality = 'high';
         oc.drawImage(t, dx, dy, dw, dh);
+        oc.filter = 'none';
 
-        // 4. Миниатюра на экране
-        var k = Math.min(MAX / ow, MAX / oh, 1);
-        cvs.width = Math.max(1, Math.round(ow * k)); cvs.height = Math.max(1, Math.round(oh * k));
-        ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(out, 0, 0, cvs.width, cvs.height);
+        var maxDim = 800;
+        var k = Math.min(maxDim / out.width, maxDim / out.height, 1);
+        canvasAfter.width  = Math.max(1, Math.round(out.width  * k));
+        canvasAfter.height = Math.max(1, Math.round(out.height * k));
+        var cctx = canvasAfter.getContext('2d');
+        cctx.imageSmoothingEnabled = true;
+        cctx.imageSmoothingQuality = 'high';
+        cctx.drawImage(out, 0, 0, canvasAfter.width, canvasAfter.height);
 
-        // 5. Подпись: размеры • формат • вес (предупреждение, если > 10 МБ)
+        sizePanes(ow / oh);
+
         var ftxt = (fmt === 'image/jpeg') ? 'JPEG' : (fmt === 'image/png') ? 'PNG' : 'WebP';
         var wtxt = '';
         try {
             var b = Math.round(out.toDataURL(fmt, q).length * 0.75);
-            wtxt = b > 1048576 ? ' • ≈ ' + (b / 1048576).toFixed(1) + ' МБ' : ' • ≈ ' + Math.max(1, Math.round(b / 1024)) + ' КБ';
+            wtxt = b > 1048576
+                ? ' • ≈ ' + (b / 1048576).toFixed(1) + ' МБ'
+                : ' • ≈ ' + Math.max(1, Math.round(b / 1024)) + ' КБ';
             if (b > 10485760) wtxt += ' — <span class="pv-warn">⚠️ больше 10 МБ, снизьте качество</span>';
         } catch (e) {}
+
         nameEl.textContent = 'Первое фото из списка';
         metaEl.innerHTML = 'Итог: <b>' + ow + ' × ' + oh + ' px</b> • ' + ftxt + wtxt;
     }
