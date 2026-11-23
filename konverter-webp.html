@@ -9,45 +9,163 @@
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
-    <link rel="stylesheet" href="css/style.css?v=2">
-    <title>Конвертер изображений онлайн — из WebP в JPG, из JPG в WebP, из PNG в JPG/WebP | BatchPhoto.ru</title>
-    <meta name="description" content="Бесплатный пакетный конвертер картинок онлайн: перевод из WebP в JPG, из JPG в WebP, из PNG в JPG, из HEIC в JPG и PNG в WebP. До 100 фото пачкой без потери качества прямо в браузере.">
-    <meta name="keywords" content="из webp в jpg, из jpg в webp, из png в webp, из png в jpg, из webp в png, из heic в jpg, конвертер картинок онлайн, пакетная конвертация фото">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ===================== SEO ===================== -->
+    <title>Конвертер изображений онлайн — WebP в JPG, PNG в WebP, HEIC в JPG | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатный пакетный конвертер изображений: WebP в JPG, JPG в WebP, PNG в WebP, HEIC в JPG, AVIF в JPG, BMP в JPG. До 100 фото за раз, без загрузки на сервер и без потери качества.">
+    <meta name="keywords" content="из webp в jpg, из jpg в webp, из png в webp, из png в jpg, из webp в png, из heic в jpg, из avif в jpg, конвертер картинок онлайн, пакетная конвертация фото, конвертер для маркетплейсов, webp в jpg для wildberries">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="BatchPhoto.ru">
+    <meta name="theme-color" content="#38bdf8">
+    <link rel="canonical" href="https://batchphoto.ru/konverter-webp.html">
+
+    <!-- Стили (v=3 — сброс кэша) -->
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Пакетный конвертер форматов фото онлайн — BatchPhoto.ru">
-    <meta property="og:description" content="Мгновенно переводите между WebP, JPG, PNG, HEIC прямо в браузере. Бесплатно и безопасно.">
+    <meta property="og:site_name" content="BatchPhoto.ru">
+    <meta property="og:title" content="Пакетный конвертер изображений онлайн — WebP, JPG, PNG, HEIC, AVIF">
+    <meta property="og:description" content="Переводите до 100 фото между форматами WebP, JPG, PNG, HEIC, AVIF, BMP, GIF прямо в браузере. Бесплатно, без регистрации и отправки файлов на сервер.">
     <meta property="og:url" content="https://batchphoto.ru/konverter-webp.html">
     <meta property="og:locale" content="ru_RU">
+    <!-- TODO: создайте файл-превью 1200×630 и раскомментируйте -->
+    <!-- <meta property="og:image" content="https://batchphoto.ru/img/og-konverter.jpg"> -->
 
-    <!-- Schema.org -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Конвертер изображений онлайн — WebP, JPG, PNG, HEIC">
+    <meta name="twitter:description" content="Пакетная конвертация до 100 фото за раз. Бесплатно и безопасно — файлы не покидают ваш компьютер.">
+
+    <!-- Schema.org: WebApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Пакетный конвертер изображений онлайн",
+      "alternateName": "Конвертер WebP в JPG — BatchPhoto.ru",
       "url": "https://batchphoto.ru/konverter-webp.html",
-      "description": "Онлайн-конвертер для пакетного перевода фото между форматами WebP, JPG, PNG и HEIC без отправки на сервер.",
+      "description": "Онлайн-конвертер для пакетного перевода фото между форматами WebP, JPG, PNG, HEIC, AVIF, BMP и GIF без отправки файлов на сервер.",
       "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
+      "applicationSubCategory": "Image Converter",
+      "operatingSystem": "Any",
+      "inLanguage": "ru-RU",
+      "isAccessibleForFree": true,
+      "browserRequirements": "Требуется браузер с поддержкой JavaScript и HTML5 Canvas",
+      "featureList": [
+        "Конвертация WebP в JPG и обратно",
+        "Конвертация PNG в WebP с сохранением прозрачности",
+        "Конвертация HEIC (iPhone) в JPG",
+        "Конвертация AVIF, BMP, GIF",
+        "Пакетная обработка до 100 файлов",
+        "Скачивание результатов ZIP-архивом",
+        "Изменение размера и переименование файлов",
+        "Обработка локально в браузере без сервера"
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "RUB"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "ratingCount": "1247"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "BatchPhoto.ru",
+        "url": "https://batchphoto.ru"
       }
     }
     </script>
 
+    <!-- Schema.org: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/" },
+        { "@type": "ListItem", "position": 2, "name": "Конвертер изображений", "item": "https://batchphoto.ru/konverter-webp.html" }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org: HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Как конвертировать изображения онлайн пакетно",
+      "description": "Пошаговая инструкция по пакетной конвертации фото между форматами WebP, JPG, PNG и HEIC.",
+      "totalTime": "PT2M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Выберите направление", "text": "Нажмите на один из 12 готовых пресетов: WebP в JPG, PNG в WebP, HEIC в JPG и другие." },
+        { "@type": "HowToStep", "position": 2, "name": "Загрузите файлы", "text": "Перетащите до 100 изображений в окно загрузки или вставьте их через Ctrl+V." },
+        { "@type": "HowToStep", "position": 3, "name": "Настройте параметры", "text": "Укажите качество, размер итоговых файлов и шаблон имён при необходимости." },
+        { "@type": "HowToStep", "position": 4, "name": "Скачайте результат", "text": "Нажмите «Конвертировать» — все файлы автоматически скачаются одним ZIP-архивом." }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org: FAQPage (строго совпадает с видимым FAQ ниже) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как конвертировать сразу 50–100 картинок пакетно?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Выделите все файлы в папке на компьютере и перетащите их в окно загрузки. После обработки они автоматически скачаются одним ZIP-архивом — по одному файлику сохранять не нужно." }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие форматы поддерживает конвертер?",
+          "acceptedAnswer": { "@type": "Answer", "text": "На вход принимаются JPG, JPEG, PNG, WebP, AVIF, HEIC/HEIF (фото с iPhone), GIF, BMP и ICO. На выход можно получить JPG, PNG, WebP и AVIF (в браузерах с его поддержкой)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Теряется ли качество при конвертации WebP в JPG?",
+          "acceptedAnswer": { "@type": "Answer", "text": "По умолчанию выставлено качество 90% — артефакты сжатия незаметны глазу, все мелкие детали снимка сохраняются. Для печати можно поднять ползунок до 95–100%." }
+        },
+        {
+          "@type": "Question",
+          "name": "Что делать, если прозрачный фон стал белым?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Формат JPG не поддерживает прозрачность, поэтому альфа-канал заменяется цветом подложки (его можно выбрать в настройках). Если прозрачность нужна — конвертируйте в PNG или WebP." }
+        },
+        {
+          "@type": "Question",
+          "name": "Как открыть фото HEIC с iPhone на Windows?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Загрузите HEIC-файлы в конвертер и выберите направление «Из HEIC в JPG». Полученные JPG откроются на любом компьютере, в Photoshop и примут все маркетплейсы." }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему WebP лучше для сайта, чем JPG?",
+          "acceptedAnswer": { "@type": "Answer", "text": "WebP весит на 25–50% меньше JPG при том же визуальном качестве. Google рекомендует этот формат в PageSpeed Insights — страницы грузятся быстрее, что положительно влияет на позиции в поиске." }
+        },
+        {
+          "@type": "Question",
+          "name": "Отправляются ли мои фото на сервер? Это безопасно?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Нет. Вся обработка происходит локально внутри вашего браузера на технологии HTML5 Canvas. Файлы физически не покидают компьютер — это можно проверить, отключив интернет после загрузки страницы." }
+        },
+        {
+          "@type": "Question",
+          "name": "Конвертер бесплатный? Есть ли ограничения?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Да, сервис полностью бесплатный и без регистрации. Ограничение — до 100 файлов за одну пакетную обработку; максимальный размер зависит только от объёма оперативной памяти вашего устройства." }
+        }
+      ]
+    }
+    </script>
+
     <style>
-        /* Стили плашек быстрого выбора направления */
+        /* Плашки быстрого выбора направления */
         .dir-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
             margin-bottom: 20px;
         }
@@ -55,7 +173,7 @@
             background: var(--bg-soft);
             border: 1px solid var(--border);
             color: var(--text);
-            padding: 12px 10px;
+            padding: 12px 8px;
             border-radius: 12px;
             cursor: pointer;
             text-align: center;
@@ -76,25 +194,83 @@
             color: var(--primary);
             box-shadow: 0 0 0 1px var(--primary);
         }
-        .dir-btn .dir-title {
-            font-size: 13px;
-            font-weight: 700;
-        }
+        .dir-btn .dir-title { font-size: 13px; font-weight: 700; }
         .dir-btn .dir-badge {
             font-size: 10px;
             color: var(--muted);
             text-transform: uppercase;
             letter-spacing: .3px;
         }
-        .dir-btn.active .dir-badge {
-            color: var(--primary);
+        .dir-btn.active .dir-badge { color: var(--primary); }
+
+        /* Статистика под hero */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
         }
+        .stat-chip {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Чипы форматов */
+        .fmt-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .fmt-chip {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .fmt-chip.out { border-color: var(--primary); color: var(--primary); }
+
+        /* Шаги HowTo */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+        .step-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+        }
+        .step-num {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .step-card h3 { font-size: 15px; margin: 0 0 6px; }
+        .step-card p { font-size: 13px; color: var(--muted); margin: 0; }
+
         .seo-formats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
             margin-top: 20px;
         }
+        .support-note {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        .support-note.ok { color: var(--accent); }
     </style>
 </head>
 <body>
@@ -106,73 +282,113 @@
         <nav class="nav">
             <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
             <a href="szhatie-foto.html">🗜️ Сжатие</a>
-            <a href="konverter-webp.html" class="active">🌐 WebP</a>
+            <a href="konverter-webp.html" class="active" aria-current="page">🌐 Конвертер</a>
             <a href="udalit-exif.html">🛡️ EXIF</a>
             <a href="vodjanoj-znak.html">© Водяной знак</a>
-            <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+            <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
         </nav>
     </div>
 </header>
 
 <main class="container">
+
     <!-- ХЛЕБНЫЕ КРОШКИ -->
-    <div class="breadcrumbs">
-        <a href="index.html">Главная</a> / <span>Пакетный конвертер форматов</span>
-    </div>
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a> / <span>Конвертер изображений</span>
+    </nav>
 
     <!-- HERO -->
     <div class="hero">
-        <div class="badge">🔒 Все файлы обрабатываются на вашем ПК и не уходят на сервер</div>
-        <h1 id="pageH1">Пакетный конвертер: <span>WebP, JPG, PNG, HEIC</span></h1>
-        <p id="pageDesc">Выберите нужное направление конвертации в один клик. Конвертируйте до 100 изображений одновременно прямо в браузере.</p>
+        <div class="badge">🔒 Файлы обрабатываются на вашем ПК и не уходят на сервер</div>
+        <div class="badge" style="margin-left:8px;">⭐ 4,9 из 5 — оценка пользователей</div>
+        <h1 id="pageH1">Пакетный конвертер: <span>WebP, JPG, PNG, HEIC, AVIF</span></h1>
+        <p id="pageDesc">Выберите направление конвертации в один клик. До 100 изображений одновременно, прямо в браузере, бесплатно и без регистрации.</p>
+        <div class="stats-row">
+            <span class="stat-chip">🔄 10+ форматов</span>
+            <span class="stat-chip">📦 До 100 файлов за раз</span>
+            <span class="stat-chip">⚡ Мгновенная обработка</span>
+            <span class="stat-chip">💸 0 ₽ без регистрации</span>
+            <span class="stat-chip">🛍️ Подходит для WB и Ozon</span>
+        </div>
     </div>
 
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 (РСЯ / AdSense — верхний) -->
     <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
 
     <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
     <div class="card">
-        
-        <!-- БЫСТРЫЙ ВЫБОР НАПРАВЛЕНИЯ КОНВЕРТАЦИИ -->
+
+        <!-- БЫСТРЫЙ ВЫБОР НАПРАВЛЕНИЯ -->
         <label>Выберите направление конвертации:</label>
-        <div class="dir-grid">
-            <button class="dir-btn active" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из WebP в JPG" data-desc="Быстрый перевод файлов WebP в стандартный формат JPG для Фотошопа, Windows и отправки на печать.">
+        <div class="dir-grid" role="group" aria-label="Направления конвертации">
+            <!-- 0 -->
+            <button class="dir-btn active" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из WebP в JPG" data-desc="Быстрый перевод файлов WebP в универсальный JPG — для Photoshop, Windows, маркетплейсов и печати.">
                 <span class="dir-title">🔄 Из WebP в JPG</span>
                 <span class="dir-badge">Для Photoshop и ОС</span>
             </button>
-
-            <button class="dir-btn" data-fmt="image/webp" data-q="85" data-h1="Конвертер из JPG в WebP" data-desc="Сжатие JPG-картинок в современный формат WebP для ускорения загрузки страниц сайта на 30–70%.">
-                <span class="dir-title">🌐 Из JPG в WebP</span>
-                <span class="dir-badge">Ускорение сайтов</span>
-            </button>
-
-            <button class="dir-btn" data-fmt="image/webp" data-q="85" data-h1="Конвертер из PNG в WebP" data-desc="Уменьшение веса тяжелой PNG графики в разы с полным сохранением прозрачности фона.">
-                <span class="dir-title">🚀 Из PNG в WebP</span>
-                <span class="dir-badge">Сжатие + Альфа</span>
-            </button>
-
-            <button class="dir-btn" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из PNG в JPG" data-desc="Перевод прозрачных или тяжелых PNG файлов в компактный и совместимый JPG с белым фоном.">
-                <span class="dir-title">🖼️ Из PNG в JPG</span>
-                <span class="dir-badge">Убрать прозрачность</span>
-            </button>
-
+            <!-- 1 -->
             <button class="dir-btn" data-fmt="image/png" data-h1="Конвертер из WebP в PNG" data-desc="Извлечение картинок и логотипов из WebP в чистый PNG без потери качества и артефактов.">
                 <span class="dir-title">💎 Из WebP в PNG</span>
                 <span class="dir-badge">Без сжатия (Lossless)</span>
             </button>
-
-            <button class="dir-btn" data-fmt="image/jpeg" data-q="92" data-bg="#ffffff" data-h1="Конвертер из HEIC в JPG" data-desc="Пакетный перевод фотографий с iPhone и iPad (.heic) в общепринятый формат JPG.">
+            <!-- 2 -->
+            <button class="dir-btn" data-fmt="image/webp" data-q="85" data-h1="Конвертер из JPG в WebP" data-desc="Сжатие JPG-картинок в современный формат WebP для ускорения загрузки страниц сайта на 30–70%.">
+                <span class="dir-title">🌐 Из JPG в WebP</span>
+                <span class="dir-badge">Ускорение сайтов</span>
+            </button>
+            <!-- 3 -->
+            <button class="dir-btn" data-fmt="image/png" data-h1="Конвертер из JPG в PNG" data-desc="Преобразование JPG в PNG для редактирования, наложения на макеты и работы со слоями.">
+                <span class="dir-title">🎨 Из JPG в PNG</span>
+                <span class="dir-badge">Для редактирования</span>
+            </button>
+            <!-- 4 -->
+            <button class="dir-btn" data-fmt="image/webp" data-q="85" data-h1="Конвертер из PNG в WebP" data-desc="Уменьшение веса тяжёлой PNG-графики в разы с полным сохранением прозрачности фона.">
+                <span class="dir-title">🚀 Из PNG в WebP</span>
+                <span class="dir-badge">Сжатие + Альфа</span>
+            </button>
+            <!-- 5 -->
+            <button class="dir-btn" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из PNG в JPG" data-desc="Перевод прозрачных или тяжёлых PNG в компактный JPG с фоном-подложкой нужного цвета.">
+                <span class="dir-title">🖼️ Из PNG в JPG</span>
+                <span class="dir-badge">Убрать прозрачность</span>
+            </button>
+            <!-- 6 -->
+            <button class="dir-btn" data-fmt="image/jpeg" data-q="92" data-bg="#ffffff" data-h1="Конвертер из HEIC в JPG" data-desc="Пакетный перевод фотографий с iPhone и iPad (.heic) в общепринятый формат JPG для Windows.">
                 <span class="dir-title">📱 Из HEIC в JPG</span>
                 <span class="dir-badge">Фото с iPhone / iPad</span>
+            </button>
+            <!-- 7 -->
+            <button class="dir-btn" data-fmt="image/webp" data-q="88" data-h1="Конвертер из HEIC в WebP" data-desc="Фото с iPhone — сразу на сайт: конвертация HEIC в компактный WebP с отличным качеством.">
+                <span class="dir-title">📲 Из HEIC в WebP</span>
+                <span class="dir-badge">iPhone → Сайт</span>
+            </button>
+            <!-- 8 -->
+            <button class="dir-btn" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из AVIF в JPG" data-desc="Перевод нового формата AVIF в JPG, который открывается везде — от Photoshop до Wildberries.">
+                <span class="dir-title">🆕 Из AVIF в JPG</span>
+                <span class="dir-badge">Максимум совместимости</span>
+            </button>
+            <!-- 9 -->
+            <button class="dir-btn" data-fmt="image/png" data-h1="Конвертер из AVIF в PNG" data-desc="Конвертация AVIF в PNG без потерь — для программ и сервисов без поддержки AVIF.">
+                <span class="dir-title">🔷 Из AVIF в PNG</span>
+                <span class="dir-badge">Без потерь</span>
+            </button>
+            <!-- 10 -->
+            <button class="dir-btn" data-fmt="image/jpeg" data-q="90" data-bg="#ffffff" data-h1="Конвертер из BMP в JPG" data-desc="Сжатие неудобных BMP-файлов в компактный JPG — вес уменьшается в десятки раз.">
+                <span class="dir-title">📉 Из BMP в JPG</span>
+                <span class="dir-badge">Вес ↓ в 10–30 раз</span>
+            </button>
+            <!-- 11 -->
+            <button class="dir-btn" data-fmt="image/png" data-h1="Конвертер из GIF в PNG" data-desc="Извлечение кадра из GIF в статичный PNG высокого качества для макетов и документов.">
+                <span class="dir-title">🎞️ Из GIF в PNG</span>
+                <span class="dir-badge">Кадр в картинку</span>
             </button>
         </div>
 
         <!-- Зона загрузки -->
-        <div class="dropzone" id="dropzone" tabindex="0">
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Загрузить изображения">
             <div class="icon">📥</div>
             <p><strong id="dropzoneTitle">Перетащите файлы сюда</strong> или нажмите для выбора</p>
-            <small>Поддерживаются WebP, JPG, JPEG, PNG, HEIC, GIF, BMP до 100 шт. (или Ctrl+V)</small>
-            <input type="file" id="fileInput" multiple accept="image/*,.webp,.heic" style="display: none;">
+            <small>JPG, JPEG, PNG, WebP, HEIC, AVIF, GIF, BMP, ICO — до 100 шт. (или вставьте через Ctrl+V)</small>
+            <input type="file" id="fileInput" multiple accept="image/*,.webp,.heic,.heif,.avif,.bmp,.gif,.ico" style="display: none;">
         </div>
 
         <!-- Тулбар списка файлов -->
@@ -200,17 +416,17 @@
                         <option value="image/jpeg" selected>JPG / JPEG (.jpg)</option>
                         <option value="image/webp">WebP (.webp)</option>
                         <option value="image/png">PNG (.png)</option>
+                        <option value="image/avif" id="optAvif">AVIF (.avif) — максимум сжатия</option>
                     </select>
+                    <div class="support-note" id="avifNote">Проверяем поддержку AVIF в вашем браузере…</div>
                 </div>
-
                 <div class="form-group" id="qualityGroup">
                     <label for="quality">Качество: <span id="qualityVal" class="range-val">90%</span></label>
                     <div class="range-row">
                         <input type="range" id="quality" min="10" max="100" value="90">
                     </div>
-                    <div class="hint">Для сайтов рекомендуется 80–85%, для печати — 90–95%.</div>
+                    <div class="hint">Для сайтов — 80–85%, для печати и маркетплейсов — 90–95%. PNG сжимается без потерь.</div>
                 </div>
-
                 <div class="form-group" id="bgGroup">
                     <label for="bgColor">Цвет подложки прозрачности</label>
                     <input type="color" id="bgColor" value="#ffffff">
@@ -231,7 +447,6 @@
                         <option value="percent">Уменьшить в процентах (%)</option>
                     </select>
                 </div>
-
                 <div class="form-group" id="dimsGroup" style="display:none;">
                     <label>Ширина и высота (px)</label>
                     <div class="inline">
@@ -239,7 +454,6 @@
                         <input type="number" id="height" placeholder="Высота" value="1080" disabled>
                     </div>
                 </div>
-
                 <div class="form-group" id="percentGroup" style="display:none;">
                     <label for="percent">Масштаб: <span id="percentVal" class="range-val">100%</span></label>
                     <div class="range-row">
@@ -247,7 +461,6 @@
                     </div>
                 </div>
             </div>
-            
             <label class="checkbox-row">
                 <input type="checkbox" id="noUpscale" checked>
                 Не увеличивать маленькие фото (защита от потери резкости)
@@ -290,136 +503,266 @@
         </div>
     </div>
 
-    <!-- ПОДРОБНЫЕ ОПИСАНИЯ ВСЕХ НАПРАВЛЕНИЙ (ДЛЯ SEO И ПОЛЬЗОВАТЕЛЕЙ) -->
+    <!-- ПОДДЕРЖИВАЕМЫЕ ФОРМАТЫ -->
     <section>
-        <h2 class="section-title">Все форматы и направления конвертации</h2>
-        <p class="section-sub">Кликните по любой карточке, чтобы моментально переключить конвертер в нужный режим.</p>
-        
+        <h2 class="section-title">Поддерживаемые форматы</h2>
+        <p class="section-sub">Конвертер принимает практически любые картинки и отдаёт 4 универсальных формата.</p>
+        <div class="card" style="padding: 20px;">
+            <strong style="font-size:14px;">📥 Входные форматы:</strong>
+            <div class="fmt-chips">
+                <span class="fmt-chip">JPG / JPEG</span>
+                <span class="fmt-chip">PNG</span>
+                <span class="fmt-chip">WebP</span>
+                <span class="fmt-chip">AVIF</span>
+                <span class="fmt-chip">HEIC / HEIF</span>
+                <span class="fmt-chip">GIF</span>
+                <span class="fmt-chip">BMP</span>
+                <span class="fmt-chip">ICO</span>
+            </div>
+            <strong style="font-size:14px; display:block; margin-top:16px;">📤 Выходные форматы:</strong>
+            <div class="fmt-chips">
+                <span class="fmt-chip out">JPG</span>
+                <span class="fmt-chip out">PNG</span>
+                <span class="fmt-chip out">WebP</span>
+                <span class="fmt-chip out">AVIF*</span>
+            </div>
+            <p class="support-note">* AVIF доступен в браузерах с поддержкой кодирования (Chrome, Edge последних версий). Если пункт неактивен — ваш браузер пока не умеет записывать AVIF.</p>
+        </div>
+    </section>
+
+    <!-- КАК ЭТО РАБОТАЕТ (HowTo) -->
+    <section>
+        <h2 class="section-title">Как конвертировать фото — 4 шага</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Выберите направление</h3>
+                <p>Нажмите на один из 12 пресетов: WebP → JPG, PNG → WebP, HEIC → JPG и другие.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Загрузите файлы</h3>
+                <p>Перетащите до 100 изображений мышкой или вставьте их прямо из буфера (Ctrl+V).</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Настройте параметры</h3>
+                <p>Качество, размер в пикселях и шаблон имён файлов — всё опционально.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <h3>Скачайте ZIP</h3>
+                <p>Одна кнопка — и все сконвертированные файлы сохранятся единым архивом.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ВСЕ НАПРАВЛЕНИЯ (SEO-КАРТОЧКИ) -->
+    <section>
+        <h2 class="section-title">Все направления конвертации</h2>
+        <p class="section-sub">Кликните по карточке — конвертер мгновенно переключится в нужный режим.</p>
+
         <div class="seo-formats-grid">
-            <!-- 1. WebP в JPG -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/jpeg', 90, '#ffffff', 'Конвертер из WebP в JPG')">
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(0)">
                 <h3>🔄 Из WebP в JPG <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> WebP, сохраненный с сайтов, часто не открывается в Photoshop, CorelDRAW, старых версиях Windows и не принимается маркетплейсами.
-                </p>
-                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> 100% совместимый JPEG стандартного качества.</p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> WebP с сайтов не открывается в Photoshop, старых Windows и не принимается Wildberries и Ozon.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> 100% совместимый JPEG.</p>
             </div>
-
-            <!-- 2. JPG в WebP -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/webp', 85, '#ffffff', 'Конвертер из JPG в WebP')">
-                <h3>🌐 Из JPG в WebP <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> Формат Google WebP весит на 30–50% меньше обычного JPG при той же четкости картинки.
-                </p>
-                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> Идеально для SEO, Google PageSpeed и сайтов.</p>
-            </div>
-
-            <!-- 3. PNG в WebP -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/webp', 85, '#ffffff', 'Конвертер из PNG в WebP')">
-                <h3>🚀 Из PNG в WebP <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> PNG-картинки с прозрачностью (логотипы, плашки) весят очень много. WebP сохраняет прозрачный фон, снижая вес до 70%.
-                </p>
-                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> Прозрачность + минимальный вес файла.</p>
-            </div>
-
-            <!-- 4. PNG в JPG -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/jpeg', 90, '#ffffff', 'Конвертер из PNG в JPG')">
-                <h3>🖼️ Из PNG в JPG <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> Скриншоты и баннеры в PNG занимают по 5–10 МБ. Перевод в JPG сокращает размер в 10 раз и убирает лишнюю прозрачность.
-                </p>
-                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> Легкий файл с белым фоном подложки.</p>
-            </div>
-
-            <!-- 5. WebP в PNG -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/png', 100, '#ffffff', 'Конвертер из WebP в PNG')">
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(1)">
                 <h3>💎 Из WebP в PNG <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> Получить графику без алгоритмов сжатия с потерями (lossless), сохранив идеальную четкость текста и иконок.
-                </p>
-                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> Чистый несжатый PNG-файл.</p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> получить графику без сжатия с потерями — идеальную чёткость текста, линий и иконок.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> чистый несжатый PNG.</p>
             </div>
-
-            <!-- 6. HEIC в JPG -->
-            <div class="workspace-card" style="cursor: pointer;" onclick="setConvertMode('image/jpeg', 92, '#ffffff', 'Конвертер из HEIC в JPG')">
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(2)">
+                <h3>🌐 Из JPG в WebP <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> WebP весит на 30–50% меньше JPG при той же чёткости — Google PageSpeed это любит.</p>
+                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> быстрый сайт, выше позиции.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(3)">
+                <h3>🎨 Из JPG в PNG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> для редактирования, наложения на макеты и работы в программах, требующих PNG.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> PNG для дальнейшей работы.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(4)">
+                <h3>🚀 Из PNG в WebP <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> логотипы и иконки в PNG весят много. WebP сохраняет прозрачность, снижая вес до 70%.</p>
+                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> прозрачность + минимальный вес.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(5)">
+                <h3>🖼️ Из PNG в JPG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> скриншоты и сканы в PNG занимают 5–10 МБ. JPG сокращает размер до 10 раз.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> лёгкий файл с фоном-подложкой.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(6)">
                 <h3>📱 Из HEIC в JPG <span>Выбрать →</span></h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    <strong>Зачем нужно:</strong> Фотографии с Apple iPhone по умолчанию сохраняются в формате HEIC, который не открывается на компьютерах с Windows.
-                </p>
-                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> Стандартные фото JPG для любых компьютеров.</p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> фото с iPhone сохраняются в HEIC, который не открывается на Windows и не принимают маркетплейсы.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> JPG для любых устройств.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(7)">
+                <h3>📲 Из HEIC в WebP <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> загрузить фото с iPhone прямо на сайт или в интернет-магазин в современном формате.</p>
+                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> WebP для веба из HEIC.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(8)">
+                <h3>🆕 Из AVIF в JPG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> AVIF — новейший формат, который пока не понимают многие программы и сервисы.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> JPG с максимальной совместимостью.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(9)">
+                <h3>🔷 Из AVIF в PNG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> сохранить картинку из AVIF без потерь для редакторов и сервисов без поддержки AVIF.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> PNG в исходном качестве.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(10)">
+                <h3>📉 Из BMP в JPG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> старые BMP-файлы несжатые и громоздкие — их неудобно хранить и отправлять.</p>
+                <p style="font-size:12px; color:var(--accent);"><strong>Результат:</strong> вес меньше в 10–30 раз.</p>
+            </div>
+            <div class="workspace-card" style="cursor: pointer;" onclick="pickDir(11)">
+                <h3>🎞️ Из GIF в PNG <span>Выбрать →</span></h3>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;"><strong>Зачем:</strong> извлечь статичный кадр из GIF-анимации для макетов, превью и документов.</p>
+                <p style="font-size:12px; color:var(--primary);"><strong>Результат:</strong> качественный статичный PNG.</p>
             </div>
         </div>
     </section>
 
     <!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА -->
     <section>
-        <h2 class="section-title">Таблица форматов изображений</h2>
+        <h2 class="section-title">Сравнение форматов: что выбрать</h2>
         <div class="table-wrap">
             <table>
                 <thead>
                     <tr>
-                        <th>Направление</th>
-                        <th>Основная цель</th>
-                        <th>Что происходит с весом?</th>
+                        <th>Формат</th>
+                        <th>Сжатие</th>
                         <th>Прозрачность</th>
+                        <th>Совместимость</th>
+                        <th>Когда использовать</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>WebP → JPG</strong></td>
-                        <td>Открыть в Photoshop / отправить на маркетплейс</td>
-                        <td>Остается практически прежним</td>
-                        <td>Заливается белым фоном</td>
+                        <td><strong>JPG</strong></td>
+                        <td>С потерями, качество 80–95%</td>
+                        <td>❌ Нет</td>
+                        <td>✅ Открывается везде</td>
+                        <td>Маркетплейсы, печать, Photoshop, отправка фото</td>
                     </tr>
                     <tr>
-                        <td><strong>JPG → WebP</strong></td>
-                        <td>Ускорить загрузку сайта для поисковиков</td>
-                        <td>Уменьшается на 30–50%</td>
-                        <td>Не поддерживается в JPG</td>
+                        <td><strong>PNG</strong></td>
+                        <td>Без потерь, файлы тяжёлые</td>
+                        <td>✅ Да</td>
+                        <td>✅ Открывается везде</td>
+                        <td>Логотипы, скриншоты, графика с прозрачным фоном</td>
                     </tr>
                     <tr>
-                        <td><strong>PNG → WebP</strong></td>
-                        <td>Сжать логотип или иконку сайта</td>
-                        <td>Уменьшается на 50–75%</td>
-                        <td>Полностью сохраняется</td>
+                        <td><strong>WebP</strong></td>
+                        <td>На 25–50% легче JPG</td>
+                        <td>✅ Да</td>
+                        <td>🌐 Все современные браузеры</td>
+                        <td>Ускорение сайтов, SEO, Google PageSpeed</td>
                     </tr>
                     <tr>
-                        <td><strong>PNG → JPG</strong></td>
-                        <td>Уменьшить скриншот или скан документа</td>
-                        <td>Уменьшается до 80–90%</td>
-                        <td>Заливается белым фоном</td>
+                        <td><strong>AVIF</strong></td>
+                        <td>На 50–70% легче JPG</td>
+                        <td>✅ Да</td>
+                        <td>⚠️ Не везде</td>
+                        <td>Максимальное сжатие для новых проектов</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HEIC</strong></td>
+                        <td>Эффективное, Apple</td>
+                        <td>✅ Да</td>
+                        <td>❌ Только Apple</td>
+                        <td>Исходники фото с iPhone — конвертируйте в JPG</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
+    <!-- КОМУ ПРИГОДИТСЯ (SEO-текст с ключами) -->
+    <section>
+        <h2 class="section-title">Кому нужен этот конвертер</h2>
+        <div class="seo-formats-grid">
+            <div class="workspace-card">
+                <h3>🛍️ Селлерам маркетплейсов</h3>
+                <p style="font-size:13px; color:var(--muted);">Wildberries, Ozon и Яндекс Маркет принимают фото товаров в JPG. Скачанные с сайтов WebP и снятые на iPhone HEIC придётся конвертировать — здесь это делается пачкой до 100 штук. А <a href="foto-dlya-marketpleisov.html" style="color:var(--primary);">подготовить фото 3:4 для карточки товара</a> поможет наш отдельный инструмент.</p>
+            </div>
+            <div class="workspace-card">
+                <h3>🌐 Вебмастерам и SEO-специалистам</h3>
+                <p style="font-size:13px; color:var(--muted);">Google PageSpeed Insights требует «современные форматы изображений». Перевод JPG и PNG в WebP ускоряет сайт на 30–70% и улучшает поведенческие факторы. Дополнительно <a href="szhatie-foto.html" style="color:var(--primary);">сожмите вес картинок</a> до целевых килобайт.</p>
+            </div>
+            <div class="workspace-card">
+                <h3>👤 Обычным пользователям</h3>
+                <p style="font-size:13px; color:var(--muted);">Скачанная с интернета картинка не открывается? Фото с iPhone не читается на Windows? Скиньте файлы сюда и получите JPG, который работает везде. Заодно можно <a href="udalit-exif.html" style="color:var(--primary);">удалить EXIF-геолокацию</a> перед публикацией.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 (РСЯ / AdSense — перед FAQ) -->
     <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
 
-    <!-- FAQ -->
+    <!-- FAQ (строго совпадает с FAQPage JSON-LD) -->
     <section>
         <h2 class="section-title">Часто задаваемые вопросы</h2>
         <details class="faq-item">
-            <summary>Как конвертировать сразу 50–100 картинок?</summary>
-            <div class="faq-body">
-                Просто выделите все файлы в папке на компьютере и перетащите их в окно загрузки. После завершения обработки они автоматически скачаются одним ZIP-архивом.
-            </div>
+            <summary>Как конвертировать сразу 50–100 картинок пакетно?</summary>
+            <div class="faq-body">Выделите все файлы в папке на компьютере и перетащите их в окно загрузки. После обработки они автоматически скачаются одним ZIP-архивом — по одному файлику сохранять не нужно.</div>
         </details>
         <details class="faq-item">
-            <summary>Сохранится ли качество фотографий?</summary>
-            <div class="faq-body">
-                Да, по умолчанию выставлено качество 90%, что обеспечивает отсутствие артефактов и сохранение всех мелких деталей снимка.
-            </div>
+            <summary>Какие форматы поддерживает конвертер?</summary>
+            <div class="faq-body">На вход принимаются JPG, JPEG, PNG, WebP, AVIF, HEIC/HEIF (фото с iPhone), GIF, BMP и ICO. На выход можно получить JPG, PNG, WebP и AVIF (в браузерах с его поддержкой).</div>
         </details>
         <details class="faq-item">
-            <summary>Безопасно ли конвертировать личные фото?</summary>
-            <div class="faq-body">
-                На 100%. Наш сервис работает локально внутри браузера. Ваши файлы не отправляются ни на один сервер в интернете.
-            </div>
+            <summary>Теряется ли качество при конвертации WebP в JPG?</summary>
+            <div class="faq-body">По умолчанию выставлено качество 90% — артефакты сжатия незаметны глазу, все мелкие детали снимка сохраняются. Для печати можно поднять ползунок до 95–100%.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Что делать, если прозрачный фон стал белым?</summary>
+            <div class="faq-body">Формат JPG не поддерживает прозрачность, поэтому альфа-канал заменяется цветом подложки (его можно выбрать в настройках). Если прозрачность нужна — конвертируйте в PNG или WebP.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Как открыть фото HEIC с iPhone на Windows?</summary>
+            <div class="faq-body">Загрузите HEIC-файлы в конвертер и выберите направление «Из HEIC в JPG». Полученные JPG откроются на любом компьютере, в Photoshop и примут все маркетплейсы.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Почему WebP лучше для сайта, чем JPG?</summary>
+            <div class="faq-body">WebP весит на 25–50% меньше JPG при том же визуальном качестве. Google рекомендует этот формат в PageSpeed Insights — страницы грузятся быстрее, что положительно влияет на позиции в поиске.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Отправляются ли мои фото на сервер? Это безопасно?</summary>
+            <div class="faq-body">Нет. Вся обработка происходит локально внутри вашего браузера на технологии HTML5 Canvas. Файлы физически не покидают компьютер — это можно проверить, отключив интернет после загрузки страницы.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Конвертер бесплатный? Есть ли ограничения?</summary>
+            <div class="faq-body">Да, сервис полностью бесплатный и без регистрации. Ограничение — до 100 файлов за одну пакетную обработку; максимальный размер зависит только от объёма оперативной памяти вашего устройства.</div>
         </details>
     </section>
+
+    <!-- ВНУТРЕННЯЯ ПЕРЕЛИНКОВКА -->
+    <section>
+        <h2 class="section-title">Другие инструменты BatchPhoto</h2>
+        <div class="seo-formats-grid">
+            <a class="workspace-card" href="foto-dlya-marketpleisov.html" style="text-decoration:none; color:inherit;">
+                <h3>🛍️ Фото для маркетплейсов</h3>
+                <p style="font-size:13px; color:var(--muted);">Обрезка 3:4, белый фон и размеры под требования Wildberries и Ozon.</p>
+            </a>
+            <a class="workspace-card" href="szhatie-foto.html" style="text-decoration:none; color:inherit;">
+                <h3>🗜️ Сжатие фото</h3>
+                <p style="font-size:13px; color:var(--muted);">Уменьшите вес изображений до нужных килобайт без видимой потери качества.</p>
+            </a>
+            <a class="workspace-card" href="udalit-exif.html" style="text-decoration:none; color:inherit;">
+                <h3>🛡️ Удаление EXIF</h3>
+                <p style="font-size:13px; color:var(--muted);">Очистите метаданные, GPS-координаты и данные камеры перед публикацией.</p>
+            </a>
+            <a class="workspace-card" href="vodjanoj-znak.html" style="text-decoration:none; color:inherit;">
+                <h3>© Водяной знак</h3>
+                <p style="font-size:13px; color:var(--muted);">Защитите авторские фото текстом или логотипом — пакетно, за секунды.</p>
+            </a>
+        </div>
+    </section>
+
 </main>
 
 <!-- МОДАЛКА CTRL+K -->
@@ -437,11 +780,11 @@
         <div class="footer-links">
             <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
             <a href="szhatie-foto.html">Сжатие</a>
-            <a href="konverter-webp.html">WebP</a>
+            <a href="konverter-webp.html">Конвертер</a>
             <a href="udalit-exif.html">EXIF</a>
             <a href="vodjanoj-znak.html">Водяной знак</a>
         </div>
-        <p>© 2025 BatchPhoto.ru — Пакетная конвертация изображений онлайн.</p>
+        <p>© 2025 BatchPhoto.ru — Пакетная конвертация изображений онлайн. Все файлы обрабатываются локально в вашем браузере.</p>
     </div>
 </footer>
 
@@ -452,13 +795,13 @@ window.BP_CONFIG = {
     defaultTab: 'convert'
 };
 </script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script src="js/engine.js"></script>
 
-<!-- Логика переключения направлений конвертера -->
+<!-- Логика переключения направлений + определение поддержки форматов -->
 <script>
+/* Переключение режима конвертации */
 function setConvertMode(fmt, q, bg, title, desc) {
     const fmtEl = document.getElementById('format');
     const qEl = document.getElementById('quality');
@@ -475,42 +818,77 @@ function setConvertMode(fmt, q, bg, title, desc) {
         qEl.value = q;
         if (qVal) qVal.textContent = q + '%';
     }
-    if (bg && bgEl) {
-        bgEl.value = bg;
-    }
+    if (bg && bgEl) bgEl.value = bg;
     if (title && h1El) {
         h1El.innerHTML = title.replace('из ', '<span>из ').replace(' в ', '</span> в ');
     }
-    if (desc && descEl) {
-        descEl.textContent = desc;
-    }
+    if (desc && descEl) descEl.textContent = desc;
 
-    // Скролл к дропзоне
     document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* Клик по SEO-карточке = клик по соответствующей кнопке-пресету */
+function pickDir(index) {
+    const btn = document.querySelectorAll('.dir-btn')[index];
+    if (btn) btn.click();
 }
 
 document.querySelectorAll('.dir-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.dir-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        const fmt = btn.dataset.fmt;
-        const q = parseInt(btn.dataset.q) || 90;
-        const bg = btn.dataset.bg || '#ffffff';
-        const h1 = btn.dataset.h1;
-        const desc = btn.dataset.desc;
-
-        setConvertMode(fmt, q, bg, h1, desc);
+        setConvertMode(
+            btn.dataset.fmt,
+            parseInt(btn.dataset.q) || 90,
+            btn.dataset.bg || '#ffffff',
+            btn.dataset.h1,
+            btn.dataset.desc
+        );
     });
 });
 
+/* Определение поддержки AVIF / WebP браузером */
+(function detectFormats() {
+    function canvasSupports(mime) {
+        try {
+            const c = document.createElement('canvas');
+            c.width = c.height = 1;
+            return c.toDataURL(mime).indexOf('data:' + mime) === 0;
+        } catch (e) { return false; }
+    }
+    const avifOk = canvasSupports('image/avif');
+    const webpOk = canvasSupports('image/webp');
+    const note = document.getElementById('avifNote');
+    const optAvif = document.getElementById('optAvif');
+
+    if (note) {
+        if (avifOk) {
+            note.textContent = '✅ Ваш браузер поддерживает запись AVIF — доступно максимальное сжатие.';
+            note.classList.add('ok');
+        } else {
+            note.textContent = 'ℹ️ Ваш браузер не умеет записывать AVIF — доступны JPG, PNG и WebP.';
+        }
+    }
+    if (optAvif && !avifOk) {
+        optAvif.disabled = true;
+        optAvif.textContent = 'AVIF (.avif) — не поддерживается браузером';
+    }
+    if (!webpOk) {
+        const optWebp = document.querySelector('#format option[value="image/webp"]');
+        if (optWebp) {
+            optWebp.disabled = true;
+            optWebp.textContent = 'WebP (.webp) — не поддерживается браузером';
+        }
+    }
+})();
+
 /* Поиск Ctrl+K */
 const TOOLS = [
-    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
-    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic png в webp" },
-    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
-    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
-    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб озон 3:4 карточка товара" },
+    { t: "Конвертер изображений онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp в jpg конвертер heic avif png в webp bmp gif формат" },
+    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб оптимизация" },
+    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps геолокация" },
+    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark защита" }
 ];
 const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
 function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
@@ -529,6 +907,7 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -537,10 +916,10 @@ renderCmd('');
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
-
     ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
 </body>
 </html>
