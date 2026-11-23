@@ -96,6 +96,52 @@
             border-color: var(--primary);
             color: var(--primary);
         }
+/* ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» ===== */
+.pv-panel { margin-top: 14px; border: 1px solid var(--border, rgba(128,128,128,0.18)); border-radius: 12px; padding: 12px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
+.pv-empty { color: var(--muted, #666); text-align: center; padding: 4px 0; }
+.pv-body   { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.pv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.pv-label  { font-weight: 700; font-size: 13px; }
+.pv-name   { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
+.pv-meta   { margin-top: 2px; font-size: 12px; color: var(--muted, #666); }
+.pv-warn { color: #ef4444; font-weight: 700; }
+
+.cmp-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+.cmp-pane {
+    position: relative;
+    flex: 0 0 auto;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border, rgba(128,128,128,0.25));
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+.cmp-pane img,
+.cmp-pane canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.cmp-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(0,0,0,.72);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    z-index: 2;
+}
     </style>
 </head>
 <body>
@@ -166,7 +212,27 @@
         </div>
         <!-- Сетка загруженных изображений -->
         <div class="files-grid" id="filesGrid"></div>
-        <!-- ВКЛАДКИ НАСТРОЕК -->
+<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» ===== -->
+<div class="pv-panel" id="previewPanel">
+    <div class="pv-empty" id="previewEmpty">👁️ Предпросмотр появится после загрузки первого фото — слева «До», справа «После»</div>
+    <div class="pv-body" id="previewBody" style="display:none;">
+        <div class="pv-header">
+            <span class="pv-label">Сравнение «До / После»</span>
+            <span class="pv-name" id="pvName"></span>
+        </div>
+        <div class="cmp-grid" id="cmpGrid">
+            <div class="cmp-pane">
+                <img id="imgBefore" alt="До">
+                <span class="cmp-badge">До</span>
+            </div>
+            <div class="cmp-pane">
+                <canvas id="canvasAfter"></canvas>
+                <span class="cmp-badge">После</span>
+            </div>
+        </div>
+        <div class="pv-meta" id="pvMeta"></div>
+    </div>
+</div>
         <div class="tabs">
             <button class="tab-btn active" data-tab="watermark">✍️ Настройки знака</button>
             <button class="tab-btn" data-tab="format">⚙️ Формат и сжатие</button>
@@ -723,7 +789,212 @@ function renderCmd(q){
 }
 renderCmd('');
 </script>
+<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» ===== -->
+<script>
+(function () {
+    'use strict';
+    var $ = function (id) { return document.getElementById(id); };
+    var panel = $('previewPanel'); if (!panel) return;
 
+    var empty       = $('previewEmpty'),
+        body        = $('previewBody'),
+        imgBefore   = $('imgBefore'),
+        canvasAfter = $('canvasAfter'),
+        cmpGrid     = $('cmpGrid'),
+        nameEl      = $('pvName'),
+        metaEl      = $('pvMeta'),
+        grid        = $('filesGrid');
+
+    if (!imgBefore || !canvasAfter) return;
+    var ctx = canvasAfter.getContext('2d');
+
+    var loadedImg = null;
+    var loadedSrc = null;
+    var timer = null;
+
+    function show() { empty.style.display = 'none';  body.style.display = 'flex'; }
+    function hide() { body.style.display = 'none';   empty.style.display = ''; loadedImg = null; }
+
+    function loadFirst() {
+        if (typeof uploadedFiles === 'undefined' || !uploadedFiles.length) { hide(); return; }
+        var file = uploadedFiles[0];
+        var url = URL.createObjectURL(file);
+        var im = new Image();
+        im.onload = function () {
+            loadedImg = im;
+            loadedSrc = url;
+            imgBefore.src = url;
+            nameEl.textContent = file.name;
+            show();
+            render();
+        };
+        im.onerror = function () { URL.revokeObjectURL(url); hide(); };
+        im.src = url;
+    }
+    function reload() {
+        if (loadedSrc) { URL.revokeObjectURL(loadedSrc); loadedSrc = null; loadedImg = null; }
+        loadFirst();
+    }
+
+    function schedule() {
+        if (!loadedImg) return;
+        clearTimeout(timer);
+        timer = setTimeout(render, 100);
+    }
+
+    /* Рендер «После» — логика идентична processImage, но с ограничением размера canvas */
+function render() {
+        if (!loadedImg) return;
+        var img = loadedImg;
+
+        var text    = $('wmText').value.trim();
+        var pos     = $('wmPos').value;
+        var color   = $('wmColor').value;
+        var opacity = parseInt($('wmOpacity').value, 10);
+        var size    = parseInt($('wmSize').value, 10);
+        var fmt     = $('format').value;
+        var q       = parseInt($('quality').value, 10) / 100;
+
+        var nw = img.naturalWidth, nh = img.naturalHeight;
+        var MAX = 900;
+        var k = Math.min(MAX / nw, MAX / nh, 1);
+        var w = Math.max(1, Math.round(nw * k));
+        var h = Math.max(1, Math.round(nh * k));
+
+        canvasAfter.width  = w;
+        canvasAfter.height = h;
+
+        if (fmt === 'image/jpeg') {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, w, h);
+        } else {
+            ctx.clearRect(0, 0, w, h);
+        }
+        ctx.drawImage(img, 0, 0, w, h);
+
+        if (text) {
+            ctx.save();
+            ctx.globalAlpha = opacity / 100;
+            ctx.fillStyle = color;
+
+            var maxDim = Math.max(w, h);
+            var fontSize = Math.max(14, Math.round(maxDim * (size * 0.007 + 0.01)));
+            ctx.font = 'bold ' + fontSize + 'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+            ctx.textBaseline = 'middle';
+
+            var textWidth = ctx.measureText(text).width;
+            var margin = Math.round(fontSize * 0.8);
+
+            if (pos === 'tile') {
+                ctx.translate(w / 2, h / 2);
+                ctx.rotate(-Math.PI / 6);
+                ctx.textAlign = 'center';
+                var stepX = textWidth + fontSize * 2.5;
+                var stepY = fontSize * 3.5;
+                var diag  = Math.sqrt(w * w + h * h);
+                for (var y = -diag; y < diag; y += stepY) {
+                    for (var x = -diag; x < diag; x += stepX) {
+                        ctx.fillText(text, x, y);
+                    }
+                }
+            } else {
+                var px = 0, py = 0;
+                if (pos === 'br')      { ctx.textAlign = 'right';  px = w - margin; py = h - margin - fontSize / 2; }
+                else if (pos === 'bl') { ctx.textAlign = 'left';   px = margin;     py = h - margin - fontSize / 2; }
+                else if (pos === 'tr') { ctx.textAlign = 'right';  px = w - margin; py = margin + fontSize / 2; }
+                else if (pos === 'tl') { ctx.textAlign = 'left';   px = margin;     py = margin + fontSize / 2; }
+                else if (pos === 'center') { ctx.textAlign = 'center'; px = w / 2; py = h / 2; }
+                ctx.fillText(text, px, py);
+            }
+            ctx.restore();
+        }
+
+        sizePanes(nw / nh);
+
+        /* ====== Расчёт веса файла после сжатия ====== */
+        var ftxt = (fmt === 'image/jpeg') ? 'JPEG' : (fmt === 'image/webp') ? 'WebP' : 'PNG';
+        var bytes = 0;
+        try {
+            var dataUrl = canvasAfter.toDataURL(fmt, q);
+            var base64Len = dataUrl.length - dataUrl.indexOf(',') - 1;
+            var canvasBytes = Math.round(base64Len * 0.75);
+            // Оценка веса при полном разрешении: масштабируем по площади кадра
+            var areaRatio = (nw * nh) / (w * h);
+            bytes = Math.round(canvasBytes * areaRatio);
+        } catch (e) { bytes = 0; }
+
+        var sizeTxt = '';
+        if (bytes > 0) {
+            if (bytes > 1048576) {
+                sizeTxt = ' • ≈ <b>' + (bytes / 1048576).toFixed(2) + ' МБ</b>';
+            } else {
+                sizeTxt = ' • ≈ <b>' + Math.max(1, Math.round(bytes / 1024)) + ' КБ</b>';
+            }
+            if (bytes > 10485760) {
+                sizeTxt += ' <span class="pv-warn">⚠️ больше 10 МБ, снизьте качество</span>';
+            }
+        }
+
+        // Для PNG ползунок качества не действует — предупреждаем
+        var qualNote = (fmt === 'image/png') ? ' • без потерь' : ' (' + Math.round(q * 100) + '%)';
+
+        metaEl.innerHTML = 'Итог: <b>' + nw + ' × ' + nh + ' px</b> • ' +
+            ftxt + qualNote + sizeTxt;
+    }
+
+    /* Размеры панелей под пропорции фото */
+    var lastRatio = null;
+    function sizePanes(ratio) {
+        lastRatio = ratio;
+        var paneH = window.innerWidth < 520 ? 220 : 320;
+        var paneW = Math.round(paneH * ratio);
+        var panes = cmpGrid.querySelectorAll('.cmp-pane');
+        var total = paneW * 2 + 10;
+        var avail = cmpGrid.clientWidth || cmpGrid.parentNode.clientWidth || total;
+        if (total > avail) {
+            var kk = (avail - 10) / (paneW * 2);
+            paneH = Math.round(paneH * kk);
+            paneW = Math.round(paneW * kk);
+        }
+        for (var i = 0; i < panes.length; i++) {
+            panes[i].style.height = paneH + 'px';
+            panes[i].style.width  = paneW + 'px';
+        }
+    }
+    window.addEventListener('resize', function () { if (lastRatio) sizePanes(lastRatio); });
+
+    /* Подписки на контролы */
+    ['wmText', 'wmPos', 'wmColor', 'wmOpacity', 'wmSize', 'format', 'quality'].forEach(function (id) {
+        var el = $(id); if (!el) return;
+        el.addEventListener('input', schedule);
+        el.addEventListener('change', schedule);
+    });
+/* Клик по пресету → превью обновится, хотя основной код не диспатчит события */
+document.querySelectorAll('.preset-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        setTimeout(schedule, 0);
+    });
+});
+    /* Следим за загрузкой / очисткой файлов */
+    var lastCount = 0;
+    if (grid && window.MutationObserver) {
+        new MutationObserver(function () {
+            var cur = (typeof uploadedFiles !== 'undefined') ? uploadedFiles.length : 0;
+            if (cur !== lastCount) {
+                lastCount = cur;
+                reload();
+            }
+        }).observe(grid, { childList: true });
+    }
+
+    /* Если скрипт успел загрузиться позже — попробуем стартовое состояние */
+    setTimeout(function () {
+        var cur = (typeof uploadedFiles !== 'undefined') ? uploadedFiles.length : 0;
+        lastCount = cur;
+        if (cur > 0) loadFirst();
+    }, 50);
+})();
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
