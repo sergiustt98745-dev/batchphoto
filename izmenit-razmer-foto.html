@@ -3,43 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        // Запускается мгновенно до показа сайта:
         if (localStorage.getItem('bp_theme_v2') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Добавляем ?v=2 чтобы сбросить старый кэш стилей браузера -->
-    <link rel="stylesheet" href="css/style.css?v=2">
-    <title>Изменить размер фото онлайн — пакетный ресайз, обрезка и добавление фона | BatchPhoto.ru</title>
-    <meta name="description" content="Бесплатное пакетное изменение размера фото онлайн прямо в браузере: ресайз в пикселях (px) и процентах, обрезка по центру (Crop), добавление белого фона без обрезки до 100 фото одновременно.">
-    <meta name="keywords" content="изменить размер фото онлайн, пакетный ресайз фото, обрезать фото онлайн сразу много, вписать фото в квадрат с белым фоном, изменить разрешение фото, подогнать фото под размер в пикселях">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=4">
+    <title>Изменить размер фото онлайн — пакетный ресайз, обрезка, добавление фона и конвертация | BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатное пакетное изменение размера фото онлайн в браузере: ресайз в пикселях (px) и процентах, обрезка по центру (Crop) с выбором позиции, добавление белого фона без обрезки, конвертация в JPG/PNG/WebP, сжатие и переименование сразу для сотен фотографий с живым просмотром До/После.">
+    <meta name="keywords" content="изменить размер фото онлайн, пакетный ресайз фото, обрезать фото онлайн сразу много, вписать фото в квадрат с белым фоном, изменить разрешение фото, подогнать фото под размер в пикселях, ресайз для wildberries, обрезка под 3:4, конвертер jpg png webp, сжать фото онлайн">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://batchphoto.ru/izmenit-razmer-foto.html">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
-    
-    <!-- Open Graph -->
+
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BatchPhoto.ru">
     <meta property="og:title" content="Пакетный ресайз, обрезка и фон для фото онлайн — BatchPhoto.ru">
     <meta property="og:description" content="Массовое изменение размера фотографий в браузере. Впишите фото в рамку с белым фоном или обрежьте под нужные пропорции без потери резкости.">
     <meta property="og:url" content="https://batchphoto.ru/izmenit-razmer-foto.html">
     <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Изменить размер фото онлайн — пакетный ресайз и обрезка | BatchPhoto.ru">
+    <meta name="twitter:description" content="Ресайз, обрезка, фон, конвертация и сжатие — всё в одном пакетном инструменте прямо в браузере.">
 
-    <!-- Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Пакетное изменение размера и обрезка фото",
-      "url": "https://batchphoto.ru/izmenit-razmer-foto.html",
-      "description": "Онлайн инструмент для пакетного изменения разрешения, кадрирования и добавления полей к изображениям.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "RUB"
-      }
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://batchphoto.ru/izmenit-razmer-foto.html#app",
+          "name": "Пакетное изменение размера и обрезка фото — BatchPhoto.ru",
+          "url": "https://batchphoto.ru/izmenit-razmer-foto.html",
+          "description": "Онлайн-инструмент для пакетного изменения разрешения, кадрирования, добавления полей, конвертации форматов и сжатия изображений без потери качества.",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+          "browserRequirements": "Requires HTML5 Canvas and JavaScript",
+          "featureList": [
+            "Пакетный ресайз в пикселях и процентах",
+            "Обрезка по центру (Cover) с выбором позиции (9 вариантов)",
+            "Вписывание с фоном (Contain) без обрезки",
+            "Добавление белого или цветного фона",
+            "Поворот и зеркальное отражение",
+            "Конвертация в JPG, PNG, WebP",
+            "Сжатие с настраиваемым качеством",
+            "Переименование по шаблону с размерами",
+            "Живой предпросмотр До / После",
+            "100% локальная обработка в браузере"
+          ],
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/" },
+            { "@type": "ListItem", "position": 2, "name": "Изменить размер, обрезать и фон", "item": "https://batchphoto.ru/izmenit-razmer-foto.html" }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "Как пакетно изменить размер фотографий онлайн",
+          "description": "Пошаговая инструкция по массовому ресайзу, обрезке и добавлению фона к фото в браузере.",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Загрузите фотографии", "text": "Перетащите изображения (JPG, PNG, WebP) в область загрузки или вставьте через Ctrl+V." },
+            { "@type": "HowToStep", "position": 2, "name": "Выберите режим и размер", "text": "Укажите точные пиксели, проценты или выберите готовый пресет (квадрат 1:1, каталог 3:4, Stories 9:16 и др.)." },
+            { "@type": "HowToStep", "position": 3, "name": "Сравните результат До / После", "text": "Двигайте вертикальный разделитель на экране живого просмотра, чтобы увидеть разницу до и после." },
+            { "@type": "HowToStep", "position": 4, "name": "Скачайте ZIP-архив", "text": "Нажмите «Изменить размер» — браузер обработает всю серию и сформирует готовый ZIP-архив." }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Исказятся ли пропорции фото при изменении размера?", "acceptedAnswer": { "@type": "Answer", "text": "Нет. В режиме «Вписать целиком» фото пропорционально уменьшается с добавлением полей, а в режиме «Cover» — обрезается по центру без деформации." } },
+            { "@type": "Question", "name": "Можно ли выбрать позицию обрезки (сверху, снизу, сбоку)?", "acceptedAnswer": { "@type": "Answer", "text": "Да, в режиме «Cover» доступен выбор из 9 позиций: центр, сверху, снизу, слева, справа и четыре угла." } },
+            { "@type": "Question", "name": "Что делает опция «Не растягивать изображения меньше заданного размера»?", "acceptedAnswer": { "@type": "Answer", "text": "Она защищает мелкие картинки от ухудшения качества. Если исходное фото меньше заданного размера, сервис не будет искусственно увеличивать его." } },
+            { "@type": "Question", "name": "Есть ли живой предпросмотр результата?", "acceptedAnswer": { "@type": "Answer", "text": "Да! Сразу после загрузки фото открывается интерактивный экран «До / После» с разделителем — он показывает первое загруженное фото и обновляется в реальном времени при изменении любых параметров." } },
+            { "@type": "Question", "name": "Сохраняются ли исходные фотографии на моем устройстве?", "acceptedAnswer": { "@type": "Answer", "text": "Да. Все файлы обрабатываются локально в браузере и не загружаются на сервер." } }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -65,10 +107,7 @@
             align-items: center;
             gap: 4px;
         }
-        .preset-btn:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
+        .preset-btn:hover { border-color: var(--primary); transform: translateY(-2px); }
         .preset-btn.active {
             background: rgba(56,189,248,.12);
             border-color: var(--primary);
@@ -78,6 +117,231 @@
         .preset-btn .p-title { font-size: 13px; font-weight: 700; }
         .preset-btn .p-sub { font-size: 11px; color: var(--muted); }
         .preset-btn.active .p-sub { color: var(--primary); }
+
+        /* === Кликабельные чипы функций === */
+        .tools-extra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+        .tool-chip {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: all .18s ease;
+            font-family: inherit;
+            text-align: left;
+        }
+        .tool-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+        .tool-chip:active { transform: scale(.97); }
+        .tool-chip .badge-new {
+            background: #22c55e; color: #fff;
+            font-size: 9px; font-weight: 800;
+            padding: 1px 5px; border-radius: 4px;
+            text-transform: uppercase;
+            margin-left: auto;
+        }
+        .tool-chip.flash {
+            animation: chipFlash 1.2s ease;
+        }
+        @keyframes chipFlash {
+            0%, 100% { box-shadow: 0 0 0 0 var(--primary); }
+            30% { box-shadow: 0 0 0 4px rgba(56,189,248,.35); }
+        }
+
+        /* === Быстрые кнопки пропорций === */
+        .aspect-quick {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .aspect-btn {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all .15s;
+        }
+        .aspect-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(56,189,248,.08);
+        }
+
+        /* === Компактная сетка файлов === */
+        .files-grid {
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)) !important;
+            gap: 8px !important;
+            max-height: 360px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .files-grid .file-item {
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 6px 8px !important;
+            cursor: default !important;
+            border-radius: 8px !important;
+        }
+        .files-grid .file-item img {
+            width: 40px !important; height: 40px !important; min-width: 40px;
+            object-fit: cover !important;
+            border-radius: 6px !important;
+            flex-shrink: 0;
+        }
+        .files-grid .file-item .file-info { flex: 1; min-width: 0; overflow: hidden; }
+        .files-grid .file-item .file-name {
+            font-size: 12px !important; font-weight: 600;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .files-grid .file-item .file-size { font-size: 10.5px !important; color: var(--muted); }
+        .files-grid .file-item .file-check {
+            color: #22c55e; font-weight: 800; font-size: 13px;
+            flex-shrink: 0; background: rgba(34, 197, 94, .12);
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* === Живой просмотр «До / После» === */
+        .preview-section {
+            display: none;
+            margin: 14px 0 18px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+        }
+        .preview-section.visible { display: block; }
+        .preview-head {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 10px; gap: 10px; flex-wrap: wrap;
+        }
+        .preview-head-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .preview-head .title {
+            font-size: 12px; font-weight: 800; color: var(--muted);
+            text-transform: uppercase; letter-spacing: .4px;
+        }
+        .preview-head .filename {
+            font-size: 12.5px; color: var(--primary); font-weight: 700;
+            background: rgba(56,189,248,.1);
+            padding: 3px 9px; border-radius: 6px;
+            max-width: 260px; white-space: nowrap;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+        .preview-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .mini-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 5px 10px; border-radius: 8px;
+            font-size: 12px; font-weight: 600;
+            cursor: pointer; transition: .15s;
+            font-family: inherit;
+            display: inline-flex; align-items: center; gap: 4px;
+        }
+        .mini-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .mini-btn.primary-outline { border-color: var(--primary); color: var(--primary); }
+
+        .split-compare-box {
+            position: relative;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 50% / 20px 20px;
+            user-select: none;
+            touch-action: none;
+            cursor: ew-resize;
+            /* height будет установлен через JS */
+            min-height: 200px;
+        }
+        .split-compare-box img,
+        .split-compare-box canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+        .split-before {
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+            z-index: 2;
+        }
+        .split-handle {
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 2px;
+            background: #ffffff;
+            z-index: 3;
+            cursor: ew-resize;
+            box-shadow: 0 0 10px rgba(0,0,0,.7);
+        }
+        .split-handle::after {
+            content: "↔";
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px; height: 32px;
+            background: var(--primary); color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: bold;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,.4);
+        }
+        .split-label {
+            position: absolute;
+            bottom: 10px;
+            font-size: 11px; font-weight: 700;
+            padding: 3px 9px; border-radius: 6px;
+            color: #fff;
+            background: rgba(15,23,42,.75);
+            backdrop-filter: blur(4px);
+            z-index: 4;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            pointer-events: none;
+        }
+        .split-label.left { left: 10px; }
+        .split-label.right { right: 10px; }
+
+        /* Скрытие группы crop position при других режимах */
+        .form-group.crop-group { display: none; }
+        .form-group.crop-group.visible { display: block; }
+
+        /* Подсветка контрола при переходе с чипа */
+        .highlight-pulse {
+            animation: ctrlPulse 1.3s ease;
+        }
+        @keyframes ctrlPulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--primary); border-color: var(--border); }
+            40% { box-shadow: 0 0 0 5px rgba(56,189,248,.25); border-color: var(--primary); }
+        }
+
+        @media (max-width: 640px) {
+            .split-compare-box { max-height: 45vh; }
+        }
     </style>
 </head>
 <body>
@@ -98,76 +362,112 @@
 </header>
 
 <main class="container">
-    <!-- ХЛЕБНЫЕ КРОШКИ -->
-    <div class="breadcrumbs">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
         <a href="/">Главная</a> / <span>Изменить размер, обрезать и фон</span>
-    </div>
+    </nav>
 
-    <!-- HERO -->
     <div class="hero">
         <div class="badge">🔒 Все файлы обрабатываются на вашем ПК и не уходят на сервер</div>
         <h1 id="pageH1">Изменить размер, обрезать и <span>добавить фон к фото</span></h1>
-        <p id="pageDesc">Пакетный ресайз в пикселях или процентах, центрированная обрезка под квадрат и заливка фона нужным цветом для каталогов и соцсетей.</p>
+        <p id="pageDesc">Пакетный ресайз в пикселях или процентах, центрированная обрезка под квадрат, заливка фона нужным цветом, конвертация в JPG/PNG/WebP и сжатие для каталогов и соцсетей.</p>
     </div>
 
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №1 -->
-    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
-
-    <!-- ОСНОВНОЙ РАБОЧИЙ БЛОК -->
     <div class="card">
-        
-        <!-- БЫСТРЫЕ ШАБЛОНЫ РАЗМЕРОВ -->
+
         <label>Популярные форматы подгонки размера:</label>
         <div class="preset-grid">
             <button class="preset-btn active" data-mode="contain_bg" data-w="1200" data-h="1200" data-bg="#ffffff" data-h1="Вписать в квадрат 1:1 с белым фоном" data-desc="Фото помещается целиком без обрезки важных деталей, а по бокам добавляются аккуратные белые поля.">
                 <span class="p-title">📦 Квадрат с полями</span>
                 <span class="p-sub">1200×1200 (Белый фон)</span>
             </button>
-
             <button class="preset-btn" data-mode="cover" data-w="1080" data-h="1080" data-bg="#ffffff" data-h1="Обрезать фото в квадрат 1:1" data-desc="Кадрирование фото по центру под пропорции 1:1 без пустых полей. Отлично для постов и аватарок.">
                 <span class="p-title">✂️ Квадратная обрезка</span>
                 <span class="p-sub">1080×1080 (Cover)</span>
             </button>
-
             <button class="preset-btn" data-mode="width" data-w="1920" data-h="0" data-bg="#ffffff" data-h1="Подогнать ширину до 1920px (Full HD)" data-desc="Ширина становится ровно 1920px, а высота рассчитывается пропорционально без растяжений.">
                 <span class="p-title">🖥️ Full HD (По ширине)</span>
                 <span class="p-sub">1920 px (Автовысота)</span>
             </button>
-
             <button class="preset-btn" data-mode="cover" data-w="1080" data-h="1920" data-bg="#ffffff" data-h1="Формат Stories и Reels (9:16)" data-desc="Точная вертикальная обрезка под экраны современных смартфонов для историй и коротких видео.">
                 <span class="p-title">📱 Stories 9:16</span>
                 <span class="p-sub">1080×1920 (Вертикальный)</span>
             </button>
-
             <button class="preset-btn" data-mode="contain_bg" data-w="1200" data-h="1600" data-bg="#ffffff" data-h1="Вертикальный 3:4 с белым фоном" data-desc="Классический стандарт каталогов маркетплейсов Wildberries и Ozon с белой подложкой.">
                 <span class="p-title">🛍️ Каталог 3:4</span>
                 <span class="p-sub">1200×1600 (Вписать)</span>
             </button>
-
             <button class="preset-btn" data-mode="percent" data-pct="50" data-w="0" data-h="0" data-bg="#ffffff" data-h1="Уменьшить масштаб фото на 50%" data-desc="Пропорциональное уменьшение ширины и высоты кадра ровно в 2 раза.">
                 <span class="p-title">📉 Масштаб 50%</span>
                 <span class="p-sub">Уменьшить в 2 раза</span>
             </button>
         </div>
 
-        <!-- ДРОПЗОНА -->
+        <!-- КЛИКАБЕЛЬНЫЕ ЧИПЫ ФУНКЦИЙ -->
+        <div class="tools-extra-grid" id="toolsChips">
+            <button type="button" class="tool-chip" data-goto-tab="resize" data-goto-mode="cover" data-focus="resizeMode">
+                ✂️ Пакетная обрезка по центру
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="bg" data-focus="bgColor">
+                🎨 Добавление белого / цветного фона
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="format" data-focus="format">
+                🔄 Конвертация JPG / PNG / WebP
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="format" data-focus="quality">
+                🗜️ Сжатие с настраиваемым качеством
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="transform" data-focus="rotate">
+                📐 Поворот 90° / 180° / 270°
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="transform" data-focus="flip">
+                🪞 Зеркальное отражение
+            </button>
+            <button type="button" class="tool-chip" data-goto-tab="rename" data-focus="renamePattern">
+                🏷️ Переименование с размерами
+            </button>
+            <button type="button" class="tool-chip" data-goto-preview="1" id="chipPreview">
+                👁️ Живой просмотр До/После
+                <span class="badge-new">New</span>
+            </button>
+        </div>
+
         <div class="dropzone" id="dropzone" tabindex="0">
             <div class="icon">📐</div>
             <p><strong>Выберите фотографии</strong> или перетащите их сюда</p>
-            <small>JPG, PNG, WebP до 100 изображений одновременно (поддерживается вставка через Ctrl+V)</small>
+            <small>JPG, PNG, WebP — загружайте сразу много фотографий (поддерживается вставка через Ctrl+V)</small>
             <input type="file" id="fileInput" multiple accept="image/*,.webp" style="display: none;">
         </div>
 
-        <!-- ТУЛБАР ФАЙЛОВ -->
+        <!-- ═══════ ЖИВОЙ ПРОСМОТР «ДО / ПОСЛЕ» ═══════ -->
+        <div class="preview-section" id="previewSection">
+            <div class="preview-head">
+                <div class="preview-head-left">
+                    <span class="title">👁️ Живой просмотр «До / После»:</span>
+                    <span class="filename" id="previewActiveName">—</span>
+                    <span id="previewResolution" style="font-size:11px; color:var(--muted);"></span>
+                </div>
+                <div class="preview-actions">
+                    <button type="button" class="mini-btn" id="holdBeforeBtn" title="Удерживайте, чтобы увидеть оригинал целиком">👁️ Удерживать: До</button>
+                    <button type="button" class="mini-btn primary-outline" id="downloadCurrentBtn" title="Скачать это фото с применёнными настройками">💾 Скачать это фото</button>
+                </div>
+            </div>
+            <div class="split-compare-box" id="splitBox">
+                <img id="imgBefore" class="split-before" alt="Оригинал (До обработки)">
+                <canvas id="canvasAfter"></canvas>
+                <div class="split-handle" id="splitHandle"></div>
+                <span class="split-label left">До (Оригинал)</span>
+                <span class="split-label right">После (Результат)</span>
+            </div>
+        </div>
+
         <div class="files-toolbar" id="filesToolbar">
             <span class="files-count" id="filesCount">Выбрано файлов: 0</span>
+            <span style="font-size:12px; color:var(--muted);">✅ Все фото загружены. Живой просмотр «До / После» — для первого фото серии.</span>
             <button class="clear-btn" id="clearBtn">Очистить список</button>
         </div>
 
-        <!-- СЕТКА ФАЙЛОВ -->
         <div class="files-grid" id="filesGrid"></div>
 
-        <!-- ВКЛАДКИ НАСТРОЕК -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="resize">📐 Размер и режим</button>
             <button class="tab-btn" data-tab="bg">🎨 Цвет фона</button>
@@ -176,7 +476,6 @@
             <button class="tab-btn" data-tab="rename">🏷️ Имена файлов</button>
         </div>
 
-        <!-- ПАНЕЛЬ 1: РАЗМЕР -->
         <div class="tab-panel active" id="panel-resize">
             <div class="grid">
                 <div class="form-group">
@@ -198,6 +497,32 @@
                         <input type="number" id="width" placeholder="Ширина" value="1200">
                         <input type="number" id="height" placeholder="Высота" value="1200">
                     </div>
+                    <div class="aspect-quick">
+                        <button type="button" class="aspect-btn" data-ratio="1:1">1:1</button>
+                        <button type="button" class="aspect-btn" data-ratio="4:3">4:3</button>
+                        <button type="button" class="aspect-btn" data-ratio="3:4">3:4</button>
+                        <button type="button" class="aspect-btn" data-ratio="16:9">16:9</button>
+                        <button type="button" class="aspect-btn" data-ratio="9:16">9:16</button>
+                        <button type="button" class="aspect-btn" data-ratio="4:5">4:5</button>
+                        <button type="button" class="aspect-btn" data-ratio="3:2">3:2</button>
+                        <button type="button" class="aspect-btn" data-ratio="2:3">2:3</button>
+                    </div>
+                </div>
+
+                <div class="form-group crop-group" id="cropGroup">
+                    <label for="cropPos">Позиция обрезки (для режима Cover)</label>
+                    <select id="cropPos">
+                        <option value="center" selected>Центр (по умолчанию)</option>
+                        <option value="top">Сверху по центру</option>
+                        <option value="bottom">Снизу по центру</option>
+                        <option value="left">Слева по центру</option>
+                        <option value="right">Справа по центру</option>
+                        <option value="top-left">Сверху слева</option>
+                        <option value="top-right">Сверху справа</option>
+                        <option value="bottom-left">Снизу слева</option>
+                        <option value="bottom-right">Снизу справа</option>
+                    </select>
+                    <div class="hint">Что сохранить при обрезке — например, голову модели сверху, а не центр.</div>
                 </div>
 
                 <div class="form-group" id="percentGroup" style="display:none;">
@@ -207,14 +532,12 @@
                     </div>
                 </div>
             </div>
-
             <label class="checkbox-row">
                 <input type="checkbox" id="noUpscale" checked>
                 Не растягивать изображения меньше заданного размера (защита от размытия)
             </label>
         </div>
 
-        <!-- ПАНЕЛЬ 2: ФОН ПОДЛОЖКИ -->
         <div class="tab-panel" id="panel-bg">
             <div class="grid">
                 <div class="form-group">
@@ -225,7 +548,6 @@
             </div>
         </div>
 
-        <!-- ПАНЕЛЬ 3: ПОВОРОТ И ОТРАЖЕНИЕ -->
         <div class="tab-panel" id="panel-transform">
             <div class="grid">
                 <div class="form-group">
@@ -237,7 +559,6 @@
                         <option value="270">270° (Против часовой)</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="flip">Отразить зеркально</label>
                     <select id="flip">
@@ -249,7 +570,6 @@
             </div>
         </div>
 
-        <!-- ПАНЕЛЬ 4: ФОРМАТ И КАЧЕСТВО -->
         <div class="tab-panel" id="panel-format">
             <div class="grid">
                 <div class="form-group">
@@ -260,7 +580,6 @@
                         <option value="image/png">PNG (.png)</option>
                     </select>
                 </div>
-
                 <div class="form-group" id="qualityGroup">
                     <label for="quality">Качество сжатия: <span id="qualityVal" class="range-val">90%</span></label>
                     <div class="range-row">
@@ -270,24 +589,25 @@
             </div>
         </div>
 
-        <!-- ПАНЕЛЬ 5: ИМЕНА ФАЙЛОВ -->
         <div class="tab-panel" id="panel-rename">
             <div class="grid">
                 <div class="form-group">
                     <label for="renamePattern">Шаблон имени</label>
                     <input type="text" id="renamePattern" value="{name}_{w}x{h}" placeholder="{name}_{w}x{h}">
-                    <div class="hint">Шаблоны: <code>{name}</code> — старое имя, <code>{w}</code>×<code>{h}</code> — размеры в пикселях, <code>{n}</code> — номер.</div>
+                    <div class="hint">
+                        Шаблоны: <code>{name}</code> — старое имя, <code>{w}</code>×<code>{h}</code> — размеры, <code>{n}</code> — номер.
+                        <br>Пример результата: <code id="renamePreview" style="color:var(--primary); font-weight:700;">photo_1200x1200.jpg</code>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- КНОПКИ ДЕЙСТВИЙ -->
         <div class="btn-row">
             <button class="btn" id="processBtn">⚡ Изменить размер всех фото и скачать ZIP</button>
-            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px;" title="Остановить">✕</button>
+            <button class="btn btn-secondary" id="resetBtn" style="width: auto; padding: 15px 20px;" title="Сбросить все настройки">↺ Сбросить</button>
+            <button class="btn btn-secondary" id="cancelBtn" style="width: auto; padding: 15px 20px; display: none;" title="Остановить">✕ Стоп</button>
         </div>
 
-        <!-- ПРОГРЕСС -->
         <div class="progress-box" id="progressBox">
             <div class="progress-info">
                 <span id="progressStatus">Обработка изображений…</span>
@@ -298,7 +618,6 @@
             </div>
         </div>
 
-        <!-- РЕЗУЛЬТАТ -->
         <div class="result-box" id="resultBox">
             <h3>🎉 Размер успешно изменен!</h3>
             <p id="resultStats"></p>
@@ -306,47 +625,33 @@
         </div>
     </div>
 
-    <!-- ПОПУЛЯРНЫЕ СЦЕНАРИИ РЕСАЙЗА -->
     <section>
         <h2 class="section-title">Разница между режимами подгонки размера</h2>
         <p class="section-sub">Выберите подходящий алгоритм кадрирования под вашу задачу.</p>
-        
         <div class="workspaces-grid">
             <div class="workspace-card">
                 <h3>📦 Вписать с полями (Contain)</h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    Изображение уменьшается так, чтобы полностью поместиться в заданные рамки. Свободное пространство по краям аккуратно заливается выбранным цветом фона.
-                </p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Изображение уменьшается так, чтобы полностью поместиться в заданные рамки. Свободное пространство по краям аккуратно заливается выбранным цветом фона.</p>
                 <div style="font-size:12px; color:var(--primary); font-weight:700;">Без обрезки деталей товара</div>
             </div>
-
             <div class="workspace-card">
                 <h3>✂️ Обрезка по центру (Cover)</h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    Кадр масштабируется так, чтобы полностью закрыть всю площадь холста без полей. Лишние выступающие края сверху/снизу или по бокам ровно срезаются.
-                </p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Кадр масштабируется так, чтобы полностью закрыть всю площадь холста без полей. Лишние выступающие края сверху/снизу или по бокам ровно срезаются.</p>
                 <div style="font-size:12px; color:var(--accent); font-weight:700;">Без пустых полей по краям</div>
             </div>
-
             <div class="workspace-card">
                 <h3>📐 Фиксированная ширина</h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    Вы задаете точную ширину (например, 1920 или 1200 px), а высота рассчитывается пропорционально для каждого файла индивидуально.
-                </p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Вы задаете точную ширину (например, 1920 или 1200 px), а высота рассчитывается пропорционально для каждого файла индивидуально.</p>
                 <div style="font-size:12px; color:var(--primary); font-weight:700;">Сохраняет исходные пропорции</div>
             </div>
-
             <div class="workspace-card">
                 <h3>📉 Масштаб в процентах (%)</h3>
-                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-                    Позволяет уменьшить всю пачку фотографий разного разрешения ровно в 2, 3 или 4 раза одним общим ползунком.
-                </p>
+                <p style="font-size:13px; color:var(--muted); margin-bottom:8px;">Позволяет уменьшить всю пачку фотографий разного разрешения ровно в 2, 3 или 4 раза одним общим ползунком.</p>
                 <div style="font-size:12px; color:var(--accent); font-weight:700;">Удобно для разнородных фото</div>
             </div>
         </div>
     </section>
 
-    <!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА СТАНДАРТНЫХ РАЗРЕШЕНИЙ -->
     <section>
         <h2 class="section-title">Таблица стандартных размеров для интернета</h2>
         <div class="table-wrap">
@@ -360,82 +665,55 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Wildberries / Ozon карточки</strong></td>
-                        <td>1200 × 1600 px</td>
-                        <td>3:4 (Вертикальный)</td>
-                        <td>Вписать с полями (белый фон)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Квадратный каталог / Авито</strong></td>
-                        <td>1200 × 1200 px</td>
-                        <td>1:1 (Квадрат)</td>
-                        <td>Вписать с полями или Cover</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Истории (Stories / Reels / Shorts)</strong></td>
-                        <td>1080 × 1920 px</td>
-                        <td>9:16 (Вертикальный)</td>
-                        <td>Обрезка по центру (Cover)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Иллюстрации для статей сайтов</strong></td>
-                        <td>1200 × 800 px или 1920 px</td>
-                        <td>16:9 / 3:2</td>
-                        <td>По ширине (пропорционально)</td>
-                    </tr>
+                    <tr><td><strong>Wildberries / Ozon карточки</strong></td><td>1200 × 1600 px</td><td>3:4 (Вертикальный)</td><td>Вписать с полями (белый фон)</td></tr>
+                    <tr><td><strong>Квадратный каталог / Авито</strong></td><td>1200 × 1200 px</td><td>1:1 (Квадрат)</td><td>Вписать с полями или Cover</td></tr>
+                    <tr><td><strong>Истории (Stories / Reels / Shorts)</strong></td><td>1080 × 1920 px</td><td>9:16 (Вертикальный)</td><td>Обрезка по центру (Cover)</td></tr>
+                    <tr><td><strong>Иллюстрации для статей сайтов</strong></td><td>1200 × 800 px или 1920 px</td><td>16:9 / 3:2</td><td>По ширине (пропорционально)</td></tr>
+                    <tr><td><strong>Аватарки и профили</strong></td><td>400 × 400 px</td><td>1:1 (Квадрат)</td><td>Обрезка по центру (Cover)</td></tr>
+                    <tr><td><strong>Обложки для YouTube</strong></td><td>1280 × 720 px</td><td>16:9</td><td>По ширине или Cover</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- 📌 РЕКЛАМНЫЙ БЛОК №2 -->
-    <!-- <div class="ad-slot">Рекламный блок РСЯ / AdSense</div> -->
-
-    <!-- SEO СТАТЬЯ -->
     <section>
         <div class="card" style="padding: 30px;">
             <article>
-                <h3>Как пакетно изменить размер фото без потери резкости?</h3>
+                <h2>Как пакетно изменить размер фото без потери резкости?</h2>
                 <p>При уменьшении разрешения фотографий в простых программах картинка часто теряет четкость и становится замыленной. Наш сервис использует встроенные высокоточные алгоритмы интерполяции браузера (Lanczos/Bicubic resampling), что сохраняет читаемость мелких надписей и контраст деталей:</p>
                 <ul>
-                    <li><strong>Шаг 1:</strong> Перетащите группу изображений (до 100 файлов) в окно конвертера.</li>
-                    <li><strong>Шаг 2:</strong> Выберите нужный режим: задайте точные пиксели или выберите готовый пресет (например, <em>«📦 Квадрат с полями»</em>).</li>
-                    <li><strong>Шаг 3:</strong> Нажмите «Изменить размер» — готовые файлы с нужными пикселями упакуются в ZIP-архив за считанные секунды.</li>
+                    <li><strong>Шаг 1:</strong> Перетащите группу изображений в окно конвертера. Количество файлов не ограничено.</li>
+                    <li><strong>Шаг 2:</strong> Выберите режим: задайте точные пиксели, используйте быстрые кнопки пропорций (1:1, 3:4, 16:9) или готовый пресет.</li>
+                    <li><strong>Шаг 3:</strong> Сравните «До / После» на живом экране и нажмите «Изменить размер» — готовые файлы упакуются в ZIP-архив за считанные секунды.</li>
                 </ul>
-
                 <h3>Зачем нужна заливка фона полей?</h3>
-                <p>Если у вас есть прямоугольное фото товара (например, 1920×1080), а торговая площадка требует строгий квадрат 1:1, обычная обрезка срежет края товара. Режим <strong>«Вписать целиком + фон»</strong> оставит ваш товар на 100% нетронутым, аккуратно заполнив свободные зоны сверху и снизу чистым белым цветом.</p>
+                <p>Если у вас прямоугольное фото товара (1920×1080), а маркетплейс требует строгий квадрат 1:1, обычная обрезка срежет края товара. Режим <strong>«Вписать целиком + фон»</strong> оставит ваш товар на 100% нетронутым, аккуратно заполнив свободные зоны сверху и снизу чистым белым цветом.</p>
+                <h3>Выбор позиции обрезки в режиме Cover</h3>
+                <p>В режиме «Обрезать по центру» можно выбрать <strong>позицию обрезки</strong> из 9 вариантов. Это критично для портретов (обрезать по верхнему краю, оставив лицо) или для фото, где важный объект смещён вправо или влево.</p>
             </article>
         </div>
     </section>
 
-    <!-- FAQ -->
     <section>
         <h2 class="section-title">Часто задаваемые вопросы</h2>
         <details class="faq-item">
             <summary>Исказятся ли пропорции фото (растянется ли картинка)?</summary>
-            <div class="faq-body">
-                Нет! Сервис категорически не деформирует («не плющит») фотографии. В режиме «Вписать» фото пропорционально уменьшается с добавлением полей, а в режиме «Cover» — обрезается строго по центру.
-            </div>
+            <div class="faq-body">Нет! Сервис не деформирует фотографии. В режиме «Вписать» фото пропорционально уменьшается с добавлением полей, а в режиме «Cover» — обрезается строго по центру.</div>
         </details>
-
         <details class="faq-item">
-            <summary>Что делает галочка «Не растягивать изображения меньше заданного размера»?</summary>
-            <div class="faq-body">
-                Она защищает мелкие картинки от ухудшения качества. Если ваше фото имеет размер 800×600 px, а вы задали шаблон 1920×1080 px, сервис не станет искусственно раздувать файл пикселями, предотвращая размытие.
-            </div>
+            <summary>Можно ли выбрать позицию обрезки?</summary>
+            <div class="faq-body">Да. В режиме <strong>«Обрезать по центру (Cover)»</strong> появится селектор позиции: центр, сверху, снизу, слева, справа и четыре угла. Например, для портрета выберите «Сверху по центру», чтобы сохранить лицо.</div>
         </details>
-
         <details class="faq-item">
-            <summary>Сохраняются ли исходные фотографии на моем ПК?</summary>
-            <div class="faq-body">
-                Да. По умолчанию к именам готовых файлов добавляется суффикс с разрешением (например, <code>photo_1200x1200.jpg</code>), поэтому ваши оригиналы никогда не перезапишутся.
-            </div>
+            <summary>Есть ли живой предпросмотр результата?</summary>
+            <div class="faq-body">Да! После загрузки фото открывается интерактивный экран «До / После» с разделителем. Он показывает <strong>первое загруженное фото</strong> и обновляется в реальном времени при изменении любых параметров.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Можно ли подготовить фото для Wildberries и Ozon с белым фоном?</summary>
+            <div class="faq-body">Да, выберите пресет <strong>«🛍️ Каталог 3:4»</strong> (1200×1600) или <strong>«📦 Квадрат с полями»</strong> (1200×1200). Товар будет полностью виден, а свободные зоны заполнятся белым фоном.</div>
         </details>
     </section>
 
-    <!-- ТЕГИ СМЕЖНЫХ РАЗДЕЛОВ -->
     <section>
         <h2 class="section-title">Другие полезные инструменты</h2>
         <div class="tag-cloud">
@@ -448,7 +726,6 @@
     </section>
 </main>
 
-<!-- МОДАЛКА CTRL+K -->
 <div class="modal-overlay" id="cmdModal">
     <div class="cmd-modal">
         <div class="cmd-input-box">
@@ -461,6 +738,7 @@
 <footer>
     <div class="container">
         <div class="footer-links">
+            <a href="/">Главная</a>
             <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
             <a href="szhatie-foto.html">Сжатие</a>
             <a href="konverter-webp.html">WebP</a>
@@ -471,7 +749,6 @@
     </div>
 </footer>
 
-<!-- Конфигурация для engine.js -->
 <script>
 window.BP_CONFIG = {
     allowedTabs: ['resize', 'bg', 'transform', 'format', 'rename'],
@@ -483,83 +760,813 @@ window.BP_CONFIG = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script src="js/engine.js"></script>
 
-<!-- Логика переключения пресетов размера -->
 <script>
-document.querySelectorAll('.preset-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+(function() {
+    'use strict';
 
-        const mode = btn.dataset.mode || 'contain_bg';
-        const w = parseInt(btn.dataset.w) || 0;
-        const h = parseInt(btn.dataset.h) || 0;
-        const pct = parseInt(btn.dataset.pct) || 100;
-        const bg = btn.dataset.bg || '#ffffff';
-        const h1 = btn.dataset.h1;
-        const desc = btn.dataset.desc;
+    /* ══════════════════════════════════════════════════════════
+       Инициализация — обёрнута в try/catch, чтобы страница не
+       падала, даже если engine.js выбросит ошибку раньше.
+       ══════════════════════════════════════════════════════════ */
+    function init() {
 
-        // Режим
-        const rModeEl = document.getElementById('resizeMode');
-        if (rModeEl) {
-            rModeEl.value = mode;
-            rModeEl.dispatchEvent(new Event('change'));
+        const MAX_FILES = 10000;
+
+        /* Изоляция от дублирования engine.js */
+        ['dropzone', 'fileInput', 'clearBtn', 'processBtn', 'cancelBtn'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.parentNode) {
+                const clone = el.cloneNode(true);
+                el.parentNode.replaceChild(clone, el);
+            }
+        });
+
+        /* DOM */
+        const dropzone       = document.getElementById('dropzone');
+        const fileInput      = document.getElementById('fileInput');
+        const filesToolbar   = document.getElementById('filesToolbar');
+        const filesCount     = document.getElementById('filesCount');
+        const clearBtn       = document.getElementById('clearBtn');
+        const filesGrid      = document.getElementById('filesGrid');
+
+        const previewSection    = document.getElementById('previewSection');
+        const previewActiveName = document.getElementById('previewActiveName');
+        const previewResolution = document.getElementById('previewResolution');
+        const splitBox          = document.getElementById('splitBox');
+        const splitHandle       = document.getElementById('splitHandle');
+        const imgBefore         = document.getElementById('imgBefore');
+        const canvasAfter       = document.getElementById('canvasAfter');
+        const holdBeforeBtn     = document.getElementById('holdBeforeBtn');
+        const downloadCurrentBtn= document.getElementById('downloadCurrentBtn');
+
+        const resizeModeSel  = document.getElementById('resizeMode');
+        const widthInput     = document.getElementById('width');
+        const heightInput    = document.getElementById('height');
+        const percentInput   = document.getElementById('percent');
+        const percentVal     = document.getElementById('percentVal');
+        const dimsGroup      = document.getElementById('dimsGroup');
+        const percentGroup   = document.getElementById('percentGroup');
+        const cropGroup      = document.getElementById('cropGroup');
+        const cropPosSelect  = document.getElementById('cropPos');
+        const noUpscaleCheck = document.getElementById('noUpscale');
+        const bgColorInput   = document.getElementById('bgColor');
+        const rotateSelect   = document.getElementById('rotate');
+        const flipSelect     = document.getElementById('flip');
+        const formatSelect   = document.getElementById('format');
+        const qualityInput   = document.getElementById('quality');
+        const qualityVal     = document.getElementById('qualityVal');
+        const qualityGroup   = document.getElementById('qualityGroup');
+        const renamePattern  = document.getElementById('renamePattern');
+        const renamePreview  = document.getElementById('renamePreview');
+
+        const processBtn     = document.getElementById('processBtn');
+        const resetBtn       = document.getElementById('resetBtn');
+        const cancelBtn      = document.getElementById('cancelBtn');
+        const progressBox    = document.getElementById('progressBox');
+        const progressStatus = document.getElementById('progressStatus');
+        const progressPercent= document.getElementById('progressPercent');
+        const progressBar    = document.getElementById('progressBar');
+        const resultBox      = document.getElementById('resultBox');
+        const resultStats    = document.getElementById('resultStats');
+        const resultsList    = document.getElementById('resultsList');
+
+        let uploadedFiles = [];
+        let previewSourceImg = null;
+        let isCancelled = false;
+        let savedSplitPos = 50;
+
+        /* ═══════════ Загрузка файлов ═══════════ */
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+        });
+        dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', e => {
+            e.preventDefault(); dropzone.classList.remove('dragover');
+            if (e.dataTransfer && e.dataTransfer.files.length) handleNewFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', e => {
+            if (e.target.files.length) { handleNewFiles(e.target.files); fileInput.value = ''; }
+        });
+        window.addEventListener('paste', e => {
+            if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length) {
+                handleNewFiles(e.clipboardData.files);
+            }
+        });
+
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' Б';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' КБ';
+            return (bytes / 1048576).toFixed(2) + ' МБ';
         }
 
-        // Размеры
-        const wEl = document.getElementById('width');
-        const hEl = document.getElementById('height');
-        if (wEl && w) wEl.value = w;
-        if (hEl && h) hEl.value = h;
+        function handleNewFiles(fileList) {
+            const incoming = Array.from(fileList).filter(f =>
+                f.type.startsWith('image/') || /\.(jpe?g|png|webp|bmp|gif)$/i.test(f.name)
+            );
+            if (!incoming.length) return;
 
-        // Проценты
-        const pctEl = document.getElementById('percent');
-        const pctVal = document.getElementById('percentVal');
-        if (pctEl && mode === 'percent') {
-            pctEl.value = pct;
-            if (pctVal) pctVal.textContent = pct + '%';
+            const remainingSlots = Math.max(0, MAX_FILES - uploadedFiles.length);
+            const toAdd = incoming.slice(0, remainingSlots);
+            if (incoming.length > remainingSlots) {
+                alert(`За один раз можно загрузить до ${MAX_FILES} фотографий. Добавлено ${toAdd.length} из ${incoming.length}.`);
+            }
+
+            toAdd.forEach(file => {
+                uploadedFiles.push({
+                    file: file,
+                    url: URL.createObjectURL(file),
+                    name: file.name,
+                    size: file.size
+                });
+            });
+
+            renderFilesQueue();
+            updateFilenamePreview();
+
+            // Если превью ещё не показано — подгружаем первое фото
+            if (!previewSourceImg && uploadedFiles.length > 0) {
+                loadPreviewSource();
+            }
         }
 
-        // Фон
-        const bgEl = document.getElementById('bgColor');
-        if (bgEl && bg) bgEl.value = bg;
+        function renderFilesQueue() {
+            const count = uploadedFiles.length;
+            filesCount.textContent = `Выбрано файлов: ${count}`;
+            filesToolbar.style.display = count > 0 ? 'flex' : 'none';
+            filesGrid.style.display = count > 0 ? 'grid' : 'none';
+            dropzone.classList.toggle('compact', count > 0);
 
-        // Заголовки
-        const h1El = document.getElementById('pageH1');
-        const descEl = document.getElementById('pageDesc');
-        if (h1 && h1El) h1El.innerHTML = h1.replace('фото', '<span>фото</span>');
-        if (desc && descEl) descEl.textContent = desc;
+            filesGrid.innerHTML = uploadedFiles.map((item, idx) => `
+                <div class="file-item" data-idx="${idx}" title="${item.name}">
+                    <img src="${item.url}" alt="${item.name}" loading="lazy">
+                    <div class="file-info">
+                        <div class="file-name">${item.name}</div>
+                        <div class="file-size">${formatBytes(item.size)}</div>
+                    </div>
+                    <span class="file-check" title="Успешно загружено">✓</span>
+                    <button type="button" class="file-remove" data-remove="${idx}" title="Удалить из списка">✕</button>
+                </div>
+            `).join('');
 
-        document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
+            filesGrid.querySelectorAll('.file-remove').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    removeFile(Number(btn.dataset.remove));
+                });
+            });
+        }
 
-/* Поиск Ctrl+K */
-const TOOLS = [
-    { t: "Изменить размер и обрезать фото онлайн", c: "Размер", u: "izmenit-razmer-foto.html", k: "размер ресайз обрезать фон белый пиксели пропорции" },
-    { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
-    { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic" },
-    { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
-    { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
-    { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
-];
-const modal = document.getElementById('cmdModal'), input = document.getElementById('cmdInput'), res = document.getElementById('cmdResults');
-function openCmd(){ modal.classList.add('active'); input.value=''; renderCmd(''); input.focus(); }
-function closeCmd(){ modal.classList.remove('active'); }
-document.getElementById('cmdTrigger').addEventListener('click', openCmd);
-modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
-document.addEventListener('keydown', e => {
-    if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
-    if (e.key==='Escape') closeCmd();
-});
-input.addEventListener('input', () => renderCmd(input.value.toLowerCase()));
-function renderCmd(q){
-    const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
-    res.innerHTML = list.length ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('') : '<div class="cmd-item">Ничего не найдено</div>';
-    res.querySelectorAll('.cmd-item[data-u]').forEach(el => el.addEventListener('click', () => location.href = el.dataset.u));
-}
-renderCmd('');
+        function removeFile(idx) {
+            URL.revokeObjectURL(uploadedFiles[idx].url);
+            uploadedFiles.splice(idx, 1);
+
+            if (uploadedFiles.length === 0) {
+                previewSourceImg = null;
+                previewSection.classList.remove('visible');
+                imgBefore.src = '';
+                canvasAfter.width = 0;
+                canvasAfter.height = 0;
+            } else if (idx === 0) {
+                previewSourceImg = null;
+                loadPreviewSource();
+            }
+            renderFilesQueue();
+            updateFilenamePreview();
+        }
+
+        clearBtn.addEventListener('click', () => {
+            uploadedFiles.forEach(item => URL.revokeObjectURL(item.url));
+            uploadedFiles = [];
+            previewSourceImg = null;
+            previewSection.classList.remove('visible');
+            imgBefore.src = '';
+            canvasAfter.width = 0;
+            canvasAfter.height = 0;
+            resultBox.style.display = 'none';
+            renderFilesQueue();
+            updateFilenamePreview();
+        });
+
+        /* ═══════════ ЗАГРУЗКА ПРЕВЬЮ (ИСПРАВЛЕНО) ═══════════ */
+        function loadPreviewSource() {
+            if (uploadedFiles.length === 0) return;
+            const first = uploadedFiles[0];
+            const img = new Image();
+            img.onload = () => {
+                previewSourceImg = img;
+                imgBefore.src = first.url;
+                previewActiveName.textContent = `1/${uploadedFiles.length}: ${first.name}`;
+                // ⚠️ ВАЖНО: сначала делаем блок видимым, потом рендерим
+                previewSection.classList.add('visible');
+                // Форсируем layout, чтобы clientWidth был корректным
+                void previewSection.offsetWidth;
+                drawPreview();
+            };
+            img.onerror = () => console.error('[BatchPhoto] Не удалось загрузить фото для превью:', first.name);
+            img.src = first.url;
+        }
+
+        /* ═══════════ UI режима ═══════════ */
+        function updateModeUI() {
+            const mode = resizeModeSel.value;
+            if (mode === 'percent') {
+                dimsGroup.style.display = 'none';
+                percentGroup.style.display = 'block';
+            } else if (mode === 'none') {
+                dimsGroup.style.display = 'none';
+                percentGroup.style.display = 'none';
+            } else {
+                dimsGroup.style.display = 'block';
+                percentGroup.style.display = 'none';
+            }
+            // Crop position — только для cover
+            cropGroup.classList.toggle('visible', mode === 'cover');
+            // Ограничение ввода
+            if (widthInput && heightInput) {
+                widthInput.disabled = (mode === 'height');
+                heightInput.disabled = (mode === 'width');
+            }
+        }
+        resizeModeSel.addEventListener('change', () => { updateModeUI(); schedulePreview(); });
+        updateModeUI();
+
+        /* ═══════════ Пресеты размеров ═══════════ */
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const mode = btn.dataset.mode || 'contain_bg';
+                const w = parseInt(btn.dataset.w) || 0;
+                const h = parseInt(btn.dataset.h) || 0;
+                const pct = parseInt(btn.dataset.pct) || 100;
+                const bg = btn.dataset.bg || '#ffffff';
+                const h1 = btn.dataset.h1;
+                const desc = btn.dataset.desc;
+
+                resizeModeSel.value = mode;
+                updateModeUI();
+
+                if (w) widthInput.value = w;
+                if (h) heightInput.value = h;
+
+                if (mode === 'percent') {
+                    percentInput.value = pct;
+                    percentVal.textContent = pct + '%';
+                }
+
+                if (bg) bgColorInput.value = bg;
+
+                const h1El = document.getElementById('pageH1');
+                const descEl = document.getElementById('pageDesc');
+                if (h1 && h1El) h1El.innerHTML = h1.replace('фото', '<span>фото</span>');
+                if (desc && descEl) descEl.textContent = desc;
+
+                updateFilenamePreview();
+                schedulePreview();
+            });
+        });
+
+        /* ═══════════ ЧИПЫ — переключение на нужную вкладку ═══════════ */
+        document.querySelectorAll('.tool-chip[data-goto-tab]').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const tab = chip.dataset.gotoTab;
+                const focusId = chip.dataset.focus;
+                const gotoMode = chip.dataset.gotoMode;
+
+                // Переключаем вкладку (эмулируем клик — работает с engine.js)
+                const tabBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+                if (tabBtn) tabBtn.click();
+
+                // Если нужен конкретный режим — ставим
+                if (gotoMode && resizeModeSel) {
+                    resizeModeSel.value = gotoMode;
+                    updateModeUI();
+                    schedulePreview();
+                }
+
+                // Прокручиваем и подсвечиваем нужный контрол
+                if (focusId) {
+                    setTimeout(() => {
+                        const el = document.getElementById(focusId);
+                        if (!el) return;
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        const wrapper = el.closest('.form-group') || el;
+                        wrapper.classList.add('highlight-pulse');
+                        setTimeout(() => wrapper.classList.remove('highlight-pulse'), 1400);
+                        if (typeof el.focus === 'function') {
+                            try { el.focus({ preventScroll: true }); } catch(e) {}
+                        }
+                    }, 180);
+                } else {
+                    document.querySelector('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // Мигаем чипом для обратной связи
+                chip.classList.add('flash');
+                setTimeout(() => chip.classList.remove('flash'), 1200);
+            });
+        });
+
+        // Чип «Живой просмотр» — скроллит к блоку превью
+        const chipPreview = document.getElementById('chipPreview');
+        if (chipPreview) {
+            chipPreview.addEventListener('click', () => {
+                if (!previewSourceImg) {
+                    chipPreview.textContent = '⚠️ Сначала загрузите фото';
+                    setTimeout(() => {
+                        chipPreview.innerHTML = '👁️ Живой просмотр До/После <span class="badge-new">New</span>';
+                    }, 2000);
+                    dropzone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                previewSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                chipPreview.classList.add('flash');
+                setTimeout(() => chipPreview.classList.remove('flash'), 1200);
+            });
+        }
+
+        /* ═══════════ Быстрые кнопки пропорций ═══════════ */
+        document.querySelectorAll('.aspect-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const [rw, rh] = btn.dataset.ratio.split(':').map(Number);
+                if (!rw || !rh) return;
+
+                // Базовая ширина 1200 — но если уже задана, сохраняем её
+                const baseW = parseInt(widthInput.value) || 1200;
+                const newH = Math.round(baseW * rh / rw);
+                heightInput.value = newH;
+
+                // Автопереключение в contain_bg, если сейчас не cover
+                if (resizeModeSel.value !== 'cover' && resizeModeSel.value !== 'contain_bg') {
+                    resizeModeSel.value = 'contain_bg';
+                    updateModeUI();
+                }
+
+                updateFilenamePreview();
+                schedulePreview();
+            });
+        });
+
+        /* ═══════════ Слушатели → обновление превью ═══════════ */
+        let rafPending = false;
+        function schedulePreview() {
+            if (rafPending || !previewSourceImg) return;
+            rafPending = true;
+            requestAnimationFrame(() => {
+                rafPending = false;
+                drawPreview();
+            });
+        }
+
+        widthInput.addEventListener('input', () => { updateFilenamePreview(); schedulePreview(); });
+        heightInput.addEventListener('input', () => { updateFilenamePreview(); schedulePreview(); });
+        percentInput.addEventListener('input', () => {
+            percentVal.textContent = percentInput.value + '%';
+            schedulePreview();
+        });
+        bgColorInput.addEventListener('input', schedulePreview);
+        rotateSelect.addEventListener('change', schedulePreview);
+        flipSelect.addEventListener('change', schedulePreview);
+        cropPosSelect.addEventListener('change', schedulePreview);
+        noUpscaleCheck.addEventListener('change', schedulePreview);
+        renamePattern.addEventListener('input', updateFilenamePreview);
+
+        formatSelect.addEventListener('change', () => {
+            if (qualityGroup) qualityGroup.style.display = formatSelect.value === 'image/png' ? 'none' : 'block';
+            updateFilenamePreview();
+        });
+        qualityInput.addEventListener('input', () => {
+            qualityVal.textContent = qualityInput.value + '%';
+        });
+
+        /* ═══════════ Живой предпросмотр имени файла ═══════════ */
+        function updateFilenamePreview() {
+            if (!renamePreview) return;
+            const pattern = (renamePattern.value || '').trim() || '{name}_{w}x{h}';
+            const sampleBase = uploadedFiles.length > 0
+                ? uploadedFiles[0].name.replace(/\.[^/.]+$/, '')
+                : 'photo';
+            const w = parseInt(widthInput.value) || 1200;
+            const h = parseInt(heightInput.value) || 1200;
+            const ext = formatSelect.value === 'image/png' ? 'png'
+                      : formatSelect.value === 'image/webp' ? 'webp'
+                      : 'jpg';
+            const result = pattern
+                .replace(/\{name\}/gi, sampleBase)
+                .replace(/\{w\}/gi, String(w))
+                .replace(/\{h\}/gi, String(h))
+                .replace(/\{n\}/gi, '1');
+            renamePreview.textContent = result + '.' + ext;
+        }
+        updateFilenamePreview();
+
+        /* ═══════════ Ядро рендера ═══════════ */
+        function renderResizedImage(sourceImg, mode, targetW, targetH, bgColor, rot, flip, noUpscale, maxOutDim, cropPos) {
+            const srcW = sourceImg.naturalWidth || sourceImg.width;
+            const srcH = sourceImg.naturalHeight || sourceImg.height;
+
+            const isRot90 = (rot === 90 || rot === 270);
+            const orientedW = isRot90 ? srcH : srcW;
+            const orientedH = isRot90 ? srcW : srcH;
+
+            let canvasW, canvasH;
+            let drawX = 0, drawY = 0, drawW = orientedW, drawH = orientedH;
+
+            if (mode === 'none') {
+                canvasW = orientedW;
+                canvasH = orientedH;
+            } else if (mode === 'percent') {
+                const pct = Number(percentInput.value) / 100;
+                canvasW = Math.max(1, Math.round(orientedW * pct));
+                canvasH = Math.max(1, Math.round(orientedH * pct));
+                drawW = canvasW; drawH = canvasH;
+            } else if (mode === 'width') {
+                canvasW = targetW;
+                canvasH = Math.max(1, Math.round(orientedH * (targetW / orientedW)));
+                drawW = canvasW; drawH = canvasH;
+            } else if (mode === 'height') {
+                canvasH = targetH;
+                canvasW = Math.max(1, Math.round(orientedW * (targetH / orientedH)));
+                drawW = canvasW; drawH = canvasH;
+            } else if (mode === 'contain_bg') {
+                canvasW = targetW;
+                canvasH = targetH;
+                const scale = Math.min(targetW / orientedW, targetH / orientedH);
+                drawW = Math.round(orientedW * scale);
+                drawH = Math.round(orientedH * scale);
+                drawX = Math.round((targetW - drawW) / 2);
+                drawY = Math.round((targetH - drawH) / 2);
+            } else { /* cover */
+                canvasW = targetW;
+                canvasH = targetH;
+                const scale = Math.max(targetW / orientedW, targetH / orientedH);
+                drawW = Math.round(orientedW * scale);
+                drawH = Math.round(orientedH * scale);
+                // Позиция обрезки
+                const crop = cropPos || 'center';
+                if (crop.indexOf('left') !== -1)        drawX = 0;
+                else if (crop.indexOf('right') !== -1)   drawX = targetW - drawW;
+                else                                     drawX = Math.round((targetW - drawW) / 2);
+                if (crop.indexOf('top') !== -1)          drawY = 0;
+                else if (crop.indexOf('bottom') !== -1)  drawY = targetH - drawH;
+                else                                      drawY = Math.round((targetH - drawH) / 2);
+            }
+
+            /* Защита от растягивания */
+            if (noUpscale) {
+                if (mode === 'width' && targetW > orientedW) {
+                    canvasW = orientedW; canvasH = orientedH; drawW = orientedW; drawH = orientedH;
+                } else if (mode === 'height' && targetH > orientedH) {
+                    canvasW = orientedW; canvasH = orientedH; drawW = orientedW; drawH = orientedH;
+                } else if ((mode === 'cover' || mode === 'contain_bg') && targetW > orientedW && targetH > orientedH) {
+                    canvasW = orientedW; canvasH = orientedH;
+                    drawW = orientedW; drawH = orientedH;
+                    drawX = 0; drawY = 0;
+                }
+            }
+
+            /* Для preview — ограничиваем размер */
+            if (maxOutDim && Math.max(canvasW, canvasH) > maxOutDim) {
+                const s = maxOutDim / Math.max(canvasW, canvasH);
+                canvasW = Math.max(1, Math.round(canvasW * s));
+                canvasH = Math.max(1, Math.round(canvasH * s));
+                drawW = Math.round(drawW * s);
+                drawH = Math.round(drawH * s);
+                drawX = Math.round(drawX * s);
+                drawY = Math.round(drawY * s);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = canvasW;
+            canvas.height = canvasH;
+            const ctx = canvas.getContext('2d');
+
+            if (mode === 'contain_bg') {
+                ctx.fillStyle = bgColor || '#ffffff';
+                ctx.fillRect(0, 0, canvasW, canvasH);
+            } else if (bgColor) {
+                ctx.fillStyle = bgColor;
+                ctx.fillRect(0, 0, canvasW, canvasH);
+            }
+
+            ctx.save();
+            ctx.translate(canvasW / 2, canvasH / 2);
+            if (rot !== 0) ctx.rotate(rot * Math.PI / 180);
+            const sx = flip === 'h' ? -1 : 1;
+            const sy = flip === 'v' ? -1 : 1;
+            ctx.scale(sx, sy);
+
+            const dx = drawX - canvasW / 2;
+            const dy = drawY - canvasH / 2;
+            ctx.drawImage(sourceImg, dx, dy, drawW, drawH);
+            ctx.restore();
+
+            return { canvas, width: canvasW, height: canvasH };
+        }
+
+        /* ═══════════ drawPreview ═══════════ */
+        function drawPreview() {
+            if (!previewSourceImg) return;
+
+            const mode = resizeModeSel.value;
+            const targetW = parseInt(widthInput.value) || 1200;
+            const targetH = parseInt(heightInput.value) || 1200;
+            const bgColor = bgColorInput.value || '#ffffff';
+            const rot = Number(rotateSelect.value) || 0;
+            const flip = flipSelect.value || 'none';
+            const noUpscale = noUpscaleCheck.checked;
+            const crop = cropPosSelect ? cropPosSelect.value : 'center';
+
+            const { canvas, width, height } = renderResizedImage(
+                previewSourceImg, mode, targetW, targetH,
+                bgColor, rot, flip, noUpscale, 1200, crop
+            );
+
+            canvasAfter.width = canvas.width;
+            canvasAfter.height = canvas.height;
+            canvasAfter.getContext('2d').drawImage(canvas, 0, 0);
+
+            sizePreviewBox(width, height);
+
+            const origW = previewSourceImg.naturalWidth;
+            const origH = previewSourceImg.naturalHeight;
+            previewResolution.textContent = `${width} × ${height} px (оригинал: ${origW}×${origH})`;
+        }
+
+        /* ═══════════ Размер блока превью ═══════════ */
+        function sizePreviewBox(resultW, resultH) {
+            const section = splitBox.parentElement;
+            if (!section) return;
+            const cs = getComputedStyle(section);
+            const padL = parseFloat(cs.paddingLeft) || 0;
+            const padR = parseFloat(cs.paddingRight) || 0;
+            const available = section.clientWidth - padL - padR;
+            const maxW = Math.min(Math.max(available, 200), 760);
+            const maxH = Math.min(window.innerHeight * 0.45, 420);
+            let displayW = maxW;
+            let displayH = displayW * (resultH / resultW);
+            if (displayH > maxH) {
+                displayH = maxH;
+                displayW = displayH * (resultW / resultH);
+            }
+            displayW = Math.max(180, displayW);
+            displayH = Math.max(120, displayH);
+            splitBox.style.width = displayW + 'px';
+            splitBox.style.height = displayH + 'px';
+        }
+
+        window.addEventListener('resize', () => {
+            if (previewSourceImg && canvasAfter.width) {
+                sizePreviewBox(canvasAfter.width, canvasAfter.height);
+            }
+        });
+
+        /* ═══════════ Слайдер «До / После» ═══════════ */
+        let isSliding = false;
+        function setSplitPosition(clientX) {
+            const rect = splitBox.getBoundingClientRect();
+            if (!rect.width) return;
+            let pos = ((clientX - rect.left) / rect.width) * 100;
+            pos = Math.max(0, Math.min(100, pos));
+            savedSplitPos = pos;
+            splitHandle.style.left = `${pos}%`;
+            imgBefore.style.clipPath = `polygon(0 0, ${pos}% 0, ${pos}% 100%, 0 100%)`;
+        }
+        splitBox.addEventListener('mousedown', e => {
+            isSliding = true; setSplitPosition(e.clientX); e.preventDefault();
+        });
+        window.addEventListener('mousemove', e => { if (isSliding) setSplitPosition(e.clientX); });
+        window.addEventListener('mouseup', () => { isSliding = false; });
+        splitBox.addEventListener('touchstart', e => {
+            isSliding = true; setSplitPosition(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('touchmove', e => {
+            if (isSliding) setSplitPosition(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('touchend', () => { isSliding = false; });
+
+        /* Кнопка «Удерживать: До» */
+        const showFullBefore = () => {
+            splitHandle.style.left = '100%';
+            imgBefore.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+        };
+        const restoreSplit = () => {
+            splitHandle.style.left = `${savedSplitPos}%`;
+            imgBefore.style.clipPath = `polygon(0 0, ${savedSplitPos}% 0, ${savedSplitPos}% 100%, 0 100%)`;
+        };
+        holdBeforeBtn.addEventListener('mousedown', showFullBefore);
+        holdBeforeBtn.addEventListener('mouseup', restoreSplit);
+        holdBeforeBtn.addEventListener('mouseleave', restoreSplit);
+        holdBeforeBtn.addEventListener('touchstart', e => { e.preventDefault(); showFullBefore(); });
+        holdBeforeBtn.addEventListener('touchend', restoreSplit);
+
+        /* ═══════════ Утилиты ═══════════ */
+        function getOutputExtension(mime) {
+            if (mime === 'image/webp') return 'webp';
+            if (mime === 'image/png') return 'png';
+            return 'jpg';
+        }
+        function buildFileName(origName, w, h, index, ext) {
+            const base = origName.replace(/\.[^/.]+$/, '');
+            const pattern = (renamePattern && renamePattern.value.trim()) ? renamePattern.value.trim() : '{name}_{w}x{h}';
+            return pattern
+                .replace(/\{name\}/gi, base)
+                .replace(/\{w\}/gi, String(w))
+                .replace(/\{h\}/gi, String(h))
+                .replace(/\{n\}/gi, String(index + 1)) + '.' + ext;
+        }
+        function canvasToBlobAsync(canvas, mime, quality) {
+            return new Promise(resolve => canvas.toBlob(blob => resolve(blob), mime, quality));
+        }
+        function loadImageFromUrl(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = url;
+            });
+        }
+
+        /* ═══════════ Скачать текущее ═══════════ */
+        downloadCurrentBtn.addEventListener('click', async () => {
+            if (!previewSourceImg || uploadedFiles.length === 0) return;
+            const mode = resizeModeSel.value;
+            const targetW = parseInt(widthInput.value) || 1200;
+            const targetH = parseInt(heightInput.value) || 1200;
+            const bgColor = bgColorInput.value || '#ffffff';
+            const rot = Number(rotateSelect.value) || 0;
+            const flip = flipSelect.value || 'none';
+            const noUpscale = noUpscaleCheck.checked;
+            const crop = cropPosSelect ? cropPosSelect.value : 'center';
+            const mime = formatSelect.value;
+            const qual = Number(qualityInput.value) / 100;
+            const ext = getOutputExtension(mime);
+
+            const { canvas, width, height } = renderResizedImage(
+                previewSourceImg, mode, targetW, targetH,
+                bgColor, rot, flip, noUpscale, null, crop
+            );
+            const blob = await canvasToBlobAsync(canvas, mime, qual);
+            const outName = buildFileName(uploadedFiles[0].name, width, height, 0, ext);
+            saveAs(blob, outName);
+        });
+
+        /* ═══════════ Сброс всех настроек ═══════════ */
+        resetBtn.addEventListener('click', () => {
+            resizeModeSel.value = 'contain_bg';
+            widthInput.value = 1200;
+            heightInput.value = 1200;
+            percentInput.value = 100;
+            percentVal.textContent = '100%';
+            bgColorInput.value = '#ffffff';
+            rotateSelect.value = '0';
+            flipSelect.value = 'none';
+            cropPosSelect.value = 'center';
+            formatSelect.value = 'image/jpeg';
+            qualityInput.value = 90;
+            qualityVal.textContent = '90%';
+            renamePattern.value = '{name}_{w}x{h}';
+            noUpscaleCheck.checked = true;
+            updateModeUI();
+            if (qualityGroup) qualityGroup.style.display = 'block';
+            updateFilenamePreview();
+            schedulePreview();
+            document.querySelectorAll('.preset-btn').forEach((b, i) => {
+                b.classList.toggle('active', i === 0);
+            });
+        });
+
+        /* ═══════════ Пакетная обработка ═══════════ */
+        processBtn.addEventListener('click', async () => {
+            if (!uploadedFiles.length) { fileInput.click(); return; }
+
+            isCancelled = false;
+            processBtn.disabled = true;
+            resetBtn.disabled = true;
+            cancelBtn.style.display = 'inline-flex';
+            progressBox.style.display = 'block';
+            resultBox.style.display = 'none';
+            resultsList.innerHTML = '';
+
+            const mode = resizeModeSel.value;
+            const targetW = parseInt(widthInput.value) || 1200;
+            const targetH = parseInt(heightInput.value) || 1200;
+            const bgColor = bgColorInput.value || '#ffffff';
+            const rot = Number(rotateSelect.value) || 0;
+            const flip = flipSelect.value || 'none';
+            const noUpscale = noUpscaleCheck.checked;
+            const crop = cropPosSelect ? cropPosSelect.value : 'center';
+            const mime = formatSelect.value;
+            const qual = Number(qualityInput.value) / 100;
+            const ext = getOutputExtension(mime);
+
+            const zip = new JSZip();
+            let processedCount = 0;
+            let totalOutSize = 0;
+
+            for (let i = 0; i < uploadedFiles.length; i++) {
+                if (isCancelled) break;
+                const item = uploadedFiles[i];
+                const pct = Math.round((i / uploadedFiles.length) * 100);
+                progressStatus.textContent = `Обработка ${i + 1} из ${uploadedFiles.length}: ${item.name}`;
+                progressPercent.textContent = `${pct}%`;
+                progressBar.style.width = `${pct}%`;
+
+                await new Promise(r => setTimeout(r, 15));
+
+                try {
+                    const img = await loadImageFromUrl(item.url);
+                    const { canvas, width, height } = renderResizedImage(
+                        img, mode, targetW, targetH, bgColor, rot, flip, noUpscale, null, crop
+                    );
+                    const blob = await canvasToBlobAsync(canvas, mime, qual);
+                    const outName = buildFileName(item.name, width, height, i, ext);
+
+                    zip.file(outName, blob);
+                    processedCount++;
+                    totalOutSize += blob.size;
+
+                    const blobUrl = URL.createObjectURL(blob);
+                    const row = document.createElement('div');
+                    row.className = 'result-item';
+                    row.innerHTML = `
+                        <span>✅ <strong>${outName}</strong> <small style="color:var(--muted);">(${formatBytes(blob.size)})</small></span>
+                        <a href="${blobUrl}" download="${outName}" class="mini-btn primary-outline" style="text-decoration:none;">Скачать</a>
+                    `;
+                    resultsList.appendChild(row);
+                } catch (err) {
+                    console.error('Ошибка при обработке:', item.name, err);
+                }
+            }
+
+            progressPercent.textContent = '100%';
+            progressBar.style.width = '100%';
+            progressStatus.textContent = isCancelled ? 'Обработка остановлена' : 'Упаковка в ZIP…';
+
+            if (!isCancelled && processedCount > 0) {
+                const zipBlob = await zip.generateAsync({ type: 'blob' });
+                saveAs(zipBlob, 'batchphoto_resize.zip');
+                resultStats.textContent = `Успешно обработано: ${processedCount} шт. Общий размер: ${formatBytes(totalOutSize)}.`;
+                resultBox.style.display = 'block';
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            setTimeout(() => {
+                progressBox.style.display = 'none';
+                processBtn.disabled = false;
+                resetBtn.disabled = false;
+                cancelBtn.style.display = 'none';
+            }, 500);
+        });
+
+        cancelBtn.addEventListener('click', () => { isCancelled = true; });
+
+        /* ═══════════ Поиск Ctrl+K ═══════════ */
+        const TOOLS = [
+            { t: "Изменить размер и обрезать фото онлайн", c: "Размер", u: "izmenit-razmer-foto.html", k: "размер ресайз обрезать фон белый пиксели пропорции" },
+            { t: "Пакетная обработка фото для Wildberries", c: "Маркетплейсы", u: "foto-dlya-marketpleisov.html", k: "wb вайлдберриз вб 3:4" },
+            { t: "Конвертер из WebP в JPG онлайн", c: "Конвертация", u: "konverter-webp.html", k: "webp webp в jpg конвертер heic" },
+            { t: "Сжать фото без потери качества", c: "Сжатие", u: "szhatie-foto.html", k: "сжать уменьшить вес кб" },
+            { t: "Удалить EXIF и геолокацию с фото", c: "Приватность", u: "udalit-exif.html", k: "exif метаданные gps" },
+            { t: "Водяной знак на много фото сразу", c: "Защита", u: "vodjanoj-znak.html", k: "водяной знак watermark" }
+        ];
+        const modal = document.getElementById('cmdModal');
+        const cmdInput = document.getElementById('cmdInput');
+        const cmdRes = document.getElementById('cmdResults');
+
+        function openCmd(){ modal.classList.add('active'); cmdInput.value=''; renderCmd(''); cmdInput.focus(); }
+        function closeCmd(){ modal.classList.remove('active'); }
+        document.getElementById('cmdTrigger').addEventListener('click', openCmd);
+        modal.addEventListener('click', e => { if (e.target === modal) closeCmd(); });
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmd(); }
+            if (e.key==='Escape') closeCmd();
+        });
+        cmdInput.addEventListener('input', () => renderCmd(cmdInput.value.toLowerCase()));
+        function renderCmd(q){
+            const list = TOOLS.filter(t => (t.t+' '+t.c+' '+t.k).toLowerCase().includes(q));
+            cmdRes.innerHTML = list.length
+                ? list.map(t => `<div class="cmd-item" data-u="${t.u}"><span>${t.t}</span><small>${t.c}</small></div>`).join('')
+                : '<div class="cmd-item">Ничего не найдено</div>';
+            cmdRes.querySelectorAll('.cmd-item[data-u]').forEach(el =>
+                el.addEventListener('click', () => location.href = el.dataset.u)
+            );
+        }
+        renderCmd('');
+    }
+
+    /* Запуск с защитой от ошибок engine.js */
+    try {
+        init();
+    } catch (e) {
+        console.error('[BatchPhoto] Ошибка инициализации:', e);
+    }
+})();
 </script>
-<!-- Yandex.Metrika counter -->
+
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -567,10 +1574,8 @@ renderCmd('');
         for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
         k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
-
     ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 </body>
 </html>
