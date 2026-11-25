@@ -1,980 +1,1021 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <script>
-        // Запускается мгновенно до показа сайта:
-        if (localStorage.getItem('bp_theme_v2') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Основные SEO-теги (Актуализировано под 2026 год) -->
-    <title>Пакетная обработка фото для Wildberries, Ozon и Авито онлайн (Стандарты 2026) — BatchPhoto.ru</title>
-    <meta name="description" content="Бесплатная пакетная подготовка фото для маркетплейсов по требованиям 2026 года: ресайз 3:4 (1200×1600, 900×1200), центрирование на белом фоне, авто-профиль sRGB, сжатие до 10 МБ и нумерация артикулов. Живой предпросмотр. Без загрузки на сервер.">
-    <meta name="keywords" content="пакетная обработка фото для wildberries, размер фото для озон 2026, ресайз 3:4 онлайн, сделать фото 900х1200 для вб, фото 1200х1600 онлайн, перевести фото в srgb для маркетплейсов, требования к фото вб озон 2026">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-    <link rel="canonical" href="https://batchphoto.ru/foto-dlya-marketpleisov.html">
-
-    <!-- Open Graph для красивых репостов в Telegram-чатах селлеров -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://batchphoto.ru/foto-dlya-marketpleisov.html">
-    <meta property="og:title" content="Пакетная подготовка фото для Wildberries, Ozon и Яндекс Маркета онлайн">
-    <meta property="og:description" content="Подгонка до 100 фото под формат 3:4 (1200×1600 px), живой предпросмотр, авто-перевод в sRGB, поля, яркость и нумерация по артикулам за пару секунд в браузере.">
-    <meta property="og:site_name" content="BatchPhoto.ru">
-    <meta property="og:locale" content="ru_RU">
-
-    <!-- Стили сайта -->
-    <link rel="stylesheet" href="css/style.css?v=2">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
-
-    <!-- Дополнительные легкие стили для превью, SEO-блоков, чек-листа и FAQ (адаптированы под темную/светлую тему) -->
-    <style>
-        .trust-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
-        .trust-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: rgba(128,128,128,0.1); color: var(--muted, #666); display: inline-flex; align-items: center; gap: 5px; }
-        .preset-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-        .preset-tag { font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(128,128,128,0.25); background: transparent; color: inherit; cursor: pointer; transition: 0.2s; }
-        .preset-tag:hover { border-color: #6366f1; color: #6366f1; }
-        .tool-footer-note { margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(128,128,128,0.2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--muted, #666); }
-
-        /* ===== КОМПАКТНЫЙ ПРЕДПРОСМОТР ===== */
-        .pv-panel { margin-top: 14px; border: 1px solid rgba(128,128,128,0.18); border-radius: 12px; padding: 10px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
-        .pv-empty { color: var(--muted, #666); text-align: center; padding: 2px 0; }
-        .pv-body { display: flex; align-items: center; gap: 14px; }
-        .pv-thumb { flex: 0 0 auto; padding: 5px; border-radius: 8px; border: 1px dashed rgba(128,128,128,0.25);
-            background: repeating-conic-gradient(rgba(128,128,128,0.10) 0% 25%, transparent 0% 50%) 0 0 / 16px 16px; }
-        .pv-thumb canvas { display: block; max-width: 110px; max-height: 147px; width: auto; height: auto; border-radius: 4px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
-        .pv-info { min-width: 0; line-height: 1.55; }
-        .pv-label { font-weight: 700; font-size: 13px; }
-        .pv-name { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
-        .pv-meta { margin-top: 2px; }
-        .pv-warn { color: #ef4444; font-weight: 700; }
-
-        /* Сетка правил 2026 */
-        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 24px; }
-        .rule-card { background: var(--card, rgba(128,128,128,0.04)); border: 1px solid rgba(128,128,128,0.15); border-radius: 14px; padding: 22px; }
-        .rule-card h3 { margin-top: 0; margin-bottom: 14px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
-        .rule-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.55; }
-        .rule-list li { position: relative; padding-left: 24px; }
-        .rule-list li::before { content: attr(data-icon); position: absolute; left: 0; top: 1px; font-size: 14px; }
-
-        /* Чек-лист селлера */
-        .checklist-card { background: var(--card, rgba(128,128,128,0.04)); border: 1px solid rgba(128,128,128,0.18); border-radius: 14px; padding: 24px; margin: 32px 0; }
-        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(128,128,128,0.12); cursor: pointer; font-size: 14px; user-select: none; transition: 0.15s; }
-        .check-item:hover { border-color: rgba(99,102,241,0.4); }
-        .check-item input { margin-top: 3px; transform: scale(1.15); accent-color: #10b981; }
-        .check-item input:checked + span { text-decoration: line-through; opacity: 0.65; }
-
-        /* FAQ Аккордеон */
-        .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; margin-bottom: 40px; }
-        .faq-item { background: var(--card, rgba(128,128,128,0.04)); border: 1px solid rgba(128,128,128,0.15); border-radius: 12px; padding: 16px 20px; }
-        .faq-item summary { font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: "＋"; font-size: 16px; color: var(--muted, #888); transition: transform 0.2s; }
-        .faq-item[open] summary::after { content: "－"; }
-        .faq-item p { margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--muted, #555); }
-
-        /* Перелинковка инструментов */
-        .cross-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px 0 40px; }
-        .cross-tool-link { display: block; padding: 16px; border-radius: 12px; border: 1px solid rgba(128,128,128,0.15); text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s; }
-        .cross-tool-link:hover { transform: translateY(-2px); border-color: #6366f1; }
-        .cross-tool-link strong { display: block; margin-bottom: 4px; font-size: 15px; }
-        .cross-tool-link span { font-size: 13px; color: var(--muted, #666); }
-/* ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== */
-.pv-panel { margin-top: 14px; border: 1px solid rgba(128,128,128,0.18); border-radius: 12px; padding: 12px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
-.pv-empty { color: var(--muted, #666); text-align: center; padding: 4px 0; }
-.pv-body   { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
-.pv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-.pv-label  { font-weight: 700; font-size: 13px; }
-.pv-name   { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
-.pv-meta   { margin-top: 2px; font-size: 12px; color: var(--muted, #666); }
-.pv-warn   { color: #ef4444; font-weight: 700; }
-
-.cmp-grid {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-}
-.cmp-pane {
-    position: relative;
-    flex: 0 0 auto;
-    background: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(128,128,128,0.25);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-}
-.cmp-pane img,
-.cmp-pane canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.cmp-badge {
-    position: absolute;
-    top: 8px; left: 8px;
-    background: rgba(0,0,0,.72);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-    z-index: 2;
-}
-
-    </style>
-
-    <!-- Расширенная Schema.org: Хлебные крошки + Веб-приложение + FAQ для расширенных сниппетов -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/"},
-            {"@type": "ListItem", "position": 2, "name": "Пакетная обработка фото для маркетплейсов", "item": "https://batchphoto.ru/foto-dlya-marketpleisov.html"}
-          ]
-        },
-        {
-          "@type": "WebApplication",
-          "name": "BatchPhoto — Пакетная обработка фото для Wildberries, Ozon и Авито",
-          "url": "https://batchphoto.ru/foto-dlya-marketpleisov.html",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "browserRequirements": "Requires JavaScript and HTML5 Canvas",
-          "description": "Онлайн-сервис пакетной подготовки фотографий товаров для маркетплейсов (WB, Ozon, Яндекс Маркет, Авито) по стандартам 2026 года: формат 3:4, sRGB, выравнивание на белом фоне, живой предпросмотр, нумерация карточек.",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "RUB"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Какой размер фото нужен для Wildberries и Ozon в 2026 году?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "В 2026 году стандарт для большинства категорий на Wildberries и Ozon — вертикальное соотношение сторон 3:4. Минимальное разрешение для одежды, обуви и аксессуаров — 900×1200 пикселей, оптимальное для качественного зума — 1200×1600 пикселей. Максимальная сторона не должна превышать 8000 пикселей, а вес файла — до 10 МБ."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Почему при загрузке на маркетплейс искажаются цвета фотографии?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Цвета искажаются, если исходный снимок сохранен в полиграфическом профиле CMYK или нестандартном профиле камеры. Маркетплейсы требуют цветовой профиль sRGB. При обработке через BatchPhoto.ru все изображения автоматически перекодируются в чистый профиль sRGB."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Как сделать фото 3:4 без обрезки самого товара?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Выберите в настройках режим подгонки «Вписать + поля (товар ровно по центру)» и укажите белый или светло-серый цвет фона. Алгоритм аккуратно разместит товар в центре кадра 3:4 без деформации и без добавленных черных полос."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Что запрещено размещать на главном фото карточки товара?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "На главном изображении запрещены водяные знаки, логотипы сторонних брендов, рекламные плашки (скидки, цены, акции), контактные данные, ссылки, черно-белые эскизы, а на Ozon строго запрещено использование 3D-моделей вместо реальных снимков."
-              }
-            }
-          ]
-        }
-      ]
+  <meta charset="UTF-8">
+  <script>
+    // Мгновенная инициализация темы до отрисовки страницы
+    if (localStorage.getItem('bp_theme_v2') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
-    </script>
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Требования к фото для маркетплейсов в 2026 году: размеры и правила для Wildberries, Ozon, Авито</title>
+  <meta name="description" content="Актуальные размеры и правила модерации фото для Wildberries, Ozon и Авито в 2026 году. Сравнение требований к пропорциям 3:4, 4:3 и 1:1, весу и фонам. Выберите маркетплейс для быстрой пакетной подготовки.">
+  <link rel="canonical" href="https://batchphoto.ru/foto-dlya-marketpleisov.html">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="BatchPhoto.ru">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://batchphoto.ru/foto-dlya-marketpleisov.html">
+  <meta property="og:title" content="Фото для маркетплейсов: требования и размеры 2026 | Сравнение Wildberries, Ozon и Авито">
+  <meta property="og:description" content="Сводная таблица стандартов, пропорций и требований модерации к фотографиям товаров на Wildberries, Ozon и Авито в 2026 году.">
+  <meta property="og:image" content="https://batchphoto.ru/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Сравнение требований к фото товаров для Wildberries, Ozon и Авито">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Фото для маркетплейсов: требования и размеры 2026">
+  <meta name="twitter:description" content="Сводная таблица стандартов и правил модерации фото для Wildberries, Ozon и Авито.">
+  <meta name="twitter:image" content="https://batchphoto.ru/img/og-image.jpg">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+
+  <!-- Verification & Styles -->
+  <meta name="yandex-verification" content="ee9038da353930c8">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+
+  <!-- Yandex.Metrika -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    ym(114372449, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+  <!-- Yandex Partner RTB -->
+  <script>window.yaContextCb=window.yaContextCb||[]</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+  <!-- Structured Data: Breadcrumbs + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://batchphoto.ru/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Маркетплейсы",
+            "item": "https://batchphoto.ru/foto-dlya-marketpleisov.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Какой размер фото нужен для Wildberries и Ozon в 2026 году?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Для Wildberries стандартным является вертикальное соотношение 3:4 с разрешением 1200×1600 px (минимально 900×1200 px). Для Ozon во всех стандартных товарных категориях также действует стандарт 3:4 (1200×1600 px). Исключением является только Ozon Fresh, где карточки отображаются в формате 1:1."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли загружать квадратные фото 1:1 на Ozon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Формат 1:1 (например, 1200×1200 px) на Ozon строго закреплен только за категорией Ozon Fresh (продукты питания и скоропортящиеся товары). В остальных категориях система Ozon автоматически добавит поля по бокам, чтобы подогнать снимок под соотношение 3:4, что уменьшит полезную площадь товара в поисковой выдаче."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "В чем отличие требований к фото на Авито от маркетплейсов?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Главное отличие — ориентация кадра. Авито использует горизонтальный формат 4:3 (рекомендуется 1200×900 px или 1600×1200 px для категорий Авто и Недвижимость). Если загрузить на Авито вертикальное фото с маркетплейса без белых полей, сервис срежет верх и низ изображения."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Какой цвет фона допустим для карточек товаров?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Для Wildberries допустим чистый белый, нейтральный светло-серый или контрастный контекстный фон (если товар показан в интерьере). Ozon рекомендует чистый белый фон (#FFFFFF) для большинства товаров или светло-серый (#F2F3F5) для светлой и прозрачной одежды. На Авито жестких ограничений нет, но естественный или нейтральный фон повышает конверсию."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "В каком формате лучше сохранять изображения (JPEG или WEBP)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Все площадки отлично принимают стандартный JPEG (JPG). WEBP обеспечивает меньший вес при том же качестве, однако перед загрузкой убедитесь, что ваш личный кабинет поддерживает этот формат. Для максимальной совместимости рекомендуется JPEG с качеством 85–90%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Разрешены ли водяные знаки и телефоны на фотографиях?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Маркетплейсы (WB, Ozon) и доска Авито строго запрещают размещение на фото прямых контактных данных: номеров телефонов, ссылок на сайты, аккаунтов мессенджеров, а также цен и агрессивных надписей («Шок-цена», «Скидка»). Разрешены только полупрозрачные логотипы собственного бренда, если они не загораживают сам товар."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ============================================================
+       Стили страницы под общий дизайн BatchPhoto.ru
+       ============================================================ */
+
+    /* Хлебные крошки со стрелками */
+    .breadcrumbs {
+      padding: 16px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .breadcrumbs a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .breadcrumbs a:hover {
+      color: var(--primary);
+    }
+    .breadcrumbs .sep {
+      color: var(--border);
+      font-size: 11px;
+    }
+
+    /* Hero-блок */
+    .hero {
+      text-align: center;
+      padding: 32px 16px 20px;
+    }
+    .hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 132, 199, 0.08);
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      margin-bottom: 16px;
+    }
+    .hero .badge .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 4.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .hero h1 span {
+      color: var(--primary);
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(14px, 1.8vw, 15.5px);
+      max-width: 760px;
+      margin: 0 auto 18px;
+      line-height: 1.6;
+    }
+
+    /* Зелёные фича-плашки под Hero */
+    .hero-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hero-feat-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12.5px;
+      color: var(--text);
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    /* Заголовки секций */
+    .section-head h2 {
+      font-size: 1.35rem;
+      margin: 0 0 6px;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .section-head p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 16px;
+    }
+
+    /* Карточки платформ */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 28px 0 0;
+    }
+    .hub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .hub-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+    .hub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .hub-title {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--text);
+    }
+    .hub-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .hub-badge.wb { background: rgba(203,17,171,.12); color: #cb11ab; }
+    .hub-badge.ozon { background: rgba(0,91,255,.12); color: #005bff; }
+    .hub-badge.avito { background: rgba(0,170,255,.12); color: #00aaff; }
+    [data-theme="dark"] .hub-badge.wb { background: rgba(240,166,224,.15); color: #f0a6e0; }
+    [data-theme="dark"] .hub-badge.ozon { background: rgba(127,176,255,.15); color: #7fb0ff; }
+    [data-theme="dark"] .hub-badge.avito { background: rgba(127,212,255,.15); color: #7fd4ff; }
+
+    .hub-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+    .hub-specs {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 20px;
+      font-size: 0.88rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .hub-specs strong {
+      color: var(--text);
+    }
+    .hub-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: #fff;
+      transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      text-align: center;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .hub-btn:hover {
+      opacity: 0.92;
+    }
+    .hub-btn-wb { background: #cb11ab; }
+    .hub-btn-ozon { background: #005bff; }
+    .hub-btn-avito { background: #00aaff; }
+    .hub-btn-ghost {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .hub-btn-ghost:hover {
+      opacity: 1;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Таблица */
+    td code {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    /* Калькулятор */
+    .calc-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .calc-card h2 {
+      font-size: 1.3rem;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+    .calc-lead {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .calc-total {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 14px 0 0;
+    }
+    .calc-total strong {
+      color: var(--primary);
+    }
+    .calc-result-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      text-align: center;
+    }
+    .calc-stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+    }
+    .calc-stat-num.ok { color: var(--accent); }
+    .calc-stat-num.info { color: #00aaff; }
+    .calc-stat-lbl {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .calc-arrow {
+      font-size: 1.5rem;
+      color: var(--border);
+    }
+    .calc-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 12px 0 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Сценарии */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 10px 0 0;
+    }
+    .case-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+    .case-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+    .case-tag { font-weight: 700; }
+    .case-tag.wb { color: #cb11ab; }
+    .case-tag.ozon { color: #005bff; }
+    .case-tag.avito { color: #00aaff; }
+    [data-theme="dark"] .case-tag.wb { color: #f0a6e0; }
+    [data-theme="dark"] .case-tag.ozon { color: #7fb0ff; }
+    [data-theme="dark"] .case-tag.avito { color: #7fd4ff; }
+    .case-outcome { color: var(--accent); font-weight: 700; }
+    .case-card h3 {
+      font-size: 1.05rem;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+    .case-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0 0 12px;
+      line-height: 1.5;
+    }
+    .case-metric {
+      background: var(--bg-soft);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .case-metric strong { color: var(--text); }
+    .case-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .case-link.wb { color: #cb11ab; }
+    .case-link.ozon { color: #005bff; }
+    .case-link.avito { color: #00aaff; }
+    [data-theme="dark"] .case-link.wb { color: #f0a6e0; }
+    [data-theme="dark"] .case-link.ozon { color: #7fb0ff; }
+    [data-theme="dark"] .case-link.avito { color: #7fd4ff; }
+
+    /* Чек-лист */
+    .checklist-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .checklist-card h2 {
+      font-size: 1.25rem;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+    .checklist-card > p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: normal;
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+    .check-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .check-row strong { color: var(--text); }
+    .check-row input:checked + span { color: var(--text); }
+
+    /* Кластер перелинковки */
+    .cluster-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .cluster-links .hub-btn {
+      width: auto;
+      padding: 9px 15px;
+      font-size: 0.85rem;
+    }
+
+    /* Доступность и скролл */
+    section[id] { scroll-margin-top: 78px; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
+  <!-- Site Header (точно как на других страницах сайта) -->
+  <header class="site-header">
     <div class="container">
-        <a href="/" class="logo">🛍️ Batch<span>Photo</span>.ru</a>
-        <nav class="nav">
-            <a href="foto-dlya-marketpleisov.html" class="active">🛍️ Маркетплейсы</a>
-            <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
-            <a href="konverter-webp.html">🌐 Конвертер WebP</a>
-            <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
-            <a href="vodjanoj-znak.html">© Водяной знак</a>
-            <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
-        </nav>
+      <a href="index.html" class="logo">🛍️ Batch<span>Photo</span>.ru</a>
+      <nav class="nav">
+        <a href="foto-dlya-marketpleisov.html" class="active">🛍️ Маркетплейсы</a>
+        <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
+        <a href="konverter-webp.html">🌐 Конвертер WebP</a>
+        <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
+        <a href="vodjanoj-znak.html">© Водяной знак</a>
+        <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
+      </nav>
     </div>
-</header>
+  </header>
 
-<main>
-    <div class="container">
-        <nav class="breadcrumbs" aria-label="Хлебные крошки">
-            <a href="/">Главная</a> → <span>Пакетная обработка фото для маркетплейсов</span>
-        </nav>
-    </div>
+  <main class="container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="sep">→</span>
+      <span>Маркетплейсы</span>
+    </nav>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
-    <div class="hero">
-        <div class="badge">🔒 100% приватно: фото обрабатываются в вашем браузере и не уходят на сервер</div>
-        <h1>Пакетная обработка фото для <span>Wildberries, Ozon и Авито</span></h1>
-        <p>Быстрая подгонка под стандарты 2026 года: формат 3:4 (1200×1600 и 900×1200 px), авто-перевод в профиль sRGB, выравнивание на светлом фоне и нумерация карточек по артикулу. Результат виден сразу — в живом предпросмотре.</p>
-        <div class="trust-pills">
-            <span class="trust-pill">✅ Авто-профиль sRGB</span>
-            <span class="trust-pill">✅ Формат 3:4 без деформации</span>
-            <span class="trust-pill">✅ Вес файла строго до 10 МБ</span>
-            <span class="trust-pill">✅ До 100 фото за 1 клик</span>
-        </div>
-    </div>
-
-    <!-- РАБОЧИЙ ИНСТРУМЕНТ -->
-    <div class="container" id="tool">
-<div class="card">
-    <!-- Дропзона -->
-    <div class="dropzone" id="dropzone" role="button" tabindex="0">
-        <div class="icon">📦</div>
-        <p><strong>Перетащите фото товаров сюда</strong> или нажмите для выбора</p>
-        <small>JPG, PNG, WebP, HEIC (в современных браузерах) • до 100 файлов • вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
-        <input type="file" id="fileInput" multiple accept="image/*" hidden>
-    </div>
-
-    <div class="files-toolbar" id="filesToolbar">
-        <span class="files-count" id="filesCount"></span>
-        <button class="clear-btn" id="clearBtn">✕ Очистить всё</button>
-    </div>
-    <div class="files-grid" id="filesGrid"></div>
-
-    <!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== -->
-    <div class="pv-panel" id="previewPanel">
-        <div class="pv-empty" id="previewEmpty">👁️ Здесь появится предпросмотр первого загруженного фото — слева «До», справа «После»</div>
-        <div class="pv-body" id="previewBody" style="display:none;">
-            <div class="pv-header">
-                <span class="pv-label">Сравнение «До / После»</span>
-                <span class="pv-name" id="pvName"></span>
-            </div>
-            <div class="cmp-grid" id="cmpGrid">
-                <div class="cmp-pane" id="paneBefore">
-                    <img id="imgBefore" alt="До">
-                    <span class="cmp-badge">До</span>
-                </div>
-                <div class="cmp-pane" id="paneAfter">
-                    <canvas id="canvasAfter"></canvas>
-                    <span class="cmp-badge">После</span>
-                </div>
-            </div>
-            <div class="pv-meta" id="pvMeta"></div>
-        </div>
-    </div>
-
-    <!-- Вкладки -->
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="size">📐 1. Размер и пропорции (3:4)</button>
-        <button class="tab-btn" data-tab="adjust">🎨 2. Свет, контраст и поворот</button>
-        <button class="tab-btn" data-tab="rename">✏️ 3. Артикул и нумерация</button>
-    </div>
-
-    <!-- ВКЛАДКА 1: РАЗМЕР -->
-    <div class="tab-panel active" id="panel-size">
-        <div class="grid">
-            <div class="form-group">
-                <label for="preset">Пресет площадки (стандарты 2026)</label>
-                <select id="preset">
-                    <option value="wb" selected>🟣🔵 Wildberries + Ozon (HD, с зумом) — 1200×1600 (3:4)</option>
-                    <option value="wb_std">🟣🟡 WB минимум / Яндекс Маркет — 900×1200 (3:4)</option>
-                    <option value="ozon_zoom">🔵 Ozon квадрат (макс. зум) — 1500×1500 (1:1)</option>
-                    <option value="avito">🟢 Авито — 1200×900 (4:3)</option>
-                    <option value="custom">⚙️ Свои размеры (от 200 до 8000 px)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="resizeMode">Режим подгонки кадра</label>
-                <select id="resizeMode">
-                    <option value="contain_bg">Вписать + поля (товар по центру, без обрезки)</option>
-                    <option value="contain">Вписать пропорционально (без добавления полей)</option>
-                    <option value="cover">Заполнить весь кадр (обрезать лишнее по краям)</option>
-                </select>
-            </div>
-            <div class="form-group" id="dimsGroup">
-                <label>Ширина × Высота (px)</label>
-                <div class="inline">
-                    <input type="number" id="width" value="1200" min="200" max="8000" title="От 200 до 8000 пикселей">
-                    <input type="number" id="height" value="1600" min="200" max="8000" title="От 200 до 8000 пикселей">
-                </div>
-            </div>
-            <div class="form-group" id="bgGroup">
-                <label for="bgColor">Цвет фона / полей (рекомендуется светлый)</label>
-                <input type="color" id="bgColor" value="#ffffff">
-            </div>
-            <div class="form-group">
-                <label for="format">Выходной формат (в профиле sRGB)</label>
-                <select id="format">
-                    <option value="image/jpeg" selected>JPG (рекомендуется для WB, Ozon и Авито)</option>
-                    <option value="image/png">PNG (максимальная чёткость деталей)</option>
-                    <option value="image/webp">WebP (также поддерживается площадками)</option>
-                </select>
-            </div>
-            <div class="form-group" id="qualityGroup">
-                <label for="quality">Баланс качества и веса (лимит до 10 МБ)</label>
-                <div class="range-row">
-                    <input type="range" id="quality" min="10" max="100" value="88">
-                    <span class="range-val" id="qualityVal">88%</span>
-                </div>
-            </div>
-        </div>
-        <label class="checkbox-row">
-            <input type="checkbox" id="noUpscale" checked>
-            Не растягивать маленькие фото (защищает карточку от размытия и «мыла» при зуме)
-        </label>
-    </div>
-
-    <!-- ВКЛАДКА 2: СВЕТ -->
-    <div class="tab-panel" id="panel-adjust">
-        <div class="grid">
-            <div class="form-group">
-                <label for="brightness">Яркость (осветление тёмного фона)</label>
-                <div class="range-row">
-                    <input type="range" id="brightness" min="50" max="170" value="100">
-                    <span class="range-val" id="brightnessVal">100%</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="contrast">Контрастность (отделение товара от фона)</label>
-                <div class="range-row">
-                    <input type="range" id="contrast" min="50" max="170" value="100">
-                    <span class="range-val" id="contrastVal">100%</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rotate">Повернуть фото</label>
-                <select id="rotate">
-                    <option value="0">Без поворота</option>
-                    <option value="90">90° по часовой</option>
-                    <option value="180">180°</option>
-                    <option value="270">90° против часовой</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="flip">Отразить (Зеркало)</label>
-                <select id="flip">
-                    <option value="none">Нет</option>
-                    <option value="h">По горизонтали</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <!-- ВКЛАДКА 3: НУМЕРАЦИЯ -->
-    <div class="tab-panel" id="panel-rename">
-        <div class="form-group">
-            <label for="renamePattern">Шаблон наименования файлов для быстрой загрузки в ЛК</label>
-            <input type="text" id="renamePattern" value="tovar-{nnn}">
-            <div class="preset-tags">
-                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='tovar-{nnn}'">tovar-{nnn}</button>
-                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='artikul-{n}'">artikul-{n}</button>
-                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='wb-card-{nnn}'">wb-card-{nnn}</button>
-                <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='ozon-sku-{nnn}'">ozon-sku-{nnn}</button>
-            </div>
-            <span class="hint" style="margin-top:8px; display:block; font-size:12px; color:var(--muted);">
-                Шаблон <kbd>tovar-{nnn}</kbd> автоматически создаст правильный порядок слайдов:
-                <em>tovar-001.jpg, tovar-002.jpg, tovar-003.jpg…</em>
-            </span>
-        </div>
-    </div>
-
-    <!-- Кнопка запуска -->
-    <button class="btn" id="processBtn">⚡ Подготовить фото и скачать ZIP-архив</button>
-
-    <!-- Прогресс -->
-    <div class="progress-box" id="progressBox">
-        <div class="progress-info">
-            <span id="progressStatus">Подготовка…</span>
-            <span id="progressPercent">0%</span>
-        </div>
-        <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
-        <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
-    </div>
-
-    <!-- Результат -->
-    <div class="result-box" id="resultBox">
-        <h3>✅ Карточки успешно подготовлены к загрузке!</h3>
-        <p id="resultStats"></p>
-        <div class="results-list" id="resultsList"></div>
-    </div>
-
-    <div class="tool-footer-note">
-        <span>🎨 Цветовой профиль на выходе: <strong>sRGB (без искажения цветов)</strong></span>
-        <span>🛡️ Метаданные и лишние профили (CMYK) очищаются автоматически</span>
-    </div>
-</div>
-
-<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» ===== -->
-<div class="pv-body" id="previewBody" style="display:none;">
-    <div class="pv-header">
-        <span class="pv-label">Сравнение «До / После»</span>
-        <span class="pv-name" id="pvName"></span>
-    </div>
-
-    <div class="cmp-grid" id="cmpGrid">
-        <div class="cmp-pane" id="paneBefore">
-            <img id="imgBefore" alt="До">
-            <span class="cmp-badge">До</span>
-        </div>
-        <div class="cmp-pane" id="paneAfter">
-            <canvas id="canvasAfter"></canvas>
-            <span class="cmp-badge">После</span>
-        </div>
-    </div>>
-
-            <!-- Вкладки под задачи селлера -->
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="size">📐 1. Размер и пропорции (3:4)</button>
-                <button class="tab-btn" data-tab="adjust">🎨 2. Свет, контраст и поворот</button>
-                <button class="tab-btn" data-tab="rename">✏️ 3. Артикул и нумерация</button>
-            </div>
-
-            <!-- ВКЛАДКА 1: РАЗМЕР -->
-            <div class="tab-panel active" id="panel-size">
-                <div class="grid">
-                    <div class="form-group">
-                        <label for="preset">Пресет площадки (стандарты 2026)</label>
-                        <select id="preset">
-                            <option value="wb" selected>🟣🔵 Wildberries + Ozon (HD, с зумом) — 1200×1600 (3:4)</option>
-                            <option value="wb_std">🟣🟡 WB минимум / Яндекс Маркет — 900×1200 (3:4)</option>
-                            <option value="ozon_zoom">🔵 Ozon квадрат (макс. зум) — 1500×1500 (1:1)</option>
-                            <option value="avito">🟢 Авито — 1200×900 (4:3)</option>
-                            <option value="custom">⚙️ Свои размеры (от 200 до 8000 px)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="resizeMode">Режим подгонки кадра</label>
-                        <select id="resizeMode">
-                            <option value="contain_bg">Вписать + поля (товар по центру, без обрезки)</option>
-                            <option value="contain">Вписать пропорционально (без добавления полей)</option>
-                            <option value="cover">Заполнить весь кадр (обрезать лишнее по краям)</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="dimsGroup">
-                        <label>Ширина × Высота (px)</label>
-                        <div class="inline">
-                            <input type="number" id="width" value="1200" min="200" max="8000" title="От 200 до 8000 пикселей">
-                            <input type="number" id="height" value="1600" min="200" max="8000" title="От 200 до 8000 пикселей">
-                        </div>
-                    </div>
-                    <div class="form-group" id="bgGroup">
-                        <label for="bgColor">Цвет фона / полей (рекомендуется светлый)</label>
-                        <input type="color" id="bgColor" value="#ffffff">
-                    </div>
-                    <div class="form-group">
-                        <label for="format">Выходной формат (в профиле sRGB)</label>
-                        <select id="format">
-                            <option value="image/jpeg" selected>JPG (рекомендуется для WB, Ozon и Авито)</option>
-                            <option value="image/png">PNG (максимальная чёткость деталей)</option>
-                            <option value="image/webp">WebP (также поддерживается площадками)</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="qualityGroup">
-                        <label for="quality">Баланс качества и веса (лимит до 10 МБ)</label>
-                        <div class="range-row">
-                            <input type="range" id="quality" min="10" max="100" value="88">
-                            <span class="range-val" id="qualityVal">88%</span>
-                        </div>
-                    </div>
-                </div>
-                <label class="checkbox-row">
-                    <input type="checkbox" id="noUpscale" checked>
-                    Не растягивать маленькие фото (защищает карточку от размытия и «мыла» при зуме)
-                </label>
-            </div>
-
-            <!-- ВКЛАДКА 2: ЦВЕТ И ПОВОРОТ -->
-            <div class="tab-panel" id="panel-adjust">
-                <div class="grid">
-                    <div class="form-group">
-                        <label for="brightness">Яркость (осветление тёмного фона)</label>
-                        <div class="range-row">
-                            <input type="range" id="brightness" min="50" max="170" value="100">
-                            <span class="range-val" id="brightnessVal">100%</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contrast">Контрастность (отделение товара от фона)</label>
-                        <div class="range-row">
-                            <input type="range" id="contrast" min="50" max="170" value="100">
-                            <span class="range-val" id="contrastVal">100%</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rotate">Повернуть фото</label>
-                        <select id="rotate">
-                            <option value="0">Без поворота</option>
-                            <option value="90">90° по часовой</option>
-                            <option value="180">180°</option>
-                            <option value="270">90° против часовой</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="flip">Отразить (Зеркало)</label>
-                        <select id="flip">
-                            <option value="none">Нет</option>
-                            <option value="h">По горизонтали</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ВКЛАДКА 3: НУМЕРАЦИЯ -->
-            <div class="tab-panel" id="panel-rename">
-                <div class="form-group">
-                    <label for="renamePattern">Шаблон наименования файлов для быстрой загрузки в ЛК</label>
-                    <input type="text" id="renamePattern" value="tovar-{nnn}">
-                    <div class="preset-tags">
-                        <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='tovar-{nnn}'">tovar-{nnn}</button>
-                        <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='artikul-{n}'">artikul-{n}</button>
-                        <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='wb-card-{nnn}'">wb-card-{nnn}</button>
-                        <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='ozon-sku-{nnn}'">ozon-sku-{nnn}</button>
-                    </div>
-                    <span class="hint" style="margin-top:8px; display:block; font-size:12px; color:var(--muted);">
-                        Шаблон <kbd>tovar-{nnn}</kbd> автоматически создаст правильный порядок слайдов (главное фото, ракурсы, детали):
-                        <em>tovar-001.jpg, tovar-002.jpg, tovar-003.jpg…</em>
-                    </span>
-                </div>
-            </div>
-
-            <!-- Кнопка запуска -->
-            <button class="btn" id="processBtn">⚡ Подготовить фото и скачать ZIP-архив</button>
-
-            <!-- Прогресс -->
-            <div class="progress-box" id="progressBox">
-                <div class="progress-info">
-                    <span id="progressStatus">Подготовка…</span>
-                    <span id="progressPercent">0%</span>
-                </div>
-                <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
-                <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
-            </div>
-
-            <!-- Результат -->
-            <div class="result-box" id="resultBox">
-                <h3>✅ Карточки успешно подготовлены к загрузке!</h3>
-                <p id="resultStats"></p>
-                <div class="results-list" id="resultsList"></div>
-            </div>
-
-            <div class="tool-footer-note">
-                <span>🎨 Цветовой профиль на выходе: <strong>sRGB (без искажения цветов)</strong></span>
-                <span>🛡️ Метаданные и лишние профили (CMYK) очищаются автоматически</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ТАБЛИЦА АКТУАЛЬНЫХ СТАНДАРТОВ 2026 -->
-    <section id="table-sec">
-        <div class="container">
-            <h2 class="section-title">Технические стандарты маркетплейсов в 2026 году</h2>
-            <p style="text-align:center; color:var(--muted); max-width:760px; margin:0 auto 20px; font-size:15px;">
-                Сводная таблица параметров для быстрой отгрузки карточек без ошибок в личном кабинете селлера.
-            </p>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Площадка</th>
-                            <th>Рекомендуемое разрешение</th>
-                            <th>Пропорции</th>
-                            <th>Формат и вес</th>
-                            <th>Нюансы модерации 2026</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>🟣 Wildberries</strong></td>
-                            <td><strong>1200×1600 px</strong> (оптимально)<br><small>Мин. 900×1200 px (одежда/обувь), от 200×200 (прочее), макс. до 8000 px</small></td>
-                            <td><strong>3:4</strong> (вертикаль)</td>
-                            <td>JPG, PNG, WebP<br><small>До 10 МБ, sRGB</small></td>
-                            <td>Товар 70–80% кадра, чистый фон, без цен и чужих логотипов на 1-м фото.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🔵 Ozon</strong></td>
-                            <td><strong>1200×1600 px</strong> или <strong>1500×1500 px</strong><br><small>Мин. 900×1200 px для Fashion, макс. до 8000 px</small></td>
-                            <td><strong>3:4</strong> или 1:1</td>
-                            <td>JPG, PNG, WebP<br><small>До 10 МБ, sRGB</small></td>
-                            <td><strong>Строго запрещены 3D-модели</strong> и Ч/Б эскизы вместо реальных фото. Высокое разрешение включает зум.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🟡 Яндекс Маркет</strong></td>
-                            <td><strong>900×1200 px</strong> / 1200×1600 px</td>
-                            <td><strong>3:4</strong> или 1:1</td>
-                            <td>JPG, PNG, WebP<br><small>До 10 МБ, sRGB</small></td>
-                            <td>Белый или светлый однородный фон, явный контраст товара с фоном, без водяных знаков.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🟢 Авито</strong></td>
-                            <td><strong>1200×900 px</strong> / 1600×1200 px</td>
-                            <td><strong>4:3</strong> (горизонталь)</td>
-                            <td>JPG, PNG<br><small>До 10 МБ</small></td>
-                            <td>Реальные снимки товара при естественном освещении без чужих контактных данных.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Стандарты маркетплейсов 2026 • Единые требования к фото
+      </div>
+      <h1>Фото для маркетплейсов: <span>требования и размеры 2026</span></h1>
+      <p>Полная сводка актуальных технических параметров для Wildberries, Ozon и Авито. Выберите маркетплейс — откроется пакетный онлайн-инструмент с точными пропорциями и пресетами площадки.</p>
+      
+      <!-- Фирменные плашки-преимущества -->
+      <div class="hero-features">
+        <div class="hero-feat-item">✅ Единый вертикальный 3:4 (WB и Ozon)</div>
+        <div class="hero-feat-item">✅ 1200×1600 и 900×1200 px</div>
+        <div class="hero-feat-item">✅ Горизонтальный 4:3 (Авито)</div>
+        <div class="hero-feat-item">✅ Фон #F2F3F5 и #FFFFFF</div>
+        <div class="hero-feat-item">✅ Контроль веса и удаление EXIF</div>
+      </div>
     </section>
 
-    <!-- ПОДРОБНЫЙ ГАЙД: ТЕХНИЧЕСКИЕ И КОНТЕНТНЫЕ ТРЕБОВАНИЯ 2026 -->
-    <section class="container" style="margin-top: 48px;">
-        <h2 class="section-title">Требования к фотографиям для маркетплейсов в 2026 году</h2>
-        <p style="text-align:center; color:var(--muted); max-width:800px; margin:0 auto; font-size:15px;">
-            Правила площадок делятся на две группы: <strong>технические</strong> (чтобы файл вообще загрузился в личный кабинет) и <strong>контентные</strong> (чтобы карточку не заблокировали на модерации). У каждой площадки бывают свои нюансы по категориям, но соблюдение базы ниже гарантирует прохождение в 99% случаев.
-        </p>
-
-        <div class="rules-grid">
-            <!-- Блок 1: Технические требования -->
-            <div class="rule-card">
-                <h3>⚙️ 1. Технические требования (для загрузки)</h3>
-                <ul class="rule-list">
-                    <li data-icon="📁">
-                        <strong>Форматы файлов:</strong> Везде стабильно принимают <strong>JPG, PNG и WEBP</strong>. Некоторые площадки начали поддерживать яблочный <em>HEIC</em>, но мы настоятельно рекомендуем конвертировать всё в JPG или PNG — старые модули личных кабинетов могут не пропустить HEIC.
-                    </li>
-                    <li data-icon="📐">
-                        <strong>Разрешение и зум:</strong> Для категорий «Одежда, обувь и аксессуары» требуют минимум <strong>900×1200 пикселей</strong> (для остальных категорий технический порог начинается от 200×200 px). Максимальное ограничение по большей стороне — около <strong>8000 пикселей</strong>. Помните: чем выше разрешение (например, 1200×1600 px), тем лучше работает оптическая лупа (зум) для покупателя.
-                    </li>
-                    <li data-icon="📱">
-                        <strong>Соотношение сторон 3:4:</strong> На Wildberries и Ozon стандартом является вертикальный формат <strong>3:4</strong>. Если загрузить квадратное фото в вертикальную витрину, система сама добавит некрасивые полосы сверху и снизу. Используйте режим <em>«Вписать + поля»</em> в нашем инструменте, чтобы аккуратно центрировать товар.
-                    </li>
-                    <li data-icon="⚖️">
-                        <strong>Вес файла до 10 МБ:</strong> Лимит большинства площадок — <strong>до 10 МБ</strong> на один снимок. Оптимальный баланс качества и быстрой загрузки карточки в мобильном приложении достигается при настройке качества JPG на уровне 85–90%.
-                    </li>
-                    <li data-icon="🌈">
-                        <strong>Цветовой профиль sRGB:</strong> Обязательно используйте модель <strong>sRGB</strong>. Если фотографы отдали снимки в профиле CMYK (для полиграфии), при загрузке на WB или Ozon цвета станут кислотными или блеклыми. <em>BatchPhoto.ru автоматически переводит каждое фото в правильный профиль sRGB.</em>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Блок 2: Требования к содержанию -->
-            <div class="rule-card">
-                <h3>👁️ 2. Требования к содержанию (для модерации)</h3>
-                <ul class="rule-list">
-                    <li data-icon="🎯">
-                        <strong>Товар в фокусе (70–80%):</strong> Предмет должен занимать основную часть кадра — примерно <strong>70–80% площади</strong>. Не обрезайте края товара вплотную к рамке.
-                    </li>
-                    <li data-icon="⬜">
-                        <strong>Чистый контрастный фон:</strong> Фон должен быть однородным, чистым и не отвлекать внимание. Лучший выбор — нейтральный светлый фон (белый, светло-серый). Важный нюанс: белый товар не должен сливаться с белым фоном — обеспечьте явную контрастность.
-                    </li>
-                    <li data-icon="💡">
-                        <strong>Освещение и ракурсы:</strong> Избегайте резких теней от посторонних предметов и сильных бликов. Покажите товар со всех сторон: фронт, бок, важные детали крупным планом (швы, фактура, фурнитура). Одежду лучше снимать на модели, а мебель — в интерьере.
-                    </li>
-                    <li data-icon="🚫">
-                        <strong>Что запрещено на главном фото:</strong> Сторонние логотипы, водяные знаки, рекламные надписи («Хит», цены, скидки, акции), телефоны, адреса, ссылки на сайты и призывы к действию. На дополнительных слайдах аккуратная инфографика разрешена, если текст не перекрывает сам товар.
-                    </li>
-                    <li data-icon="⚠️">
-                        <strong>Табу на 3D и эскизы:</strong> Не используйте чёрно-белые фото, наброски или 3D-рендеры вместо реального снимка (например, <strong>на Ozon 3D-модели строго запрещены</strong>). Фото должно на 100% соответствовать реальному товару и не нарушать авторские права.
-                    </li>
-                </ul>
-            </div>
+    <!-- Platform Selection Cards -->
+    <section class="hub-grid" id="platforms" aria-label="Выберите маркетплейс">
+      <!-- Wildberries -->
+      <div class="hub-card" id="wb">
+        <div>
+          <div class="hub-header">
+            <h2 class="hub-title">Wildberries</h2>
+            <span class="hub-badge wb">3:4 Вертикальный</span>
+          </div>
+          <p class="hub-desc">Основной стандарт для каталога WB. Требуется строгая центровка объекта и нейтральный фон.</p>
+          <ul class="hub-specs">
+            <li>• Стандартное разрешение: <strong>1200 × 1600 px</strong></li>
+            <li>• Минимальный размер: <strong>900 × 1200 px</strong></li>
+            <li>• Формат файлов: <strong>JPEG / WEBP</strong></li>
+            <li>• Максимальный вес: <strong>до 10 МБ</strong> (наша рекомендация — 1,5–2 МБ для быстрой загрузки карточки)</li>
+          </ul>
         </div>
+        <a href="foto-dlya-wildberries.html" class="hub-btn hub-btn-wb">Открыть инструмент для Wildberries →</a>
+      </div>
 
-        <!-- ИНТЕРАКТИВНЫЙ ЧЕК-ЛИСТ СЕЛЛЕРА (Повышает время на сайте и ПФ) -->
-        <div class="checklist-card">
-            <h3 style="margin-top:0; margin-bottom:6px;">☑️ Быстрый чек-лист селлера перед загрузкой карточек</h3>
-            <p style="margin:0; font-size:13px; color:var(--muted);">Отметьте пункты, чтобы убедиться, что партия фотографий пройдёт модерацию с первого раза:</p>
-            <div class="checklist-grid">
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>Формат файлов — <strong>JPG или PNG</strong> в цветовом профиле <strong>sRGB</strong></span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>Пропорции <strong>3:4</strong> (1200×1600 или 900×1200 px), вес до <strong>10 МБ</strong></span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>Товар занимает <strong>70–80% кадра</strong>, края не обрезаны</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>Фон чистый, без резких теней, товар не сливается с фоном</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>На 1-м фото <strong>нет цен, акций, водяных знаков</strong> и ссылок</span>
-                </label>
-                <label class="check-item">
-                    <input type="checkbox">
-                    <span>Реальные цветные фото (<strong>не 3D-модель</strong> и не Ч/Б эскиз)</span>
-                </label>
-            </div>
+      <!-- Ozon -->
+      <div class="hub-card" id="ozon">
+        <div>
+          <div class="hub-header">
+            <h2 class="hub-title">Ozon</h2>
+            <span class="hub-badge ozon">3:4 и 1:1 Fresh</span>
+          </div>
+          <p class="hub-desc">Стандарт каталога — 3:4. Формат 1:1 применяется только для Ozon Fresh. Светло-серый фон #F2F3F5 для светлых вещей.</p>
+          <ul class="hub-specs">
+            <li>• Стандарт каталога: <strong>1200 × 1600 px</strong> (3:4)</li>
+            <li>• Ozon Fresh: <strong>1200 × 1200 px</strong> (1:1)</li>
+            <li>• Минимум для одежды и обуви: <strong>900 × 1200 px</strong></li>
+            <li>• Rich-контент: <strong>1440 × 900 px</strong></li>
+            <li>• Вес и цвет: <strong>до 10 МБ, sRGB</strong></li>
+          </ul>
         </div>
+        <a href="foto-dlya-ozon.html" class="hub-btn hub-btn-ozon">Открыть инструмент для Ozon →</a>
+      </div>
+
+      <!-- Avito -->
+      <div class="hub-card" id="avito">
+        <div>
+          <div class="hub-header">
+            <h2 class="hub-title">Авито</h2>
+            <span class="hub-badge avito">4:3 Горизонтальный</span>
+          </div>
+          <p class="hub-desc">Горизонтальные пропорции для каталога товаров, авто и недвижимости. Очистка EXIF снижает риск привязки снимков к старым объявлениям.</p>
+          <ul class="hub-specs">
+            <li>• Стандарт объявлений: <strong>1200 × 900 px</strong> (4:3)</li>
+            <li>• Недвижимость и Авто (HD): <strong>1600 × 1200 px</strong></li>
+            <li>• Очистка метаданных: <strong>удаление EXIF и GPS</strong></li>
+            <li>• Режим подгонки: <strong>вписать с полями</strong></li>
+          </ul>
+        </div>
+        <a href="foto-dlya-avito.html" class="hub-btn hub-btn-avito">Открыть инструмент для Авито →</a>
+      </div>
     </section>
 
-    <!-- FAQ (ЧАСТЫЕ ВОПРОСЫ СЕЛЛЕРОВ) -->
-    <section class="container">
-        <h2 class="section-title">Частые вопросы по подготовке фото для WB и Ozon</h2>
-        <div class="faq-list">
-            <details class="faq-item" open>
-                <summary>Какой размер фото лучше выбрать для Wildberries и Ozon в 2026 году?</summary>
-                <p>Оптимальный единый размер, который идеально подходит сразу и для Wildberries, и для Ozon — <strong>1200×1600 пикселей (соотношение сторон 3:4)</strong>. Он превышает минимальный порог для одежды и обуви (900×1200 px) и позволяет покупателям использовать функцию приближения (зума) для просмотра швов и мелких деталей.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Как перевести фотографии из CMYK или HEIC в JPG со стандартным профилем sRGB?</summary>
-                <p>Просто загрузите ваши снимки в окно выше и выберите выходной формат <strong>JPG</strong>. Браузерный движок BatchPhoto при пересборке кадра на уровне HTML5 Canvas автоматически формирует чистый файл в цветовом пространстве <strong>sRGB</strong>. Это гарантирует, что оттенки одежды или косметики не изменятся после загрузки в личный кабинет маркетплейса.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Мои фото сделаны горизонтально или квадратом (1:1). Как сделать их 3:4 без обрезки товара?</summary>
-                <p>Во вкладке «1. Размер и пропорции» выберите пресет <strong>Wildberries + Ozon HD (1200×1600)</strong> и укажите режим подгонки <strong>«Вписать + поля (товар по центру, без обрезки)»</strong>. Инструмент аккуратно впишет ваш товар в вертикальный холст 3:4 и заполнит края чистым белым цветом (или любым выбранным оттенком фона пипеткой). Результат вы сразу увидите в предпросмотре над настройками.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Безопасно ли обрабатывать эксклюзивные фото новых товаров через ваш сайт?</summary>
-                <p>Да, абсолютно безопасно. В отличие от облачных сервисов, <strong>BatchPhoto.ru работает локально внутри вашего браузера</strong>. Ваши фотографии никуда не загружаются по сети и не сохраняются на чужих серверах — вы можете даже отключить интернет после открытия страницы, и пакетная обработка продолжит работать.</p>
-            </details>
-        </div>
+    <!-- Быстрые теги-якоря -->
+    <nav class="tag-cloud" style="margin-top: 26px;" aria-label="Содержание страницы">
+      <a href="#standards">Сводная таблица</a>
+      <a href="#calc">Калькулятор экономии</a>
+      <a href="#cases">Типовые сценарии</a>
+      <a href="#checklist">Чек-лист селлера</a>
+      <a href="#faq">Вопросы и ответы</a>
+    </nav>
 
-        <!-- Внутренняя перелинковка для усиления SEO всего сайта -->
-        <h3 style="text-align:center; margin-top:40px; font-size:18px;">Другие полезные инструменты для селлеров и контент-менеджеров</h3>
-        <div class="cross-tools">
-            <a href="szhatie-foto.html" class="cross-tool-link">
-                <strong>🗜️ Пакетное сжатие JPG</strong>
-                <span>Уменьшение веса тяжелых студийных фото строго до лимита 10 МБ без потери чёткости.</span>
-            </a>
-            <a href="udalit-exif.html" class="cross-tool-link">
-                <strong>🛡️ Удаление EXIF-данных</strong>
-                <span>Очистка скрытых метаданных камеры, GPS-координат и лишних цветовых профилей.</span>
-            </a>
-            <a href="konverter-webp.html" class="cross-tool-link">
-                <strong>🌐 Конвертер в WebP и JPG</strong>
-                <span>Быстрый перевод современных форматов изображений для сайтов и карточек.</span>
-            </a>
-            <a href="vodjanoj-znak.html" class="cross-tool-link">
-                <strong>© Водяной знак на фото</strong>
-                <span>Защита фотографий для соцсетей, каталогов и площадок, где разрешена маркировка.</span>
-            </a>
-        </div>
+    <!-- Standards Comparison Table 2026 -->
+    <section id="standards" aria-labelledby="standardsTitle">
+      <div class="section-head">
+        <h2 id="standardsTitle">Сводная таблица требований к фото на маркетплейсах в 2026 году</h2>
+        <p>Технические параметры для прохождения автоматической модерации торговых платформ.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Сравнение требований Wildberries, Ozon, Авито и Яндекс Маркета к фотографиям товаров</caption>
+          <thead>
+            <tr>
+              <th scope="col">Площадка</th>
+              <th scope="col">Рекомендуемое разрешение</th>
+              <th scope="col">Соотношение сторон</th>
+              <th scope="col">Формат файла</th>
+              <th scope="col">Особенности модерации</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Wildberries</strong></td>
+              <td><code>1200 × 1600 px</code></td>
+              <td>3:4 (вертикальное)</td>
+              <td>JPEG / WEBP</td>
+              <td>Товар занимает не менее 70% площади. Запрещены контакты, самореклама и плашки акций.</td>
+            </tr>
+            <tr>
+              <td><strong>Ozon</strong></td>
+              <td><code>1200 × 1600 px</code></td>
+              <td>3:4 (вертикальное)<br><small>1:1 — только Ozon Fresh</small></td>
+              <td>JPEG / WEBP / PNG</td>
+              <td>Фон белый (#FFFFFF) или светло-серый (#F2F3F5). Запрещены 3D-рендеры и водяные знаки.</td>
+            </tr>
+            <tr>
+              <td><strong>Авито</strong></td>
+              <td><code>1200 × 900 px</code> (1600 × 1200 — HD-категории)</td>
+              <td>4:3 (горизонтальное)</td>
+              <td>JPEG / WEBP</td>
+              <td>Запрещены номера телефонов и ссылки на сторонние сайты. Очистка EXIF снижает риск привязки снимков к старым объявлениям.</td>
+            </tr>
+            <tr>
+              <td><strong>Яндекс Маркет</strong></td>
+              <td><code>900 × 1200 px</code> или <code>1080 × 1440 px</code></td>
+              <td>3:4 или 1:1</td>
+              <td>JPEG / PNG</td>
+              <td>Белый или серый фон. Товар сфотографирован без лишних предметов в кадре.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
-</main>
 
-<footer>
+    <!-- Interactive Time-Savings Calculator -->
+    <section id="calc" aria-labelledby="calcTitle">
+      <div class="calc-card">
+        <h2 id="calcTitle">Калькулятор экономии времени селлера</h2>
+        <p class="calc-lead">Посчитайте, сколько часов рутинной работы в графических редакторах сбережёт автоматическая пакетная обработка прямо в браузере.</p>
+
+        <div class="calc-grid">
+          <div class="form-group">
+            <label for="calcCards">Количество карточек товаров</label>
+            <input type="number" id="calcCards" value="25" min="1" max="1000" inputmode="numeric">
+          </div>
+          <div class="form-group">
+            <label for="calcPhotosPerCard">Фотографий в одной карточке</label>
+            <input type="number" id="calcPhotosPerCard" value="6" min="1" max="30" inputmode="numeric">
+          </div>
+        </div>
+
+        <p class="calc-total">Всего изображений к обработке: <strong id="calcTotalPhotos">150</strong></p>
+
+        <div class="calc-result-box" aria-live="polite">
+          <div>
+            <span class="calc-stat-num" id="calcManualTime">3,8 ч</span>
+            <span class="calc-stat-lbl">Ручная обработка в редакторе</span>
+          </div>
+          <div class="calc-arrow" aria-hidden="true">→</div>
+          <div>
+            <span class="calc-stat-num ok" id="calcBatchTime">38 сек</span>
+            <span class="calc-stat-lbl">В пакетном инструменте BatchPhoto</span>
+          </div>
+          <div>
+            <span class="calc-stat-num info" id="calcSavedMoney">~1 875 ₽</span>
+            <span class="calc-stat-lbl">Экономия на дизайнере (оценка)</span>
+          </div>
+        </div>
+        <p class="calc-note">* Оценка: ручная правка ≈ 1,5 мин на фото, пакетная обработка ≈ 0,25 сек на фото, ставка специалиста ≈ 500 ₽/час. Реальные значения зависят от сложности задач.</p>
+      </div>
+    </section>
+
+    <!-- Типовые сценарии -->
+    <section id="cases" aria-labelledby="casesTitle">
+      <div class="section-head">
+        <h2 id="casesTitle">Типовые сценарии пакетной подготовки</h2>
+        <p>Частые ситуации селлеров, которые закрываются одним запуском пакетной обработки — без ручной правки каждого кадра в редакторе.</p>
+      </div>
+      <div class="cases-grid">
+        <!-- Сценарий 1: WB -->
+        <div class="case-card">
+          <div>
+            <div class="case-meta">
+              <span class="case-tag wb">Wildberries • Одежда</span>
+              <span class="case-outcome">Формат приведён к 3:4</span>
+            </div>
+            <h3>Исправление пропорций каталога</h3>
+            <p>Если каталог собран из квадратных фото 1:1, Wildberries принудительно обрезает края моделей в поисковой выдаче — часть товара теряется.</p>
+            <div class="case-metric">
+              <div>Решение: <strong>вписывание с полями в 1200 × 1600 (3:4)</strong></div>
+              <div>Обработка 120 фото: <strong>≈ 40 секунд</strong></div>
+            </div>
+          </div>
+          <a href="foto-dlya-wildberries.html" class="case-link wb">Инструмент для Wildberries →</a>
+        </div>
+
+        <!-- Сценарий 2: Ozon -->
+        <div class="case-card">
+          <div>
+            <div class="case-meta">
+              <span class="case-tag ozon">Ozon • Товары для дома</span>
+              <span class="case-outcome">Соответствует правилам модерации</span>
+            </div>
+            <h3>Светлый фон #F2F3F5 и лёгкий вес</h3>
+            <p>Белая посуда на чисто белом фоне сливается — такие карточки часто возвращают на доработку, а «тяжёлые» фото замедляют загрузку страницы.</p>
+            <div class="case-metric">
+              <div>Решение: <strong>авто-поля #F2F3F5 + сжатие до ~900 КБ</strong></div>
+              <div>Обработка 80 фото: <strong>≈ 55 секунд</strong></div>
+            </div>
+          </div>
+          <a href="foto-dlya-ozon.html" class="case-link ozon">Инструмент для Ozon →</a>
+        </div>
+
+        <!-- Сценарий 3: Avito -->
+        <div class="case-card">
+          <div>
+            <div class="case-meta">
+              <span class="case-tag avito">Авито • Авто и запчасти</span>
+              <span class="case-outcome">Снижение риска склейки объявлений</span>
+            </div>
+            <h3>Очистка метаданных EXIF и GPS</h3>
+            <p>При повторной подаче объявления алгоритмы площадки могут связать снимки со старыми публикациями по EXIF-тегам телефона — очистка метаданных снижает этот риск.</p>
+            <div class="case-metric">
+              <div>Решение: <strong>формат 4:3 (1200 × 900) + очистка метатегов</strong></div>
+              <div>Обработка 40 фото: <strong>≈ 25 секунд</strong></div>
+            </div>
+          </div>
+          <a href="foto-dlya-avito.html" class="case-link avito">Инструмент для Авито →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- General Seller Checklist -->
+    <section id="checklist" aria-labelledby="checklistTitle">
+      <div class="checklist-card">
+        <h2 id="checklistTitle">Общий чек-лист подготовки фото к публикации</h2>
+        <p>Отметьте пункты перед загрузкой изображений в личный кабинет площадки:</p>
+
+        <div class="check-list">
+          <label class="check-row">
+            <input type="checkbox">
+            <span><strong>Соотношение сторон соответствует платформе:</strong> 3:4 для Wildberries и Ozon, 4:3 для Авито.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox">
+            <span><strong>Разрешение не ниже минимума площадки:</strong> для одежды и обуви — от 900 × 1200 px, рекомендуемый стандарт — 1200 × 1600 px.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox">
+            <span><strong>Нет запрещённых элементов:</strong> номера телефонов, ссылки, цены и рекламные плашки («Шок-цена», «Скидка») отсутствуют.</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox">
+            <span><strong>Вес файла оптимизирован:</strong> в пределах лимита площадки (наша рекомендация — 1–2 МБ на фото для быстрой загрузки покупателями).</span>
+          </label>
+          <label class="check-row">
+            <input type="checkbox">
+            <span><strong>Конфиденциальность:</strong> лишние EXIF-теги и геолокация съёмки стёрты — на Авито это снижает риск привязки снимков к старым объявлениям.</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" aria-labelledby="faqTitle">
+      <div class="section-head">
+        <h2 id="faqTitle">Часто задаваемые вопросы о фото для маркетплейсов</h2>
+        <p>Короткие ответы по форматам, фонам и правилам площадок.</p>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Какой размер фото нужен для Wildberries и Ozon в 2026 году?</summary>
+          <div class="faq-body">
+            <p>Для Wildberries стандартным является вертикальное соотношение <strong>3:4 с разрешением 1200×1600 px</strong> (минимально 900×1200 px). Для Ozon во всех стандартных товарных категориях также действует стандарт <strong>3:4 (1200×1600 px)</strong>. Исключением является только Ozon Fresh, где карточки отображаются в формате 1:1.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Можно ли загружать квадратные фото 1:1 на Ozon?</summary>
+          <div class="faq-body">
+            <p>Формат 1:1 (например, 1200×1200 px) на Ozon строго закреплен <strong>только за категорией Ozon Fresh</strong> (продукты питания и скоропортящиеся товары). В остальных категориях система Ozon автоматически добавит поля по бокам, чтобы подогнать снимок под соотношение 3:4, что уменьшит полезную площадь товара в поисковой выдаче.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>В чем отличие требований к фото на Авито от маркетплейсов?</summary>
+          <div class="faq-body">
+            <p>Главное отличие — ориентация кадра. Авито использует горизонтальный формат <strong>4:3 (рекомендуется 1200×900 px или 1600×1200 px</strong> для категорий Авто и Недвижимость). Если загрузить на Авито вертикальное фото с маркетплейса без белых полей, сервис срежет верх и низ изображения.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Какой цвет фона допустим для карточек товаров?</summary>
+          <div class="faq-body">
+            <p>Для Wildberries допустим чистый белый, нейтральный светло-серый или контрастный контекстный фон (если товар показан в интерьере). Ozon рекомендует чистый белый фон (#FFFFFF) для большинства товаров или светло-серый (#F2F3F5) для светлой и прозрачной одежды. На Авито жестких ограничений нет, но естественный или нейтральный фон повышает конверсию.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>В каком формате лучше сохранять изображения (JPEG или WEBP)?</summary>
+          <div class="faq-body">
+            <p>Все площадки отлично принимают стандартный JPEG (JPG). WEBP обеспечивает меньший вес при том же качестве, однако перед загрузкой убедитесь, что ваш личный кабинет поддерживает этот формат. Для максимальной совместимости рекомендуется JPEG с качеством 85–90%.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-item">
+        <details>
+          <summary>Разрешены ли водяные знаки и телефоны на фотографиях?</summary>
+          <div class="faq-body">
+            <p>Маркетплейсы (WB, Ozon) и доска Авито строго запрещают размещение на фото прямых контактных данных: номеров телефонов, ссылок на сайты, аккаунтов мессенджеров, а также цен и агрессивных надписей («Шок-цена», «Скидка»). Разрешены только полупрозрачные логотипы собственного бренда, если они не загораживают сам товар.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Cross-Linking Cluster -->
+    <section id="tools" aria-labelledby="toolsTitle">
+      <div class="section-head">
+        <h2 id="toolsTitle">Специализированные инструменты пакетной обработки</h2>
+      </div>
+      <div class="cluster-links">
+        <a href="foto-dlya-wildberries.html" class="hub-btn hub-btn-wb">Wildberries (3:4)</a>
+        <a href="foto-dlya-ozon.html" class="hub-btn hub-btn-ozon">Ozon (3:4 и 1:1 Fresh)</a>
+        <a href="foto-dlya-avito.html" class="hub-btn hub-btn-avito">Авито (4:3)</a>
+        <a href="szhatie-foto.html" class="hub-btn hub-btn-ghost">Сжатие JPG / PNG</a>
+        <a href="udalit-exif.html" class="hub-btn hub-btn-ghost">Очистка EXIF</a>
+        <a href="konverter-webp.html" class="hub-btn hub-btn-ghost">Конвертер WebP</a>
+        <a href="vodjanoj-znak.html" class="hub-btn hub-btn-ghost">Водяной знак</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer>
     <div class="container">
-        <div class="footer-links">
-            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
-            <a href="szhatie-foto.html">Сжатие JPG</a>
-            <a href="konverter-webp.html">Конвертер WebP</a>
-            <a href="udalit-exif.html">Удаление EXIF</a>
-            <a href="vodjanoj-znak.html">Водяной знак</a>
-        </div>
-        <p>© 2025–2026 BatchPhoto.ru — Пакетная обработка изображений онлайн.
-Все файлы обрабатываются локально в вашем браузере.</p>
+      <div class="footer-links">
+        <a href="index.html">Главная</a>
+        <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+        <a href="foto-dlya-wildberries.html">Wildberries</a>
+        <a href="foto-dlya-ozon.html">Ozon</a>
+        <a href="foto-dlya-avito.html">Авито</a>
+        <a href="szhatie-foto.html">Сжатие JPG</a>
+        <a href="konverter-webp.html">Конвертер WebP</a>
+        <a href="udalit-exif.html">Удалить EXIF</a>
+        <a href="vodjanoj-znak.html">Водяной знак</a>
+        <a href="politika-konfidencialnosti.html">Конфиденциальность</a>
+      </div>
+      <p>© 2026 BatchPhoto.ru — Пакетная обработка изображений онлайн. Быстро, безопасно, в браузере.</p>
     </div>
-</footer>
+  </footer>
 
-<script>
-    window.BP_CONFIG = {
-        defaultPreset: 'wb',
-        allowedTabs: ['size', 'adjust', 'rename']
-    };
-</script>
-<script src="js/engine.js"></script>
-
-<!-- ===== ПРЕДПРОСМОТР «ДО / ПОСЛЕ» (бок о бок) ===== -->
-<script>
-(function () {
-    'use strict';
-    var $ = function (id) { return document.getElementById(id); };
-    var panel = $('previewPanel'); if (!panel) return;
-
-    var empty       = $('previewEmpty'),
-        body        = $('previewBody'),
-        imgBefore   = $('imgBefore'),
-        canvasAfter = $('canvasAfter'),
-        cmpGrid     = $('cmpGrid'),
-        nameEl      = $('pvName'),
-        metaEl      = $('pvMeta'),
-        grid        = $('filesGrid'),
-        clearBtn    = $('clearBtn');
-
-    if (!cmpGrid || !imgBefore || !canvasAfter) return;
-    var ctx = canvasAfter.getContext('2d');
-
-    var img = null, currentSrc = null, timer = null, grabTimer = null;
-
-    function show() { empty.style.display = 'none'; body.style.display = 'flex'; }
-    function hide() { body.style.display = 'none'; empty.style.display = ''; }
-
-    function setSource(src) {
-        if (!src || src === currentSrc) return;
-        currentSrc = src;
-        imgBefore.src = src;
-        var im = new Image();
-        im.onload = function () { img = im; show(); render(); };
-        im.onerror = function () { if (currentSrc === src) { currentSrc = null; img = null; } };
-        im.src = src;
-    }
-    function reset() { img = null; currentSrc = null; hide(); }
-
-    function grabFromGrid() {
-        if (!grid) return;
-        var first = grid.querySelector('img, canvas');
-        if (!first) { reset(); return; }
-        if (first.tagName === 'CANVAS') {
-            try { setSource(first.toDataURL('image/png')); } catch (e) {}
-            return;
-        }
-        if (first.complete && first.naturalWidth > 0) { setSource(first.src); return; }
-        clearTimeout(grabTimer);
-        grabTimer = setTimeout(grabFromGrid, 120);
-    }
-    if (grid && window.MutationObserver) {
-        new MutationObserver(grabFromGrid).observe(grid, { childList: true });
-    }
-
-    function setFile(f) {
-        if (img || !f) return;
-        if (f.type && f.type.indexOf('image/') !== 0) return;
-        var r = new FileReader();
-        r.onload = function () { if (!img) setSource(r.result); };
-        try { r.readAsDataURL(f); } catch (e) {}
-    }
-    var dz = $('dropzone');
-    if (dz) dz.addEventListener('drop', function (e) {
-        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
-            setFile(e.dataTransfer.files[0]);
-        }
-    }, true);
-    document.addEventListener('paste', function (e) {
-        if (img) return;
-        var it = e.clipboardData && e.clipboardData.items; if (!it) return;
-        for (var i = 0; i < it.length; i++) {
-            if (it[i].type.indexOf('image/') === 0) { setFile(it[i].getAsFile()); break; }
-        }
-    });
-    if (clearBtn) clearBtn.addEventListener('click', reset);
-
-    ['preset','resizeMode','width','height','bgColor','format','quality','noUpscale','brightness','contrast','rotate','flip']
-        .forEach(function (id) {
-            var el = $(id); if (!el) return;
-            el.addEventListener('input', schedule);
-            el.addEventListener('change', schedule);
-        });
-    function schedule() { if (!img) return; clearTimeout(timer); timer = setTimeout(render, 120); }
-    function num(v, d) { v = parseInt(v, 10); return (isNaN(v) || v <= 0) ? d : v; }
-
-    var lastRatio = null;
-    window.addEventListener('resize', function () { if (lastRatio) sizePanes(lastRatio); });
-
-    function sizePanes(ratio) {
-        lastRatio = ratio;
-        var paneH = window.innerWidth < 520 ? 200 : 300;
-        var paneW = Math.round(paneH * ratio);
-        var panes = cmpGrid.querySelectorAll('.cmp-pane');
-        var total = paneW * 2 + 10;
-        var avail = cmpGrid.clientWidth || cmpGrid.parentNode.clientWidth || total;
-        if (total > avail) {
-            var k = (avail - 10) / (paneW * 2);
-            paneH = Math.round(paneH * k);
-            paneW = Math.round(paneW * k);
-        }
-        for (var i = 0; i < panes.length; i++) {
-            panes[i].style.height = paneH + 'px';
-            panes[i].style.width  = paneW + 'px';
-        }
-    }
-
-    function render() {
-        if (!img) return;
-        var deg   = num($('rotate').value, 0),
-            flip  = $('flip').value === 'h',
-            W     = Math.min(8000, num($('width').value, 1200)),
-            H     = Math.min(8000, num($('height').value, 1600)),
-            mode  = $('resizeMode').value,
-            noUp  = $('noUpscale').checked,
-            fmt   = $('format').value,
-            q     = num($('quality').value, 88) / 100;
-
-        var rot = (deg === 90 || deg === 270),
-            sw = rot ? img.height : img.width,
-            sh = rot ? img.width  : img.height;
-        var t = document.createElement('canvas');
-        t.width = sw; t.height = sh;
-        var tc = t.getContext('2d');
-        tc.translate(sw / 2, sh / 2);
-        tc.rotate(deg * Math.PI / 180);
-        if (flip) tc.scale(-1, 1);
-        tc.drawImage(img, -img.width / 2, -img.height / 2);
-
-        var ow, oh, dw, dh, dx = 0, dy = 0, s;
-        if (mode === 'contain') {
-            s = Math.min(W / sw, H / sh); if (noUp) s = Math.min(s, 1);
-            ow = Math.max(1, Math.round(sw * s));
-            oh = Math.max(1, Math.round(sh * s));
-            dw = ow; dh = oh;
+  <!-- Scripts: Theme & Calculator -->
+  <script>
+    // Синхронизация темы в точном соответствии с engine.js сайта
+    (function () {
+      var btn = document.getElementById('themeBtn');
+      function syncTheme() {
+        var isDark = localStorage.getItem('bp_theme_v2') === 'dark';
+        if (isDark) {
+          document.documentElement.setAttribute('data-theme', 'dark');
         } else {
-            ow = W; oh = H;
-            s = (mode === 'cover') ? Math.max(W / sw, H / sh) : Math.min(W / sw, H / sh);
-            if (noUp) s = Math.min(s, 1);
-            dw = sw * s; dh = sh * s;
-            dx = (W - dw) / 2; dy = (H - dh) / 2;
+          document.documentElement.removeAttribute('data-theme');
         }
+        if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+      }
+      syncTheme();
+      window.addEventListener('pageshow', syncTheme);
+      if (btn) {
+        btn.onclick = function () {
+          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+          syncTheme();
+        };
+      }
+    })();
+  </script>
+  <script>
+    // Калькулятор экономии селлера
+    (function () {
+      var elCards = document.getElementById('calcCards');
+      var elPer = document.getElementById('calcPhotosPerCard');
+      var elManual = document.getElementById('calcManualTime');
+      var elBatch = document.getElementById('calcBatchTime');
+      var elMoney = document.getElementById('calcSavedMoney');
+      var elTotal = document.getElementById('calcTotalPhotos');
+      if (!elCards || !elPer) return;
 
-        var out = document.createElement('canvas');
-        out.width = ow; out.height = oh;
-        var oc = out.getContext('2d');
-        if (mode !== 'contain') {
-            oc.fillStyle = $('bgColor').value;
-            oc.fillRect(0, 0, ow, oh);
-        }
-        if ('filter' in oc) {
-            oc.filter = 'brightness(' + $('brightness').value + '%) contrast(' + $('contrast').value + '%)';
-        }
-        oc.imageSmoothingEnabled = true;
-        oc.imageSmoothingQuality = 'high';
-        oc.drawImage(t, dx, dy, dw, dh);
-        oc.filter = 'none';
+      var SEC_MANUAL = 90;
+      var SEC_BATCH = 0.25;
+      var RATE_RUB = 500;
 
-        var maxDim = 800;
-        var k = Math.min(maxDim / out.width, maxDim / out.height, 1);
-        canvasAfter.width  = Math.max(1, Math.round(out.width  * k));
-        canvasAfter.height = Math.max(1, Math.round(out.height * k));
-        var cctx = canvasAfter.getContext('2d');
-        cctx.imageSmoothingEnabled = true;
-        cctx.imageSmoothingQuality = 'high';
-        cctx.drawImage(out, 0, 0, canvasAfter.width, canvasAfter.height);
+      function clampInt(v, min, max) {
+        v = parseInt(v, 10);
+        if (isNaN(v) || v < min) return min;
+        if (v > max) return max;
+        return v;
+      }
 
-        sizePanes(ow / oh);
+      function fmtHours(min) {
+        if (min < 60) return min + ' мин';
+        var h = min / 60;
+        var s = h >= 10 ? String(Math.round(h)) : (Math.round(h * 10) / 10).toFixed(1);
+        return s.replace('.', ',') + ' ч';
+      }
 
-        var ftxt = (fmt === 'image/jpeg') ? 'JPEG' : (fmt === 'image/png') ? 'PNG' : 'WebP';
-        var wtxt = '';
-        try {
-            var b = Math.round(out.toDataURL(fmt, q).length * 0.75);
-            wtxt = b > 1048576
-                ? ' • ≈ ' + (b / 1048576).toFixed(1) + ' МБ'
-                : ' • ≈ ' + Math.max(1, Math.round(b / 1024)) + ' КБ';
-            if (b > 10485760) wtxt += ' — <span class="pv-warn">⚠️ больше 10 МБ, снизьте качество</span>';
-        } catch (e) {}
+      function update() {
+        var cards = clampInt(elCards.value, 1, 1000);
+        var per = clampInt(elPer.value, 1, 30);
+        var total = cards * per;
+        var manualMin = Math.max(1, Math.round(total * SEC_MANUAL / 60));
+        var batchSec = Math.max(5, Math.round(total * SEC_BATCH));
+        var money = Math.round((manualMin / 60) * RATE_RUB);
 
-        nameEl.textContent = 'Первое фото из списка';
-        metaEl.innerHTML = 'Итог: <b>' + ow + ' × ' + oh + ' px</b> • ' + ftxt + wtxt;
-    }
-})();
-</script>
+        if (elTotal) elTotal.textContent = total.toLocaleString('ru-RU');
+        if (elManual) elManual.textContent = fmtHours(manualMin);
+        if (elBatch) elBatch.textContent = batchSec + ' сек';
+        if (elMoney) elMoney.textContent = '~' + money.toLocaleString('ru-RU') + ' ₽';
+      }
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
-    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+      elCards.addEventListener('input', update);
+      elPer.addEventListener('input', update);
+      update();
+    })();
+  </script>
 </body>
 </html>

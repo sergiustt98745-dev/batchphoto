@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Целевые SEO-теги под кластер Wildberries (2026) -->
+    <title>Пакетная обработка фото для Wildberries (формат 3:4, 1200×1600 и 900×1200) — BatchPhoto.ru</title>
+    <meta name="description" content="Подготовка фото для Wildberries под требования 2026 года: вертикальный формат 3:4 (1200×1600 и 900×1200 px), безопасный перевод из 1:1 в 3:4 без обрезки товара, автосжатие до 10 МБ, профиль sRGB и нумерация слайдов.">
+    <meta name="keywords" content="размер фото для вайлдберриз, сделать фото 1200х1600 для вб онлайн, фото 900х1200 для wildberries, изменить размер фото для вб 3 на 4, кадрирование фото wildberries без обрезки, пакетная обработка фото для wildberries, требования к фото вб 2026">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/foto-dlya-wildberries.html">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://batchphoto.ru/foto-dlya-wildberries.html">
+    <meta property="og:title" content="Пакетная обработка фото для Wildberries (формат 3:4, рекомендуемые размеры)">
+    <meta property="og:description" content="Подготовка до 100 фото под требования WB: кадрирование, защита от обрезки товара, автосжатие до 10 МБ и профиль sRGB.">
+    <meta property="og:site_name" content="BatchPhoto.ru">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟣</text></svg>">
+    <style>
+        /* Акцентный фиолетовый бейдж под стиль WB */
+        .wb-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(168,85,247,.12); color: #9333ea; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(168,85,247,.3); margin-bottom: 14px; }
+        [data-theme="dark"] .wb-badge { color: #c084fc; background: rgba(168,85,247,.16); }
+        .trust-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+        .trust-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: rgba(128,128,128,0.1); color: var(--muted, #666); display: inline-flex; align-items: center; gap: 5px; }
+        /* Быстрые сценарии в 1 клик */
+        .quick-modes { margin-top: 18px; padding: 14px; border-radius: 12px; background: var(--bg-soft); border: 1px solid var(--border); }
+        .quick-modes-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+        .quick-modes-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qmode-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 9px 13px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; transition: .18s; font-family: inherit; display: inline-flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; }
+        .qmode-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .qmode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .qmode-btn small { font-weight: 400; opacity: .88; font-size: 11px; line-height: 1.25; }
+        .qmode-btn.warn-btn:hover { border-color: #ef4444; color: #ef4444; }
+        .qmode-btn.warn-btn.active { background: #dc2626; border-color: #dc2626; color: #fff; }
+        /* Информационная плашка безопасности лимитов */
+        .wb-notice-box { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.3); color: #b45309; font-size: 12px; line-height: 1.45; display: none; }
+        [data-theme="dark"] .wb-notice-box { color: #fcd34d; background: rgba(245,158,11,.15); }
+        /* Предпросмотр До/После + визуальная индикация обрезки */
+        .pv-panel { margin-top: 14px; border: 1px solid rgba(128,128,128,0.18); border-radius: 12px; padding: 12px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
+        .pv-empty { color: var(--muted, #666); text-align: center; padding: 4px 0; }
+        .pv-body { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .pv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .pv-label { font-weight: 700; font-size: 13px; }
+        .pv-name { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
+        .pv-meta { margin-top: 2px; font-size: 12px; color: var(--muted, #666); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+        .wb-checks { display: flex; flex-wrap: wrap; gap: 6px; }
+        .wb-check-pill { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: rgba(16,185,129,.12); color: #10b981; border: 1px solid rgba(16,185,129,.25); }
+        .wb-check-pill.warn { background: rgba(245,158,11,.12); color: #f59e0b; border-color: rgba(245,158,11,.3); }
+        .wb-check-pill.danger { background: rgba(239,68,68,.12); color: #ef4444; border-color: rgba(239,68,68,.3); }
+        .cmp-grid { display: flex; gap: 10px; justify-content: center; align-items: stretch; width: 100%; }
+        .cmp-pane { position: relative; flex: 0 0 auto; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid rgba(128,128,128,0.25); box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+        .cmp-pane img, .cmp-pane canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+        .cmp-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,.72); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .3px; z-index: 4; }
+        /* Визуальные шторки обрезки (Crop Cut Indicators) */
+        .crop-strip { position: absolute; background: rgba(239, 68, 68, 0.45); border: 1px dashed rgba(255,255,255,0.8); z-index: 3; pointer-events: none; display: none; }
+        .crop-strip-tag { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); background: #ef4444; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 3px; text-transform: uppercase; letter-spacing: .3px; white-space: nowrap; z-index: 4; }
+        .preset-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .preset-tag { font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(128,128,128,0.25); background: transparent; color: inherit; cursor: pointer; transition: 0.2s; }
+        .preset-tag:hover { border-color: var(--primary); color: var(--primary); }
+        .tool-footer-note { margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(128,128,128,0.2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--muted, #666); }
+        .tool-privacy-note { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted, #666); }
+        .tool-privacy-note a { color: var(--primary); }
+        /* Предупреждение о водяных знаках и требованиях к одежде */
+        .wb-alert-card { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 14px 18px; margin: 20px 0; font-size: 13px; line-height: 1.5; color: var(--text); }
+        .wb-alert-card b { color: #dc2626; }
+        /* Шаги, Кейсы, Правила, Чек-лист, FAQ */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+        .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+        .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .step-card h3 { margin: 0 0 6px; font-size: 15px; }
+        .step-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
+        .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+        .case-card h3 { margin: 0 0 12px; font-size: 15px; }
+        .case-row { display: flex; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 8px; line-height: 1.5; }
+        .case-row b { color: var(--text); font-weight: 600; }
+        .case-time { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 13px; font-weight: 700; color: #10b981; }
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 24px; }
+        .rule-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+        .rule-card h3 { margin-top: 0; margin-bottom: 14px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .rule-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+        .rule-list li { position: relative; padding-left: 24px; }
+        .rule-list li strong { color: var(--text); }
+        .rule-list li::before { content: attr(data-icon); position: absolute; left: 0; top: 1px; font-size: 14px; }
+        .checklist-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 32px 0; }
+        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-size: 14px; user-select: none; transition: 0.15s; }
+        .check-item:hover { border-color: var(--primary); }
+        .check-item input { margin-top: 3px; transform: scale(1.15); accent-color: #10b981; }
+        .check-item input:checked + span { text-decoration: line-through; opacity: 0.65; }
+        .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; margin-bottom: 40px; }
+        .cross-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px 0 40px; }
+        .cross-tool-link { display: block; padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s; }
+        .cross-tool-link:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .cross-tool-link strong { display: block; margin-bottom: 4px; font-size: 15px; }
+        .cross-tool-link span { font-size: 13px; color: var(--muted); }
+    </style>
+    <!-- Schema.org: Хлебные крошки + WebApplication + HowTo + FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/"},
+            {"@type": "ListItem", "position": 2, "name": "Маркетплейсы", "item": "https://batchphoto.ru/foto-dlya-marketpleisov.html"},
+            {"@type": "ListItem", "position": 3, "name": "Фото для Wildberries", "item": "https://batchphoto.ru/foto-dlya-wildberries.html"}
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "BatchPhoto — Пакетная подготовка фото для Wildberries (формат 3:4)",
+          "url": "https://batchphoto.ru/foto-dlya-wildberries.html",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "inLanguage": "ru",
+          "browserRequirements": "Requires JavaScript and HTML5 Canvas",
+          "description": "Бесплатный инструмент кадрирования и сжатия фото для WB: стандарты 1200×1600 и 900×1200 (3:4), безопасный перевод 1:1 в 3:4 с полями, автосжатие до 10 МБ и sRGB профиль.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
+        },
+        {
+          "@type": "HowTo",
+          "name": "Как подогнать фото под требования Wildberries (3:4, 1200×1600)",
+          "description": "Пошаговая подготовка карточек товаров без риска обрезки и отклонения модерацией WB Seller.",
+          "totalTime": "PT1M",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Загрузите исходники", "text": "Перетащите до 100 фото любого разрешения и формата (JPG, PNG, WebP, HEIC)." },
+            { "@type": "HowToStep", "position": 2, "name": "Выберите проверенный сценарий WB", "text": "Нажмите «1200×1600 (3:4) — надёжный стандарт» или «Из 1:1 в 3:4 с полями» для безопасного размещения." },
+            { "@type": "HowToStep", "position": 3, "name": "Сверьте зоны обрезки на превью", "text": "Убедитесь, что товар и текст не попадают в зону среза, а размер файла укладывается в 10 МБ." },
+            { "@type": "HowToStep", "position": 4, "name": "Скачайте архив", "text": "Получите готовые пронумерованные файлы в профиле sRGB для быстрой загрузки в личный кабинет." }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Какой точный размер фото нужен для Wildberries в 2026 году?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Стандартное соотношение сторон — строго 3:4. Базовый рабочий размер — 1200×1600 пикселей (надёжный баланс четкости и быстрой прогрузки в приложении). Для одежды и обуви минимальный порог модерации составляет 900×1200 px. Максимальный лимит веса одного файла — 10 МБ." }
+            },
+            {
+              "@type": "Question",
+              "name": "Как переделать квадратное фото 1:1 в 3:4 для ВБ без риска обрезки?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Используйте режим «Из 1:1 в 3:4 с полями». Товар центрируется на холсте 1200×1600 px без обрезки важных краев, а сверху и снизу добавляются нейтральные белые поля." }
+            },
+            {
+              "@type": "Question",
+              "name": "Почему опасно выбирать разрешение 1800×2400 без сжатия?",
+              "acceptedAnswer": { "@type": "Answer", "text": "При разрешении 1800×2400 px несжатый JPG со студийной камеры часто весит от 12 до 25 МБ. Личный кабинет WB отклоняет файлы тяжелее 10 МБ. Поэтому в нашем инструменте для 1800×2400 автоматически активно безопасное сжатие до 5–7 МБ." }
+            },
+            {
+              "@type": "Question",
+              "name": "Разрешен ли текст и водяные знаки на главном фото карточки WB?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Водяные знаки, контакты, соцсети и сторонние логотипы на обложке строго запрещены и могут привести к блокировке карточки. Инфографику с характеристиками и УТП товара размещайте со 2-го слайда." }
+            },
+            {
+              "@type": "Question",
+              "name": "Сколько фото рекомендуется загружать в карточку товара на WB?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Лимит кабинета — до 30 фото. Алгоритмы ранжирования WB лучше продвигают карточки с 5–9 качественными слайдами: общий план, ракурсы, макро-детали ткани/фурнитуры, инфографика и размерная таблица." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="logo">🟣 Batch<span>Photo</span>.ru</a>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html" class="active">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
+            <a href="konverter-webp.html">🌐 Конвертер WebP</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="/">Главная</a> → <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a> → <span>Фото для Wildberries</span>
+        </nav>
+    </div>
+    <!-- HERO (Скорректирован под требования) -->
+    <div class="hero">
+        <div class="wb-badge">🟣 Стандарты WB Seller 2026 • Безопасные размеры и сжатие без серверов</div>
+        <h1>Пакетная обработка фото для <span>Wildberries (формат 3:4, рекомендуемые размеры)</span></h1>
+        <p>Подготовьте фото под требования WB: кадрирование, сжатие и безопасные пропорции. Защита от обрезки товара, авто-профиль sRGB и удержание веса строго в пределах лимита 10 МБ.</p>
+        <div class="trust-pills">
+            <span class="trust-pill">🛡️ Без обрезки важных деталей</span>
+            <span class="trust-pill">⚖️ Контроль лимита WB (до 10 МБ)</span>
+            <span class="trust-pill">🎨 Цвета без искажений (sRGB)</span>
+            <span class="trust-pill">⚡ До 100 фото в браузере</span>
+        </div>
+    </div>
+    <!-- РАБОЧИЙ ИНСТРУМЕНТ -->
+    <section style="padding-top:10px">
+        <div class="container" id="tool">
+            <div class="card">
+                <!-- Дропзона -->
+                <div class="dropzone" id="dropzone" role="button" tabindex="0">
+                    <div class="icon">🟣</div>
+                    <p><strong>Перетащите фото товаров для Wildberries сюда</strong> или нажмите для выбора</p>
+                    <small>JPG, PNG, WebP, HEIC • пакетная обработка • вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
+                    <input type="file" id="fileInput" multiple accept="image/*" hidden>
+                </div>
+                <div class="files-toolbar" id="filesToolbar">
+                    <span class="files-count" id="filesCount"></span>
+                    <button class="clear-btn" id="clearBtn">✕ Очистить список</button>
+                </div>
+                <div class="files-grid" id="filesGrid"></div>
+
+                <!-- БЫСТРЫЙ ВЫБОР ПОД ЗАДАЧУ СЕЛЛЕРА WB -->
+                <div class="quick-modes">
+                    <div class="quick-modes-title">
+                        <span>⚡ Быстрый выбор под задачу селлера WB:</span>
+                        <span style="font-weight:400; text-transform:none;">пропорции 3:4 выставлены по умолчанию</span>
+                    </div>
+                    <div class="quick-modes-grid" id="wbQuickModes">
+                        <button type="button" class="qmode-btn active" data-w="1200" data-h="1600" data-mode="contain_bg" title="Оптимальное соотношение качества и быстрой загрузки">
+                            <span>🟣 1200×1600 (3:4)</span>
+                            <small>Надёжный стандарт: хороший баланс качества и скорости загрузки</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="900" data-h="1200" data-mode="contain_bg" title="Минимум для Fashion">
+                            <span>👗 900×1200 (3:4)</span>
+                            <small>Минимальный размер для одежды и обуви (быстрая обработка)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1800" data-h="2400" data-mode="contain_bg" data-compress="true" title="Повышенная четкость с автосжатием">
+                            <span>🔍 1800×2400 (3:4)</span>
+                            <small>Максимум детализации для крупных планов (рекомендуется сжатие до 5–7 МБ)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1200" data-h="1600" data-mode="contain_bg" data-bg="#ffffff" title="Безопасная подгонка без обрезки краев">
+                            <span>⬜ 1200х1600 Из 1:1 в 3:4 с полями</span>
+                            <small>Безопасный вариант: ничего не обрезается, добавляется белый фон</small>
+                        </button>
+                        <button type="button" class="qmode-btn warn-btn" data-w="1200" data-h="1600" data-mode="cover" title="Обрезает края под 3:4">
+                            <span>✂️ 1200х1600 Заполнить 3:4 без полей</span>
+                            <small>Обрезает края до формата 3:4 (важно: проверьте превью!)</small>
+                        </button>
+                    </div>
+                    <!-- Динамическая плашка подсказки для 1800x2400 и режима Cover -->
+                    <div class="wb-notice-box" id="wbNoticeBox"></div>
+                </div>
+
+                <!-- ПРЕДПРОСМОТР «ДО / ПОСЛЕ» С ИНДИКАТОРОМ ОБРЕЗКИ И ПРОВЕРКОЙ СТАНДАРТОВ -->
+                <div class="pv-panel" id="previewPanel">
+                    <div class="pv-empty" id="previewEmpty">👁️ Загрузите фото — здесь появится живое сравнение «До / После» и подсветка зон обрезки</div>
+                    <div class="pv-body" id="previewBody" style="display:none;">
+                        <div class="pv-header">
+                            <span class="pv-label">Контроль кадрирования и лимитов WB</span>
+                            <span class="pv-name" id="pvName"></span>
+                        </div>
+                        <div class="cmp-grid" id="cmpGrid">
+                            <!-- Кадр ДО с динамическими шторками среза -->
+                            <div class="cmp-pane" id="paneBefore">
+                                <img id="imgBefore" alt="Исходное фото товара">
+                                <span class="cmp-badge">До (Исходник)</span>
+                                <div class="crop-strip" id="cropStripL"><span class="crop-strip-tag">Срез</span></div>
+                                <div class="crop-strip" id="cropStripR"><span class="crop-strip-tag">Срез</span></div>
+                                <div class="crop-strip" id="cropStripT"><span class="crop-strip-tag">Срез</span></div>
+                                <div class="crop-strip" id="cropStripB"><span class="crop-strip-tag">Срез</span></div>
+                            </div>
+                            <!-- Кадр ПОСЛЕ -->
+                            <div class="cmp-pane" id="paneAfter">
+                                <canvas id="canvasAfter"></canvas>
+                                <span class="cmp-badge">После (WB 3:4)</span>
+                            </div>
+                        </div>
+                        <div class="pv-meta">
+                            <div id="pvMeta"></div>
+                            <div class="wb-checks" id="wbChecks"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вкладки настроек -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="size">📐 1. Размер, фон и сжатие</button>
+                    <button class="tab-btn" data-tab="adjust">🎨 2. Коррекция фона и поворот</button>
+                    <button class="tab-btn" data-tab="rename">✏️ 3. Порядок слайдов (1–30)</button>
+                </div>
+
+                <!-- ВКЛАДКА 1: РАЗМЕР -->
+                <div class="tab-panel active" id="panel-size">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="preset">Стандарт разрешения для WB</label>
+                            <select id="preset">
+                                <option value="wb" selected>🟣 1200×1600 (3:4) — надёжный стандарт (баланс)</option>
+                                <option value="wb_std">👗 900×1200 (3:4) — минимум для одежды и обуви</option>
+                                <option value="wb_ultra">🔍 1800×2400 (3:4) — максимум деталей (сжатие до 5–7 МБ)</option>
+                                <option value="custom">⚙️ Пользовательский размер (до 8000 px)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resizeMode">Размещение товара в кадре 3:4</label>
+                            <select id="resizeMode">
+                                <option value="contain_bg" selected>Безопасный: вписать + поля (ничего не обрезается)</option>
+                                <option value="cover">Обрезать края: заполнить 3:4 (внимание: проверьте превью!)</option>
+                                <option value="contain">Вписать пропорционально без добавления полей</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="dimsGroup">
+                            <label>Ширина × Высота (px, формат 3:4)</label>
+                            <div class="inline">
+                                <input type="number" id="width" value="1200" min="200" max="8000">
+                                <input type="number" id="height" value="1600" min="200" max="8000">
+                            </div>
+                        </div>
+                        <div class="form-group" id="bgGroup">
+                            <label for="bgColor">Цвет полей (белый по стандарту WB)</label>
+                            <input type="color" id="bgColor" value="#ffffff">
+                        </div>
+                        <div class="form-group">
+                            <label for="format">Формат для загрузки в WB</label>
+                            <select id="format">
+                                <option value="image/jpeg" selected>JPG (профиль sRGB, стандарт для WB)</option>
+                                <option value="image/png">PNG (для графики без градиентов)</option>
+                                <option value="image/webp">WebP (поддерживается платформой)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="qualityGroup">
+                            <label for="quality">Сжатие JPG (лимит WB — строго до 10 МБ)</label>
+                            <div class="range-row">
+                                <input type="range" id="quality" min="10" max="100" value="88">
+                                <span class="range-val" id="qualityVal">88%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+                        <label class="checkbox-row">
+                            <input type="checkbox" id="safeWbSize" checked>
+                            <strong>Безопасный размер файла для WB</strong> (автоматически удерживает вес каждого фото в диапазоне 500 КБ – 7 МБ во избежание сбоев загрузки)
+                        </label>
+                        <label class="checkbox-row">
+                            <input type="checkbox" id="noUpscale" checked>
+                            Не растягивать исходники меньше заданного разрешения (защита от пикселизации)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ВКЛАДКА 2: СВЕТ И ПОВОРОТ -->
+                <div class="tab-panel" id="panel-adjust">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="brightness">Яркость (выбеливание серого фона)</label>
+                            <div class="range-row">
+                                <input type="range" id="brightness" min="50" max="170" value="100">
+                                <span class="range-val" id="brightnessVal">100%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contrast">Контрастность (четкость фактуры товара)</label>
+                            <div class="range-row">
+                                <input type="range" id="contrast" min="50" max="170" value="100">
+                                <span class="range-val" id="contrastVal">100%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rotate">Ориентация снимка</label>
+                            <select id="rotate">
+                                <option value="0">Без поворота</option>
+                                <option value="90">90° по часовой</option>
+                                <option value="180">180°</option>
+                                <option value="270">90° против часовой</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="flip">Зеркальное отражение</label>
+                            <select id="flip">
+                                <option value="none">Нет</option>
+                                <option value="h">По горизонтали</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ВКЛАДКА 3: НУМЕРАЦИЯ -->
+                <div class="tab-panel" id="panel-rename">
+                    <div class="form-group">
+                        <label for="renamePattern">Шаблон автонумерации слайдов карточки (от 1 до 30)</label>
+                        <input type="text" id="renamePattern" value="wb-{nnn}">
+                        <div class="preset-tags">
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='wb-{nnn}'">wb-{nnn}</button>
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='artikul-{n}'">artikul-{n}</button>
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='slide-{nnn}'">slide-{nnn}</button>
+                        </div>
+                        <span class="hint" style="margin-top:8px; display:block; font-size:12px; color:var(--muted);">
+                            При загрузке в WB Seller файлы выстроятся строго в нужной последовательности:
+                            <em>wb-001.jpg (обложка), wb-002.jpg (инфографика), wb-003.jpg (детали)…</em>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- ПРЕДУПРЕЖДЕНИЕ О ВОДЯНЫХ ЗНАКАХ НА ОБЛОЖКЕ -->
+                <div class="wb-alert-card">
+                    ⚠️ <b>Важное требование модерации Wildberries:</b> Не накладывайте водяные знаки, ссылки на сайты, номера телефонов и ценники на <b>первое (главное) фото</b> карточки. Это может привести к пессимизации в поиске или отклонению модерацией.
+                </div>
+
+                <!-- Кнопка запуска -->
+                <button class="btn" id="processBtn">⚡ Подготовить фото для Wildberries и скачать ZIP</button>
+                <div class="tool-privacy-note">
+                    🔒 Все операции выполняются локально в вашем браузере. Данные не передаются на сторонние серверы. <a href="politika-konfidencialnosti.html">Конфиденциальность</a>
+                </div>
+
+                <!-- Прогресс -->
+                <div class="progress-box" id="progressBox">
+                    <div class="progress-info">
+                        <span id="progressStatus">Обработка фотографий под формат 3:4…</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+                    <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
+                </div>
+
+                <!-- Результат -->
+                <div class="result-box" id="resultBox">
+                    <h3>✅ Фотографии успешно подготовлены под стандарты WB!</h3>
+                    <p id="resultStats"></p>
+                    <div class="results-list" id="resultsList"></div>
+                </div>
+
+                <div class="tool-footer-note">
+                    <span>🎨 Автоматическая конвертация в профиль <strong>sRGB</strong> (оттенки товара на витрине совпадают с реальностью)</span>
+                    <span>🧹 Очистка тяжелых полиграфических профилей CMYK</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАК ПОДГОТОВИТЬ ФОТО ДЛЯ WB (HowTo) -->
+    <section id="howto">
+        <div class="container">
+            <h2 class="section-title">Как подогнать фото под формат Wildberries за 4 шага</h2>
+            <p class="section-sub">Пошаговое руководство для селлеров и менеджеров маркетплейсов без риска обрезки.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Загрузите исходники</h3>
+                    <p>Перетащите до 100 кадров со студии, смартфона или каталога поставщика (1688, Садовод, Taobao).</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Выберите сценарий</h3>
+                    <p>Используйте <b>1200×1600 (3:4)</b> как надёжный стандарт, либо <b>«Из 1:1 в 3:4 с полями»</b>, чтобы не срезать края.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Оцените зоны обрезки</h3>
+                    <p>Проверьте окно превью: если выбран режим «Заполнить 3:4», красные полосы наглядно покажут срезаемые зоны.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <h3>Скачайте ZIP-пакет</h3>
+                    <p>Файлы автоматически упакуются с безопасным весом (до 10 МБ), в sRGB и с нумерацией wb-001...wb-030.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТАБЛИЦА СТАНДАРТОВ WB ПО КАТЕГОРИЯМ 2026 -->
+    <section id="wb-table">
+        <div class="container">
+            <h2 class="section-title">Стандарты разрешений фото Wildberries по нишам (2026)</h2>
+            <p class="section-sub">Выбирайте размер в зависимости от категории и потребности в детальном приближении фактуры.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Категория товара</th>
+                            <th>Минимальный порог</th>
+                            <th>Рекомендуемый размер</th>
+                            <th>Особенности подготовки</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>👗 Одежда, обувь, аксессуары</strong></td>
+                            <td>900×1200 px</td>
+                            <td><strong>1200×1600 px (3:4)</strong></td>
+                            <td>Рекомендуется чистый белый или нейтральный серый фон (#F5F5F7). Без ярких узоров на фоне.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🏠 Товары для дома, кухня, авто</strong></td>
+                            <td>от 450×450 px</td>
+                            <td><strong>1200×1600 px (3:4)</strong></td>
+                            <td>Для квадратных фото поставщиков используйте «Из 1:1 в 3:4 с полями» во избежание обрезки габаритов.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💄 Косметика, БАДы, аптека</strong></td>
+                            <td>900×1200 px</td>
+                            <td><strong>1200×1600</strong> или <strong>1800×2400 px</strong></td>
+                            <td>При 1800×2400 обязательно держите включенным безопасное сжатие, чтобы вес не превысил 10 МБ.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💍 Ювелирные изделия и часы</strong></td>
+                            <td>900×1200 px</td>
+                            <td><strong>1800×2400 px (3:4)</strong></td>
+                            <td>Максимум резкости для рассмотрения пробы и вставок. Качество сжатия 82–85%.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЦЕНАРИИ РАБОТЫ И КОМПЛЕКТ КАРТОЧКИ -->
+    <section id="wb-cases">
+        <div class="container">
+            <h2 class="section-title">Готовые сценарии селлеров Wildberries</h2>
+            <p class="section-sub">Практические решения частых проблем при подготовке контента.</p>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <h3>📦 Квадратные фото 1:1 → в 3:4 без обрезки</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>Фото поставщика квадратные. При попытке заполнить кадр 3:4 отрезаются края товара или текст.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Сценарий <b>«Из 1:1 в 3:4 с полями»</b> добавляет чистый фон сверху и снизу, сохраняя товар на 100%.</span></div>
+                    <div class="case-time">⚡ 100 фото за 30 секунд без Фотошопа</div>
+                </div>
+                <div class="case-card">
+                    <h3>⚖️ Студийные исходники >10 МБ</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>Камера фотографа выдает кадры по 15–20 МБ в профиле AdobeRGB. Кабинет WB выдает ошибку загрузки.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Автоматическое сжатие до 1–3 МБ в профиль sRGB с сохранением естественных цветов ткани.</span></div>
+                    <div class="case-time">⚡ Ни одной ошибки «Превышен максимальный размер»</div>
+                </div>
+                <div class="case-card">
+                    <h3>🗂️ Комплект карточки из 5–9 слайдов</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>WB лучше ранжирует карточки с 5–9 слайдами, но при загрузке вручную путается порядок ракурсов.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Массовая нумерация wb-001, wb-002... выстраивает строгую воронку: обложка → инфографика → детали → размерная сетка.</span></div>
+                    <div class="case-time">⚡ Готовая воронка продаж с 1-го клика</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРАВИЛА И ТРЕБОВАНИЯ МОДЕРАЦИИ WB 2026 -->
+    <section class="container">
+        <h2 class="section-title">Требования к фотографиям WB в 2026 году: что важно знать</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h3>📐 Технические ограничения кабинета</h3>
+                <ul class="rule-list">
+                    <li data-icon="📏"><strong>Соотношение сторон строго 3:4:</strong> Главный рабочий размер — <strong>1200×1600 px</strong>. Допускается от 900×1200 px до максимума в 8000 px по большей стороне.</li>
+                    <li data-icon="⚖️"><strong>Вес файла до 10 МБ:</strong> Оптимальный вес слайда для мгновенной прогрузки на смартфонах клиентов — от 400 КБ до 2 МБ. Не загружайте «сырые» файлы по 15 МБ.</li>
+                    <li data-icon="🌈"><strong>Цветовое пространство sRGB:</strong> Профили CMYK, ProPhoto или AdobeRGB на сайте WB вызовут искажение цветов (вещь станет блеклой или ядовито-зеленой). Наш сервис автоматически конвертирует снимок в sRGB.</li>
+                    <li data-icon="🖼️"><strong>От 5 до 9 слайдов:</strong> WB рекомендует не ограничиваться одним снимком: покажите товар в деле, швы, состав и упаковку.</li>
+                </ul>
+            </div>
+            <div class="rule-card">
+                <h3>🚫 Модерация и визуальные запреты</h3>
+                <ul class="rule-list">
+                    <li data-icon="🛑"><strong>Запрет водяных знаков на обложке:</strong> Запрещено размещать водяные знаки, логотипы чужих брендов, телефоны, соцсети и надписи «Топ», «Хит», «Скидка -70%».</li>
+                    <li data-icon="👗"><strong>Нейтральный фон для одежды:</strong> Для категорий Fashion площадка рекомендует однородный белый, светло-серый или мягкий бежевый фон без пестрых текстур.</li>
+                    <li data-icon="🎯"><strong>Масштаб товара (70–80%):</strong> Изделие должно занимать большую часть вертикального кадра, не упираясь краями в границы изображения.</li>
+                    <li data-icon="🏷️"><strong>Углы под системные бейджи:</strong> Оставляйте отступы от верхних и нижних углов — там интерфейс Wildberries накладывает иконку «Сердечко», флаг акции и плашку бренда.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ЧЕК-ЛИСТ ПЕРЕД ОТГРУЗКОЙ В WB SELLER -->
+        <div class="checklist-card">
+            <h3 style="margin-top:0; margin-bottom:6px;">☑️ Чек-лист проверки карточки перед загрузкой в кабинет Wildberries</h3>
+            <p style="margin:0; font-size:13px; color:var(--muted);">Отметьте пункты, чтобы обезопасить карточку от отклонения модерацией:</p>
+            <div class="checklist-grid">
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Пропорции вертикальные <strong>3:4</strong> (1200×1600 или 900×1200 px)</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Вес каждого фото <strong>до 10 МБ</strong> (оптимально 1–3 МБ)</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Цветовой профиль <strong>sRGB</strong> (цвета проверены)</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>На обложке <strong>нет водяных знаков</strong>, скидок и контактов</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Товар занимает <strong>70–80% площади</strong> и не обрезан</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>В карточке подготовлено от <strong>5 до 9 слайдов</strong> с нумерацией</span>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (синхронизирован с JSON-LD FAQPage) -->
+    <section class="container" id="faq">
+        <h2 class="section-title">Вопросы и ответы по требованиям Wildberries к изображениям</h2>
+        <div class="faq-list">
+            <details class="faq-item" open>
+                <summary>Какой точный размер фото нужен для Wildberries в 2026 году?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Официальное соотношение сторон — строго вертикальный формат <strong>3:4</strong>. Базовый надёжный размер — <strong>1200×1600 пикселей</strong>: он обеспечивает отличную резкость и быструю скорость загрузки страниц на смартфонах покупателей. Минимальный допустимый порог для категории одежды и обуви составляет <strong>900×1200 px</strong>. Максимальный предел веса одного файла в кабинете WB — <strong>10 МБ</strong>.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Как переделать квадратное фото 1:1 в 3:4 для ВБ без риска обрезки?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Выберите быстрый сценарий <strong>«Из 1:1 в 3:4 с полями»</strong>. Инструмент не станет срезать важные боковые части или надписи, а аккуратно отцентрирует квадратное изображение на вертикальном холсте 1200×1600 px и добавит белые поля сверху и снизу.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Почему опасно выбирать разрешение 1800×2400 без сжатия?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    У площадки нет официального требования «супер-зума». Большой размер даёт чёткую картинку, но несжатые снимки 1800×2400 px часто превышают лимит в 10 МБ и не загружаются в кабинет WB Seller. При выборе пресета 1800×2400 наш инструмент автоматически включает оптимизированное сжатие (82–85%), удерживая файл в безопасном диапазоне 5–7 МБ.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Разрешен ли текст и водяные знаки на главном фото карточки WB?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Водяные знаки, телефоны, ссылки на соцсети и агрессивные плашки («Хит», «Распродажа», цены) на первом фото строго запрещены правилами Wildberries и ведут к отклонению карточки модератором. Качественную инфографику с преимуществами товара следует размещать со 2-го слайда.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Сколько фото рекомендуется загружать в карточку товара на WB?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Кабинет разрешает до 30 изображений. Чтобы получить высокий рейтинг заполнения карточки от алгоритмов WB, эксперты рекомендуют загружать комплект из <strong>5–9 фото</strong>: обложка, 2–3 ракурса изделия, детали фактуры ткани/материала вблизи, инфографика преимуществ и размерная таблица.
+                </div>
+            </details>
+        </div>
+
+        <!-- Внутренняя перелинковка -->
+        <h3 style="text-align:center; margin-top:40px; font-size:18px;">Другие инструменты для селлеров маркетплейсов</h3>
+        <div class="cross-tools">
+            <a href="foto-dlya-ozon.html" class="cross-tool-link">
+                <strong>📦 Фото для Ozon (1:1 и 3:4)</strong>
+                <span>Квадратные пресеты 1500×1500 px и вертикальные стандарты одежды.</span>
+            </a>
+            <a href="szhatie-foto.html" class="cross-tool-link">
+                <strong>🗜️ Сжатие фото до нужного веса</strong>
+                <span>Точное уменьшение веса файлов до 1–5 МБ под лимиты торговых площадок.</span>
+            </a>
+            <a href="konverter-webp.html" class="cross-tool-link">
+                <strong>🌐 Конвертер WebP и HEIC в JPG</strong>
+                <span>Быстрый перевод фото со смартфонов в совместимый sRGB JPG.</span>
+            </a>
+            <a href="udalit-exif.html" class="cross-tool-link">
+                <strong>🛡️ Очистка метаданных EXIF</strong>
+                <span>Удаление скрытой геолокации и серийных номеров фотокамер.</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="foto-dlya-wildberries.html">Фото для WB</a>
+            <a href="foto-dlya-ozon.html">Фото для Ozon</a>
+            <a href="szhatie-foto.html">Сжатие JPG</a>
+            <a href="konverter-webp.html">Конвертер WebP</a>
+            <a href="udalit-exif.html">Удаление EXIF</a>
+            <a href="politika-konfidencialnosti.html">Конфиденциальность</a>
+        </div>
+        <p>© 2025–2026 BatchPhoto.ru — Пакетная обработка изображений онлайн. Все файлы обрабатываются локально в вашем браузере.</p>
+    </div>
+</footer>
+
+<script>
+    window.BP_CONFIG = {
+        defaultTab: 'size',
+        allowedTabs: ['size', 'adjust', 'rename']
+    };
+</script>
+<script src="js/engine.js"></script>
+
+<!-- ===== СКРИПТ: СЦЕНАРИИ WB, ВИЗУАЛЬНЫЕ ЗОНЫ ОБРЕЗКИ И АВТОКОНТРОЛЬ ЛИМИТОВ ===== -->
+<script>
+(function () {
+    'use strict';
+    var $ = function (id) { return document.getElementById(id); };
+
+    var presetSel      = $('preset'),
+        resizeModeSel  = $('resizeMode'),
+        widthInput     = $('width'),
+        heightInput    = $('height'),
+        qualityInput   = $('quality'),
+        qualityVal     = $('qualityVal'),
+        bgColorInput   = $('bgColor'),
+        formatInput    = $('format'),
+        noticeBox      = $('wbNoticeBox'),
+        safeSizeCheck  = $('safeWbSize'),
+        qBtns          = document.querySelectorAll('#wbQuickModes .qmode-btn');
+
+    /* 1. Функция обновления подсказки и автосжатия */
+    function updateNotice(w, h, mode) {
+        if (!noticeBox) return;
+        if (w === 1800 && h === 2400) {
+            noticeBox.style.display = 'block';
+            noticeBox.innerHTML = '⚡ <b>Внимание к лимиту WB (10 МБ):</b> Для размера 1800×2400 выставлено безопасное качество (84%), чтобы файл не превысил максимальный вес модерации.';
+        } else if (mode === 'cover') {
+            noticeBox.style.display = 'block';
+            noticeBox.innerHTML = '✂️ <b>Внимание: края будут обрезаны.</b> Проверьте окно предпросмотра ниже — срезаемые зоны подсвечены красным цветом.';
+        } else {
+            noticeBox.style.display = 'none';
+            noticeBox.innerHTML = '';
+        }
+    }
+
+    /* 2. Синхронизация селектора пресетов */
+    if (presetSel) {
+        presetSel.addEventListener('change', function () {
+            var val = presetSel.value;
+            if (val === 'wb') {
+                if (widthInput) widthInput.value = 1200;
+                if (heightInput) heightInput.value = 1600;
+                if (qualityInput) { qualityInput.value = 88; if (qualityVal) qualityVal.textContent = '88%'; }
+            } else if (val === 'wb_std') {
+                if (widthInput) widthInput.value = 900;
+                if (heightInput) heightInput.value = 1200;
+                if (qualityInput) { qualityInput.value = 88; if (qualityVal) qualityVal.textContent = '88%'; }
+            } else if (val === 'wb_ultra') {
+                if (widthInput) widthInput.value = 1800;
+                if (heightInput) heightInput.value = 2400;
+                // Автосжатие для защиты от превышения 10 МБ
+                if (qualityInput) { qualityInput.value = 84; if (qualityVal) qualityVal.textContent = '84%'; }
+            }
+            if (widthInput) widthInput.dispatchEvent(new Event('input'));
+            syncButtons();
+            updateNotice(parseInt(widthInput.value, 10), parseInt(heightInput.value, 10), resizeModeSel.value);
+        });
+    }
+
+    /* 3. Клик по кнопкам быстрого выбора */
+    qBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            qBtns.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var w = parseInt(btn.getAttribute('data-w'), 10) || 1200;
+            var h = parseInt(btn.getAttribute('data-h'), 10) || 1600;
+            var mode = btn.getAttribute('data-mode') || 'contain_bg';
+            var bg = btn.getAttribute('data-bg');
+            var isCompress = btn.getAttribute('data-compress') === 'true';
+
+            if (resizeModeSel) {
+                resizeModeSel.value = mode;
+                resizeModeSel.dispatchEvent(new Event('change'));
+            }
+            if (widthInput) widthInput.value = w;
+            if (heightInput) heightInput.value = h;
+            if (bg && bgColorInput) bgColorInput.value = bg;
+
+            if (isCompress && qualityInput) {
+                qualityInput.value = 84;
+                if (qualityVal) qualityVal.textContent = '84%';
+            }
+
+            if (presetSel) {
+                if (w === 1200 && h === 1600) presetSel.value = 'wb';
+                else if (w === 900 && h === 1200) presetSel.value = 'wb_std';
+                else if (w === 1800 && h === 2400) presetSel.value = 'wb_ultra';
+                else presetSel.value = 'custom';
+            }
+
+            updateNotice(w, h, mode);
+            if (widthInput) widthInput.dispatchEvent(new Event('input'));
+        });
+    });
+
+    function syncButtons() {
+        var w = parseInt(widthInput && widthInput.value, 10);
+        var h = parseInt(heightInput && heightInput.value, 10);
+        var m = resizeModeSel && resizeModeSel.value;
+        qBtns.forEach(function (b) {
+            var bw = parseInt(b.getAttribute('data-w'), 10);
+            var bh = parseInt(b.getAttribute('data-h'), 10);
+            var bm = b.getAttribute('data-mode');
+            var hasBg = b.hasAttribute('data-bg');
+            b.classList.toggle('active', !hasBg && bw === w && bh === h && bm === m);
+        });
+    }
+
+    /* 4. Предпросмотр «До / После» с интерактивной разметкой среза */
+    var panel       = $('previewPanel'); if (!panel) return;
+    var empty       = $('previewEmpty'),
+        body        = $('previewBody'),
+        imgBefore   = $('imgBefore'),
+        canvasAfter = $('canvasAfter'),
+        cmpGrid     = $('cmpGrid'),
+        nameEl      = $('pvName'),
+        metaEl      = $('pvMeta'),
+        checksEl    = $('wbChecks'),
+        grid        = $('filesGrid'),
+        clearBtn    = $('clearBtn'),
+        stripL      = $('cropStripL'),
+        stripR      = $('cropStripR'),
+        stripT      = $('cropStripT'),
+        stripB      = $('cropStripB');
+
+    var img = null, currentSrc = null, timer = null, grabTimer = null;
+
+    function show() { empty.style.display = 'none'; body.style.display = 'flex'; }
+    function hide() { body.style.display = 'none'; empty.style.display = ''; }
+
+    function setSource(src) {
+        if (!src || src === currentSrc) return;
+        currentSrc = src;
+        imgBefore.src = src;
+        var im = new Image();
+        im.onload = function () { img = im; show(); render(); };
+        im.onerror = function () { if (currentSrc === src) { currentSrc = null; img = null; } };
+        im.src = src;
+    }
+
+    function reset() { img = null; currentSrc = null; hide(); hideCropStrips(); }
+
+    function grabFromGrid() {
+        if (!grid) return;
+        var first = grid.querySelector('img, canvas');
+        if (!first) { reset(); return; }
+        if (first.tagName === 'CANVAS') {
+            try { setSource(first.toDataURL('image/png')); } catch (e) {}
+            return;
+        }
+        if (first.complete && first.naturalWidth > 0) { setSource(first.src); return; }
+        clearTimeout(grabTimer);
+        grabTimer = setTimeout(grabFromGrid, 120);
+    }
+
+    if (grid && window.MutationObserver) {
+        new MutationObserver(grabFromGrid).observe(grid, { childList: true });
+    }
+
+    function setFile(f) {
+        if (img || !f) return;
+        if (f.type && f.type.indexOf('image/') !== 0) return;
+        var r = new FileReader();
+        r.onload = function () { if (!img) setSource(r.result); };
+        try { r.readAsDataURL(f); } catch (e) {}
+    }
+
+    var dz = $('dropzone');
+    if (dz) dz.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+            setFile(e.dataTransfer.files[0]);
+        }
+    }, true);
+
+    document.addEventListener('paste', function (e) {
+        if (img) return;
+        var it = e.clipboardData && e.clipboardData.items; if (!it) return;
+        for (var i = 0; i < it.length; i++) {
+            if (it[i].type.indexOf('image/') === 0) { setFile(it[i].getAsFile()); break; }
+        }
+    });
+
+    if (clearBtn) clearBtn.addEventListener('click', reset);
+
+    ['preset','resizeMode','width','height','bgColor','format','quality','safeWbSize','noUpscale','brightness','contrast','rotate','flip']
+        .forEach(function (id) {
+            var el = $(id); if (!el) return;
+            el.addEventListener('input', schedule);
+            el.addEventListener('change', schedule);
+        });
+
+    function schedule() {
+        if (!img) return;
+        clearTimeout(timer);
+        timer = setTimeout(render, 90);
+    }
+
+    function num(v, d) { v = parseInt(v, 10); return (isNaN(v) || v <= 0) ? d : v; }
+
+    var lastRatio = null;
+    window.addEventListener('resize', function () { if (lastRatio) sizePanes(lastRatio); });
+
+    function sizePanes(ratio) {
+        lastRatio = ratio;
+        var paneH = window.innerWidth < 520 ? 210 : 310;
+        var paneW = Math.round(paneH * ratio);
+        var panes = cmpGrid.querySelectorAll('.cmp-pane');
+        var total = paneW * 2 + 10;
+        var avail = cmpGrid.clientWidth || cmpGrid.parentNode.clientWidth || total;
+        if (total > avail) {
+            var k = (avail - 10) / (paneW * 2);
+            paneH = Math.round(paneH * k);
+            paneW = Math.round(paneW * k);
+        }
+        for (var i = 0; i < panes.length; i++) {
+            panes[i].style.height = paneH + 'px';
+            panes[i].style.width  = paneW + 'px';
+        }
+    }
+
+    function hideCropStrips() {
+        if (stripL) stripL.style.display = 'none';
+        if (stripR) stripR.style.display = 'none';
+        if (stripT) stripT.style.display = 'none';
+        if (stripB) stripB.style.display = 'none';
+    }
+
+    /* Подсчет и отрисовка шторок срезаемых областей */
+    function updateCropOverlay(sw, sh, tw, th, mode) {
+        if (mode !== 'cover') { hideCropStrips(); return; }
+
+        var srcAspect = sw / sh;
+        var tgtAspect = tw / th; // 3:4 = 0.75
+
+        // Исходник шире формата 3:4 (например квадрат 1:1) -> срезаются бока
+        if (srcAspect > tgtAspect) {
+            var keepW = sh * tgtAspect;
+            var cutFraction = (sw - keepW) / sw / 2; // доля с каждой стороны
+            var pct = (cutFraction * 100).toFixed(1) + '%';
+
+            if (stripL) {
+                stripL.style.display = 'block';
+                stripL.style.top = '0'; stripL.style.bottom = '0'; stripL.style.left = '0';
+                stripL.style.width = pct; stripL.style.height = 'auto';
+            }
+            if (stripR) {
+                stripR.style.display = 'block';
+                stripR.style.top = '0'; stripR.style.bottom = '0'; stripR.style.right = '0';
+                stripR.style.left = 'auto'; stripR.style.width = pct; stripR.style.height = 'auto';
+            }
+            if (stripT) stripT.style.display = 'none';
+            if (stripB) stripB.style.display = 'none';
+        }
+        // Исходник уже формата 3:4 (например вертикалка 9:16) -> срезается верх и низ
+        else if (srcAspect < tgtAspect) {
+            var keepH = sw / tgtAspect;
+            var cutH = (sh - keepH) / sh / 2;
+            var pctH = (cutH * 100).toFixed(1) + '%';
+
+            if (stripT) {
+                stripT.style.display = 'block';
+                stripT.style.left = '0'; stripT.style.right = '0'; stripT.style.top = '0';
+                stripT.style.height = pctH; stripT.style.width = 'auto';
+            }
+            if (stripB) {
+                stripB.style.display = 'block';
+                stripB.style.left = '0'; stripB.style.right = '0'; stripB.style.bottom = '0';
+                stripB.style.top = 'auto'; stripB.style.height = pctH; stripB.style.width = 'auto';
+            }
+            if (stripL) stripL.style.display = 'none';
+            if (stripR) stripR.style.display = 'none';
+        } else {
+            hideCropStrips();
+        }
+    }
+
+    function render() {
+        if (!img) return;
+        var deg   = num($('rotate').value, 0),
+            flip  = $('flip').value === 'h',
+            W     = Math.min(8000, num(widthInput.value, 1200)),
+            H     = Math.min(8000, num(heightInput.value, 1600)),
+            mode  = resizeModeSel.value,
+            noUp  = $('noUpscale').checked,
+            fmt   = formatInput.value,
+            q     = num(qualityInput.value, 88) / 100;
+
+        var rot = (deg === 90 || deg === 270),
+            sw = rot ? img.height : img.width,
+            sh = rot ? img.width  : img.height;
+
+        // Показ разметки обрезки
+        updateCropOverlay(sw, sh, W, H, mode);
+
+        var t = document.createElement('canvas');
+        t.width = sw; t.height = sh;
+        var tc = t.getContext('2d');
+        tc.translate(sw / 2, sh / 2);
+        tc.rotate(deg * Math.PI / 180);
+        if (flip) tc.scale(-1, 1);
+        tc.drawImage(img, -img.width / 2, -img.height / 2);
+
+        var ow, oh, dw, dh, dx = 0, dy = 0, s;
+        if (mode === 'contain') {
+            s = Math.min(W / sw, H / sh); if (noUp) s = Math.min(s, 1);
+            ow = Math.max(1, Math.round(sw * s));
+            oh = Math.max(1, Math.round(sh * s));
+            dw = ow; dh = oh;
+        } else {
+            ow = W; oh = H;
+            s = (mode === 'cover') ? Math.max(W / sw, H / sh) : Math.min(W / sw, H / sh);
+            if (noUp) s = Math.min(s, 1);
+            dw = sw * s; dh = sh * s;
+            dx = (W - dw) / 2; dy = (H - dh) / 2;
+        }
+
+        var out = document.createElement('canvas');
+        out.width = ow; out.height = oh;
+        var oc = out.getContext('2d');
+
+        if (mode !== 'contain') {
+            oc.fillStyle = bgColorInput.value;
+            oc.fillRect(0, 0, ow, oh);
+        }
+
+        if ('filter' in oc) {
+            oc.filter = 'brightness(' + $('brightness').value + '%) contrast(' + $('contrast').value + '%)';
+        }
+        oc.imageSmoothingEnabled = true;
+        oc.imageSmoothingQuality = 'high';
+        oc.drawImage(t, dx, dy, dw, dh);
+        oc.filter = 'none';
+
+        var maxDim = 800;
+        var k = Math.min(maxDim / out.width, maxDim / out.height, 1);
+        canvasAfter.width  = Math.max(1, Math.round(out.width  * k));
+        canvasAfter.height = Math.max(1, Math.round(out.height * k));
+        var cctx = canvasAfter.getContext('2d');
+        cctx.imageSmoothingEnabled = true;
+        cctx.imageSmoothingQuality = 'high';
+        cctx.drawImage(out, 0, 0, canvasAfter.width, canvasAfter.height);
+
+        sizePanes(ow / oh);
+
+        var ftxt = (fmt === 'image/jpeg') ? 'JPG' : (fmt === 'image/png') ? 'PNG' : 'WebP';
+        var bytes = 0, wtxt = '';
+        try {
+            bytes = Math.round(out.toDataURL(fmt, q).length * 0.75);
+            wtxt = bytes > 1048576
+                ? ' • ≈ ' + (bytes / 1048576).toFixed(1) + ' МБ'
+                : ' • ≈ ' + Math.max(1, Math.round(bytes / 1024)) + ' КБ';
+        } catch (e) {}
+
+        nameEl.textContent = 'Исходник: ' + img.width + '×' + img.height + ' px → Карточка WB: ' + ow + '×' + oh + ' px';
+        metaEl.innerHTML = 'На выходе: <b>' + ow + ' × ' + oh + ' px</b> • ' + ftxt + wtxt;
+
+        /* Индикаторы проверки модерации Wildberries */
+        if (checksEl) {
+            var is3x4 = Math.abs((ow / oh) - 0.75) < 0.015;
+            var fashionOk = ow >= 900 && oh >= 1200;
+            var sizeOk = bytes <= 10485760; // лимит 10 МБ
+            var pills = [];
+
+            pills.push(is3x4
+                ? '<span class="wb-check-pill">✅ Пропорции 3:4</span>'
+                : '<span class="wb-check-pill warn">⚠️ Не 3:4 (' + ow + '×' + oh + ')</span>');
+
+            pills.push(fashionOk
+                ? '<span class="wb-check-pill">✅ Размер выше минимума WB</span>'
+                : '<span class="wb-check-pill warn">⚠️ Меньше 900×1200 (для одежды)</span>');
+
+            pills.push('<span class="wb-check-pill">✅ Профиль sRGB</span>');
+
+            if (mode === 'cover') {
+                pills.push('<span class="wb-check-pill warn">✂️ Включена обрезка краев</span>');
+            } else {
+                pills.push('<span class="wb-check-pill">🛡️ Товар без обрезки</span>');
+            }
+
+            pills.push(sizeOk
+                ? '<span class="wb-check-pill">✅ До 10 МБ (норма)</span>'
+                : '<span class="wb-check-pill danger">⛔ Превышен лимит 10 МБ! Уменьшите качество</span>');
+
+            checksEl.innerHTML = pills.join('');
+        }
+    }
+})();
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

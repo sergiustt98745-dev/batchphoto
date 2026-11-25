@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Целевые SEO-теги под актуальные стандарты Ozon -->
+    <title>Размер фото для Ozon онлайн (3:4 — 1200×1600 и 900×1200) — BatchPhoto.ru</title>
+    <meta name="description" content="Бесплатная пакетная подготовка фото для Ozon по правилам 2025–2026 года: вертикальный формат 3:4 (1200×1600, 900×1200), фон #F2F3F5 для одежды, тёмный фон для белых товаров, 1:1 для Ozon Fresh, автоконтроль лимита 10 МБ.">
+    <meta name="keywords" content="размер фото для озон 2026, фото для озон 3 на 4, требования к фото ozon seller, фото 1200х1600 для озон, фото 900х1200 озон, серый фон f2f3f5 озон, фото для озон фреш 1 в 1">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://batchphoto.ru/foto-dlya-ozon.html">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://batchphoto.ru/foto-dlya-ozon.html">
+    <meta property="og:title" content="Пакетная подготовка фото для Ozon Seller (стандарт 3:4) онлайн">
+    <meta property="og:description" content="Подгонка карточек Ozon под стандарт 3:4 (1200×1600 и 900×1200), быстрый выбор фона (#F2F3F5 и тёмный), авто-проверка веса до 10 МБ.">
+    <meta property="og:site_name" content="BatchPhoto.ru">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔵</text></svg>">
+    <style>
+        .ozon-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,91,255,.11); color: #005bff; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(0,91,255,.28); margin-bottom: 14px; }
+        [data-theme="dark"] .ozon-badge { color: #60a5fa; background: rgba(0,91,255,.2); border-color: rgba(96,165,250,.35); }
+        .trust-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+        .trust-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: rgba(128,128,128,0.1); color: var(--muted, #666); display: inline-flex; align-items: center; gap: 5px; }
+        
+        /* Быстрые сценарии Ozon */
+        .quick-modes { margin-top: 18px; padding: 14px; border-radius: 12px; background: var(--bg-soft); border: 1px solid var(--border); }
+        .quick-modes-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+        .quick-modes-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qmode-btn { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 9px 13px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; transition: .18s; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
+        .qmode-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .qmode-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .qmode-btn small { font-weight: 400; opacity: .85; font-size: 11px; }
+
+        /* Быстрые сватчи фона */
+        .bg-swatches { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .bg-swatch-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); font-size: 12px; cursor: pointer; color: var(--text); transition: 0.15s; font-family: inherit; }
+        .bg-swatch-btn:hover { border-color: var(--primary); }
+        .bg-swatch-btn.active { border-color: var(--primary); background: rgba(0,91,255,0.08); font-weight: 700; }
+        [data-theme="dark"] .bg-swatch-btn.active { background: rgba(96,165,250,0.15); }
+        .swatch-circle { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.25); display: inline-block; }
+
+        /* Предпросмотр До/После */
+        .pv-panel { margin-top: 14px; border: 1px solid rgba(128,128,128,0.18); border-radius: 12px; padding: 12px 14px; background: var(--card, rgba(128,128,128,0.04)); font-size: 13px; }
+        .pv-empty { color: var(--muted, #666); text-align: center; padding: 4px 0; }
+        .pv-body { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+        .pv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .pv-label { font-weight: 700; font-size: 13px; }
+        .pv-name { color: var(--muted, #666); font-size: 12px; word-break: break-all; }
+        .pv-meta { margin-top: 2px; font-size: 12px; color: var(--muted, #666); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+        .pv-meta .weight-danger { color: #ef4444; font-weight: 800; }
+        .pv-meta .weight-safe { color: #10b981; font-weight: 600; }
+        
+        .ozon-checks { display: flex; flex-wrap: wrap; gap: 6px; }
+        .ozon-check-pill { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: rgba(16,185,129,.12); color: #10b981; border: 1px solid rgba(16,185,129,.25); }
+        .ozon-check-pill.warn { background: rgba(245,158,11,.12); color: #f59e0b; border-color: rgba(245,158,11,.3); }
+        .ozon-check-pill.danger { background: rgba(239,68,68,.12); color: #ef4444; border-color: rgba(239,68,68,.3); }
+
+        .cmp-grid { display: flex; gap: 10px; justify-content: center; align-items: stretch; width: 100%; }
+        .cmp-pane { position: relative; flex: 0 0 auto; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid rgba(128,128,128,0.25); box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+        .cmp-pane img, .cmp-pane canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+        .cmp-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,.75); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .3px; z-index: 2; }
+        
+        /* Плашки поверх превью */
+        .preview-alert-overlay { position: absolute; bottom: 8px; left: 8px; right: 8px; padding: 5px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; z-index: 4; line-height: 1.35; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .preview-alert-overlay.fresh { background: #f59e0b; color: #111; }
+        .preview-alert-overlay.crop { background: #ef4444; color: #fff; }
+        .crop-cut-frame { position: absolute; inset: 0; border: 2px dashed rgba(239, 68, 68, 0.85); box-sizing: border-box; pointer-events: none; z-index: 3; }
+
+        .preset-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .preset-tag { font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(128,128,128,0.25); background: transparent; color: inherit; cursor: pointer; transition: 0.2s; }
+        .preset-tag:hover { border-color: var(--primary); color: var(--primary); }
+        .tool-footer-note { margin-top: 16px; padding-top: 12px; border-top: 1px dashed rgba(128,128,128,0.2); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--muted, #666); }
+        .tool-privacy-note { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted, #666); }
+        .tool-privacy-note a { color: var(--primary); }
+
+        /* Заблокированная кнопка скачивания при превышении 10 МБ */
+        .btn.btn-disabled-limit { background: #ef4444 !important; border-color: #ef4444 !important; cursor: not-allowed !important; opacity: 0.88; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+        .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+        .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .step-card h3 { margin: 0 0 6px; font-size: 15px; }
+        .step-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
+        
+        .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+        .case-card h3 { margin: 0 0 12px; font-size: 15px; }
+        .case-row { display: flex; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 8px; line-height: 1.5; }
+        .case-row b { color: var(--text); font-weight: 600; }
+        .case-time { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 13px; font-weight: 700; color: #10b981; }
+        
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 24px; }
+        .rule-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+        .rule-card h3 { margin-top: 0; margin-bottom: 14px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .rule-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+        .rule-list li { position: relative; padding-left: 24px; }
+        .rule-list li strong { color: var(--text); }
+        .rule-list li::before { content: attr(data-icon); position: absolute; left: 0; top: 1px; font-size: 14px; }
+        
+        .checklist-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 32px 0; }
+        .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-size: 14px; user-select: none; transition: 0.15s; }
+        .check-item:hover { border-color: var(--primary); }
+        .check-item input { margin-top: 3px; transform: scale(1.15); accent-color: #10b981; }
+        .check-item input:checked + span { text-decoration: line-through; opacity: 0.65; }
+        
+        .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; margin-bottom: 40px; }
+        .cross-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px 0 40px; }
+        .cross-tool-link { display: block; padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); text-decoration: none; color: inherit; transition: transform 0.15s, border-color 0.15s; }
+        .cross-tool-link:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .cross-tool-link strong { display: block; margin-bottom: 4px; font-size: 15px; }
+        .cross-tool-link span { font-size: 13px; color: var(--muted); }
+    </style>
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/"},
+            {"@type": "ListItem", "position": 2, "name": "Маркетплейсы", "item": "https://batchphoto.ru/foto-dlya-marketpleisov.html"},
+            {"@type": "ListItem", "position": 3, "name": "Фото для Ozon", "item": "https://batchphoto.ru/foto-dlya-ozon.html"}
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "BatchPhoto — Пакетная подготовка фото для Ozon Seller (3:4 — 1200×1600)",
+          "url": "https://batchphoto.ru/foto-dlya-ozon.html",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "inLanguage": "ru",
+          "browserRequirements": "Requires JavaScript and HTML5 Canvas",
+          "description": "Онлайн-подготовка фото для Ozon Seller: единый вертикальный формат 3:4 (1200×1600 и 900×1200), фон #F2F3F5 для одежды, тёмный фон для белого товара, контроль лимита 10 МБ и квадрат для Ozon Fresh.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" }
+        },
+        {
+          "@type": "HowTo",
+          "name": "Как подготовить фото товаров для Ozon Seller под вертикальный стандарт 3:4",
+          "description": "Пошаговая подготовка фотографий под технические требования Ozon Seller без обрезки краев.",
+          "totalTime": "PT2M",
+          "step": [
+            { "@type": "HowToStep", "position": 1, "name": "Загрузите снимки", "text": "Перетащите до 100 изображений любого исходного соотношения сторон в окно загрузки." },
+            { "@type": "HowToStep", "position": 2, "name": "Выберите пресет формата 3:4", "text": "Выберите 1200×1600 (универсальный с запасом) или 900×1200 (базовый минимум для одежды)." },
+            { "@type": "HowToStep", "position": 3, "name": "Установите цвет полей в 1 клик", "text": "Нажмите на серый #F2F3F5 (для одежды), тёмный (для белых товаров) или белый цвет." },
+            { "@type": "HowToStep", "position": 4, "name": "Скачайте архив", "text": "Получите готовые файлы с нумерацией ozon-sku-{nnn} и весом строго до 10 МБ." }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Какой размер и пропорции фото являются стандартом на Ozon в 2026 году?",
+              "acceptedAnswer": { "@type": "Answer", "text": "С февраля 2025 года Ozon перевёл все категории товаров на единый вертикальный формат 3:4. Рекомендуемый размер — 1200×1600 px (с запасом четкости для зума). Минимально допустимый для одежды и обуви — 900×1200 px. Для остальных категорий минимальный порог — от 200×200 px, но пропорция 3:4 обязательна." }
+            },
+            {
+              "@type": "Question",
+              "name": "Где на Ozon всё ещё нужен квадратный формат 1:1?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Квадрат 1:1 (например, 1200×1200 px) остаётся стандартом только для витрины Ozon Fresh (продукты питания). Если загрузить квадратное фото в обычные категории, Ozon применит внутренний алгоритм подгонки (метод 8 точек) либо отобразит карточку с некрасивыми пустыми полями сверху и снизу." }
+            },
+            {
+              "@type": "Question",
+              "name": "Для чего нужен серый фон #F2F3F5 на Ozon?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Серый нейтральный фон #F2F3F5 официально требуется Ozon для главного фото в категории «Одежда, обувь и аксессуары». На дополнительных фото серии фон может быть свободным (в интерьере или на улице)." }
+            },
+            {
+              "@type": "Question",
+              "name": "Какой фон выбрать для белых и прозрачных товаров?",
+              "acceptedAnswer": { "@type": "Answer", "text": "По правилам Ozon Seller, для белых, светлых и стеклянных (прозрачных) товаров на главном фото требуется контрастный тёмный фон. На белом или светло-сером фоне такие товары сливаются с витриной маркетплейса и не проходят модерацию." }
+            },
+            {
+              "@type": "Question",
+              "name": "Можно ли размещать водяной знак на главном фото Ozon?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Нет. По правилам Ozon на главной обложке карточки строго запрещены водяные знаки, логотипы сторонних компаний, плашки цен и скидок. За это карточка отправляется на блокировку." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="logo">🔵 Batch<span>Photo</span>.ru</a>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html" class="active">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
+            <a href="konverter-webp.html">🌐 Конвертер WebP</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="/">Главная</a> → <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a> → <span>Фото для Ozon</span>
+        </nav>
+    </div>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="ozon-badge">🔵 Стандарты Ozon Seller 2026 • Единый вертикальный формат 3:4</div>
+        <h1>Пакетная обработка фото для <span>Ozon (3:4 — 900×1200 и 1200×1600)</span></h1>
+        <p>Быстрая подготовка до 100 карточек под вертикальный стандарт Ozon: добавление полей 3:4 без обрезки краев, фон #F2F3F5 для одежды, тёмный фон для белых товаров, контроль веса до 10 МБ и квадрат для Ozon Fresh.</p>
+        <div class="trust-pills">
+            <span class="trust-pill">✅ Единый вертикальный 3:4</span>
+            <span class="trust-pill">✅ 900×1200 и 1200×1600 px</span>
+            <span class="trust-pill">✅ Серый #F2F3F5 в 1 клик</span>
+            <span class="trust-pill">✅ Тёмный фон для белых товаров</span>
+            <span class="trust-pill">✅ Автоконтроль лимита 10 МБ</span>
+        </div>
+    </div>
+    <!-- ИНСТРУМЕНТ -->
+    <section style="padding-top:10px">
+        <div class="container" id="tool">
+            <div class="card">
+                <!-- Дропзона -->
+                <div class="dropzone" id="dropzone" role="button" tabindex="0">
+                    <div class="icon">🔵</div>
+                    <p><strong>Перетащите фото товаров для Ozon сюда</strong> или нажмите для выбора</p>
+                    <small>JPG, PNG, WebP, HEIC • до 100 файлов за раз • быстрая вставка из буфера: <kbd>Ctrl</kbd> + <kbd>V</kbd></small>
+                    <input type="file" id="fileInput" multiple accept="image/*" hidden>
+                </div>
+                <div class="files-toolbar" id="filesToolbar">
+                    <span class="files-count" id="filesCount"></span>
+                    <button class="clear-btn" id="clearBtn">✕ Очистить список</button>
+                </div>
+                <div class="files-grid" id="filesGrid"></div>
+                <!-- БЫСТРЫЕ СЦЕНАРИИ ПО РЕГЛАМЕНТУ OZON -->
+                <div class="quick-modes">
+                    <div class="quick-modes-title">
+                        <span>⚡ Быстрый выбор по правилам Ozon:</span>
+                        <span style="font-weight:400; text-transform:none;">нажмите, чтобы сразу применить к предпросмотру</span>
+                    </div>
+                    <div class="quick-modes-grid" id="ozonQuickModes">
+                        <button type="button" class="qmode-btn active" data-w="1200" data-h="1600" data-mode="contain_bg" data-bg="#ffffff" title="Единый стандарт для всех категорий Ozon с запасом по качеству">
+                            🔵 1200×1600 (3:4) <small>(Универсальный, с запасом)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="900" data-h="1200" data-mode="contain_bg" data-bg="#ffffff" title="Минимальный порог для одежды и обуви, дальше можно выше">
+                            👟 900×1200 (3:4) <small>(Минимум для одежды и обуви)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1200" data-h="1600" data-mode="contain_bg" data-bg="#f2f3f5" title="Обязателен по регламенту для главного фото одежды и обуви">
+                            🩶 Серый фон #F2F3F5 <small>(Главное фото: одежда/обувь)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1200" data-h="1600" data-mode="contain_bg" data-bg="#26282b" title="По правилам Ozon белые и прозрачные товары требуют контрастный темный фон">
+                            ⬛ Тёмный фон <small>(Для белых и прозрачных товаров)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1200" data-h="1200" data-mode="contain_bg" data-bg="#ffffff" title="Квадрат применяется исключительно для Ozon Fresh">
+                            🥦 1:1 (Квадрат) <small>(Только для Ozon Fresh)</small>
+                        </button>
+                        <button type="button" class="qmode-btn" data-w="1200" data-h="1600" data-mode="cover" title="Внимание: края изображения будут обрезаны">
+                            ✂️ Заполнить весь кадр <small>(Обрезать края под 3:4)</small>
+                        </button>
+                    </div>
+                </div>
+                <!-- ПРЕДПРОСМОТР «ДО / ПОСЛЕ» -->
+                <div class="pv-panel" id="previewPanel">
+                    <div class="pv-empty" id="previewEmpty">👁️ Загрузите фото — здесь появится живое сравнение «До / После» и проверка модерации Ozon</div>
+                    <div class="pv-body" id="previewBody" style="display:none;">
+                        <div class="pv-header">
+                            <span class="pv-label">Сравнение карточки «До / После»</span>
+                            <span class="pv-name" id="pvName"></span>
+                        </div>
+                        <div class="cmp-grid" id="cmpGrid">
+                            <div class="cmp-pane" id="paneBefore">
+                                <img id="imgBefore" alt="Исходное фото товара">
+                                <span class="cmp-badge">До</span>
+                            </div>
+                            <div class="cmp-pane" id="paneAfter">
+                                <canvas id="canvasAfter"></canvas>
+                                <span class="cmp-badge">После (Ozon)</span>
+                                <!-- Динамические предупреждающие рамки и оверлеи -->
+                                <div id="cropFrame" class="crop-cut-frame" style="display:none;"></div>
+                                <div id="previewAlertOverlay" class="preview-alert-overlay" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="pv-meta">
+                            <div id="pvMeta"></div>
+                            <div class="ozon-checks" id="ozonChecks"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ВКЛАДКИ -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="size">📐 1. Разрешение (3:4) и цвет полей</button>
+                    <button class="tab-btn" data-tab="adjust">🎨 2. Яркость, контраст и поворот</button>
+                    <button class="tab-btn" data-tab="rename">✏️ 3. Нумерация артикулов (до 15 фото)</button>
+                </div>
+                <!-- ВКЛАДКА 1 -->
+                <div class="tab-panel active" id="panel-size">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="preset">Пресет разрешения Ozon Seller</label>
+                            <select id="preset">
+                                <option value="ozon" selected>🔵 1200×1600 (3:4) — Универсальный (с запасом качества)</option>
+                                <option value="ozon_min">👟 900×1200 (3:4) — Минимум для одежды и обуви</option>
+                                <option value="ozon_fresh">🥦 1200×1200 (1:1) — Только для Ozon Fresh (продукты)</option>
+                                <option value="ozon_rich">🖼️ 1440×900 (16:10) — Rich-контент Ozon (баннеры)</option>
+                                <option value="custom">⚙️ Свой размер (от 200 до 7680 px)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resizeMode">Режим подгонки товара в кадре</label>
+                            <select id="resizeMode">
+                                <option value="contain_bg" selected>Вписать + поля (до 3:4 без обрезки — товар целиком)</option>
+                                <option value="cover">Заполнить весь кадр (обрезать края — риск срезать инфографику)</option>
+                                <option value="contain">Вписать пропорционально (без добавления полей)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="dimsGroup">
+                            <label>Ширина × Высота (px)</label>
+                            <div class="inline">
+                                <input type="number" id="width" value="1200" min="200" max="7680">
+                                <input type="number" id="height" value="1600" min="200" max="7680">
+                            </div>
+                        </div>
+                        <div class="form-group" id="bgGroup">
+                            <label for="bgColor">Цвет полей (выберите готовый или кликните палитру):</label>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <input type="color" id="bgColor" value="#ffffff" style="width:48px; height:36px; padding:2px; cursor:pointer;">
+                                <div class="bg-swatches" id="bgSwatches">
+                                    <button type="button" class="bg-swatch-btn active" data-color="#ffffff">
+                                        <span class="swatch-circle" style="background:#ffffff;"></span> Белый
+                                    </button>
+                                    <button type="button" class="bg-swatch-btn" data-color="#f2f3f5" title="Обязателен для главного фото одежды и обуви">
+                                        <span class="swatch-circle" style="background:#f2f3f5;"></span> Серый #F2F3F5 (Одежда)
+                                    </button>
+                                    <button type="button" class="bg-swatch-btn" data-color="#26282b" title="Контрастный фон для белых и прозрачных товаров">
+                                        <span class="swatch-circle" style="background:#26282b;"></span> Тёмный (Белый товар)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="format">Выходной формат (авто-профиль sRGB)</label>
+                            <select id="format">
+                                <option value="image/jpeg" selected>JPG / JPEG (рекомендуется Ozon)</option>
+                                <option value="image/png">PNG (для четкой графики)</option>
+                                <option value="image/webp">WebP (поддерживается Ozon)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="qualityGroup">
+                            <label for="quality">Сжатие (рекомендуем 4–7 МБ, лимит Ozon — 10 МБ)</label>
+                            <div class="range-row">
+                                <input type="range" id="quality" min="10" max="100" value="88">
+                                <span class="range-val" id="qualityVal">88%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="checkbox-row">
+                        <input type="checkbox" id="noUpscale" checked>
+                        Не растягивать исходники меньшего размера (защищает от пикселизации при зуме)
+                    </label>
+                </div>
+                <!-- ВКЛАДКА 2 -->
+                <div class="tab-panel" id="panel-adjust">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label for="brightness">Яркость (осветление темной съемки)</label>
+                            <div class="range-row">
+                                <input type="range" id="brightness" min="50" max="170" value="100">
+                                <span class="range-val" id="brightnessVal">100%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contrast">Контрастность (четкий контур товара)</label>
+                            <div class="range-row">
+                                <input type="range" id="contrast" min="50" max="170" value="100">
+                                <span class="range-val" id="contrastVal">100%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rotate">Повернуть фото</label>
+                            <select id="rotate">
+                                <option value="0">Без поворота</option>
+                                <option value="90">90° по часовой</option>
+                                <option value="180">180°</option>
+                                <option value="270">90° против часовой</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="flip">Отразить по горизонтали</label>
+                            <select id="flip">
+                                <option value="none">Нет</option>
+                                <option value="h">Да (Зеркально)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- ВКЛАДКА 3 -->
+                <div class="tab-panel" id="panel-rename">
+                    <div class="form-group">
+                        <label for="renamePattern">Шаблон имени для загрузки до 15 фото в карточку Ozon</label>
+                        <input type="text" id="renamePattern" value="ozon-sku-{nnn}">
+                        <div class="preset-tags">
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='ozon-sku-{nnn}'">ozon-sku-{nnn}</button>
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='artikul_{n}'">artikul_{n}</button>
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='{name}_{n}'">{name}_{n}</button>
+                            <button type="button" class="preset-tag" onclick="document.getElementById('renamePattern').value='ozon-{nnn}'">ozon-{nnn}</button>
+                        </div>
+                        <span class="hint" style="margin-top:8px; display:block; font-size:12px; color:var(--muted);">
+                            Для автоматической загрузки по XLS-шаблону Ozon используйте формат <kbd>artikul_{n}</kbd>:
+                            <em>artikul_1.jpg (главное), artikul_2.jpg, artikul_3.jpg…</em>
+                        </span>
+                    </div>
+                </div>
+                <!-- Кнопка запуска -->
+                <button class="btn" id="processBtn">⚡ Подготовить фото для Ozon и скачать ZIP</button>
+                <div class="tool-privacy-note">
+                    🔒 Фотографии обрабатываются локально в браузере и не передаются на сервер. <a href="politika-konfidencialnosti.html">Политика конфиденциальности</a>
+                </div>
+                <!-- Прогресс -->
+                <div class="progress-box" id="progressBox">
+                    <div class="progress-info">
+                        <span id="progressStatus">Подготовка карточек Ozon…</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+                    <div class="btn-row"><button class="btn btn-secondary" id="cancelBtn">Отменить</button></div>
+                </div>
+                <!-- Результат -->
+                <div class="result-box" id="resultBox">
+                    <h3>✅ Фотографии подготовлены к загрузке в Ozon Seller!</h3>
+                    <p id="resultStats"></p>
+                    <div class="results-list" id="resultsList"></div>
+                </div>
+                <div class="tool-footer-note">
+                    <span>🎨 Автоматический перевод в <strong>sRGB</strong> (защита от искажения оттенков на витрине Ozon)</span>
+                    <span>🛡️ Добавление полей защищает людей и края товаров от обрезки</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- КАК ПОДГОТОВИТЬ ФОТО -->
+    <section id="howto">
+        <div class="container">
+            <h2 class="section-title">Как подготовить фото товаров для Ozon за 4 шага</h2>
+            <p class="section-sub">Быстрая обработка снимков под вертикальный стандарт Ozon без риска блокировки карточки модерацией.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Загрузите фото</h3>
+                    <p>Перетащите снимки товара любого исходного размера (JPG, PNG, WebP или HEIC) в окно инструмента.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Выберите пресет 3:4</h3>
+                    <p>Нажмите <b>1200×1600 (3:4)</b> для качественного зума или <b>900×1200 (3:4)</b> (базовый минимум для одежды и обуви).</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Цвет фона в 1 клик</h3>
+                    <p>Для главного фото одежды нажмите <b>#F2F3F5</b>, для белых товаров — <b>Тёмный</b>, для остальных — Белый.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <h3>Скачайте готовый ZIP</h3>
+                    <p>Получите архив файлов с весом строго до 10 МБ (цель: 4–7 МБ) и профилем sRGB, готовый к загрузке в Ozon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ТАБЛИЦА РАЗМЕРОВ ПО КАТЕГОРИЯМ OZON -->
+    <section id="ozon-table">
+        <div class="container">
+            <h2 class="section-title">Требования к размерам и фону фото на Ozon (2025–2026)</h2>
+            <p class="section-sub">С февраля 2025 года Ozon сделал пропорцию 3:4 единым стандартом. Квадрат 1:1 сохранен только для Ozon Fresh.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Категория товара на Ozon</th>
+                            <th>Пропорции</th>
+                            <th>Рекомендуемый размер</th>
+                            <th>Требования к фону (главное фото)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>👗 Одежда, обувь и аксессуары</strong></td>
+                            <td><strong>Строго 3:4</strong></td>
+                            <td><strong>1200×1600 px</strong> (минимум от 900×1200 px)</td>
+                            <td><strong>Серый фон #F2F3F5</strong> обязателен для главного фото. На дополнительных слайдах фон свободнее.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔌 Электроника, дом, авто, детские товары</strong></td>
+                            <td><strong>3:4 (единый стандарт)</strong></td>
+                            <td><strong>1200×1600 px</strong> (минимум от 200×200 px)</td>
+                            <td>Чистый белый или нейтральный светлый фон. Товар должен занимать основную часть кадра.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⚪ Белые, прозрачные и стеклянные товары</strong></td>
+                            <td><strong>3:4</strong></td>
+                            <td><strong>1200×1600 px</strong></td>
+                            <td><strong>Строго контрастный тёмный фон</strong>. На белом или сером фоне товар сольется с витриной Ozon.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🥦 Ozon Fresh (продукты питания)</strong></td>
+                            <td><strong>1:1 (Квадрат)</strong></td>
+                            <td><strong>1200×1200 px</strong></td>
+                            <td>Светлый фон. Квадратный формат применяется исключительно в сервисе Ozon Fresh.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🖼️ Rich-контент Ozon (баннеры в описании)</strong></td>
+                            <td><strong>16:10 / Свободные</strong></td>
+                            <td><strong>1440×900 px</strong> (ПК) / <strong>900×1200 px</strong> (Моб.)</td>
+                            <td>Фон баннера по дизайн-макету, вес файла строго до 10 МБ.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- РЕАЛЬНЫЕ СЦЕНАРИИ СЕЛЛЕРОВ OZON -->
+    <section id="ozon-cases">
+        <div class="container">
+            <h2 class="section-title">Практические сценарии подготовки фото для Ozon</h2>
+            <p class="section-sub">Защита от автоматической обрезки Ozon и ошибок модерации.</p>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <h3>👥 Групповые фото и съемка моделей: без обрезки людей</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>Широкие фотографии моделей или комплектов при автообрезке Ozon теряют людей и детали по краям.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Режим <b>«Вписать + поля»</b> дополняет снимок белым или серым фоном до 3:4 без обрезки краев.</span></div>
+                    <div class="case-time">⚡ 100% сохранение всех деталей кадра</div>
+                </div>
+                <div class="case-card">
+                    <h3>⬛ Тёмный контрастный фон для белых товаров</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>Белые кроссовки, бытовая техника или прозрачные бокалы сливаются с белой витриной Ozon и блокируются.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Быстрая кнопка <b>«Тёмный фон»</b> мгновенно задает контрастную подложку для первого слайда карточки.</span></div>
+                    <div class="case-time">⚡ Быстрое прохождение ручной модерации</div>
+                </div>
+                <div class="case-card">
+                    <h3>🩶 Серый фон #F2F3F5 для главного фото одежды</h3>
+                    <div class="case-row"><span>Проблема:</span> <span>Категория «Одежда и обувь» требует строгого утвержденного цвета фона #F2F3F5 на первой обложке.</span></div>
+                    <div class="case-row"><span>Решение:</span> <span>Быстрый сватч <b>#F2F3F5</b> выставляет утвержденный код цвета Ozon в один клик.</span></div>
+                    <div class="case-time">⚡ Строгое соответствие регламенту Ozon Fashion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ТРЕБОВАНИЯ МОДЕРАЦИИ OZON SELLER -->
+    <section class="container">
+        <h2 class="section-title">Регламент Ozon Seller по модерации фотографий</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h3>⚙️ Технические требования Ozon</h3>
+                <ul class="rule-list">
+                    <li data-icon="📐"><strong>Единый формат 3:4:</strong> Ozon перевёл витрину на вертикаль 3:4. Рекомендуемое разрешение — <strong>1200×1600 px</strong> (высокая четкость при зуме). Для одежды минимум — <strong>900×1200 px</strong> (для других ниш порог от 200×200 px).</li>
+                    <li data-icon="🥦"><strong>Исключение для 1:1:</strong> Квадрат 1:1 допускается только для Ozon Fresh. В остальных категориях квадрат отображается с некрасивыми полями сверху и снизу.</li>
+                    <li data-icon="📁"><strong>Лимит веса до 10 МБ:</strong> Принимаются JPG, PNG, WebP и HEIC. Оптимальный целевой вес — <strong>4–7 МБ</strong> с запасом под лимит. Инструмент автоматически блокирует файлы свыше 10 МБ.</li>
+                    <li data-icon="🌈"><strong>Цветовое пространство sRGB:</strong> Профиль CMYK искажает цвета на экранах покупателей. Наш движок всегда конвертирует результат в чистый <strong>sRGB</strong>.</li>
+                    <li data-icon="🖼️"><strong>Лимит до 15 слайдов:</strong> 1 главное фото + до 14 дополнительных фото (детали, инфографика, габариты).</li>
+                </ul>
+            </div>
+            <div class="rule-card">
+                <h3>🚫 Строгие запреты Ozon</h3>
+                <ul class="rule-list">
+                    <li data-icon="©️"><strong>Водяные знаки строго запрещены:</strong> На главном фото категорически запрещены водяные знаки, копирайты и сторонние логотипы (приводит к блокировке карточки).</li>
+                    <li data-icon="⚠️"><strong>Запрет 3D-моделей:</strong> Главное фото обязательно должно быть реальной цветной фотографией товара, а не графическим 3D-рендером или рисунком.</li>
+                    <li data-icon="🎨"><strong>Фон белых и прозрачных товаров:</strong> Запрещено размещать белые и стеклянные товары на светлом фоне. Они должны быть сфотографированы на <strong>тёмном контрастном фоне</strong>.</li>
+                    <li data-icon="🩶"><strong>Фон для одежды и обуви:</strong> На главном фото категории Fashion обязателен нейтральный серый фон <code>#F2F3F5</code> (на дополнительных слайдах фон свободный).</li>
+                    <li data-icon="🧼"><strong>Запрет спама на обложке:</strong> На 1-м фото запрещены надписи «Хит», «Топ», «Акция», цены, скидки, контактные телефоны и ссылки.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- ЧЕК-ЛИСТ ПЕРЕД ЗАГРУЗКОЙ -->
+        <div class="checklist-card">
+            <h3 style="margin-top:0; margin-bottom:6px;">☑️ Чек-лист селлера перед публикацией карточки на Ozon</h3>
+            <p style="margin:0; font-size:13px; color:var(--muted);">Проверьте файлы перед загрузкой в Ozon Seller, чтобы карточки не попали в статус «Ошибки модерации»:</p>
+            <div class="checklist-grid">
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Вертикальный формат <strong>3:4 (1200×1600 или от 900×1200 px)</strong></span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Реальное фото изделия (<strong>не 3D-рендер</strong> и не набросок)</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>На главном фото <strong>НЕТ водяных знаков</strong>, плашек цен и скидок</span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Для одежды: на главном фото серый фон <strong>#F2F3F5</strong></span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Для белых/прозрачных товаров: <strong>контрастный тёмный фон</strong></span>
+                </label>
+                <label class="check-item">
+                    <input type="checkbox">
+                    <span>Вес каждого файла <strong>строго до 10 МБ</strong> (цель: 4–7 МБ), профиль <strong>sRGB</strong></span>
+                </label>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ -->
+    <section class="container" id="faq">
+        <h2 class="section-title">Вопросы и ответы по требованиям Ozon Seller</h2>
+        <div class="faq-list">
+            <details class="faq-item" open>
+                <summary>Какой размер фото является обязательным для Ozon в 2026 году?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    С февраля 2025 года Ozon перевёл все товарные категории на <strong>единый вертикальный формат 3:4</strong>. Оптимальный универсальный размер — <strong>1200×1600 px</strong> (обеспечивает чёткий детальный зум). Для категории «Одежда, обувь и аксессуары» действует порог не менее <strong>900×1200 px</strong>. В остальных категориях формальный минимум начинается от 200×200 px, но вертикальные пропорции 3:4 остаются стандартом для всей витрины.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Где на Ozon нужен квадрат 1:1?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Квадрат 1:1 (например, 1200×1200 px) применяется <strong>только для Ozon Fresh</strong> (продукты питания). Если вы загрузите квадрат в обычные категории товаров (одежда, электроника, косметика), Ozon покажет карточку с неэстетичными полосами по краям либо автоматически обрежет центральную область «методом 8 точек».
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Какой фон выбрать — белый, серый #F2F3F5 или тёмный?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Правила зависят от категории и типа товара:
+                    <ul>
+                        <li><strong>Серый #F2F3F5:</strong> требуется для <em>главного фото</em> одежды, обуви и аксессуаров.</li>
+                        <li><strong>Тёмный фон:</strong> обязателен для <em>белых, прозрачных и стеклянных товаров</em>, чтобы они не сливались с белой лентой маркетплейса.</li>
+                        <li><strong>Белый (#FFFFFF) или светлый:</strong> стандарт для цветных товаров в остальных категориях (дом, электроника, авто).</li>
+                    </ul>
+                    На дополнительных фото (2-й и последующие слайды) правила свободнее: разрешены фото в интерьере и реальной обстановке.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Почему запрещены водяные знаки на главном фото карточки Ozon?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Модерация Ozon строго следит за чистотой главной витрины. Любые посторонние логотипы, копирайты, водяные знаки или контакты селлера на первой обложке являются прямым нарушением регламента площадки — карточка получает отказ модерации.
+                </div>
+            </details>
+            <details class="faq-item">
+                <summary>Что произойдет, если файл будет весить больше 10 МБ?</summary>
+                <div class="faq-body" style="padding-top:10px;">
+                    Сервер Ozon автоматически отклонит загрузку файла с ошибкой превышения размера. В нашем сервисе встроен автоконтроль: если при выбранном качестве вес файла превысит 10 МБ, индикатор загорится красным, а кнопка скачивания будет заблокирована до тех пор, пока вы не снизите ползунок качества (рекомендуемый рабочий диапазон — 4–7 МБ).
+                </div>
+            </details>
+        </div>
+        <!-- ПЕРЕЛИНКОВКА -->
+        <h3 style="text-align:center; margin-top:40px; font-size:18px;">Другие инструменты для селлеров маркетплейсов</h3>
+        <div class="cross-tools">
+            <a href="foto-dlya-wildberries.html" class="cross-tool-link">
+                <strong>🟣 Фото для Wildberries (3:4)</strong>
+                <span>Пакетная подгонка под требования WB Seller (900×1200 и 1200×1600 px).</span>
+            </a>
+            <a href="foto-dlya-marketpleisov.html" class="cross-tool-link">
+                <strong>🛍️ Все маркетплейсы (Общий обзор)</strong>
+                <span>Сравнение форматов Ozon, Wildberries, Яндекс Маркета и Авито.</span>
+            </a>
+            <a href="szhatie-foto.html" class="cross-tool-link">
+                <strong>🗜️ Сжатие фото для маркетплейсов</strong>
+                <span>Уменьшение веса файлов до лимита 10 МБ без потери резкости инфографики.</span>
+            </a>
+            <a href="udalit-exif.html" class="cross-tool-link">
+                <strong>🛡️ Удаление EXIF-метаданных</strong>
+                <span>Очистка геолокации, скрытых тегов и данных камеры перед загрузкой в кабинет.</span>
+            </a>
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="foto-dlya-wildberries.html">Фото для WB</a>
+            <a href="foto-dlya-ozon.html">Фото для Ozon</a>
+            <a href="szhatie-foto.html">Сжатие JPG</a>
+            <a href="konverter-webp.html">Конвертер WebP</a>
+            <a href="udalit-exif.html">Удаление EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+            <a href="politika-konfidencialnosti.html">Конфиденциальность</a>
+        </div>
+        <p>© 2025–2026 BatchPhoto.ru — Пакетная обработка изображений онлайн. Все файлы обрабатываются локально в вашем браузере.</p>
+    </div>
+</footer>
+<script>
+    window.BP_CONFIG = {
+        defaultTab: 'size',
+        allowedTabs: ['size', 'adjust', 'rename']
+    };
+</script>
+<script src="js/engine.js"></script>
+<!-- СЦЕНАРИИ, СВАТЧИ И ПРЕДПРОСМОТР OZON -->
+<script>
+(function () {
+    'use strict';
+    var $ = function (id) { return document.getElementById(id); };
+
+    /* 1. Пресеты выпадающего списка */
+    var presetSel = $('preset');
+    if (presetSel) {
+        presetSel.addEventListener('change', function () {
+            var val = presetSel.value;
+            if (val === 'ozon') {
+                setDims(1200, 1600, 'contain_bg');
+            } else if (val === 'ozon_min') {
+                setDims(900, 1200, 'contain_bg');
+            } else if (val === 'ozon_fresh') {
+                setDims(1200, 1200, 'contain_bg');
+            } else if (val === 'ozon_rich') {
+                setDims(1440, 900, 'contain_bg');
+            }
+            syncQuickButtons();
+        });
+    }
+
+    function setDims(w, h, mode) {
+        if ($('width')) $('width').value = w;
+        if ($('height')) $('height').value = h;
+        if (mode && $('resizeMode')) {
+            $('resizeMode').value = mode;
+            $('resizeMode').dispatchEvent(new Event('change'));
+        }
+        if ($('width')) $('width').dispatchEvent(new Event('input'));
+    }
+
+    /* 2. Быстрые кнопки выбора цвета полей (Swatches) */
+    var swatchBtns = document.querySelectorAll('#bgSwatches .bg-swatch-btn');
+    var colorPicker = $('bgColor');
+    swatchBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var color = btn.getAttribute('data-color');
+            if (colorPicker) {
+                colorPicker.value = color;
+                colorPicker.dispatchEvent(new Event('input'));
+                colorPicker.dispatchEvent(new Event('change'));
+            }
+            updateSwatchActive(color);
+        });
+    });
+
+    if (colorPicker) {
+        colorPicker.addEventListener('input', function () {
+            updateSwatchActive(colorPicker.value);
+        });
+    }
+
+    function updateSwatchActive(color) {
+        var c = (color || '').toLowerCase();
+        swatchBtns.forEach(function (btn) {
+            var bc = (btn.getAttribute('data-color') || '').toLowerCase();
+            btn.classList.toggle('active', bc === c);
+        });
+    }
+
+    /* 3. Быстрые кнопки сценариев Ozon */
+    var qBtns = document.querySelectorAll('#ozonQuickModes .qmode-btn');
+    qBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            qBtns.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var w = parseInt(btn.getAttribute('data-w'), 10) || 1200;
+            var h = parseInt(btn.getAttribute('data-h'), 10) || 1600;
+            var mode = btn.getAttribute('data-mode') || 'contain_bg';
+            var bg = btn.getAttribute('data-bg');
+
+            if ($('resizeMode')) {
+                $('resizeMode').value = mode;
+                $('resizeMode').dispatchEvent(new Event('change'));
+            }
+            if ($('width')) $('width').value = w;
+            if ($('height')) $('height').value = h;
+            if (bg && colorPicker) {
+                colorPicker.value = bg;
+                updateSwatchActive(bg);
+            }
+
+            if (presetSel) {
+                if (w === 1200 && h === 1600) presetSel.value = 'ozon';
+                else if (w === 900 && h === 1200) presetSel.value = 'ozon_min';
+                else if (w === 1200 && h === 1200) presetSel.value = 'ozon_fresh';
+                else presetSel.value = 'custom';
+            }
+            if ($('width')) $('width').dispatchEvent(new Event('input'));
+        });
+    });
+
+    function syncQuickButtons() {
+        var w = parseInt($('width') && $('width').value, 10);
+        var h = parseInt($('height') && $('height').value, 10);
+        var m = $('resizeMode') && $('resizeMode').value;
+        var bg = ($('bgColor') && $('bgColor').value || '').toLowerCase();
+
+        qBtns.forEach(function (b) {
+            var bw = parseInt(b.getAttribute('data-w'), 10);
+            var bh = parseInt(b.getAttribute('data-h'), 10);
+            var bm = b.getAttribute('data-mode');
+            var bbg = (b.getAttribute('data-bg') || '').toLowerCase();
+            b.classList.toggle('active', bw === w && bh === h && bm === m && (!bbg || bbg === bg));
+        });
+    }
+
+    /* 4. Предпросмотр «До / После», оверлеи обрезки и контроль 10 МБ */
+    var panel = $('previewPanel'); if (!panel) return;
+    var empty       = $('previewEmpty'),
+        body        = $('previewBody'),
+        imgBefore   = $('imgBefore'),
+        canvasAfter = $('canvasAfter'),
+        cmpGrid     = $('cmpGrid'),
+        nameEl      = $('pvName'),
+        metaEl      = $('pvMeta'),
+        checksEl    = $('ozonChecks'),
+        grid        = $('filesGrid'),
+        clearBtn    = $('clearBtn'),
+        processBtn  = $('processBtn'),
+        cropFrame   = $('cropFrame'),
+        previewAlertOverlay = $('previewAlertOverlay');
+
+    if (!cmpGrid || !imgBefore || !canvasAfter) return;
+    var img = null, currentSrc = null, timer = null, grabTimer = null;
+
+    function show() { empty.style.display = 'none'; body.style.display = 'flex'; }
+    function hide() { body.style.display = 'none'; empty.style.display = ''; }
+
+    function setSource(src) {
+        if (!src || src === currentSrc) return;
+        currentSrc = src;
+        imgBefore.src = src;
+        var im = new Image();
+        im.onload = function () { img = im; show(); render(); };
+        im.onerror = function () { if (currentSrc === src) { currentSrc = null; img = null; } };
+        im.src = src;
+    }
+
+    function reset() { img = null; currentSrc = null; hide(); }
+
+    function grabFromGrid() {
+        if (!grid) return;
+        var first = grid.querySelector('img, canvas');
+        if (!first) { reset(); return; }
+        if (first.tagName === 'CANVAS') {
+            try { setSource(first.toDataURL('image/png')); } catch (e) {}
+            return;
+        }
+        if (first.complete && first.naturalWidth > 0) { setSource(first.src); return; }
+        clearTimeout(grabTimer);
+        grabTimer = setTimeout(grabFromGrid, 120);
+    }
+
+    if (grid && window.MutationObserver) {
+        new MutationObserver(grabFromGrid).observe(grid, { childList: true });
+    }
+
+    function setFile(f) {
+        if (img || !f) return;
+        if (f.type && f.type.indexOf('image/') !== 0) return;
+        var r = new FileReader();
+        r.onload = function () { if (!img) setSource(r.result); };
+        try { r.readAsDataURL(f); } catch (e) {}
+    }
+
+    var dz = $('dropzone');
+    if (dz) dz.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+            setFile(e.dataTransfer.files[0]);
+        }
+    }, true);
+
+    document.addEventListener('paste', function (e) {
+        if (img) return;
+        var it = e.clipboardData && e.clipboardData.items; if (!it) return;
+        for (var i = 0; i < it.length; i++) {
+            if (it[i].type.indexOf('image/') === 0) { setFile(it[i].getAsFile()); break; }
+        }
+    });
+
+    if (clearBtn) clearBtn.addEventListener('click', reset);
+
+    ['preset','resizeMode','width','height','bgColor','format','quality','noUpscale','brightness','contrast','rotate','flip']
+        .forEach(function (id) {
+            var el = $(id); if (!el) return;
+            el.addEventListener('input', schedule);
+            el.addEventListener('change', schedule);
+        });
+
+    function schedule() { if (!img) return; clearTimeout(timer); timer = setTimeout(render, 100); }
+    function num(v, d) { v = parseInt(v, 10); return (isNaN(v) || v <= 0) ? d : v; }
+
+    var lastRatio = null;
+    window.addEventListener('resize', function () { if (lastRatio) sizePanes(lastRatio); });
+
+    function sizePanes(ratio) {
+        lastRatio = ratio;
+        var paneH = window.innerWidth < 520 ? 200 : 300;
+        var paneW = Math.round(paneH * ratio);
+        var panes = cmpGrid.querySelectorAll('.cmp-pane');
+        var total = paneW * 2 + 10;
+        var avail = cmpGrid.clientWidth || cmpGrid.parentNode.clientWidth || total;
+        if (total > avail) {
+            var k = (avail - 10) / (paneW * 2);
+            paneH = Math.round(paneH * k);
+            paneW = Math.round(paneW * k);
+        }
+        for (var i = 0; i < panes.length; i++) {
+            panes[i].style.height = paneH + 'px';
+            panes[i].style.width  = paneW + 'px';
+        }
+    }
+
+    function render() {
+        if (!img) return;
+        var deg   = num($('rotate').value, 0),
+            flip  = $('flip').value === 'h',
+            W     = Math.min(7680, num($('width').value, 1200)),
+            H     = Math.min(7680, num($('height').value, 1600)),
+            mode  = $('resizeMode').value,
+            noUp  = $('noUpscale').checked,
+            fmt   = $('format').value,
+            q     = num($('quality').value, 88) / 100;
+
+        var rot = (deg === 90 || deg === 270),
+            sw = rot ? img.height : img.width,
+            sh = rot ? img.width  : img.height;
+
+        var t = document.createElement('canvas');
+        t.width = sw; t.height = sh;
+        var tc = t.getContext('2d');
+        tc.translate(sw / 2, sh / 2);
+        tc.rotate(deg * Math.PI / 180);
+        if (flip) tc.scale(-1, 1);
+        tc.drawImage(img, -img.width / 2, -img.height / 2);
+
+        var ow, oh, dw, dh, dx = 0, dy = 0, s;
+        if (mode === 'contain') {
+            s = Math.min(W / sw, H / sh); if (noUp) s = Math.min(s, 1);
+            ow = Math.max(1, Math.round(sw * s));
+            oh = Math.max(1, Math.round(sh * s));
+            dw = ow; dh = oh;
+        } else {
+            ow = W; oh = H;
+            s = (mode === 'cover') ? Math.max(W / sw, H / sh) : Math.min(W / sw, H / sh);
+            if (noUp) s = Math.min(s, 1);
+            dw = sw * s; dh = sh * s;
+            dx = (W - dw) / 2; dy = (H - dh) / 2;
+        }
+
+        var out = document.createElement('canvas');
+        out.width = ow; out.height = oh;
+        var oc = out.getContext('2d');
+        if (mode !== 'contain') {
+            oc.fillStyle = $('bgColor').value;
+            oc.fillRect(0, 0, ow, oh);
+        }
+        if ('filter' in oc) {
+            oc.filter = 'brightness(' + $('brightness').value + '%) contrast(' + $('contrast').value + '%)';
+        }
+        oc.imageSmoothingEnabled = true;
+        oc.imageSmoothingQuality = 'high';
+        oc.drawImage(t, dx, dy, dw, dh);
+        oc.filter = 'none';
+
+        var maxDim = 800;
+        var k = Math.min(maxDim / out.width, maxDim / out.height, 1);
+        canvasAfter.width  = Math.max(1, Math.round(out.width  * k));
+        canvasAfter.height = Math.max(1, Math.round(out.height * k));
+        var cctx = canvasAfter.getContext('2d');
+        cctx.imageSmoothingEnabled = true;
+        cctx.imageSmoothingQuality = 'high';
+        cctx.drawImage(out, 0, 0, canvasAfter.width, canvasAfter.height);
+
+        sizePanes(ow / oh);
+
+        var ftxt = (fmt === 'image/jpeg') ? 'JPG' : (fmt === 'image/png') ? 'PNG' : 'WebP';
+        var bytes = 0, wtxt = '';
+        try {
+            bytes = Math.round(out.toDataURL(fmt, q).length * 0.75);
+            var isOverLimit = bytes > 10485760;
+            wtxt = bytes > 1048576
+                ? ' • ≈ ' + (bytes / 1048576).toFixed(1) + ' МБ'
+                : ' • ≈ ' + Math.max(1, Math.round(bytes / 1024)) + ' КБ';
+        } catch (e) {}
+
+        nameEl.textContent = 'Исходник: ' + img.width + '×' + img.height + ' px → Карточка Ozon: ' + ow + '×' + oh + ' px';
+
+        var weightClass = isOverLimit ? 'weight-danger' : 'weight-safe';
+        metaEl.innerHTML = 'На выходе: <b>' + ow + ' × ' + oh + ' px</b> • ' + ftxt + ' <span class="' + weightClass + '">' + wtxt + '</span>';
+
+        /* 5. Автоконтроль лимита 10 МБ: подсветка и блокировка кнопки */
+        if (processBtn) {
+            if (isOverLimit) {
+                processBtn.disabled = true;
+                processBtn.classList.add('btn-disabled-limit');
+                processBtn.textContent = '⚠️ Вес > 10 МБ — снизьте качество ползунком';
+                processBtn.title = 'Файл весит больше допустимого лимита Ozon (10 МБ). Уменьшите ползунок качества ниже 85%.';
+            } else {
+                processBtn.disabled = false;
+                processBtn.classList.remove('btn-disabled-limit');
+                processBtn.textContent = '⚡ Подготовить фото для Ozon и скачать ZIP';
+                processBtn.title = '';
+            }
+        }
+
+        /* 6. Оверлеи и рамка для Превью (Квадрат 1:1 и режим Cover) */
+        var ratio = ow / oh;
+        var is3x4 = Math.abs(ratio - 0.75) < 0.02;
+        var is1x1 = Math.abs(ratio - 1.0) < 0.02;
+
+        if (cropFrame) {
+            cropFrame.style.display = (mode === 'cover') ? 'block' : 'none';
+        }
+
+        if (previewAlertOverlay) {
+            if (is1x1) {
+                previewAlertOverlay.className = 'preview-alert-overlay fresh';
+                previewAlertOverlay.textContent = '🥦 Только Ozon Fresh — в остальных Ozon добавит поля сверху/снизу';
+                previewAlertOverlay.style.display = 'block';
+            } else if (mode === 'cover') {
+                previewAlertOverlay.className = 'preview-alert-overlay crop';
+                previewAlertOverlay.textContent = '✂️ Внимание: края изображения обрезаются под 3:4! Проверьте детали';
+                previewAlertOverlay.style.display = 'block';
+            } else {
+                previewAlertOverlay.style.display = 'none';
+            }
+        }
+
+        /* 7. Чек-индикаторы готовности под требования Ozon */
+        if (checksEl) {
+            var pills = [];
+            if (is3x4) {
+                pills.push('<span class="ozon-check-pill">✅ Стандарт 3:4</span>');
+            } else if (is1x1) {
+                pills.push('<span class="ozon-check-pill warn">🥦 1:1 (Ozon Fresh)</span>');
+            } else {
+                pills.push('<span class="ozon-check-pill warn">⚠️ Не 3:4 (Ozon добавит поля)</span>');
+            }
+
+            if (ow >= 1200 && oh >= 1600) {
+                pills.push('<span class="ozon-check-pill">✅ Четкий зум (1200×1600)</span>');
+            } else if (ow >= 900 && oh >= 1200) {
+                pills.push('<span class="ozon-check-pill">✅ Норма для одежды (900×1200)</span>');
+            } else {
+                pills.push('<span class="ozon-check-pill warn">⚠️ Меньше 900×1200 для одежды</span>');
+            }
+
+            pills.push('<span class="ozon-check-pill">✅ Профиль sRGB</span>');
+
+            if (isOverLimit) {
+                pills.push('<span class="ozon-check-pill danger">❌ Превышен лимит 10 МБ!</span>');
+            } else {
+                pills.push('<span class="ozon-check-pill">✅ До 10 МБ (норма)</span>');
+            }
+
+            checksEl.innerHTML = pills.join('');
+        }
+    }
+})();
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</body>
+</html>
