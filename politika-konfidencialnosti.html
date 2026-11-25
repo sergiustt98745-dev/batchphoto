@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        if (localStorage.getItem('bp_theme_v2') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности — BatchPhoto.ru | Фото не покидают ваш браузер</title>
+    <meta name="description" content="Политика конфиденциальности BatchPhoto.ru: все фото обрабатываются локально в вашем браузере через HTML5 Canvas и не загружаются на сервер. Какие данные собирает Яндекс.Метрика, cookies и localStorage, ваши права по 152-ФЗ.">
+    <meta name="robots" content="index, follow, max-snippet:-1">
+    <link rel="canonical" href="https://batchphoto.ru/politika-konfidencialnosti.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://batchphoto.ru/politika-konfidencialnosti.html">
+    <meta property="og:title" content="Политика конфиденциальности BatchPhoto.ru">
+    <meta property="og:description" content="Ваши фото не загружаются на сервер и нигде не хранятся. Вся обработка — локально в браузере. Подробности о Метрике и cookies.">
+    <meta property="og:site_name" content="BatchPhoto.ru">
+    <meta property="og:locale" content="ru_RU">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    <style>
+        .policy-card { line-height: 1.7; }
+        .policy-tldr { background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.3); border-radius: 12px; padding: 16px 18px; margin-bottom: 24px; font-size: 14px; }
+        .policy-tldr strong { color: #10b981; }
+        .policy-card h2 { font-size: 19px; margin: 28px 0 10px; padding-top: 18px; border-top: 1px solid rgba(128,128,128,.15); }
+        .policy-card h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+        .policy-card p, .policy-card li { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+        .policy-card strong { color: var(--text); }
+        .policy-card ul { padding-left: 20px; }
+        .policy-card a { color: var(--primary); }
+        .policy-card table { margin: 12px 0 16px; }
+        .updated { font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; }
+        .toc { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin: 20px 0 24px; font-size: 14px; }
+        .toc strong { display: block; margin-bottom: 8px; }
+        .toc ol { padding-left: 20px; margin: 0; color: var(--muted); }
+        .toc a { color: var(--primary); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://batchphoto.ru/"},
+            {"@type": "ListItem", "position": 2, "name": "Политика конфиденциальности", "item": "https://batchphoto.ru/politika-konfidencialnosti.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Политика конфиденциальности BatchPhoto.ru",
+          "url": "https://batchphoto.ru/politika-konfidencialnosti.html",
+          "inLanguage": "ru",
+          "description": "Политика конфиденциальности сервиса пакетной обработки фото BatchPhoto.ru: локальная обработка в браузере, данные Яндекс.Метрики, cookies, права пользователей."
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="logo">🔒 Batch<span>Photo</span>.ru</a>
+        <nav class="nav">
+            <a href="foto-dlya-marketpleisov.html">🛍️ Маркетплейсы</a>
+            <a href="szhatie-foto.html">🗜️ Сжатие JPG</a>
+            <a href="konverter-webp.html">🌐 Конвертер WebP</a>
+            <a href="udalit-exif.html">🛡️ Удалить EXIF</a>
+            <a href="vodjanoj-znak.html">© Водяной знак</a>
+            <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="/">Главная</a> → <span>Политика конфиденциальности</span>
+        </nav>
+    </div>
+    <div class="hero">
+        <div class="badge">🔒 Ваши файлы не загружаются на сервер и нигде не хранятся</div>
+        <h1>Политика <span>конфиденциальности</span></h1>
+        <p>Простыми словами о том, как устроена приватность на BatchPhoto.ru: что происходит с вашими фото, какие технические данные собирает аналитика и какие у вас есть права.</p>
+        <div class="updated">Дата последнего обновления: 25 ноября 2026 года</div>
+    </div>
+    <div class="container">
+        <div class="card policy-card">
+            <div class="policy-tldr">
+                <strong>✅ Коротко о главном:</strong> все инструменты BatchPhoto.ru работают полностью в вашем браузере
+                (JavaScript + HTML5 Canvas). Ваши фотографии <strong>не передаются по сети, не сохраняются на наших серверах
+                и недоступны третьим лицам</strong>. Вы можете отключить интернет после загрузки страницы — обработка продолжит работать.
+            </div>
+            <div class="toc">
+                <strong>Содержание:</strong>
+                <ol>
+                    <li><a href="#p1">Общие положения</a></li>
+                    <li><a href="#p2">Ваши фотографии: что мы НЕ собираем</a></li>
+                    <li><a href="#p3">Как это работает технически</a></li>
+                    <li><a href="#p4">Какие данные собираются автоматически</a></li>
+                    <li><a href="#p5">Cookies, localStorage и реклама</a></li>
+                    <li><a href="#p6">Сторонние сервисы (CDN, Метрика)</a></li>
+                    <li><a href="#p7">Правовые основания</a></li>
+                    <li><a href="#p8">Ваши права</a></li>
+                    <li><a href="#p9">Безопасность и дети</a></li>
+                    <li><a href="#p10">Изменения и контакты</a></li>
+                </ol>
+            </div>
+            <h2 id="p1">1. Общие положения</h2>
+            <p>Настоящая Политика конфиденциальности описывает порядок обработки информации при использовании сайта
+            <strong>BatchPhoto.ru</strong> — бесплатного онлайн-сервиса пакетной обработки изображений.</p>
+            <p>Используя сайт, вы подтверждаете, что ознакомились с настоящей Политикой. Если вы не согласны с её условиями — пожалуйста, не используйте сервис.</p>
+            <p>Сервис <strong>не требует регистрации</strong>, не просит указывать имя, телефон, e-mail или платёжные данные для работы инструментов.</p>
+            <h2 id="p2">2. Ваши фотографии: что мы НЕ собираем</h2>
+            <p>Это ключевой принцип сервиса:</p>
+            <ul>
+                <li>📷 <strong>Изображения не загружаются на сервер.</strong> Файлы, которые вы перетаскиваете в окно браузера, остаются на вашем устройстве.</li>
+                <li>🗑️ <strong>Изображения не хранятся.</strong> У нас нет базы загруженных фото, нет «истории обработок» и нет доступа к вашим каталогам товаров.</li>
+                <li>🚫 <strong>Изображения не передаются третьим лицам.</strong> Готовые файлы формируются локально и скачиваются напрямую на ваше устройство (по одному или ZIP-архивом).</li>
+                <li>🧹 <strong>Метаданные очищаются.</strong> При пересборке изображения EXIF-данные, GPS-координаты и сторонние цветовые профили удаляются автоматически.</li>
+            </ul>
+            <p>Именно поэтому BatchPhoto.ru безопасно использовать для <strong>эксклюзивных фото новых товаров, документов и личных снимков</strong> — они физически не покидают ваш компьютер или телефон.</p>
+            <h2 id="p3">3. Как это работает технически</h2>
+            <p>Обработка выполняется силами вашего браузера с помощью стандартных веб-технологий:</p>
+            <ul>
+                <li><strong>HTML5 Canvas API</strong> — ресайз, обрезка, поворот, фильтры, водяные знаки;</li>
+                <li><strong>JavaScript (движок engine.js)</strong> — пакетная логика, переименование, подсчёт веса;</li>
+                <li><strong>JSZip + FileSaver.js</strong> — упаковка результата в ZIP-архив прямо на устройстве.</li>
+            </ul>
+            <p>Проверить это легко: откройте любой инструмент, дождитесь полной загрузки страницы, затем <strong>отключите интернет</strong> — все функции продолжат работать. Это прямое доказательство локальной обработки.</p>
+            <h2 id="p4">4. Какие данные собираются автоматически</h2>
+            <p>Как и почти любой сайт в интернете, BatchPhoto.ru использует системы веб-аналитики для понимания посещаемости. При этом <strong>содержимое ваших фото в аналитику не попадает</strong>.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Категория</th><th>Что собирается</th><th>Зачем</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Технические данные</strong></td><td>Тип браузера, ОС, разрешение экрана, IP-адрес, время визита, посещённые страницы</td><td>Понимание аудитории, исправление ошибок, защита от злоупотреблений</td></tr>
+                        <tr><td><strong>Поведение</strong></td><td>Клики, глубина прокрутки, использование инструментов (без содержимого файлов)</td><td>Улучшение интерфейса и скорости работы</td></tr>
+                        <tr><td><strong>Настройки темы</strong></td><td>Выбор светлой/тёмной темы (<code>bp_theme_v2</code> в localStorage)</td><td>Чтобы сайт запоминал вашу тему между визитами</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2 id="p5">5. Cookies, localStorage и реклама</h2>
+            <p><strong>Cookies.</strong> Сайт и подключённые сервисы аналитики могут сохранять небольшие cookie-файлы для подсчёта уникальных посетителей и корректной работы счётчиков. Вы можете отключить cookies в настройках браузера — инструменты обработки фото продолжат работать.</p>
+            <p><strong>localStorage.</strong> Для запоминания выбранной темы оформления используется локальное хранилище браузера (<code>bp_theme_v2</code> со значением <code>light/dark</code>). Эти данные хранятся только на вашем устройстве и никуда не отправляются.</p>
+            <p><strong>Реклама.</strong> На сайте могут показываться рекламные блоки <strong>Яндекс.Директа (РСЯ)</strong>. Яндекс может использовать cookies для подбора релевантной рекламы. Управление персонализацией доступно в настройках вашего Яндекс-аккаунта.</p>
+            <h2 id="p6">6. Сторонние сервисы</h2>
+            <p>Для работы сайта используются проверенные сторонние сервисы:</p>
+            <ul>
+                <li><strong>Яндекс.Метрика (счётчик 114372449)</strong> — статистика посещаемости, Вебвизор, карта кликов. Политика Яндекса: <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener">yandex.ru/legal/confidential</a>. Отказаться от сбора: <a href="https://yandex.ru/support/metrica/opt-out.html" target="_blank" rel="noopener">инструкция по opt-out</a>.</li>
+                <li><strong>CDN cdnjs (Cloudflare)</strong> — быстрая загрузка открытых библиотек <code>JSZip</code> и <code>FileSaver.js</code>. При загрузке библиотек CDN технически видит ваш IP-адрес, как при посещении любого сайта.</li>
+            </ul>
+            <p>Мы не передаём этим сервисам содержимое ваших изображений — только стандартные технические данные визита.</p>
+            <h2 id="p7">7. Правовые основания</h2>
+            <p>Обработка технических данных осуществляется на основании:</p>
+            <ul>
+                <li>согласия пользователя, выраженного использованием сайта (ст. 9 Федерального закона № 152-ФЗ «О персональных данных»);</li>
+                <li>законного интереса оператора в обеспечении стабильной и безопасной работы сервиса, ведении базовой статистики.</li>
+            </ul>
+            <p>Поскольку изображения пользователей <strong>не собираются и не хранятся</strong>, они не являются объектом обработки персональных данных со стороны оператора.</p>
+            <h2 id="p8">8. Ваши права</h2>
+            <p>В соответствии с законодательством РФ вы вправе:</p>
+            <ul>
+                <li>запрашивать информацию о том, какие ваши данные обрабатываются;</li>
+                <li>требовать уточнения, блокирования или уничтожения данных;</li>
+                <li>отозвать согласие на обработку (достаточно прекратить использование сайта и очистить cookies);</li>
+                <li>обжаловать действия оператора в Роскомнадзоре.</li>
+            </ul>
+            <p>Так как мы не ведём пользовательские аккаунты и не храним ваши файлы, большинство запросов исполняется автоматически: <strong>закройте вкладку — и все загруженные фото исчезнут из памяти браузера</strong>. Для полной очистки удалите cookies и localStorage сайта в настройках браузера.</p>
+            <h2 id="p9">9. Безопасность и дети</h2>
+            <p>Сайт работает по защищённому протоколу <strong>HTTPS</strong>. Сервис предназначен для общей аудитории и не собирает осознанно данные детей. Если вы родитель и считаете, что ребёнок передал нам данные через форму обратной связи, — напишите нам, и мы удалим переписку.</p>
+            <h2 id="p10">10. Изменения политики и контакты</h2>
+            <p>Мы можем периодически обновлять настоящую Политику (например, при подключении новых инструментов аналитики). Актуальная версия всегда доступна по адресу <strong>https://batchphoto.ru/politika-konfidencialnosti.html</strong>. Продолжение использования сайта после обновления означает согласие с новой редакцией.</p>
+            <p>По всем вопросам, связанным с конфиденциальностью и работой сервиса, пишите:<br>
+            📧 <strong><a href="mailto:info@batchphoto.ru">info@batchphoto.ru</a></strong></p>
+            <p style="margin-top:16px; font-size:13px;">Оператор сайта: BatchPhoto.ru • Сервис предоставляется «как есть», бесплатно и без гарантий, с максимальным уважением к вашей приватности.</p>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="foto-dlya-marketpleisov.html">Маркетплейсы</a>
+            <a href="szhatie-foto.html">Сжатие JPG</a>
+            <a href="konverter-webp.html">Конвертер WebP</a>
+            <a href="udalit-exif.html">Удаление EXIF</a>
+            <a href="vodjanoj-znak.html">Водяной знак</a>
+            <a href="politika-konfidencialnosti.html">Конфиденциальность</a>
+        </div>
+        <p>© 2025–2026 BatchPhoto.ru — Пакетная обработка изображений онлайн.
+Все файлы обрабатываются локально в вашем браузере.</p>
+    </div>
+</footer>
+<script>
+(function() {
+    function sync() {
+        var isDark = localStorage.getItem('bp_theme_v2') === 'dark';
+        if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+        else document.documentElement.removeAttribute('data-theme');
+        var b = document.getElementById('themeBtn');
+        if (b) b.textContent = isDark ? '☀️' : '🌙';
+    }
+    window.addEventListener('pageshow', sync);
+    sync();
+    var b = document.getElementById('themeBtn');
+    if (b) b.onclick = function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        localStorage.setItem('bp_theme_v2', isDark ? 'light' : 'dark');
+        sync();
+    };
+})();
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114372449', 'ym');
+    ym(114372449, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114372449" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>
